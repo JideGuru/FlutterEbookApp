@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_ebook_app/providers/app_provider.dart';
+import 'package:flutter_ebook_app/screen/downloads.dart';
+import 'package:flutter_ebook_app/screen/explore.dart';
 import 'package:flutter_ebook_app/screen/home.dart';
 import 'package:flutter_ebook_app/util/consts.dart';
 import 'package:flutter_icons/flutter_icons.dart';
@@ -27,9 +29,8 @@ class _MainScreenState extends State<MainScreen> {
           onPageChanged: onPageChanged,
           children: <Widget>[
             Home(),
-            Center(child: Text("1"),),
-            Center(child: Text("1"),),
-            Center(child: Text("1"),),
+            Explore(),
+            Downloads(),
           ],
         ),
 
@@ -50,23 +51,23 @@ class _MainScreenState extends State<MainScreen> {
               title: SizedBox(),
             ),
 
+//            BottomNavigationBarItem(
+//              icon: Icon(
+//                Feather.book_open,
+//              ),
+//              title: SizedBox(),
+//            ),
+
             BottomNavigationBarItem(
               icon: Icon(
-                Feather.book_open,
+                Feather.compass,
               ),
               title: SizedBox(),
             ),
 
             BottomNavigationBarItem(
               icon: Icon(
-                Feather.heart,
-              ),
-              title: SizedBox(),
-            ),
-
-            BottomNavigationBarItem(
-              icon: Icon(
-                Feather.download,
+                Feather.user,
               ),
               title: SizedBox(),
             ),
