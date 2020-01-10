@@ -15,6 +15,7 @@ class Constants{
   static Color darkBG = Colors.black;
 
   static ThemeData lightTheme = ThemeData(
+    fontFamily: "TimesNewRoman",
     backgroundColor: lightBG,
     primaryColor: lightPrimary,
     accentColor:  lightAccent,
@@ -24,6 +25,7 @@ class Constants{
       elevation: 0,
       textTheme: TextTheme(
         title: TextStyle(
+          fontFamily: "TimesNewRoman",
           color: Colors.black,
           fontSize: 18.0,
           fontWeight: FontWeight.w800,
@@ -33,6 +35,7 @@ class Constants{
   );
 
   static ThemeData darkTheme = ThemeData(
+    fontFamily: "TimesNewRoman",
     brightness: Brightness.dark,
     backgroundColor: darkBG,
     primaryColor: darkPrimary,
@@ -43,6 +46,7 @@ class Constants{
       elevation: 0,
       textTheme: TextTheme(
         title: TextStyle(
+          fontFamily: "TimesNewRoman",
           color: lightBG,
           fontSize: 18.0,
           fontWeight: FontWeight.w800,

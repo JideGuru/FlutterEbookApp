@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_ebook_app/widgets/book.dart';
+import 'package:flutter_ebook_app/widgets/book_card.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 
 class Explore extends StatefulWidget {
@@ -50,7 +50,7 @@ class _ExploreState extends State<Explore> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
                 Text(
-                  "Fiction",
+                  "Romance",
                   style: TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
@@ -81,26 +81,7 @@ class _ExploreState extends State<Explore> {
                 itemBuilder: (BuildContext context, int index) {
                   return Padding(
                     padding: EdgeInsets.symmetric(horizontal: 5, vertical: 10),
-                    child: Container(
-                      width: 120,
-                      child: Card(
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(10),
-                          ),
-                        ),
-                        elevation: 4,
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(10),
-                          ),
-                          child: Image.asset(
-                            "assets/images/1.jpg",
-                            fit: BoxFit.cover,
-                          ),
-                        ),
-                      ),
-                    ),
+                    child: BookCard(),
                   );
                 },
               ),
@@ -115,7 +96,7 @@ class _ExploreState extends State<Explore> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
                 Text(
-                  "Non-Fiction",
+                  "Literary",
                   style: TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
@@ -146,26 +127,7 @@ class _ExploreState extends State<Explore> {
                 itemBuilder: (BuildContext context, int index) {
                   return Padding(
                     padding: EdgeInsets.symmetric(horizontal: 5, vertical: 10),
-                    child: Container(
-                      width: 120,
-                      child: Card(
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(10),
-                          ),
-                        ),
-                        elevation: 4,
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(10),
-                          ),
-                          child: Image.asset(
-                            "assets/images/1.jpg",
-                            fit: BoxFit.cover,
-                          ),
-                        ),
-                      ),
-                    ),
+                    child: BookCard(),
                   );
                 },
               ),
@@ -180,7 +142,7 @@ class _ExploreState extends State<Explore> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
                 Text(
-                  "Most Popular",
+                  "Action & Adventure",
                   style: TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
@@ -211,26 +173,7 @@ class _ExploreState extends State<Explore> {
                 itemBuilder: (BuildContext context, int index) {
                   return Padding(
                     padding: EdgeInsets.symmetric(horizontal: 5, vertical: 10),
-                    child: Container(
-                      width: 120,
-                      child: Card(
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(10),
-                          ),
-                        ),
-                        elevation: 4,
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(10),
-                          ),
-                          child: Image.asset(
-                            "assets/images/1.jpg",
-                            fit: BoxFit.cover,
-                          ),
-                        ),
-                      ),
-                    ),
+                    child: BookCard(),
                   );
                 },
               ),
@@ -245,7 +188,7 @@ class _ExploreState extends State<Explore> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
                 Text(
-                  "Recently Added",
+                  "Juvenile & Young Adult",
                   style: TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
@@ -276,26 +219,7 @@ class _ExploreState extends State<Explore> {
                 itemBuilder: (BuildContext context, int index) {
                   return Padding(
                     padding: EdgeInsets.symmetric(horizontal: 5, vertical: 10),
-                    child: Container(
-                      width: 120,
-                      child: Card(
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(10),
-                          ),
-                        ),
-                        elevation: 4,
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(10),
-                          ),
-                          child: Image.asset(
-                            "assets/images/1.jpg",
-                            fit: BoxFit.cover,
-                          ),
-                        ),
-                      ),
-                    ),
+                    child: BookCard(),
                   );
                 },
               ),

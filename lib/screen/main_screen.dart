@@ -3,6 +3,7 @@ import 'package:flutter_ebook_app/providers/app_provider.dart';
 import 'package:flutter_ebook_app/screen/downloads.dart';
 import 'package:flutter_ebook_app/screen/explore.dart';
 import 'package:flutter_ebook_app/screen/home.dart';
+import 'package:flutter_ebook_app/screen/profile.dart';
 import 'package:flutter_ebook_app/util/consts.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:provider/provider.dart';
@@ -30,16 +31,13 @@ class _MainScreenState extends State<MainScreen> {
           children: <Widget>[
             Home(),
             Explore(),
-            Downloads(),
+            Profile(),
           ],
         ),
 
         bottomNavigationBar: BottomNavigationBar(
           backgroundColor: Theme.of(context).primaryColor,
-          selectedItemColor: Provider.of<AppProvider>(context).theme
-              == Constants.lightTheme
-              ? Theme.of(context).accentColor
-              : Colors.white,
+          selectedItemColor: Theme.of(context).accentColor,
           unselectedItemColor: Colors.grey[500],
           elevation: 20,
           type: BottomNavigationBarType.fixed,
@@ -50,13 +48,6 @@ class _MainScreenState extends State<MainScreen> {
               ),
               title: SizedBox(),
             ),
-
-//            BottomNavigationBarItem(
-//              icon: Icon(
-//                Feather.book_open,
-//              ),
-//              title: SizedBox(),
-//            ),
 
             BottomNavigationBarItem(
               icon: Icon(
