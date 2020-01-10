@@ -86,7 +86,7 @@ class _MainScreenState extends State<MainScreen> {
   @override
   void initState() {
     super.initState();
-    _pageController = PageController(initialPage: 1);
+    _pageController = PageController(initialPage: 0);
   }
 
   @override
