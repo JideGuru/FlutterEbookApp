@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_ebook_app/providers/app_provider.dart';
+import 'package:flutter_ebook_app/screen/favorites.dart';
 import 'package:flutter_ebook_app/util/consts.dart';
 import 'package:flutter_icons/flutter_icons.dart';
+import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 
 class Profile extends StatefulWidget {
@@ -13,11 +15,13 @@ class _ProfileState extends State<Profile> {
   List items = [
     {
       "icon": Feather.heart,
-      "title": "Favorites"
+      "title": "Favorites",
+      "page": Favorites(),
     },
     {
       "icon": Feather.download,
-      "title": "Downloads"
+      "title": "Downloads",
+      "page": Container(),
     },
     {
       "icon": Feather.moon,
@@ -25,7 +29,8 @@ class _ProfileState extends State<Profile> {
     },
     {
       "icon": Feather.info,
-      "title": "About"
+      "title": "About",
+      "page": Container(),
     },
   ];
 
@@ -85,13 +90,22 @@ class _ProfileState extends State<Profile> {
                 },
               )
                   : ListTile(
-                onTap: (){},
+                onTap: (){
+                  Navigator.push(
+                    context,
+                    PageTransition(
+                      type: PageTransitionType.rightToLeft,
+                      child: items[index]['page'],
+                    ),
+                  );
+                },
                 leading: Icon(
                   items[index]['icon'],
                 ),
                 title: Text(
                   items[index]['title'],
                 ),
+
               );
             },
           ),

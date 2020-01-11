@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_ebook_app/screen/details.dart';
+import 'package:page_transition/page_transition.dart';
 
 class BookCard extends StatelessWidget {
   @override
@@ -12,13 +14,27 @@ class BookCard extends StatelessWidget {
           ),
         ),
         elevation: 4,
-        child: ClipRRect(
+        child: InkWell(
           borderRadius: BorderRadius.all(
             Radius.circular(10),
           ),
-          child: Image.asset(
-            "assets/images/1.jpg",
-            fit: BoxFit.cover,
+          onTap: (){
+            Navigator.push(
+              context,
+              PageTransition(
+                type: PageTransitionType.rightToLeft,
+                child: Details(),
+              ),
+            );
+          },
+          child: ClipRRect(
+            borderRadius: BorderRadius.all(
+              Radius.circular(10),
+            ),
+            child: Image.asset(
+              "assets/images/1.jpg",
+              fit: BoxFit.cover,
+            ),
           ),
         ),
       ),

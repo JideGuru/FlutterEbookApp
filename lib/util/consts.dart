@@ -27,7 +27,7 @@ class Constants{
         title: TextStyle(
           fontFamily: "TimesNewRoman",
           color: Colors.black,
-          fontSize: 18.0,
+          fontSize: 20,
           fontWeight: FontWeight.w800,
         ),
       ),
@@ -48,7 +48,7 @@ class Constants{
         title: TextStyle(
           fontFamily: "TimesNewRoman",
           color: lightBG,
-          fontSize: 18.0,
+          fontSize: 20,
           fontWeight: FontWeight.w800,
         ),
       ),

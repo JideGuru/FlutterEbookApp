@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_ebook_app/screen/category.dart';
 import 'package:flutter_ebook_app/util/consts.dart';
 import 'package:flutter_ebook_app/widgets/book.dart';
 import 'package:flutter_ebook_app/widgets/book_card.dart';
+import 'package:flutter_ebook_app/widgets/book_list_item.dart';
+import 'package:page_transition/page_transition.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -84,13 +87,24 @@ class _HomeState extends State<Home> {
                   ),
                 ),
 
-                Text(
-                  "See All",
-                  style: TextStyle(
-                    color: Theme.of(context).accentColor,
-                    fontWeight: FontWeight.w400,
-                  ),
-                ),
+//                InkWell(
+//                  onTap: (){
+//                    Navigator.push(
+//                      context,
+//                      PageTransition(
+//                        type: PageTransitionType.rightToLeft,
+//                        child: Category(),
+//                      ),
+//                    );
+//                  },
+//                  child: Text(
+//                    "See All",
+//                    style: TextStyle(
+//                      color: Theme.of(context).accentColor,
+//                      fontWeight: FontWeight.w400,
+//                    ),
+//                  ),
+//                ),
               ],
             ),
           ),
@@ -147,11 +161,22 @@ class _HomeState extends State<Home> {
                   ),
                 ),
 
-                Text(
-                  "See All",
-                  style: TextStyle(
-                    color: Theme.of(context).accentColor,
-                    fontWeight: FontWeight.w400,
+                InkWell(
+                  onTap: (){
+                    Navigator.push(
+                      context,
+                      PageTransition(
+                        type: PageTransitionType.rightToLeft,
+                        child: Category(),
+                      ),
+                    );
+                  },
+                  child: Text(
+                    "See All",
+                    style: TextStyle(
+                      color: Theme.of(context).accentColor,
+                      fontWeight: FontWeight.w400,
+                    ),
                   ),
                 ),
               ],
@@ -160,19 +185,15 @@ class _HomeState extends State<Home> {
 
           SizedBox(height: 20,),
 
-          GridView.builder(
+          ListView.builder(
             padding: EdgeInsets.symmetric(horizontal: 15),
             shrinkWrap: true,
             physics: NeverScrollableScrollPhysics(),
             itemCount: 12,
-            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 3,
-              childAspectRatio: 200/400,
-            ),
             itemBuilder: (BuildContext context, int index) {
               return Padding(
                 padding: EdgeInsets.symmetric(horizontal: 5),
-                child: BookItem(),
+                child: BookListItem(),
               );
             },
           ),
