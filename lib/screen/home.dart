@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_ebook_app/screen/category.dart';
+import 'package:flutter_ebook_app/screen/genre.dart';
+import 'package:flutter_ebook_app/util/api.dart';
 import 'package:flutter_ebook_app/util/consts.dart';
-import 'package:flutter_ebook_app/widgets/book.dart';
 import 'package:flutter_ebook_app/widgets/book_card.dart';
 import 'package:flutter_ebook_app/widgets/book_list_item.dart';
 import 'package:page_transition/page_transition.dart';
@@ -23,6 +23,14 @@ class _HomeState extends State<Home> {
             fontSize: 20,
           ),
         ),
+        actions: <Widget>[
+          IconButton(
+            onPressed: (){},
+            icon: Icon(
+              Icons.stop,
+            ),
+          )
+        ],
       ),
       body: ListView(
         children: <Widget>[
@@ -167,7 +175,7 @@ class _HomeState extends State<Home> {
                       context,
                       PageTransition(
                         type: PageTransitionType.rightToLeft,
-                        child: Category(),
+                        child: Genre(),
                       ),
                     );
                   },

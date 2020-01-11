@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_ebook_app/widgets/book_list_item.dart';
 
-class Category extends StatefulWidget {
+class Genre extends StatefulWidget {
   @override
-  _CategoryState createState() => _CategoryState();
+  _GenreState createState() => _GenreState();
 }
 
-class _CategoryState extends State<Category> {
+class _GenreState extends State<Genre> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
