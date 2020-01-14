@@ -41,6 +41,7 @@ class _DescriptionTextWidgetState extends State<DescriptionTextWidget> {
         linkStyle: TextStyle(
           color: Colors.blue,
         ),
+        renderNewlines: true,
         defaultTextStyle: TextStyle(
           fontSize: 16,
           color: Theme.of(context).textTheme.caption.color,
@@ -53,6 +54,7 @@ class _DescriptionTextWidgetState extends State<DescriptionTextWidget> {
             onLinkTap: (url) {
               print(url);
             },
+            renderNewlines: true,
             linkStyle: TextStyle(
               color: Colors.blue,
             ),
@@ -61,6 +63,7 @@ class _DescriptionTextWidgetState extends State<DescriptionTextWidget> {
               color: Theme.of(context).textTheme.caption.color,
             ),
           ),
+
           InkWell(
             child: Row(
               mainAxisAlignment: MainAxisAlignment.end,

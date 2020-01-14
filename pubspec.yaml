@@ -31,6 +31,7 @@ dependencies:
   esys_flutter_share: ^1.0.2
   cached_network_image: ^2.0.0
   uuid: ^2.0.4
+  objectdb: ^1.0.7+1
 
 
 dev_dependencies:

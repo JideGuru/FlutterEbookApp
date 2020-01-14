@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_ebook_app/podo/category.dart';
 import 'package:flutter_ebook_app/providers/details_provider.dart';
 import 'package:flutter_ebook_app/screen/details.dart';
-import 'package:flutter_icons/flutter_icons.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 import 'package:uuid/uuid.dart';
@@ -39,6 +38,7 @@ class BookCard extends StatelessWidget {
             Radius.circular(10),
           ),
           onTap: () {
+            Provider.of<DetailsProvider>(context, listen: false).setEntry(entry);
             Provider.of<DetailsProvider>(context, listen: false).getFeed(entry.author.uri.t);
             Navigator.push(
               context,
@@ -58,7 +58,7 @@ class BookCard extends StatelessWidget {
               Radius.circular(10),
             ),
             child: Hero(
-              tag: img,
+              tag: imgTag,
               child: CachedNetworkImage(
                 imageUrl: "$img",
                 placeholder: (context, url) => Center(child: CircularProgressIndicator()),

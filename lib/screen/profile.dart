@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_ebook_app/providers/app_provider.dart';
+import 'package:flutter_ebook_app/providers/favorites_provider.dart';
 import 'package:flutter_ebook_app/screen/favorites.dart';
 import 'package:flutter_ebook_app/util/consts.dart';
 import 'package:flutter_icons/flutter_icons.dart';
@@ -91,6 +92,7 @@ class _ProfileState extends State<Profile> {
               )
                   : ListTile(
                 onTap: (){
+                  Provider.of<FavoritesProvider>(context, listen: false).getFeed();
                   Navigator.push(
                     context,
                     PageTransition(

@@ -78,10 +78,24 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.1.3"
+  deeply:
+    dependency: transitive
+    description:
+      name: deeply
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.1"
   esys_flutter_share:
     dependency: "direct main"
     description:
       name: esys_flutter_share
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.2"
+  execution_queue:
+    dependency: transitive
+    description:
+      name: execution_queue
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.2"
@@ -177,6 +191,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.0.4"
+  objectdb:
+    dependency: "direct main"
+    description:
+      name: objectdb
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.7+1"
   page_transition:
     dependency: "direct main"
     description:

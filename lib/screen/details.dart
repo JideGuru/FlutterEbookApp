@@ -1,14 +1,16 @@
-import 'dart:ffi';
-
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:esys_flutter_share/esys_flutter_share.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_ebook_app/database/favorite_helper.dart';
 import 'package:flutter_ebook_app/podo/category.dart';
 import 'package:flutter_ebook_app/providers/details_provider.dart';
+import 'package:flutter_ebook_app/util/html_unescape/html_unescape.dart';
 import 'package:flutter_ebook_app/widgets/book_list_item.dart';
 import 'package:flutter_ebook_app/widgets/description_text.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:provider/provider.dart';
 
+// ignore: must_be_immutable
 class Details extends StatelessWidget {
   final Entry entry;
   final String imgTag;
@@ -22,6 +24,9 @@ class Details extends StatelessWidget {
     @required this.titleTag,
     @required this.authorTag,
   }): super(key:key);
+
+  var unescape = HtmlUnescape();
+  var db = FavoriteDB();
 
   @override
   Widget build(BuildContext context) {
@@ -39,14 +44,31 @@ class Details extends StatelessWidget {
           ),
 
           IconButton(
-            onPressed: (){},
+            onPressed: () async{
+              if(detailsProvider.faved){
+                detailsProvider.removeFav();
+              }else{
+                detailsProvider.addFav();
+              }
+            },
             icon: Icon(
-              Feather.heart,
+              detailsProvider.faved
+                  ? Icons.favorite
+                  : Feather.heart,
+              color: detailsProvider.faved
+                  ? Colors.red
+                  : Theme.of(context).iconTheme.color,
             ),
           ),
 
           IconButton(
-            onPressed: (){},
+            onPressed: (){
+              Share.text(
+                "${entry.title.t} by ${entry.author.name.t}",
+                "Read/Download ${entry.title.t} from ${entry.link[3].href}.",
+                "text/plain",
+              );
+            },
             icon: Icon(
               Feather.share_2,
             ),
@@ -97,7 +119,7 @@ class Details extends StatelessWidget {
                         child: Material(
                           type: MaterialType.transparency,
                           child: Text(
-                            "${entry.title.t}",
+                            "${unescape.convert(entry.title.t)}",
                             style: TextStyle(
                               fontSize: 20,
                               fontWeight: FontWeight.bold,
@@ -152,7 +174,7 @@ class Details extends StatelessWidget {
                                       "${cat.label}",
                                       style: TextStyle(
                                         color: Theme.of(context).accentColor,
-                                        fontSize: cat.label.length >20 ? 6:10,
+                                        fontSize: cat.label.length >18 ? 6:10,
                                         fontWeight: FontWeight.bold,
                                       ),
                                     ),
@@ -196,7 +218,7 @@ class Details extends StatelessWidget {
               fontWeight: FontWeight.bold,
             ),
           ),
-
+          Divider(color: Theme.of(context).textTheme.caption.color,),
           SizedBox(height: 10,),
 
           DescriptionTextWidget(
@@ -213,6 +235,7 @@ class Details extends StatelessWidget {
               fontWeight: FontWeight.bold,
             ),
           ),
+          Divider(color: Theme.of(context).textTheme.caption.color,),
 
           SizedBox(height: 10,),
 

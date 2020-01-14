@@ -4,7 +4,6 @@ import 'package:flutter_ebook_app/podo/category.dart';
 import 'package:flutter_ebook_app/providers/details_provider.dart';
 import 'package:flutter_ebook_app/screen/details.dart';
 import 'package:flutter_ebook_app/widgets/summary_text.dart';
-import 'package:flutter_icons/flutter_icons.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 import 'package:uuid/uuid.dart';
@@ -34,6 +33,7 @@ class BookListItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
+        Provider.of<DetailsProvider>(context, listen: false).setEntry(entry);
         Provider.of<DetailsProvider>(context, listen: false).getFeed(entry.author.uri.t);
         Navigator.push(
           context,
