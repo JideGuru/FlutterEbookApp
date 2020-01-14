@@ -10,6 +10,7 @@ import 'package:flutter_ebook_app/widgets/description_text.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:provider/provider.dart';
 
+
 // ignore: must_be_immutable
 class Details extends StatelessWidget {
   final Entry entry;
@@ -36,12 +37,12 @@ class Details extends StatelessWidget {
       appBar: AppBar(
 
         actions: <Widget>[
-          IconButton(
-            onPressed: (){},
-            icon: Icon(
-              Feather.download,
-            ),
-          ),
+//          IconButton(
+//            onPressed: (){},
+//            icon: Icon(
+//              Feather.download,
+//            ),
+//          ),
 
           IconButton(
             onPressed: () async{
@@ -193,9 +194,9 @@ class Details extends StatelessWidget {
                           height: 20,
                           width: MediaQuery.of(context).size.width,
                           child: FlatButton(
-                            onPressed: (){},
+                            onPressed: () async{},
                             child: Text(
-                              "Read book",
+                              "Download",
                             ),
                           ),
                         ),

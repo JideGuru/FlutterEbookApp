@@ -83,7 +83,6 @@ class DetailsProvider extends ChangeNotifier{
   }
 
   void setFaved(value) {
-    print(value);
     faved = value;
     notifyListeners();
   }
