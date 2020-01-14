@@ -1,16 +1,32 @@
+import 'dart:ffi';
+
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_ebook_app/podo/category.dart';
+import 'package:flutter_ebook_app/providers/details_provider.dart';
 import 'package:flutter_ebook_app/widgets/book_list_item.dart';
 import 'package:flutter_ebook_app/widgets/description_text.dart';
 import 'package:flutter_icons/flutter_icons.dart';
+import 'package:provider/provider.dart';
 
-class Details extends StatefulWidget {
-  @override
-  _DetailsState createState() => _DetailsState();
-}
+class Details extends StatelessWidget {
+  final Entry entry;
+  final String imgTag;
+  final String titleTag;
+  final String authorTag;
 
-class _DetailsState extends State<Details> {
+  Details({
+    Key key,
+    @required this.entry,
+    @required this.imgTag,
+    @required this.titleTag,
+    @required this.authorTag,
+  }): super(key:key);
+
   @override
   Widget build(BuildContext context) {
+    DetailsProvider detailsProvider = Provider.of<DetailsProvider>(context);
+
     return Scaffold(
       appBar: AppBar(
 
@@ -49,11 +65,22 @@ class _DetailsState extends State<Details> {
               mainAxisSize: MainAxisSize.max,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                Image.asset(
-                  "assets/images/1.jpg",
-                  fit: BoxFit.cover,
-                  height: 200,
-                  width: 130,
+                Hero(
+                  tag: imgTag,
+                  child: CachedNetworkImage(
+                    imageUrl: "${entry.link[1].href}",
+                    placeholder: (context, url) => Container(
+                      height: 200,
+                      width: 130,
+                      child: Center(
+                        child: CircularProgressIndicator(),
+                      ),
+                    ),
+                    errorWidget: (context, url, error) => Icon(Feather.x),
+                    fit: BoxFit.cover,
+                    height: 200,
+                    width: 130,
+                  ),
                 ),
 
                 SizedBox(width: 20,),
@@ -65,69 +92,89 @@ class _DetailsState extends State<Details> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       SizedBox(height: 5,),
-                      Text(
-                        "Le Debut des Haricots",
-                        style: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
+                      Hero(
+                        tag: titleTag,
+                        child: Material(
+                          type: MaterialType.transparency,
+                          child: Text(
+                            "${entry.title.t}",
+                            style: TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
                         ),
                       ),
                       SizedBox(height: 5,),
-                      Text(
-                        "Jane Austen",
-                        style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w800,
-                          color: Colors.grey,
+                      Hero(
+                        tag: authorTag,
+                        child: Material(
+                          type: MaterialType.transparency,
+                          child: Text(
+                            "${entry.author.name.t}",
+                            style: TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.w800,
+                              color: Colors.grey,
+                            ),
+                          ),
                         ),
                       ),
 
                       SizedBox(height: 5,),
 
-                      GridView.builder(
-                        shrinkWrap: true,
-                        physics: NeverScrollableScrollPhysics(),
-                        itemCount: 4,
-                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: 3,
-                          childAspectRatio: 210/100,
-                        ),
-                        itemBuilder: (BuildContext context, int index) {
-                          return Padding(
-                            padding: EdgeInsets.fromLTRB(0, 5, 5, 5),
-                            child: Container(
-                              decoration: BoxDecoration(
-                                color: Theme.of(context).backgroundColor,
-                                borderRadius: BorderRadius.all(Radius.circular(20),),
-                                border: Border.all(
-                                  color: Theme.of(context).accentColor,
+                      entry.category == null?SizedBox():Container(
+                        height: entry.category.length<3?40:80,
+                        child: GridView.builder(
+                          shrinkWrap: true,
+                          physics: NeverScrollableScrollPhysics(),
+                          itemCount: entry.category.length>4?4:entry.category.length,
+                          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 2,
+                            childAspectRatio: 210/80,
+                          ),
+                          itemBuilder: (BuildContext context, int index) {
+                            Category cat = entry.category[index];
+                            return Padding(
+                              padding: EdgeInsets.fromLTRB(0, 5, 5, 5),
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  color: Theme.of(context).backgroundColor,
+                                  borderRadius: BorderRadius.all(Radius.circular(20),),
+                                  border: Border.all(
+                                    color: Theme.of(context).accentColor,
+                                  ),
                                 ),
-                              ),
-                              child: Center(
-                                child: Padding(
-                                  padding: EdgeInsets.symmetric(horizontal: 2),
-                                  child: Text(
-                                    "Romance",
-                                    style: TextStyle(
-                                      color: Theme.of(context).accentColor,
-                                      fontSize: 8,
-                                      fontWeight: FontWeight.bold,
+                                child: Center(
+                                  child: Padding(
+                                    padding: EdgeInsets.symmetric(horizontal: 2),
+                                    child: Text(
+                                      "${cat.label}",
+                                      style: TextStyle(
+                                        color: Theme.of(context).accentColor,
+                                        fontSize: cat.label.length >20 ? 6:10,
+                                        fontWeight: FontWeight.bold,
+                                      ),
                                     ),
                                   ),
                                 ),
                               ),
-                            ),
-                          );
-                        },
+                            );
+                          },
+                        ),
                       ),
 
                       SizedBox(height: 5,),
 
                       Center(
-                        child: FlatButton(
-                          onPressed: (){},
-                          child: Text(
-                            "Read book",
+                        child: Container(
+                          height: 20,
+                          width: MediaQuery.of(context).size.width,
+                          child: FlatButton(
+                            onPressed: (){},
+                            child: Text(
+                              "Read book",
+                            ),
                           ),
                         ),
                       ),
@@ -153,7 +200,7 @@ class _DetailsState extends State<Details> {
           SizedBox(height: 10,),
 
           DescriptionTextWidget(
-            text: "<p>This Edwardian social comedy explores love and prim propriety among an eccentric cast of characters assembled in an Italian pensione and in a corner of Surrey, England.</p> <p>A charming young Englishwoman, Lucy Honeychurch, faints into the arms of a fellow Britisher when she witnesses a murder in a Florentine piazza. Attracted to this man, George Emerson&#8212;who is entirely unsuitable and whose father just may be a Socialist&#8212;Lucy is soon at war with the snobbery of her class and her own conflicting desires. Back in England, she is courted by a more acceptable, if stifling, suitor and soon realizes she must make a startling decision that will decide the course of her future: she is forced to choose between convention and passion. </p>",
+            text: "${entry.summary.t}",
           ),
 
           SizedBox(height: 30,),
@@ -169,14 +216,28 @@ class _DetailsState extends State<Details> {
 
           SizedBox(height: 10,),
 
-          ListView.builder(
+          detailsProvider.loading
+              ? Container(
+            height: 100,
+                child: Center(
+            child: CircularProgressIndicator(),
+          ),
+              )
+              : ListView.builder(
             shrinkWrap: true,
             physics: NeverScrollableScrollPhysics(),
-            itemCount: 5,
+            itemCount: detailsProvider.related.feed.entry.length,
             itemBuilder: (BuildContext context, int index) {
+              Entry entry = detailsProvider.related.feed.entry[index];
               return Padding(
                 padding: EdgeInsets.symmetric(vertical: 5),
-                child: BookListItem(),
+                child: BookListItem(
+                  img: entry.link[1].href,
+                  title: entry.title.t,
+                  author: entry.author.name.t,
+                  desc: entry.summary.t,
+                  entry: entry,
+                ),
               );
             },
           ),

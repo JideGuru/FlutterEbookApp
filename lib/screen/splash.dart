@@ -1,10 +1,12 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_ebook_app/providers/home_provider.dart';
 import 'package:flutter_ebook_app/screen/main_screen.dart';
 import 'package:flutter_ebook_app/util/consts.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:page_transition/page_transition.dart';
+import 'package:provider/provider.dart';
 
 class Splash extends StatefulWidget {
   @override
@@ -34,6 +36,7 @@ class _SplashState extends State<Splash> {
         child: MainScreen(),
       ),
     );
+    Provider.of<HomeProvider>(context, listen: false).getFeeds();
   }
 
   @override

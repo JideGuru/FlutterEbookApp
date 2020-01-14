@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_ebook_app/providers/app_provider.dart';
+import 'package:flutter_ebook_app/providers/details_provider.dart';
+import 'package:flutter_ebook_app/providers/genre_provider.dart';
+import 'package:flutter_ebook_app/providers/home_provider.dart';
 import 'package:flutter_ebook_app/screen/splash.dart';
 import 'package:flutter_ebook_app/util/consts.dart';
 import 'package:provider/provider.dart';
@@ -9,6 +12,9 @@ void main() {
       MultiProvider(
         providers: [
           ChangeNotifierProvider(create: (_) => AppProvider()),
+          ChangeNotifierProvider(create: (_) => HomeProvider()),
+          ChangeNotifierProvider(create: (_) => DetailsProvider()),
+          ChangeNotifierProvider(create: (_) => GenreProvider()),
         ],
         child: MyApp(),
       )

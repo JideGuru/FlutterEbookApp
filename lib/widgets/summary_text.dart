@@ -42,7 +42,7 @@ class _SummaryTextWidgetState extends State<SummaryTextWidget> {
           color: Colors.blue,
         ),
         defaultTextStyle: TextStyle(
-          fontSize: 16,
+          fontSize: 14,
           color: Theme.of(context).textTheme.caption.color,
         ),
       )
