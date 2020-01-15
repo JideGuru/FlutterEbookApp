@@ -4,8 +4,11 @@ A simple Flutter app to Read and Download books.
 The Books included in the app are from the [Public Domain](https://en.wikipedia.org/wiki/Public_domain) (Expired Copyright and completely free).
 
 <a href="http://www.feedbooks.com/"><img src="ss/logo_feedbooks.png" width="200"/></a>
-The [Feedbooks API](http://www.feedbooks.com/api) was used to fetch books.
+<br>
 
+The [Feedbooks API](http://www.feedbooks.com/api) was used to fetch books.
+<br>
+<br>
 <a href="ss/app.apk"><img src="https://playerzon.com/asset/download.png" width="200"></img></a>
 
 
