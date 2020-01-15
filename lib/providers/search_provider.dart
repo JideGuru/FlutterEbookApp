@@ -3,7 +3,7 @@ import 'package:flutter_ebook_app/podo/category.dart';
 import 'package:flutter_ebook_app/util/api.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
-class ExploreProvider with ChangeNotifier {
+class SearchProvider with ChangeNotifier {
   String message;
   CategoryFeed romance = CategoryFeed();
   CategoryFeed action = CategoryFeed();

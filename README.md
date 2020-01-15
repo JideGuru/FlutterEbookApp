@@ -20,6 +20,7 @@ Please star⭐ the repo if you like what you see😉.
 * A brain to think 🤓🤓
 
 ## ✨ Features
+- [x] Search for books
 - [ ] Download eBooks.
 - [ ] Read eBooks (ePub).
 - [x] Favorites.

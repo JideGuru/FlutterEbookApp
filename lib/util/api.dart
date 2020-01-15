@@ -27,12 +27,18 @@ class Api {
   static String horror =
       "https://catalog.feedbooks.com/publicdomain/browse/en/top.atom?cat=FBFIC015000";
 
-  static Future<CategoryFeed> getCategory(String url) async {
+  static Future<dynamic> getCategory(String url) async {
     var res = await http.get(url);
-    Xml2Json xml2json = new Xml2Json();
-    xml2json.parse(res.body);
-    var json = jsonDecode(xml2json.toGData());
-    CategoryFeed category = CategoryFeed.fromJson(json);
+    CategoryFeed category;
+    if(res.statusCode == 200){
+      Xml2Json xml2json = new Xml2Json();
+      xml2json.parse(res.body);
+      var json = jsonDecode(xml2json.toGData());
+      category = CategoryFeed.fromJson(json);
+    }else{
+      throw("Error ${res.statusCode}");
+    }
+
     return category;
   }
 

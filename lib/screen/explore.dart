@@ -7,12 +7,8 @@ import 'package:flutter_ebook_app/widgets/book_card.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:provider/provider.dart';
 
-class Explore extends StatefulWidget {
-  @override
-  _ExploreState createState() => _ExploreState();
-}
+class Explore extends StatelessWidget{
 
-class _ExploreState extends State<Explore> {
   @override
   Widget build(BuildContext context) {
     HomeProvider homeProvider = Provider.of<HomeProvider>(context);
@@ -60,6 +56,7 @@ class _ExploreState extends State<Explore> {
         itemBuilder: (BuildContext context, int index) {
           Link link = homeProvider.top.feed.link[index];
 
+          print(Api.baseURL+link.href);
           if(index < 10){
             return SizedBox();
           }
@@ -81,13 +78,13 @@ class _ExploreState extends State<Explore> {
                         ),
                       ),
 
-                      Text(
-                        "See All",
-                        style: TextStyle(
-                          color: Theme.of(context).accentColor,
-                          fontWeight: FontWeight.w400,
-                        ),
-                      ),
+//                      Text(
+//                        "See All",
+//                        style: TextStyle(
+//                          color: Theme.of(context).accentColor,
+//                          fontWeight: FontWeight.w400,
+//                        ),
+//                      ),
                     ],
                   ),
                 ),
@@ -95,11 +92,10 @@ class _ExploreState extends State<Explore> {
                 SizedBox(height: 10,),
 
                 FutureBuilder<CategoryFeed>(
-                  future: Api.getCategory(link.href),
+                  future: Api.getCategory(Api.baseURL+link.href),
                   builder: (context, snapshot) {
                     if (snapshot.connectionState == ConnectionState.done && snapshot.hasData) {
 
-                      print(snapshot.data.toString());
                       CategoryFeed category = snapshot.data;
 
                       return Container(
@@ -126,7 +122,12 @@ class _ExploreState extends State<Explore> {
                       );
 
                     } else {
-                      return Center(child: CircularProgressIndicator());
+                      return Container(
+                        height: 200,
+                        child: Center(
+                          child: CircularProgressIndicator(),
+                        ),
+                      );
                     }
                   }
                 ),
