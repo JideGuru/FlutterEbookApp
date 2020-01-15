@@ -14,6 +14,6 @@ The Books included in the app are from the [Public Domain](https://en.wikipedia.
 * A brain to think 🤓🤓
 
 ## ✨ Features
--[] Download eBooks.
--[] Read eBooks.
--[] Favorites.
+- [ ] Download eBooks.
+- [ ] Read eBooks.
+- [ ] Favorites.
