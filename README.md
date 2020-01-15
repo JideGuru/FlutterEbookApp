@@ -15,5 +15,46 @@ The Books included in the app are from the [Public Domain](https://en.wikipedia.
 
 ## ✨ Features
 - [ ] Download eBooks.
-- [ ] Read eBooks.
-- [ ] Favorites.
+- [ ] Read eBooks (ePub).
+- [x] Favorites.
+- [x] Dark Mode
+
+## 📸 ScreenShots
+
+<img src="ss/1.png"/>
+<img src="ss/2.png"/>
+
+| Light| Dark|
+|------|-------|
+|<img src="ss/3.png" width="400">|<img src="ss/4.png" width="400">|
+|<img src="ss/5.png" width="400">|<img src="ss/6.png" width="400">|
+|<img src="ss/7.png" width="400">|<img src="ss/8.png" width="400">|
+|<img src="ss/9.png" width="400">|<img src="ss/10.png" width="400">|
+|<img src="ss/11.png" width="400">|<img src="ss/12.png" width="400">|
+|<img src="ss/13.png" width="400">|<img src="ss/14.png" width="400">|
+
+
+## 🔌 Plugins
+| Name | Usage |
+|------|-------|
+|**Provider**| State Management|
+|**Object DB**| No SQL database to store Favorites|
+|**XML2JSON**| Convert XML to JSON|
+|**HTTP**| Network calls|
+
+
+## 🤓 Author(s)
+**Olusegun Festus Babajide**
+
+
+## ☕️  Donate
+
+Buy me a cup of Coffee😁
+
+| Mode | Link/Wallet|
+| ------| ------------|
+| Bitcoin | 3GrziPW6Gz6S5mXo2EsiYpafW8vXVq5Rbv|
+
+
+## 🔖 LICENCE
+[Apache-2.0](https://github.com/JideGuru/FlutterEbookApp/blob/master/LICENSE)
