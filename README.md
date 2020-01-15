@@ -10,7 +10,8 @@ The [Feedbooks API](http://www.feedbooks.com/api) was used to fetch books.
 <br>
 <br>
 <a href="ss/app.apk"><img src="https://playerzon.com/asset/download.png" width="200"></img></a>
-
+<br>
+Please star⭐ the repo if you like what you see😉.
 
 ## 💻 Requirements
 * Any Operating System (ie. MacOS X, Linux, Windows)
