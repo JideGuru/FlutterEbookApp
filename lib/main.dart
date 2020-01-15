@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_ebook_app/providers/app_provider.dart';
 import 'package:flutter_ebook_app/providers/details_provider.dart';
+import 'package:flutter_ebook_app/providers/explore_provider.dart';
 import 'package:flutter_ebook_app/providers/favorites_provider.dart';
 import 'package:flutter_ebook_app/providers/genre_provider.dart';
 import 'package:flutter_ebook_app/providers/home_provider.dart';
@@ -17,6 +18,7 @@ void main() {
           ChangeNotifierProvider(create: (_) => DetailsProvider()),
           ChangeNotifierProvider(create: (_) => GenreProvider()),
           ChangeNotifierProvider(create: (_) => FavoritesProvider()),
+          ChangeNotifierProvider(create: (_) => ExploreProvider()),
         ],
         child: MyApp(),
       )
