@@ -1,8 +1,9 @@
 # 📖📖 Flutter eBook App [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
 
-A Flutter app to Read/Download books.
+A simple Flutter app to Read and Download books.
 The Books included in the app are from the [Public Domain](https://en.wikipedia.org/wiki/Public_domain) (Expired Copyright and completely free).
 
+<img src="ss/logo_feedbooks.png" width="200"/>
 The [Feedbooks API](http://www.feedbooks.com/api) was used to fetch books.
 
 <a href="ss/app.apk"><img src="https://playerzon.com/asset/download.png" width="200"></img></a>
