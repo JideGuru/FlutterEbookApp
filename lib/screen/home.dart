@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_ebook_app/podo/category.dart';
-import 'package:flutter_ebook_app/providers/genre_provider.dart';
 import 'package:flutter_ebook_app/providers/home_provider.dart';
 import 'package:flutter_ebook_app/screen/genre.dart';
 import 'package:flutter_ebook_app/util/api.dart';
@@ -145,14 +144,13 @@ class Home extends StatelessWidget {
                         child: InkWell(
                           borderRadius: BorderRadius.all(Radius.circular(20),),
                           onTap: (){
-                            print(Api.baseURL+link.href);
-                            Provider.of<GenreProvider>(context, listen: false).getFeed(Api.baseURL+link.href);
                             Navigator.push(
                               context,
                               PageTransition(
                                 type: PageTransitionType.rightToLeft,
                                 child: Genre(
                                   title: "${link.title}",
+                                  url: Api.baseURL+link.href,
                                 ),
                               ),
                             );

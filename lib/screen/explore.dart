@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_ebook_app/podo/category.dart';
 import 'package:flutter_ebook_app/providers/home_provider.dart';
-import 'package:flutter_ebook_app/screen/favorites.dart';
+import 'package:flutter_ebook_app/screen/genre.dart';
 import 'package:flutter_ebook_app/util/api.dart';
 import 'package:flutter_ebook_app/widgets/book_card.dart';
-import 'package:flutter_icons/flutter_icons.dart';
+import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 
 class Explore extends StatelessWidget{
@@ -82,11 +82,25 @@ class Explore extends StatelessWidget{
                         ),
                       ),
 
-                      Text(
-                        "See All",
-                        style: TextStyle(
-                          color: Theme.of(context).accentColor,
-                          fontWeight: FontWeight.w400,
+                      GestureDetector(
+                        onTap: (){
+                          Navigator.push(
+                            context,
+                            PageTransition(
+                              type: PageTransitionType.rightToLeft,
+                              child: Genre(
+                                title: "${link.title}",
+                                url: Api.baseURL+link.href,
+                              ),
+                            ),
+                          );
+                        },
+                        child: Text(
+                          "See All",
+                          style: TextStyle(
+                            color: Theme.of(context).accentColor,
+                            fontWeight: FontWeight.w400,
+                          ),
                         ),
                       ),
                     ],
