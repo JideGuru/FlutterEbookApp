@@ -34,12 +34,6 @@ class _GenreState extends State<Genre> {
           !controller.position.outOfRange) {
         paginate();
       }
-    }else if(controller.position.pixels > controller.position.minScrollExtent){
-//      setHidden(false);
-    }
-    if(controller.position.pixels == controller.position.minScrollExtent
-        || controller.position.pixels == controller.position.minScrollExtent+1){
-//      setHidden(true);
     }
   }
 
@@ -66,6 +60,7 @@ class _GenreState extends State<Genre> {
 
   paginate(){
     if(!loading && !pagi && loadMore){
+      controller.jumpTo(controller.position.maxScrollExtent);
       if(mounted){
         setState(() {
           pagi = true;
@@ -77,8 +72,8 @@ class _GenreState extends State<Genre> {
         toastLength: Toast.LENGTH_SHORT,
         timeInSecForIos: 1,
       );
-      print(widget.url+"?page=$page");
-      Api.getCategory(widget.url+"?page=$page").then((feed){
+      print(widget.url+"&page=$page");
+      Api.getCategory(widget.url+"&page=$page").then((feed){
         if(mounted){
           setState(() {
             items.addAll(feed.feed.entry);
@@ -120,14 +115,14 @@ class _GenreState extends State<Genre> {
         centerTitle: true,
         title: Text("${widget.title}"),
       ),
-      body: ListView(
+      body: loading
+          ? Center(
+        child: CircularProgressIndicator(),
+      )
+          : ListView(
         controller: controller,
         children: <Widget>[
-          loading
-              ? Center(
-            child: CircularProgressIndicator(),
-          )
-              : ListView.builder(
+          ListView.builder(
             physics: NeverScrollableScrollPhysics(),
             padding: EdgeInsets.symmetric(horizontal: 10),
             shrinkWrap: true,

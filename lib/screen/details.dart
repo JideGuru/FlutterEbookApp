@@ -187,7 +187,6 @@ class Details extends StatelessWidget {
                         ),
                       ),
 
-                      SizedBox(height: 5,),
 
                       Center(
                         child: Container(
