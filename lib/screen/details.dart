@@ -196,7 +196,7 @@ class Details extends StatelessWidget {
                             onPressed: ()=>detailsProvider.downloadFile(
                               entry.link[3].href,
                               entry.title.t
-                                  .replaceAll(" ", "+")
+                                  .replaceAll(" ", "_")
                                   .replaceAll(r"\'", ""),
                             ),
                             child: Text(

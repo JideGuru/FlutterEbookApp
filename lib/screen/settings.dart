@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_ebook_app/providers/app_provider.dart';
 import 'package:flutter_ebook_app/providers/favorites_provider.dart';
+import 'package:flutter_ebook_app/screen/downloads.dart';
 import 'package:flutter_ebook_app/screen/favorites.dart';
 import 'package:flutter_ebook_app/util/consts.dart';
 import 'package:flutter_icons/flutter_icons.dart';
@@ -22,7 +23,7 @@ class _ProfileState extends State<Profile> {
     {
       "icon": Feather.download,
       "title": "Downloads",
-      "page": Container(),
+      "page": Downloads(),
     },
     {
       "icon": Feather.moon,
