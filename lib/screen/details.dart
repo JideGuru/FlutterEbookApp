@@ -194,7 +194,12 @@ class Details extends StatelessWidget {
                           height: 20,
                           width: MediaQuery.of(context).size.width,
                           child: FlatButton(
-                            onPressed: () async{},
+                            onPressed: ()=>detailsProvider.downloadFile(
+                              entry.link[3].href,
+                              entry.title.t
+                                  .replaceAll(" ", "+")
+                                  .replaceAll(r"\'", ""),
+                            ),
                             child: Text(
                               "Download",
                             ),

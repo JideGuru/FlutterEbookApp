@@ -15,38 +15,42 @@ class Explore extends StatelessWidget{
 
     return Scaffold(
       appBar: AppBar(
-        title: Container(
-          width: MediaQuery.of(context).size.width,
-          height: 45,
-          child: Card(
-            elevation: 4,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.all(
-                Radius.circular(10),
-              ),
-            ),
-            child: Padding(
-              padding: EdgeInsets.only(left: 10),
-              child: TextField(
-                onSubmitted: (value){
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => Favorites()),
-                  );
-                },
-                decoration: InputDecoration(
-                  border: InputBorder.none,
-                  hintText: "Search",
-                  suffixIcon: Icon(
-                    Feather.search,
-                    color: Theme.of(context).iconTheme.color,
-                    size: 18,
-                  ),
-                ),
-              ),
-            ),
-          ),
+        centerTitle: true,
+        title: Text(
+          "Explore",
         ),
+//        title: Container(
+//          width: MediaQuery.of(context).size.width,
+//          height: 45,
+//          child: Card(
+//            elevation: 4,
+//            shape: RoundedRectangleBorder(
+//              borderRadius: BorderRadius.all(
+//                Radius.circular(10),
+//              ),
+//            ),
+//            child: Padding(
+//              padding: EdgeInsets.only(left: 10),
+//              child: TextField(
+//                onSubmitted: (value){
+//                  Navigator.push(
+//                    context,
+//                    MaterialPageRoute(builder: (context) => Favorites()),
+//                  );
+//                },
+//                decoration: InputDecoration(
+//                  border: InputBorder.none,
+//                  hintText: "Search",
+//                  suffixIcon: Icon(
+//                    Feather.search,
+//                    color: Theme.of(context).iconTheme.color,
+//                    size: 18,
+//                  ),
+//                ),
+//              ),
+//            ),
+//          ),
+//        ),
       ),
 
       body: homeProvider.loading
@@ -62,7 +66,7 @@ class Explore extends StatelessWidget{
           }
 
           return Padding(
-            padding: EdgeInsets.symmetric(vertical: 20),
+            padding: EdgeInsets.symmetric(vertical: 10),
             child: Column(
               children: <Widget>[
                 Padding(
@@ -78,13 +82,13 @@ class Explore extends StatelessWidget{
                         ),
                       ),
 
-//                      Text(
-//                        "See All",
-//                        style: TextStyle(
-//                          color: Theme.of(context).accentColor,
-//                          fontWeight: FontWeight.w400,
-//                        ),
-//                      ),
+                      Text(
+                        "See All",
+                        style: TextStyle(
+                          color: Theme.of(context).accentColor,
+                          fontWeight: FontWeight.w400,
+                        ),
+                      ),
                     ],
                   ),
                 ),

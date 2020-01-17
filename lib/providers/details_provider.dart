@@ -1,8 +1,12 @@
+import 'dart:io';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter_ebook_app/database/favorite_helper.dart';
 import 'package:flutter_ebook_app/podo/category.dart';
 import 'package:flutter_ebook_app/util/api.dart';
+import 'package:flutter_ebook_app/util/consts.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:path_provider/path_provider.dart';
 
 class DetailsProvider extends ChangeNotifier{
   String message;
@@ -12,6 +16,24 @@ class DetailsProvider extends ChangeNotifier{
   var db = FavoriteDB();
   bool faved = false;
 
+  static var httpClient = HttpClient();
+  Future downloadFile(String url, String filename) async {
+    print(url);
+    print(filename);
+    String dir = (await getApplicationSupportDirectory()).path;
+    File file = File(dir+"/${Constants.appName.trim()}/$filename.epub");
+    if(await file.exists()){
+
+    }else{
+      var request = await httpClient.getUrl(Uri.parse(url));
+      var response = await request.close();
+      var bytes = await consolidateHttpClientResponseBytes(response);
+
+      await file.writeAsBytes(bytes);
+    }
+
+//    return file;
+  }
 
   getFeed(String url) async{
     setLoading(true);
