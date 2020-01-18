@@ -45,7 +45,7 @@ Please star⭐ the repo if you like what you see😉.
 | Name | Usage |
 |------|-------|
 |**Provider**| State Management|
-|**Object DB**| No SQL database to store Favorites $ Downloads|
+|**Object DB**| No SQL database to store Favorites & Downloads|
 |**XML2JSON**| Convert XML to JSON|
 |**HTTP**| Network calls|
 |**DIO**| Download files|
