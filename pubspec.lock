@@ -78,6 +78,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.1.3"
+  dart2_constant:
+    dependency: transitive
+    description:
+      name: dart2_constant
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.2+dart2"
   deeply:
     dependency: transitive
     description:
@@ -92,10 +99,17 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "3.0.8"
-  epub_kitty:
+  epub:
+    dependency: transitive
+    description:
+      name: epub
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.1.0"
+  epub_view:
     dependency: "direct main"
     description:
-      name: epub_kitty
+      name: epub_view
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.1.0"
@@ -149,6 +163,13 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  flutter_widgets:
+    dependency: transitive
+    description:
+      name: flutter_widgets
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.1.9"
   fluttertoast:
     dependency: "direct main"
     description:
@@ -401,4 +422,4 @@ packages:
     version: "4.1.1"
 sdks:
   dart: ">=2.6.0 <3.0.0"
-  flutter: ">=1.12.13+hotfix.4 <2.0.0"
+  flutter: ">=1.12.13+hotfix.5 <2.0.0"
