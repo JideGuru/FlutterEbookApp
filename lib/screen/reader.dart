@@ -29,7 +29,7 @@ class Reader extends StatelessWidget {
               // Called when scrolled to another chapter
               headerBuilder: (value) => AppBar(
                 title: Text(
-                  'Chapter ${value?.chapter?.Title ?? 'Loading...'}',
+                  '${value?.chapter?.Title ?? 'Loading...'}',
                 ),
               ),
               // Start from special chapter

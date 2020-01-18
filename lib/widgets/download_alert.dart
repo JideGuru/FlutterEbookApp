@@ -27,7 +27,7 @@ class _DownloadAlertState extends State<DownloadAlert> {
 
   download() async{
     await dio.download(widget.url,widget.path,
-      // Listen the download progress.
+      deleteOnError: true,
       onReceiveProgress: (receivedBytes, totalBytes) {
         print((received / total * 100).toStringAsFixed(0));
         print(progress);

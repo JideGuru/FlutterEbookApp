@@ -65,6 +65,11 @@ class DetailsProvider extends ChangeNotifier{
     }
   }
 
+  Future<List> getDownload() async{
+    List c = await dlDB.check({"id": entry.published.t});
+    return c;
+  }
+
   addDownload(Map body) async{
     dlDB.add(body);
     checkDownload();
