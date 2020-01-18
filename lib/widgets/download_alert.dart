@@ -52,66 +52,69 @@ class _DownloadAlertState extends State<DownloadAlert> {
 
   @override
   Widget build(BuildContext context) {
-    return CustomAlert(
-      child: Padding(
-        padding: EdgeInsets.all(20),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisSize: MainAxisSize.min,
-          children: <Widget>[
-            Text(
-              "Downloading...",
-              style: TextStyle(
-                fontSize: 15,
-                fontWeight: FontWeight.bold,
-              ),
-              maxLines: 2,
-              overflow: TextOverflow.ellipsis,
-            ),
-            SizedBox(
-              height: 10,
-            ),
-            Container(
-              height: 5,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.all(
-                  Radius.circular(10),
+    return WillPopScope(
+      onWillPop: ()=>Future.value(false),
+      child: CustomAlert(
+        child: Padding(
+          padding: EdgeInsets.all(20),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
+              Text(
+                "Downloading...",
+                style: TextStyle(
+                  fontSize: 15,
+                  fontWeight: FontWeight.bold,
                 ),
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
               ),
-              child: LinearProgressIndicator(
-                value: double.parse(progress)/100,
-                valueColor: AlwaysStoppedAnimation(Theme.of(context).accentColor),
-                backgroundColor: Theme.of(context).accentColor.withOpacity(0.3),
+              SizedBox(
+                height: 10,
               ),
-            ),
-            SizedBox(
-              height: 5,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: <Widget>[
-                Text(
-                  "$progress %",
-                  style: TextStyle(
-                    fontSize: 13,
+              Container(
+                height: 5,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(10),
                   ),
-                  maxLines: 2,
-                  overflow: TextOverflow.ellipsis,
                 ),
+                child: LinearProgressIndicator(
+                  value: double.parse(progress)/100,
+                  valueColor: AlwaysStoppedAnimation(Theme.of(context).accentColor),
+                  backgroundColor: Theme.of(context).accentColor.withOpacity(0.3),
+                ),
+              ),
+              SizedBox(
+                height: 5,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  Text(
+                    "$progress %",
+                    style: TextStyle(
+                      fontSize: 13,
+                    ),
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                  ),
 
-                Text(
-                  "${Constants.formatBytes(received, 1)} "
-                      "of ${Constants.formatBytes(total, 1)}",
-                  style: TextStyle(
-                    fontSize: 13,
+                  Text(
+                    "${Constants.formatBytes(received, 1)} "
+                        "of ${Constants.formatBytes(total, 1)}",
+                    style: TextStyle(
+                      fontSize: 13,
+                    ),
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
                   ),
-                  maxLines: 2,
-                  overflow: TextOverflow.ellipsis,
-                ),
-              ],
-            ),
-          ],
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );

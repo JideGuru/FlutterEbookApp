@@ -38,8 +38,6 @@ class _DownloadsState extends State<Downloads> {
         shrinkWrap: true,
         itemCount: dls.length,
         itemBuilder: (BuildContext context, int index) {
-          print(dls);
-          print(dls[0]);
           Map dl = dls[index];
 
           return Padding(

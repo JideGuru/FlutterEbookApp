@@ -310,30 +310,31 @@ class Details extends StatelessWidget {
     File file = File(path);
     if(!await file.exists()){
       await file.create();
-      showDialog(
-        barrierDismissible: false,
-        context: context,
-        builder: (context) => DownloadAlert(
-          url: url,
-          path: path,
-        ),
-      ).then((v){
-        if(v != null){
-          Provider.of<DetailsProvider>(context, listen: false).addDownload(
-            {
-              "id": entry.published.t,
-              "path": path,
-              "image": "${entry.link[1].href}",
-              "size": v,
-              "name": entry.title.t,
-            },
-          );
-        }
-      });
-
     }else{
-//      setMessage("You have already download this");
+      await file.delete();
+      await file.create();
     }
+
+    showDialog(
+      barrierDismissible: false,
+      context: context,
+      builder: (context) => DownloadAlert(
+        url: url,
+        path: path,
+      ),
+    ).then((v){
+      if(v != null){
+        Provider.of<DetailsProvider>(context, listen: false).addDownload(
+          {
+            "id": entry.published.t,
+            "path": path,
+            "image": "${entry.link[1].href}",
+            "size": v,
+            "name": entry.title.t,
+          },
+        );
+      }
+    });
 
   }
 }
