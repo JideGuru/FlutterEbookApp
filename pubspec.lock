@@ -106,13 +106,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.1.0"
-  epub_kitty:
-    dependency: "direct main"
-    description:
-      name: epub_kitty
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.1.0"
   epub_view:
     dependency: "direct main"
     description:
