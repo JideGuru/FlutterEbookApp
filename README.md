@@ -21,7 +21,7 @@ Please star⭐ the repo if you like what you see😉.
 
 ## ✨ Features
 - [x] Search for books
-- [ ] Download eBooks.
+- [x] Download eBooks.
 - [ ] Read eBooks (ePub).
 - [x] Favorites.
 - [x] Dark Mode

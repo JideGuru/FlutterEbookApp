@@ -128,6 +128,7 @@ class Details extends StatelessWidget {
                               fontSize: 20,
                               fontWeight: FontWeight.bold,
                             ),
+                            maxLines: 3,
                           ),
                         ),
                       ),

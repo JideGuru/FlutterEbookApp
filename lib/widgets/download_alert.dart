@@ -72,7 +72,7 @@ class _DownloadAlertState extends State<DownloadAlert> {
                 overflow: TextOverflow.ellipsis,
               ),
               SizedBox(
-                height: 10,
+                height: 20,
               ),
               Container(
                 height: 5,

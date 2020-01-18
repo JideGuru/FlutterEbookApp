@@ -33,7 +33,7 @@ dependencies:
   uuid: ^2.0.4
   objectdb: ^1.0.7+1
 #  epub_view: ^0.1.0
-#  epub_kitty: ^0.1.0
+  epub_kitty: ^0.1.0
   path_provider: ^1.5.1
   dio: ^3.0.8
   permission_handler: ^4.2.0+hotfix.1

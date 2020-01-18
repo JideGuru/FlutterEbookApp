@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_ebook_app/podo/category.dart';
 import 'package:flutter_ebook_app/util/api.dart';
@@ -60,7 +62,9 @@ class _GenreState extends State<Genre> {
 
   paginate(){
     if(!loading && !pagi && loadMore){
-      controller.jumpTo(controller.position.maxScrollExtent);
+      Timer(Duration(seconds: 1), (){
+        controller.jumpTo(controller.position.maxScrollExtent);
+      });
       if(mounted){
         setState(() {
           pagi = true;
