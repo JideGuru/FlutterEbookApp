@@ -2,9 +2,9 @@ import 'dart:io';
 
 import 'package:objectdb/objectdb.dart';
 
-class FavoriteDB{
+class DownloadsDB{
 
-  static final path = Directory.current.path + '/favorite.db';
+  static final path = Directory.current.path + '/downloads.db';
   final db = ObjectDB(path);
 
   //Insertion

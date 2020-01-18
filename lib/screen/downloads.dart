@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_ebook_app/database/download_helper.dart';
 
 class Downloads extends StatefulWidget {
   @override
@@ -8,6 +9,23 @@ class Downloads extends StatefulWidget {
 
 class _DownloadsState extends State<Downloads> {
   bool done = true;
+  var db = DownloadsDB();
+
+  List dls = List();
+  getDownloads() async{
+    List l = await db.listAll();
+    setState(() {
+      dls.addAll(l);
+    });
+  }
+
+
+  @override
+  void initState() {
+    super.initState();
+    getDownloads();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -18,14 +36,18 @@ class _DownloadsState extends State<Downloads> {
       body: ListView.separated(
         padding: EdgeInsets.symmetric(horizontal: 15),
         shrinkWrap: true,
-        itemCount: 5,
+        itemCount: dls.length,
         itemBuilder: (BuildContext context, int index) {
+          print(dls);
+          print(dls[0]);
+          Map dl = dls[index];
+
           return Padding(
             padding: EdgeInsets.symmetric(vertical: 5),
             child: Row(
               children: <Widget>[
                 CachedNetworkImage(
-                  imageUrl: "",
+                  imageUrl: dl['image'],
                   placeholder: (context, url) => Container(
                     height: 70,
                     width: 70,
@@ -54,7 +76,7 @@ class _DownloadsState extends State<Downloads> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       Text(
-                        "Alice's Adventures in Wonderland",
+                        dl['name'],
                         style: TextStyle(
                           fontSize: 15,
                           fontWeight: FontWeight.bold,
@@ -63,15 +85,29 @@ class _DownloadsState extends State<Downloads> {
                         overflow: TextOverflow.ellipsis,
                       ),
                       Divider(),
-                      Text(
-                        "COMPLETED",
-                        style: TextStyle(
-                          fontSize: 13,
-                          fontWeight: FontWeight.bold,
-                          color: Theme.of(context).accentColor
-                        ),
-                        maxLines: 2,
-                        overflow: TextOverflow.ellipsis,
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: <Widget>[
+                          Text(
+                            "COMPLETED",
+                            style: TextStyle(
+                              fontSize: 13,
+                              fontWeight: FontWeight.bold,
+                              color: Theme.of(context).accentColor
+                            ),
+                            maxLines: 2,
+                            overflow: TextOverflow.ellipsis,
+                          ),
+
+                          Text(
+                            dl['size'],
+                            style: TextStyle(
+                              fontSize: 13,
+                            ),
+                            maxLines: 2,
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        ],
                       ),
                     ],
                   )

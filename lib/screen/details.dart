@@ -1,13 +1,18 @@
+import 'dart:io';
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:esys_flutter_share/esys_flutter_share.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_ebook_app/database/favorite_helper.dart';
 import 'package:flutter_ebook_app/podo/category.dart';
 import 'package:flutter_ebook_app/providers/details_provider.dart';
+import 'package:flutter_ebook_app/util/consts.dart';
 import 'package:flutter_ebook_app/util/html_unescape/html_unescape.dart';
 import 'package:flutter_ebook_app/widgets/book_list_item.dart';
 import 'package:flutter_ebook_app/widgets/description_text.dart';
+import 'package:flutter_ebook_app/widgets/download_alert.dart';
 import 'package:flutter_icons/flutter_icons.dart';
+import 'package:path_provider/path_provider.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:provider/provider.dart';
 
 
@@ -27,8 +32,6 @@ class Details extends StatelessWidget {
   }): super(key:key);
 
   var unescape = HtmlUnescape();
-  var db = FavoriteDB();
-
   @override
   Widget build(BuildContext context) {
     DetailsProvider detailsProvider = Provider.of<DetailsProvider>(context);
@@ -71,7 +74,7 @@ class Details extends StatelessWidget {
               );
             },
             icon: Icon(
-              Feather.share_2,
+              Feather.share,
             ),
           ),
         ],
@@ -192,8 +195,16 @@ class Details extends StatelessWidget {
                         child: Container(
                           height: 20,
                           width: MediaQuery.of(context).size.width,
-                          child: FlatButton(
-                            onPressed: ()=>detailsProvider.downloadFile(
+                          child: detailsProvider.downloaded
+                              ?  FlatButton(
+                            onPressed: (){},
+                            child: Text(
+                              "Read Book",
+                            ),
+                          )
+                              : FlatButton(
+                            onPressed: ()=>downloadFile(
+                              context,
                               entry.link[3].href,
                               entry.title.t
                                   .replaceAll(" ", "_")
@@ -273,5 +284,56 @@ class Details extends StatelessWidget {
       ),
 
     );
+  }
+
+  Future downloadFile(BuildContext context, String url, String filename) async {
+    PermissionStatus permission = await PermissionHandler().checkPermissionStatus(PermissionGroup.storage);
+
+    if(permission != PermissionStatus.granted){
+      await PermissionHandler().requestPermissions([PermissionGroup.storage]);
+      startDownload(context, url, filename);
+    }else{
+      startDownload(context, url, filename);
+    }
+  }
+
+  startDownload(BuildContext context, String url, String filename) async{
+    Directory appDocDir = await getExternalStorageDirectory();
+    if(Platform.isAndroid){
+      Directory(appDocDir.path.split("Android")[0]+"${Constants.appName}").create();
+    }
+
+    String path = Platform.isIOS
+        ? appDocDir.path+"/$filename.epub"
+        : appDocDir.path.split("Android")[0]+"${Constants.appName}/$filename.epub";
+    print(path);
+    File file = File(path);
+    if(!await file.exists()){
+      await file.create();
+      showDialog(
+        barrierDismissible: false,
+        context: context,
+        builder: (context) => DownloadAlert(
+          url: url,
+          path: path,
+        ),
+      ).then((v){
+        if(v != null){
+          Provider.of<DetailsProvider>(context, listen: false).addDownload(
+            {
+              "id": entry.published.t,
+              "path": path,
+              "image": "${entry.link[1].href}",
+              "size": v,
+              "name": entry.title.t,
+            },
+          );
+        }
+      });
+
+    }else{
+//      setMessage("You have already download this");
+    }
+
   }
 }
