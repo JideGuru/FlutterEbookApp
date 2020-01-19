@@ -20,9 +20,8 @@ Please star⭐ the repo if you like what you see😉.
 * A brain to think 🤓🤓
 
 ## ✨ Features
-- [x] Search for books
 - [x] Download eBooks.
-- [x] Read eBooks (Half done: need a better epub reader).
+- [x] Read eBooks.
 - [x] Favorites.
 - [x] Dark Mode
 
