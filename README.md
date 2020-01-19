@@ -47,8 +47,7 @@ Please star⭐ the repo if you like what you see😉.
 |**Provider**| State Management|
 |**Object DB**| No SQL database to store Favorites & Downloads|
 |**XML2JSON**| Convert XML to JSON|
-|**HTTP**| Network calls|
-|**DIO**| Download files|
+|**DIO**| Network calls and File Download|
 
 
 ## 🤓 Author(s)

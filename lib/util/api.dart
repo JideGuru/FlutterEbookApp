@@ -1,6 +1,6 @@
 import 'dart:convert';
+import 'package:dio/dio.dart';
 import 'package:flutter_ebook_app/podo/category.dart';
-import 'package:http/http.dart' as http;
 import 'package:xml2json/xml2json.dart';
 
 class Api {
@@ -27,12 +27,14 @@ class Api {
   static String horror =
       "https://catalog.feedbooks.com/publicdomain/browse/en/top.atom?cat=FBFIC015000";
 
-  static Future<CategoryFeed> getCategory(String url) async {
-    var res = await http.get(url);
+  static Future getCategory(String url) async {
+    Dio dio = Dio();
+
+    var res = await dio.get(url);
     CategoryFeed category;
     if(res.statusCode == 200){
       Xml2Json xml2json = new Xml2Json();
-      xml2json.parse(res.body);
+      xml2json.parse(res.data.toString());
       var json = jsonDecode(xml2json.toGData());
       category = CategoryFeed.fromJson(json);
     }else{

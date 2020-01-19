@@ -261,7 +261,7 @@ class Details extends StatelessWidget {
               SizedBox(height: 30,),
 
               Text(
-                "Related Books",
+                "More from Author",
                 style: TextStyle(
                   color: Theme.of(context).accentColor,
                   fontSize: 20,

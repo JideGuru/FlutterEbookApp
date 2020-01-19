@@ -36,10 +36,31 @@ class _DownloadsState extends State<Downloads> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        centerTitle: true,
         title: Text("Downloads"),
-//        elevation: 4,
       ),
-      body: ListView.separated(
+      body: dls.isEmpty
+          ? Center(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
+            Image.asset(
+              "assets/images/empty.png",
+              height: 300,
+              width: 300,
+            ),
+
+            Text(
+              "Nothing is here",
+              style: TextStyle(
+                fontSize: 24,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ],
+        ),
+      )
+          : ListView.separated(
         padding: EdgeInsets.symmetric(horizontal: 15),
         shrinkWrap: true,
         itemCount: dls.length,

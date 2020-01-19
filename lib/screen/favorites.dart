@@ -16,7 +16,28 @@ class Favorites extends StatelessWidget {
               "Favorites",
             ),
           ),
-          body: GridView.builder(
+          body: favoritesProvider.posts.isEmpty
+              ? Center(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: <Widget>[
+                Image.asset(
+                  "assets/images/empty.png",
+                  height: 300,
+                  width: 300,
+                ),
+
+                Text(
+                  "Nothing is here",
+                  style: TextStyle(
+                    fontSize: 24,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ],
+            ),
+          )
+              : GridView.builder(
             padding: EdgeInsets.fromLTRB(10, 20, 10, 0),
             shrinkWrap: true,
             itemCount: favoritesProvider.posts.length,
