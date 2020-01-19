@@ -10,8 +10,6 @@ class Downloads extends StatefulWidget {
 }
 
 class _DownloadsState extends State<Downloads> {
-//  static const pageChannel = const EventChannel('com.xiaofwang.epub_kitty/page');
-
   bool done = true;
   var db = DownloadsDB();
 
@@ -54,14 +52,6 @@ class _DownloadsState extends State<Downloads> {
                   ),
                 ),
               );
-//              String iosBookPath = dl['path'];
-//              String androidBookPath = dl['path'];
-//              EpubKitty.setConfig("iosBook", "#32a852","vertical",true);
-//              EpubKitty.open(androidBookPath);
-//
-//              pageChannel.receiveBroadcastStream().listen((Object event) {
-//                print('page:$event');
-//              }, onError: null);
             },
             child: Padding(
               padding: EdgeInsets.symmetric(vertical: 5),

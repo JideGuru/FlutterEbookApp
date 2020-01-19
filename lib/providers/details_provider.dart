@@ -22,7 +22,6 @@ class DetailsProvider extends ChangeNotifier{
   static var httpClient = HttpClient();
 
 
-
   getFeed(String url) async{
     setLoading(true);
     checkFav();

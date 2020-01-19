@@ -45,7 +45,6 @@ class _ProfileState extends State<Profile> {
         title: Text(
           "Settings",
         ),
-//        elevation: 2,
       ),
 
       body:  ListView.separated(
