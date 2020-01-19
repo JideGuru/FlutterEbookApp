@@ -68,7 +68,8 @@ class _DownloadsState extends State<Downloads> {
           Map dl = dls[index];
 
           return Dismissible(
-            key: Key(uuid.v4()),
+            key: ObjectKey(uuid.v4()),
+            direction: DismissDirection.endToStart,
             background: Container(
               alignment: Alignment.centerRight,
               padding: EdgeInsets.only(right: 20.0),

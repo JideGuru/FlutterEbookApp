@@ -29,11 +29,11 @@ class _ProfileState extends State<Profile> {
       "icon": Feather.moon,
       "title": "Dark Mode"
     },
-    {
-      "icon": Feather.info,
-      "title": "About",
-      "page": Container(),
-    },
+//    {
+//      "icon": Feather.info,
+//      "title": "About",
+//      "page": Container(),
+//    },
   ];
 
 
@@ -79,10 +79,7 @@ class _ProfileState extends State<Profile> {
           return ListTile(
             onTap: (){
               if(items[index]['title'] == "About"){
-                showAboutDialog(
-                  context: context,
-                  applicationName: Constants.appName,
-                );
+
               }else{
                 Provider.of<FavoritesProvider>(context, listen: false)
                     .getFeed();

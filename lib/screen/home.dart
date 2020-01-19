@@ -30,34 +30,6 @@ class Home extends StatelessWidget {
             onRefresh: ()=>homeProvider.getFeeds(),
             child: ListView(
               children: <Widget>[
-//          SizedBox(height: 20,),
-
-//          Padding(
-//            padding: EdgeInsets.symmetric(horizontal: 20),
-//            child: Row(
-//              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-//              children: <Widget>[
-//                Text(
-//                  "Popular Books",
-//                  style: TextStyle(
-//                    fontSize: 20,
-//                    fontWeight: FontWeight.bold,
-//                  ),
-//                ),
-//
-//                Text(
-//                  "See All",
-//                  style: TextStyle(
-//                    color: Theme.of(context).accentColor,
-//                    fontWeight: FontWeight.w400,
-//                  ),
-//                ),
-//              ],
-//            ),
-//          ),
-
-//          SizedBox(height: 10,),
-
                 Container(
                   height: 200,
                   child: Center(
@@ -94,25 +66,6 @@ class Home extends StatelessWidget {
                           fontWeight: FontWeight.bold,
                         ),
                       ),
-
-//                InkWell(
-//                  onTap: (){
-//                    Navigator.push(
-//                      context,
-//                      PageTransition(
-//                        type: PageTransitionType.rightToLeft,
-//                        child: Category(),
-//                      ),
-//                    );
-//                  },
-//                  child: Text(
-//                    "See All",
-//                    style: TextStyle(
-//                      color: Theme.of(context).accentColor,
-//                      fontWeight: FontWeight.w400,
-//                    ),
-//                  ),
-//                ),
                     ],
                   ),
                 ),

@@ -114,7 +114,7 @@ class BookListItem extends StatelessWidget {
                     ),
                   ),
                   SizedBox(
-                    height: 10,
+                    height: 5,
                   ),
                   Hero(
                     tag: authorTag,
@@ -123,7 +123,7 @@ class BookListItem extends StatelessWidget {
                       child: Text(
                         "$author",
                         style: TextStyle(
-                          fontSize: 15,
+                          fontSize: 14,
                           fontWeight: FontWeight.w800,
                           color: Theme.of(context).accentColor,
                         ),
@@ -131,15 +131,15 @@ class BookListItem extends StatelessWidget {
                     ),
                   ),
                   SizedBox(
-                    height: 5,
+                    height: 10,
                   ),
                   Text(
-                    "${desc.substring(0, 100)}..."
+                    "${desc.length<100?desc:desc.substring(0, 100)}..."
                         .replaceAll(r"\n", "\n\n")
                         .replaceAll(r"\r", "")
                         .replaceAll(r"\'", "'"),
                     style: TextStyle(
-                      fontSize: 14,
+                      fontSize: 13,
                       color: Theme.of(context).textTheme.caption.color,
                     ),
                   ),
