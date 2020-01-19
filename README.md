@@ -24,6 +24,7 @@ Please star⭐ the repo if you like what you see😉.
 - [x] Read eBooks.
 - [x] Favorites.
 - [x] Dark Mode
+- [x] Swipe to delete downloads
 
 ## 📸 ScreenShots
 
