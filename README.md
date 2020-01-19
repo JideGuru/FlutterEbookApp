@@ -28,8 +28,8 @@ Please star⭐ the repo if you like what you see😉.
 
 ## 📸 ScreenShots
 
-<img src="ss/1.png"/>
-<img src="ss/2.png"/>
+<img src="ss/b1.png"/>
+<img src="ss/b2.png"/>
 
 | Light| Dark|
 |------|-------|
