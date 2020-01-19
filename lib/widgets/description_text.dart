@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_html/flutter_html.dart';
 
 class DescriptionTextWidget extends StatefulWidget {
   final String text;
@@ -33,32 +32,24 @@ class _DescriptionTextWidgetState extends State<DescriptionTextWidget> {
   Widget build(BuildContext context) {
     return Container(
       child: secondHalf.isEmpty
-          ? Html(
-        data: firstHalf,
-        onLinkTap: (url) {
-          print(url);
-        },
-        linkStyle: TextStyle(
-          color: Colors.blue,
-        ),
-        renderNewlines: true,
-        defaultTextStyle: TextStyle(
+          ? Text(
+        "${flag ? (firstHalf + "...") : (firstHalf + secondHalf)}"
+            .replaceAll(r"\n", "\n")
+            .replaceAll(r"\r", "")
+            .replaceAll(r"\'", "'"),
+        style: TextStyle(
           fontSize: 16,
           color: Theme.of(context).textTheme.caption.color,
         ),
       )
           : Column(
         children: <Widget>[
-          Html(
-            data: flag ? (firstHalf + "...") : (firstHalf + secondHalf),
-            onLinkTap: (url) {
-              print(url);
-            },
-            renderNewlines: true,
-            linkStyle: TextStyle(
-              color: Colors.blue,
-            ),
-            defaultTextStyle: TextStyle(
+          Text(
+            "${flag ? (firstHalf + "...") : (firstHalf + secondHalf)}"
+                .replaceAll(r"\n", "\n\n")
+                .replaceAll(r"\r", "")
+                .replaceAll(r"\'", "'"),
+            style: TextStyle(
               fontSize: 16,
               color: Theme.of(context).textTheme.caption.color,
             ),

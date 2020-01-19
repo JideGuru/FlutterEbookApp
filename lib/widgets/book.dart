@@ -72,7 +72,7 @@ class BookItem extends StatelessWidget {
           Hero(
             tag: titleTag,
             child: Text(
-              "$title",
+              "${title.replaceAll(r"\", "")}",
               style: TextStyle(
                 fontSize: 14,
                 fontWeight: FontWeight.bold,

@@ -27,12 +27,13 @@ class AppProvider extends ChangeNotifier{
   void setTheme(value, c) {
     theme = value;
     SharedPreferences.getInstance().then((prefs){
-      prefs.setString("theme", c);
-//      print(c);
-      SystemChrome.setEnabledSystemUIOverlays(SystemUiOverlay.values);
-      SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-        statusBarBrightness: c == "dark" ? Brightness.dark:Brightness.light,
-      ));
+      prefs.setString("theme", c).then((val){
+        SystemChrome.setEnabledSystemUIOverlays(SystemUiOverlay.values);
+        SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+          statusBarColor: c == "dark" ? Constants.darkPrimary : Constants.lightPrimary,
+          statusBarIconBrightness: c == "dark" ? Brightness.light:Brightness.dark,
+        ));
+      });
     });
     notifyListeners();
   }

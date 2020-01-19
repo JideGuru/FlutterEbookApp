@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_ebook_app/podo/category.dart';
 import 'package:flutter_ebook_app/providers/details_provider.dart';
 import 'package:flutter_ebook_app/screen/details.dart';
-import 'package:flutter_ebook_app/widgets/summary_text.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 import 'package:uuid/uuid.dart';
@@ -103,7 +102,7 @@ class BookListItem extends StatelessWidget {
                     child: Material(
                       type: MaterialType.transparency,
                       child: Text(
-                        "$title",
+                        "${title.replaceAll(r"\", "")}",
                         style: TextStyle(
                           fontSize: 17,
                           fontWeight: FontWeight.bold,
@@ -134,8 +133,15 @@ class BookListItem extends StatelessWidget {
                   SizedBox(
                     height: 5,
                   ),
-                  SummaryTextWidget(
-                    text: "$desc",
+                  Text(
+                    "${desc.substring(0, 100)}..."
+                        .replaceAll(r"\n", "\n\n")
+                        .replaceAll(r"\r", "")
+                        .replaceAll(r"\'", "'"),
+                    style: TextStyle(
+                      fontSize: 14,
+                      color: Theme.of(context).textTheme.caption.color,
+                    ),
                   ),
                 ],
               ),

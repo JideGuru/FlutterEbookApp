@@ -7,7 +7,6 @@ import 'package:flutter_ebook_app/podo/category.dart';
 import 'package:flutter_ebook_app/providers/details_provider.dart';
 import 'package:flutter_ebook_app/screen/reader.dart';
 import 'package:flutter_ebook_app/util/consts.dart';
-import 'package:flutter_ebook_app/util/html_unescape/html_unescape.dart';
 import 'package:flutter_ebook_app/widgets/book_list_item.dart';
 import 'package:flutter_ebook_app/widgets/description_text.dart';
 import 'package:flutter_ebook_app/widgets/download_alert.dart';
@@ -33,7 +32,6 @@ class Details extends StatelessWidget {
     @required this.authorTag,
   }): super(key:key);
 
-  var unescape = HtmlUnescape();
   @override
   Widget build(BuildContext context) {
     return Consumer<DetailsProvider>(
@@ -124,7 +122,7 @@ class Details extends StatelessWidget {
                             child: Material(
                               type: MaterialType.transparency,
                               child: Text(
-                                "${unescape.convert(entry.title.t)}",
+                                "${entry.title.t.replaceAll(r"\", "")}",
                                 style: TextStyle(
                                   fontSize: 20,
                                   fontWeight: FontWeight.bold,
