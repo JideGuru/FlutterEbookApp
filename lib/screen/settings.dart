@@ -53,37 +53,47 @@ class _ProfileState extends State<Profile> {
         physics: NeverScrollableScrollPhysics(),
         itemCount: items.length,
         itemBuilder: (BuildContext context, int index) {
-          return items[index]['title'] =="Dark Mode"
-              ? SwitchListTile(
-            secondary: Icon(
-              items[index]['icon'],
-            ),
-            title: Text(
-              items[index]['title'],
-            ),
-            value: Provider.of<AppProvider>(context).theme == Constants.lightTheme
-                ? false
-                : true,
-            onChanged: (v){
-              if (v) {
-                Provider.of<AppProvider>(context, listen: false)
-                    .setTheme(Constants.darkTheme, "dark");
-              } else {
-                Provider.of<AppProvider>(context, listen: false)
-                    .setTheme(Constants.lightTheme, "light");
-              }
-            },
-          )
-              : ListTile(
+          if(items[index]['title'] =="Dark Mode"){
+            return SwitchListTile(
+              secondary: Icon(
+                items[index]['icon'],
+              ),
+              title: Text(
+                items[index]['title'],
+              ),
+              value: Provider.of<AppProvider>(context).theme == Constants.lightTheme
+                  ? false
+                  : true,
+              onChanged: (v){
+                if (v) {
+                  Provider.of<AppProvider>(context, listen: false)
+                      .setTheme(Constants.darkTheme, "dark");
+                } else {
+                  Provider.of<AppProvider>(context, listen: false)
+                      .setTheme(Constants.lightTheme, "light");
+                }
+              },
+            );
+          }
+
+          return ListTile(
             onTap: (){
-              Provider.of<FavoritesProvider>(context, listen: false).getFeed();
-              Navigator.push(
-                context,
-                PageTransition(
-                  type: PageTransitionType.rightToLeft,
-                  child: items[index]['page'],
-                ),
-              );
+              if(items[index]['title'] == "About"){
+                showAboutDialog(
+                  context: context,
+                  applicationName: Constants.appName,
+                );
+              }else{
+                Provider.of<FavoritesProvider>(context, listen: false)
+                    .getFeed();
+                Navigator.push(
+                  context,
+                  PageTransition(
+                    type: PageTransitionType.rightToLeft,
+                    child: items[index]['page'],
+                  ),
+                );
+              }
             },
             leading: Icon(
               items[index]['icon'],

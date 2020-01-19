@@ -44,7 +44,7 @@ class DetailsProvider extends ChangeNotifier{
   }
 
   addFav() async{
-    favDB.add({"id": entry.published.t, "item": entry.toJson()});
+    await favDB.add({"id": entry.published.t, "item": entry.toJson()});
     checkFav();
   }
 
@@ -70,7 +70,7 @@ class DetailsProvider extends ChangeNotifier{
   }
 
   addDownload(Map body) async{
-    dlDB.add(body);
+    await dlDB.add(body);
     checkDownload();
   }
 

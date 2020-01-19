@@ -29,14 +29,12 @@ class _DownloadAlertState extends State<DownloadAlert> {
     await dio.download(widget.url,widget.path,
       deleteOnError: true,
       onReceiveProgress: (receivedBytes, totalBytes) {
-        print((received / total * 100).toStringAsFixed(0));
-        print(progress);
         setState(() {
           received = receivedBytes;
           total = totalBytes;
           progress = (received / total * 100).toStringAsFixed(0);
         });
-        print((received / total * 100).toStringAsFixed(0));
+        //Check if download is complete and close the alert dialog
         if(receivedBytes == totalBytes){
           Navigator.pop(context, "${Constants.formatBytes(total, 1)}");
         }

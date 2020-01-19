@@ -201,16 +201,18 @@ class Details extends StatelessWidget {
                                   ?  FlatButton(
                                 onPressed: (){
                                   detailsProvider.getDownload().then((c){
-                                    Map dl = c[0];
-                                    Navigator.pushReplacement(
-                                      context,
-                                      PageTransition(
-                                        type: PageTransitionType.rightToLeft,
-                                        child: Reader(
-                                          path: dl['path'],
+                                    if(c.isNotEmpty){
+                                      Map dl = c[0];
+                                      Navigator.pushReplacement(
+                                        context,
+                                        PageTransition(
+                                          type: PageTransitionType.rightToLeft,
+                                          child: Reader(
+                                            path: dl['path'],
+                                          ),
                                         ),
-                                      ),
-                                    );
+                                      );
+                                    }
                                   });
                                 },
                                 child: Text(

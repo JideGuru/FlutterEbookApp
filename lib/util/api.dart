@@ -41,18 +41,4 @@ class Api {
 
     return category;
   }
-
-//  static Future<BookDetails> getBookDetails(String url) async {
-//    var res = await http.get(url);
-//    Xml2Json xml2json = new Xml2Json();
-//    xml2json.parse(res.body);
-//    var json = jsonDecode(xml2json.toParker());
-//    Share.text(
-//      'my text title',
-//      json.toString(),
-//      'text/plain',
-//    );
-//    BookDetails bookDetails = BookDetails.fromJson(json);
-//    return bookDetails;
-//  }
 }
