@@ -22,7 +22,7 @@ Please star⭐ the repo if you like what you see😉.
 ## ✨ Features
 - [x] Search for books
 - [x] Download eBooks.
-- [ ] Read eBooks (ePub).
+- [x] Read eBooks (Half done: need a better epub reader).
 - [x] Favorites.
 - [x] Dark Mode
 

@@ -27,7 +27,7 @@ class Api {
   static String horror =
       "https://catalog.feedbooks.com/publicdomain/browse/en/top.atom?cat=FBFIC015000";
 
-  static Future getCategory(String url) async {
+  static Future<CategoryFeed> getCategory(String url) async {
     Dio dio = Dio();
 
     var res = await dio.get(url);

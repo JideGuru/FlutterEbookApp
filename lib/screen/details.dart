@@ -317,7 +317,9 @@ class Details extends StatelessWidget {
   }
 
   startDownload(BuildContext context, String url, String filename) async{
-    Directory appDocDir = await getExternalStorageDirectory();
+    Directory appDocDir = Platform.isAndroid
+        ? await getExternalStorageDirectory()
+        : await getApplicationSupportDirectory();
     if(Platform.isAndroid){
       Directory(appDocDir.path.split("Android")[0]+"${Constants.appName}").create();
     }
