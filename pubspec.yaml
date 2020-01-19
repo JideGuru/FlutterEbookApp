@@ -20,7 +20,7 @@ dependencies:
   flutter:
     sdk: flutter
   cupertino_icons: ^0.1.2
-  provider: ^4.0.1
+  provider: ^3.2.0
   shared_preferences: ^0.5.4+5
   page_transition: ^1.1.5
   flutter_icons: ^1.0.0+1
