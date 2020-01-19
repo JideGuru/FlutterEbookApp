@@ -44,10 +44,11 @@ Please star⭐ the repo if you like what you see😉.
 ## 🔌 Plugins
 | Name | Usage |
 |------|-------|
-|**Provider**| State Management|
-|**Object DB**| No SQL database to store Favorites & Downloads|
-|**XML2JSON**| Convert XML to JSON|
-|**DIO**| Network calls and File Download|
+|[**Provider**](https://pub.dev/packages/provider)| State Management|
+|[**Object DB**](https://pub.dev/packages/objectdb)| NoSQL database to store Favorites & Downloads|
+|[**XML2JSON**](https://pub.dev/packages/xml2json)| Convert XML to JSON|
+|[**DIO**](https://pub.dev/packages/dio)| Network calls and File Download|
+|[**EPub Kitty**](https://pub.dev/packages/epub_kitty)| A flutter plugin for Folioreader to read ePub files|
 
 
 ## 🤓 Author(s)

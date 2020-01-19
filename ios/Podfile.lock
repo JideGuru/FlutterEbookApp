@@ -1,4 +1,13 @@
 PODS:
+  - AEXML (4.3.3)
+  - epub_kitty (0.0.1):
+    - AEXML (= 4.3.3)
+    - Flutter
+    - FontBlaster (= 4.1.0)
+    - MenuItemKit (= 3.1.3)
+    - RealmSwift (= 3.17.3)
+    - SSZipArchive (= 2.1.1)
+    - ZFDragableModalTransition (= 0.6)
   - esys_flutter_share (0.0.1):
     - Flutter
   - Flutter (1.0.0)
@@ -7,10 +16,17 @@ PODS:
   - FMDB (2.7.5):
     - FMDB/standard (= 2.7.5)
   - FMDB/standard (2.7.5)
+  - FontBlaster (4.1.0)
+  - MenuItemKit (3.1.3)
   - path_provider (0.0.1):
     - Flutter
   - "permission_handler (4.2.0+hotfix.1)":
     - Flutter
+  - Realm (3.17.3):
+    - Realm/Headers (= 3.17.3)
+  - Realm/Headers (3.17.3)
+  - RealmSwift (3.17.3):
+    - Realm (= 3.17.3)
   - shared_preferences (0.0.1):
     - Flutter
   - shared_preferences_macos (0.0.1):
@@ -20,8 +36,11 @@ PODS:
   - sqflite (0.0.1):
     - Flutter
     - FMDB (~> 2.7.2)
+  - SSZipArchive (2.1.1)
+  - ZFDragableModalTransition (0.6)
 
 DEPENDENCIES:
+  - epub_kitty (from `.symlinks/plugins/epub_kitty/ios`)
   - esys_flutter_share (from `.symlinks/plugins/esys_flutter_share/ios`)
   - Flutter (from `Flutter`)
   - fluttertoast (from `.symlinks/plugins/fluttertoast/ios`)
@@ -34,9 +53,18 @@ DEPENDENCIES:
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
+    - AEXML
     - FMDB
+    - FontBlaster
+    - MenuItemKit
+    - Realm
+    - RealmSwift
+    - SSZipArchive
+    - ZFDragableModalTransition
 
 EXTERNAL SOURCES:
+  epub_kitty:
+    :path: ".symlinks/plugins/epub_kitty/ios"
   esys_flutter_share:
     :path: ".symlinks/plugins/esys_flutter_share/ios"
   Flutter:
@@ -57,16 +85,24 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/sqflite/ios"
 
 SPEC CHECKSUMS:
+  AEXML: 601f41fcaa7bda7605cad153b0f43db9ec006c0f
+  epub_kitty: 56849ea5d9223ef88d1f38d113df6967abeba4b7
   esys_flutter_share: 403498dab005b36ce1f8d7aff377e81f0621b0b4
   Flutter: 0e3d915762c693b495b44d77113d4970485de6ec
   fluttertoast: b644586ef3b16f67fae9a1f8754cef6b2d6b634b
   FMDB: 2ce00b547f966261cd18927a3ddb07cb6f3db82a
+  FontBlaster: 127aa66419478d1c62926c7fdb39841633344a45
+  MenuItemKit: 0f850e630b0a3d2bd80fec54db87ce0d2077ada2
   path_provider: fb74bd0465e96b594bb3b5088ee4a4e7bb1f2a9d
   permission_handler: 59e1b9bd42a8fa96055ca59969723c07af837634
+  Realm: 5a1d9d47bfc101dd597668b1a8af4288a2557f6d
+  RealmSwift: b7fdc2d18616621c31df5c7a398a45a2163f8eb0
   shared_preferences: 430726339841afefe5142b9c1f50cb6bd7793e01
   shared_preferences_macos: f3f29b71ccbb56bf40c9dd6396c9acf15e214087
   shared_preferences_web: 141cce0c3ed1a1c5bf2a0e44f52d31eeb66e5ea9
   sqflite: 4001a31ff81d210346b500c55b17f4d6c7589dd0
+  SSZipArchive: 14401ade5f8e82aba1ff03e9f88e9de60937ae60
+  ZFDragableModalTransition: 0d294eaaba6edfcb9839595de765f9ca06a4b524
 
 PODFILE CHECKSUM: e45c292f618eeca3034958d33b444b6e1249b55f
 

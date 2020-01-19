@@ -1,11 +1,11 @@
 import 'dart:io';
 
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:epub_kitty/epub_kitty.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_ebook_app/database/download_helper.dart';
-import 'package:flutter_ebook_app/screen/reader.dart';
 import 'package:flutter_icons/flutter_icons.dart';
-import 'package:page_transition/page_transition.dart';
 import 'package:uuid/uuid.dart';
 
 class Downloads extends StatefulWidget {
@@ -14,6 +14,8 @@ class Downloads extends StatefulWidget {
 }
 
 class _DownloadsState extends State<Downloads> {
+  static const pageChannel = const EventChannel('com.xiaofwang.epub_kitty/page');
+
   bool done = true;
   var db = DownloadsDB();
   static final uuid = Uuid();
@@ -93,15 +95,13 @@ class _DownloadsState extends State<Downloads> {
             },
             child: InkWell(
               onTap: (){
-                Navigator.pushReplacement(
-                  context,
-                  PageTransition(
-                    type: PageTransitionType.rightToLeft,
-                    child: Reader(
-                      path: dl['path'],
-                    ),
-                  ),
-                );
+                String path = dl['path'];
+                EpubKitty.setConfig("androidBook", "#06d6a7","vertical",true);
+                EpubKitty.open(path);
+
+                pageChannel.receiveBroadcastStream().listen((Object event) {
+                  print('page:$event');
+                }, onError: null);
               },
               child: Padding(
                 padding: EdgeInsets.symmetric(vertical: 5),

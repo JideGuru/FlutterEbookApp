@@ -1,17 +1,17 @@
 import 'dart:io';
 
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:epub_kitty/epub_kitty.dart';
 import 'package:esys_flutter_share/esys_flutter_share.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_ebook_app/podo/category.dart';
 import 'package:flutter_ebook_app/providers/details_provider.dart';
-import 'package:flutter_ebook_app/screen/reader.dart';
 import 'package:flutter_ebook_app/util/consts.dart';
 import 'package:flutter_ebook_app/widgets/book_list_item.dart';
 import 'package:flutter_ebook_app/widgets/description_text.dart';
 import 'package:flutter_ebook_app/widgets/download_alert.dart';
 import 'package:flutter_icons/flutter_icons.dart';
-import 'package:page_transition/page_transition.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:provider/provider.dart';
@@ -31,6 +31,7 @@ class Details extends StatelessWidget {
     @required this.titleTag,
     @required this.authorTag,
   }): super(key:key);
+  static const pageChannel = const EventChannel('com.xiaofwang.epub_kitty/page');
 
   @override
   Widget build(BuildContext context) {
@@ -201,15 +202,13 @@ class Details extends StatelessWidget {
                                   detailsProvider.getDownload().then((c){
                                     if(c.isNotEmpty){
                                       Map dl = c[0];
-                                      Navigator.pushReplacement(
-                                        context,
-                                        PageTransition(
-                                          type: PageTransitionType.rightToLeft,
-                                          child: Reader(
-                                            path: dl['path'],
-                                          ),
-                                        ),
-                                      );
+                                      String path = dl['path'];
+                                      EpubKitty.setConfig("androidBook", "#06d6a7","vertical",true);
+                                      EpubKitty.open(path);
+
+                                      pageChannel.receiveBroadcastStream().listen((Object event) {
+                                        print('page:$event');
+                                      }, onError: null);
                                     }
                                   });
                                 },
