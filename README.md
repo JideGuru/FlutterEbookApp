@@ -9,7 +9,7 @@ The Books included in the app are from the [Public Domain](https://en.wikipedia.
 The [Feedbooks API](http://www.feedbooks.com/api) was used to fetch books.
 <br>
 <br>
-To download APK, [Click here](https://codemagic.io/apps/5e230defc5faa60315b1df62/5e230defc5faa60315b1df61/latest_build) and scroll down the page to find the apk file.
+To download APK, [Click here](https://codemagic.io/apps/5e230defc5faa60315b1df62/5e230defc5faa60315b1df61/latest_build) and scroll down the page to "Artifacts" and select apk-release.apk.
 <br>
 Please star⭐ the repo if you like what you see😉.
 
