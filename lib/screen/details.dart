@@ -354,6 +354,5 @@ class Details extends StatelessWidget {
         );
       }
     });
-
   }
 }
