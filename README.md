@@ -9,7 +9,7 @@ The Books included in the app are from the [Public Domain](https://en.wikipedia.
 The [Feedbooks API](http://www.feedbooks.com/api) was used to fetch books.
 <br>
 <br>
-To download APK, [Click here](https://codemagic.io/apps/5e230defc5faa60315b1df62/5e230defc5faa60315b1df61/latest_build) and scroll down the page to "Artifacts" and select apk-release.apk.
+<a href="https://uc8fbacaeec4cb12609af065219a.dl.dropboxusercontent.com/cd/0/get/Awe0IEzHxWSGg4jhHXyQ4zb374ZqSUIITxJnV_uP8K_Tsf6DYR_qBRyGPwDdr3EPDQnOriHXIKIJP7GhpIxgbAuQ82vvKE3SalJ9iFoReNdhKbVpuKRQxvTBVYkbhuSHfC0/file?dl=1#"><img src="https://playerzon.com/asset/download.png" width="200"></img></a>
 <br>
 Please star⭐ the repo if you like what you see😉.
 
@@ -24,7 +24,7 @@ Please star⭐ the repo if you like what you see😉.
 - [x] Read eBooks.
 - [x] Favorites.
 - [x] Dark Mode
-- [x] Swipe to delete downloads
+- [x] Swipe to delete downloads.
 
 ## 📸 ScreenShots
 
