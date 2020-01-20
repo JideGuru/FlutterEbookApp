@@ -9,7 +9,7 @@ The Books included in the app are from the [Public Domain](https://en.wikipedia.
 The [Feedbooks API](http://www.feedbooks.com/api) was used to fetch books.
 <br>
 <br>
-<a href="https://www.dropbox.com/s/b1jrybrnup0lkjq/app-release.apk?dl=0"><img src="https://playerzon.com/asset/download.png" width="200"></img></a>
+<a href="https://uc81714c760163eb4986b6b7c085.dl.dropboxusercontent.com/cd/0/get/Awjkb2I_tfCBgH7C7Frlpp4RFfoMMMjf4UKi5eY8W18jnEAQsZhN0eQ4hb0amQIimQ7P_irgQSQ4G0pcIWbnyMTlRLfWt_SqS8Hqot-eHTS21PWuaItS8cOxIAafw3e8S0k/file?dl=1#"><img src="https://playerzon.com/asset/download.png" width="200"></img></a>
 <br>
 Please star⭐ the repo if you like what you see😉.
 
