@@ -100,7 +100,7 @@ class Feed {
         : null;
     if (json['entry'] != null) {
       String t = json['entry'].runtimeType.toString();
-      if(t == "List<dynamic>"){
+      if(t == "List<dynamic>" || t == "_GrowableList<dynamic>"){
         entry = new List<Entry>();
         json['entry'].forEach((v) {
           entry.add(new Entry.fromJson(v));
@@ -297,7 +297,7 @@ class Entry {
     summary = json['summary'] != null ? new Id.fromJson(json['summary']) : null;
     if (json['category'] != null) {
       String t = json['category'].runtimeType.toString();
-      if(t == "List<dynamic>"){
+      if(t == "List<dynamic>" || t == "_GrowableList<dynamic>"){
         category = new List<Category>();
         json['category'].forEach((v) {
           category.add(new Category.fromJson(v));
