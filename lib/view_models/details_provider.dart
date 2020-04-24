@@ -4,7 +4,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_ebook_app/database/download_helper.dart';
 import 'package:flutter_ebook_app/database/favorite_helper.dart';
-import 'package:flutter_ebook_app/podo/category.dart';
+import 'package:flutter_ebook_app/models/category.dart';
 import 'package:flutter_ebook_app/util/api.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
@@ -18,9 +18,6 @@ class DetailsProvider extends ChangeNotifier{
 
   bool faved = false;
   bool downloaded = false;
-
-  static var httpClient = HttpClient();
-
 
   getFeed(String url) async{
     setLoading(true);

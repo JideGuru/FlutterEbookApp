@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_ebook_app/providers/app_provider.dart';
-import 'package:flutter_ebook_app/providers/details_provider.dart';
-import 'package:flutter_ebook_app/providers/favorites_provider.dart';
-import 'package:flutter_ebook_app/providers/home_provider.dart';
-import 'package:flutter_ebook_app/screen/splash.dart';
+import 'package:flutter_ebook_app/view_models/app_provider.dart';
+import 'package:flutter_ebook_app/view_models/details_provider.dart';
+import 'package:flutter_ebook_app/view_models/favorites_provider.dart';
+import 'package:flutter_ebook_app/view_models/home_provider.dart';
+import 'package:flutter_ebook_app/views/splash.dart';
 import 'package:flutter_ebook_app/util/consts.dart';
 import 'package:provider/provider.dart';
 
 void main() {
   runApp(
     MultiProvider(
-      providers: [
+     providers: [
         ChangeNotifierProvider(create: (_) => AppProvider()),
         ChangeNotifierProvider(create: (_) => HomeProvider()),
         ChangeNotifierProvider(create: (_) => DetailsProvider()),

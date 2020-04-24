@@ -1,8 +1,8 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_ebook_app/providers/home_provider.dart';
-import 'package:flutter_ebook_app/screen/main_screen.dart';
+import 'package:flutter_ebook_app/view_models/home_provider.dart';
+import 'package:flutter_ebook_app/views/main_screen.dart';
 import 'package:flutter_ebook_app/util/consts.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:page_transition/page_transition.dart';

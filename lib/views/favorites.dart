@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_ebook_app/podo/category.dart';
-import 'package:flutter_ebook_app/providers/favorites_provider.dart';
-import 'package:flutter_ebook_app/widgets/book.dart';
+import 'package:flutter_ebook_app/models/category.dart';
+import 'package:flutter_ebook_app/view_models/favorites_provider.dart';
+import 'package:flutter_ebook_app/components/book.dart';
 import 'package:provider/provider.dart';
 
 class Favorites extends StatelessWidget {

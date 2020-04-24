@@ -1,5 +1,5 @@
 import 'package:flutter/foundation.dart';
-import 'package:flutter_ebook_app/podo/category.dart';
+import 'package:flutter_ebook_app/models/category.dart';
 import 'package:flutter_ebook_app/util/api.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
@@ -8,7 +8,6 @@ class HomeProvider with ChangeNotifier {
   CategoryFeed top = CategoryFeed();
   CategoryFeed recent = CategoryFeed();
   bool loading = true;
-
 
   getFeeds() async{
     setLoading(true);
@@ -65,5 +64,4 @@ class HomeProvider with ChangeNotifier {
   CategoryFeed getRecent() {
     return recent;
   }
-
 }

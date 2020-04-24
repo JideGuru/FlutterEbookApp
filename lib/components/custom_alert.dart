@@ -20,14 +20,14 @@ class CustomAlert extends StatelessWidget {
   Widget build(BuildContext context) {
 
     Orientation orientation = MediaQuery.of(context).orientation;
-    Size screenSize = MediaQuery.of(context).size;
+    Size viewsSize = MediaQuery.of(context).size;
 
     deviceWidth = orientation == Orientation.portrait
-        ? screenSize.width
-        : screenSize.height;
+        ? viewsSize.width
+        : viewsSize.height;
     deviceHeight = orientation == Orientation.portrait
-        ? screenSize.height
-        : screenSize.width;
+        ? viewsSize.height
+        : viewsSize.width;
     dialogHeight = deviceHeight * (0.50);
 
 

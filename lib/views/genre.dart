@@ -1,9 +1,9 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_ebook_app/podo/category.dart';
+import 'package:flutter_ebook_app/models/category.dart';
 import 'package:flutter_ebook_app/util/api.dart';
-import 'package:flutter_ebook_app/widgets/book_list_item.dart';
+import 'package:flutter_ebook_app/components/book_list_item.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 class Genre extends StatefulWidget{

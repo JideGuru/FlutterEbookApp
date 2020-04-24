@@ -1,11 +1,11 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_ebook_app/screen/explore.dart';
-import 'package:flutter_ebook_app/screen/home.dart';
-import 'package:flutter_ebook_app/screen/settings.dart';
+import 'package:flutter_ebook_app/views/explore.dart';
+import 'package:flutter_ebook_app/views/home.dart';
+import 'package:flutter_ebook_app/views/settings.dart';
 import 'package:flutter_ebook_app/util/consts.dart';
-import 'package:flutter_ebook_app/widgets/custom_alert.dart';
+import 'package:flutter_ebook_app/components/custom_alert.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 
 class MainScreen extends StatefulWidget {

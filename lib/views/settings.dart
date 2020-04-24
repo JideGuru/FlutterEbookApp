@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_ebook_app/providers/app_provider.dart';
-import 'package:flutter_ebook_app/providers/favorites_provider.dart';
-import 'package:flutter_ebook_app/screen/downloads.dart';
-import 'package:flutter_ebook_app/screen/favorites.dart';
+import 'package:flutter_ebook_app/view_models/app_provider.dart';
+import 'package:flutter_ebook_app/view_models/favorites_provider.dart';
+import 'package:flutter_ebook_app/views/downloads.dart';
+import 'package:flutter_ebook_app/views/favorites.dart';
 import 'package:flutter_ebook_app/util/consts.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:page_transition/page_transition.dart';

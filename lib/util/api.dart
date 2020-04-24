@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'package:dio/dio.dart';
-import 'package:flutter_ebook_app/podo/category.dart';
+import 'package:flutter_ebook_app/models/category.dart';
 import 'package:xml2json/xml2json.dart';
 
 class Api {
