@@ -145,8 +145,8 @@ class _GenreState extends State<Genre> {
               );
             },
           ),
-          SizedBox(height: 10,),
 
+          SizedBox(height: 10,),
 
           pagi
               ?Container(

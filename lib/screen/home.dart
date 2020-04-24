@@ -141,25 +141,6 @@ class Home extends StatelessWidget {
                           fontWeight: FontWeight.bold,
                         ),
                       ),
-
-//                InkWell(
-//                  onTap: (){
-//                    Navigator.push(
-//                      context,
-//                      PageTransition(
-//                        type: PageTransitionType.rightToLeft,
-//                        child: Genre(),
-//                      ),
-//                    );
-//                  },
-//                  child: Text(
-//                    "See All",
-//                    style: TextStyle(
-//                      color: Theme.of(context).accentColor,
-//                      fontWeight: FontWeight.w400,
-//                    ),
-//                  ),
-//                ),
                     ],
                   ),
                 ),

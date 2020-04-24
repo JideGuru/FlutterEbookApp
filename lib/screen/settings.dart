@@ -29,16 +29,17 @@ class _ProfileState extends State<Profile> {
       "icon": Feather.moon,
       "title": "Dark Mode"
     },
-//    {
-//      "icon": Feather.info,
-//      "title": "About",
-//      "page": Container(),
-//    },
   ];
 
 
   @override
   Widget build(BuildContext context) {
+    // Remove Dark Switch if Device has Dark mode enaibled
+    if( MediaQuery.of(context).platformBrightness == Brightness.dark
+        && items.last["title"] == "Dark Mode"){
+      items.removeLast();
+    }
+
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
@@ -47,7 +48,7 @@ class _ProfileState extends State<Profile> {
         ),
       ),
 
-      body:  ListView.separated(
+      body: ListView.separated(
         padding: EdgeInsets.symmetric(horizontal: 10),
         shrinkWrap: true,
         physics: NeverScrollableScrollPhysics(),
@@ -78,19 +79,15 @@ class _ProfileState extends State<Profile> {
 
           return ListTile(
             onTap: (){
-              if(items[index]['title'] == "About"){
-
-              }else{
-                Provider.of<FavoritesProvider>(context, listen: false)
-                    .getFeed();
-                Navigator.push(
-                  context,
-                  PageTransition(
-                    type: PageTransitionType.rightToLeft,
-                    child: items[index]['page'],
-                  ),
-                );
-              }
+              Provider.of<FavoritesProvider>(context, listen: false)
+                  .getFeed();
+              Navigator.push(
+                context,
+                PageTransition(
+                  type: PageTransitionType.rightToLeft,
+                  child: items[index]['page'],
+                ),
+              );
             },
             leading: Icon(
               items[index]['icon'],

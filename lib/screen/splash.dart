@@ -50,7 +50,6 @@ class _SplashState extends State<Splash> {
     return Scaffold(
       body: Center(
         child: Column(
-//        mainAxisSize: MainAxisSize.max,
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[

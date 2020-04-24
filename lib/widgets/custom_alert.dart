@@ -16,7 +16,6 @@ class CustomAlert extends StatelessWidget {
   double deviceHeight;
   double dialogHeight;
 
-
   @override
   Widget build(BuildContext context) {
 
@@ -35,7 +34,6 @@ class CustomAlert extends StatelessWidget {
     return MediaQuery(
       data: MediaQueryData(),
       child: GestureDetector(
-//        onTap: ()=>Navigator.pop(context),
         child: BackdropFilter(
           filter: ImageFilter.blur(
             sigmaX: 0.5,

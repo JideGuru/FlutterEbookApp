@@ -34,6 +34,7 @@ class _DownloadAlertState extends State<DownloadAlert> {
           total = totalBytes;
           progress = (received / total * 100).toStringAsFixed(0);
         });
+
         //Check if download is complete and close the alert dialog
         if(receivedBytes == totalBytes){
           Navigator.pop(context, "${Constants.formatBytes(total, 1)}");

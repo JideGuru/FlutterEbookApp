@@ -120,7 +120,6 @@ class Explore extends StatelessWidget{
                 ),
               );
             },
-
           ),
         );
       },

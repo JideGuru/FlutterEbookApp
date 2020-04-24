@@ -25,7 +25,6 @@ class HomeProvider with ChangeNotifier {
     });
   }
 
-
   void setLoading(value) {
     loading = value;
     notifyListeners();
