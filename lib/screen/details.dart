@@ -40,13 +40,6 @@ class Details extends StatelessWidget {
         return Scaffold(
           appBar: AppBar(
             actions: <Widget>[
-//          IconButton(
-//            onPressed: (){},
-//            icon: Icon(
-//              Feather.download,
-//            ),
-//          ),
-
               IconButton(
                 onPressed: () async{
                   if(detailsProvider.faved){

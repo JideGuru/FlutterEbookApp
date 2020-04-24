@@ -28,7 +28,6 @@ class Explore extends StatelessWidget{
             itemBuilder: (BuildContext context, int index) {
               Link link = homeProvider.top.feed.link[index];
 
-              print(Api.baseURL+link.href);
               if(index < 10){
                 return SizedBox();
               }
