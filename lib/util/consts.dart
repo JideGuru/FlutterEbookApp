@@ -1,12 +1,10 @@
-import 'package:flutter/material.dart';
 import 'dart:math';
 
+import 'package:flutter/material.dart';
 
-class Constants{
-
+class Constants {
   //App related strings
   static String appName = "Flutter Ebook App";
-
 
   //Colors for theme
   static Color lightPrimary = Colors.white;
@@ -20,7 +18,7 @@ class Constants{
     fontFamily: "TimesNewRoman",
     backgroundColor: lightBG,
     primaryColor: lightPrimary,
-    accentColor:  lightAccent,
+    accentColor: lightAccent,
     cursorColor: lightAccent,
     scaffoldBackgroundColor: lightBG,
     appBarTheme: AppBarTheme(
@@ -57,7 +55,6 @@ class Constants{
     ),
   );
 
-
   static List<T> map<T>(List list, Function handler) {
     List<T> result = [];
     for (var i = 0; i < list.length; i++) {
@@ -68,12 +65,11 @@ class Constants{
   }
 
   static formatBytes(bytes, decimals) {
-    if(bytes == 0) return 0.0;
+    if (bytes == 0) return 0.0;
     var k = 1024,
         dm = decimals <= 0 ? 0 : decimals,
         sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'],
         i = (log(bytes) / log(k)).floor();
     return (((bytes / pow(k, i)).toStringAsFixed(dm)) + ' ' + sizes[i]);
   }
-
 }

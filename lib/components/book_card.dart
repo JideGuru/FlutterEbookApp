@@ -38,8 +38,10 @@ class BookCard extends StatelessWidget {
             Radius.circular(10),
           ),
           onTap: () {
-            Provider.of<DetailsProvider>(context, listen: false).setEntry(entry);
-            Provider.of<DetailsProvider>(context, listen: false).getFeed(entry.author.uri.t);
+            Provider.of<DetailsProvider>(context, listen: false)
+                .setEntry(entry);
+            Provider.of<DetailsProvider>(context, listen: false)
+                .getFeed(entry.author.uri.t);
             Navigator.push(
               context,
               PageTransition(
@@ -61,7 +63,8 @@ class BookCard extends StatelessWidget {
               tag: imgTag,
               child: CachedNetworkImage(
                 imageUrl: "$img",
-                placeholder: (context, url) => Center(child: CircularProgressIndicator()),
+                placeholder: (context, url) =>
+                    Center(child: CircularProgressIndicator()),
                 errorWidget: (context, url, error) => Image.asset(
                   "assets/images/place.png",
                   fit: BoxFit.cover,

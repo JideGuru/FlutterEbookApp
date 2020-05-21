@@ -1,11 +1,11 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_ebook_app/components/custom_alert.dart';
+import 'package:flutter_ebook_app/util/consts.dart';
 import 'package:flutter_ebook_app/views/explore.dart';
 import 'package:flutter_ebook_app/views/home.dart';
 import 'package:flutter_ebook_app/views/settings.dart';
-import 'package:flutter_ebook_app/util/consts.dart';
-import 'package:flutter_ebook_app/components/custom_alert.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 
 class MainScreen extends StatefulWidget {
@@ -13,14 +13,14 @@ class MainScreen extends StatefulWidget {
   _MainScreenState createState() => _MainScreenState();
 }
 
-class _MainScreenState extends State<MainScreen>{
+class _MainScreenState extends State<MainScreen> {
   PageController _pageController;
   int _page = 0;
 
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
-      onWillPop: ()=>exitDialog(context),
+      onWillPop: () => exitDialog(context),
       child: Scaffold(
         body: PageView(
           physics: NeverScrollableScrollPhysics(),
@@ -32,7 +32,6 @@ class _MainScreenState extends State<MainScreen>{
             Profile(),
           ],
         ),
-
         bottomNavigationBar: BottomNavigationBar(
           backgroundColor: Theme.of(context).primaryColor,
           selectedItemColor: Theme.of(context).accentColor,
@@ -48,7 +47,6 @@ class _MainScreenState extends State<MainScreen>{
                 "Home",
               ),
             ),
-
             BottomNavigationBarItem(
               icon: Icon(
                 Feather.compass,
@@ -57,7 +55,6 @@ class _MainScreenState extends State<MainScreen>{
                 "Explore",
               ),
             ),
-
             BottomNavigationBarItem(
               icon: Icon(
                 Feather.settings,
@@ -70,7 +67,6 @@ class _MainScreenState extends State<MainScreen>{
           onTap: navigationTapped,
           currentIndex: _page,
         ),
-
       ),
     );
   }
@@ -97,7 +93,7 @@ class _MainScreenState extends State<MainScreen>{
     });
   }
 
-  exitDialog(BuildContext context){
+  exitDialog(BuildContext context) {
     showDialog(
       context: context,
       builder: (context) => CustomAlert(
@@ -116,9 +112,7 @@ class _MainScreenState extends State<MainScreen>{
                   fontSize: 16,
                 ),
               ),
-
               SizedBox(height: 25),
-
               Text(
                 "Are you sure you want to quit?",
                 style: TextStyle(
@@ -126,9 +120,7 @@ class _MainScreenState extends State<MainScreen>{
                   fontSize: 14,
                 ),
               ),
-
               SizedBox(height: 40),
-
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
@@ -139,19 +131,18 @@ class _MainScreenState extends State<MainScreen>{
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(5.0),
                       ),
-                      borderSide: BorderSide(color: Theme.of(context).accentColor),
+                      borderSide:
+                          BorderSide(color: Theme.of(context).accentColor),
                       child: Text(
                         "No",
                         style: TextStyle(
                           color: Theme.of(context).accentColor,
                         ),
                       ),
-                      onPressed: ()=>Navigator.pop(context),
+                      onPressed: () => Navigator.pop(context),
                       color: Colors.white,
                     ),
                   ),
-
-
                   Container(
                     height: 40,
                     width: 130,
@@ -165,7 +156,7 @@ class _MainScreenState extends State<MainScreen>{
                           color: Colors.white,
                         ),
                       ),
-                      onPressed: ()=> exit(0),
+                      onPressed: () => exit(0),
                       color: Theme.of(context).accentColor,
                     ),
                   ),

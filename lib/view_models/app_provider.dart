@@ -4,8 +4,8 @@ import 'package:flutter/services.dart';
 import 'package:flutter_ebook_app/util/consts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class AppProvider extends ChangeNotifier{
-  AppProvider(){
+class AppProvider extends ChangeNotifier {
+  AppProvider() {
     checkTheme();
   }
 
@@ -25,12 +25,14 @@ class AppProvider extends ChangeNotifier{
 
   void setTheme(value, c) {
     theme = value;
-    SharedPreferences.getInstance().then((prefs){
-      prefs.setString("theme", c).then((val){
+    SharedPreferences.getInstance().then((prefs) {
+      prefs.setString("theme", c).then((val) {
         SystemChrome.setEnabledSystemUIOverlays(SystemUiOverlay.values);
         SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-          statusBarColor: c == "dark" ? Constants.darkPrimary : Constants.lightPrimary,
-          statusBarIconBrightness: c == "dark" ? Brightness.light:Brightness.dark,
+          statusBarColor:
+              c == "dark" ? Constants.darkPrimary : Constants.lightPrimary,
+          statusBarIconBrightness:
+              c == "dark" ? Brightness.light : Brightness.dark,
         ));
       });
     });
@@ -41,16 +43,16 @@ class AppProvider extends ChangeNotifier{
     return theme;
   }
 
-  Future<ThemeData> checkTheme() async{
+  Future<ThemeData> checkTheme() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     ThemeData t;
-    String r = prefs.getString("theme") == null ? "light" : prefs.getString(
-        "theme");
+    String r =
+        prefs.getString("theme") == null ? "light" : prefs.getString("theme");
 
-    if(r == "light"){
+    if (r == "light") {
       t = Constants.lightTheme;
       setTheme(Constants.lightTheme, "light");
-    }else{
+    } else {
       t = Constants.darkTheme;
       setTheme(Constants.darkTheme, "dark");
     }

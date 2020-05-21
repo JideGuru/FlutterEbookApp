@@ -1,11 +1,11 @@
 import 'dart:convert';
+
 import 'package:dio/dio.dart';
 import 'package:flutter_ebook_app/models/category.dart';
 import 'package:xml2json/xml2json.dart';
 
 class Api {
-  static String baseURL =
-      "https://catalog.feedbooks.com";
+  static String baseURL = "https://catalog.feedbooks.com";
   static String popular =
       "https://catalog.feedbooks.com/publicdomain/browse/en/top.atom";
   static String recent =
@@ -32,13 +32,13 @@ class Api {
 
     var res = await dio.get(url);
     CategoryFeed category;
-    if(res.statusCode == 200){
+    if (res.statusCode == 200) {
       Xml2Json xml2json = new Xml2Json();
       xml2json.parse(res.data.toString());
       var json = jsonDecode(xml2json.toGData());
       category = CategoryFeed.fromJson(json);
-    }else{
-      throw("Error ${res.statusCode}");
+    } else {
+      throw ("Error ${res.statusCode}");
     }
 
     return category;

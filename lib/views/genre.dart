@@ -1,12 +1,12 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_ebook_app/components/book_list_item.dart';
 import 'package:flutter_ebook_app/models/category.dart';
 import 'package:flutter_ebook_app/util/api.dart';
-import 'package:flutter_ebook_app/components/book_list_item.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
-class Genre extends StatefulWidget{
+class Genre extends StatefulWidget {
   final String title;
   final String url;
 
@@ -14,14 +14,13 @@ class Genre extends StatefulWidget{
     Key key,
     @required this.title,
     @required this.url,
-  }): super(key:key);
+  }) : super(key: key);
 
   @override
   _GenreState createState() => _GenreState();
 }
 
 class _GenreState extends State<Genre> {
-
   ScrollController controller = ScrollController();
   List items = List();
   bool loading = true;
@@ -30,8 +29,8 @@ class _GenreState extends State<Genre> {
   bool showListenerFlag = true;
   bool loadMore = true;
 
-  scrollListener(){
-    if(showListenerFlag){
+  scrollListener() {
+    if (showListenerFlag) {
       if (controller.offset >= controller.position.maxScrollExtent &&
           !controller.position.outOfRange) {
         paginate();
@@ -39,36 +38,36 @@ class _GenreState extends State<Genre> {
     }
   }
 
-  getFeed(){
+  getFeed() {
     setState(() {
       loading = true;
     });
-    Api.getCategory(widget.url).then((feed){
-      if(mounted){
+    Api.getCategory(widget.url).then((feed) {
+      if (mounted) {
         setState(() {
           items.addAll(feed.feed.entry);
           loading = false;
         });
       }
-    }).catchError((e){
+    }).catchError((e) {
       Fluttertoast.showToast(
         msg: "Something went wrong",
         toastLength: Toast.LENGTH_SHORT,
         timeInSecForIos: 1,
       );
-      throw(e);
+      throw (e);
     });
   }
 
-  paginate(){
-    if(!loading && !pagi && loadMore){
-      Timer(Duration(seconds: 1), (){
+  paginate() {
+    if (!loading && !pagi && loadMore) {
+      Timer(Duration(seconds: 1), () {
         controller.jumpTo(controller.position.maxScrollExtent);
       });
-      if(mounted){
+      if (mounted) {
         setState(() {
           pagi = true;
-          page = page+1;
+          page = page + 1;
         });
       }
       Fluttertoast.showToast(
@@ -76,9 +75,9 @@ class _GenreState extends State<Genre> {
         toastLength: Toast.LENGTH_SHORT,
         timeInSecForIos: 1,
       );
-      print(widget.url+"&page=$page");
-      Api.getCategory(widget.url+"&page=$page").then((feed){
-        if(mounted){
+      print(widget.url + "&page=$page");
+      Api.getCategory(widget.url + "&page=$page").then((feed) {
+        if (mounted) {
           setState(() {
             items.addAll(feed.feed.entry);
             pagi = false;
@@ -89,7 +88,7 @@ class _GenreState extends State<Genre> {
           toastLength: Toast.LENGTH_SHORT,
           timeInSecForIos: 1,
         );
-      }).catchError((e){
+      }).catchError((e) {
         Fluttertoast.showToast(
           msg: "Something went wrong",
           toastLength: Toast.LENGTH_SHORT,
@@ -99,7 +98,7 @@ class _GenreState extends State<Genre> {
           loadMore = false;
           pagi = false;
         });
-        throw(e);
+        throw (e);
       });
     }
   }
@@ -113,7 +112,6 @@ class _GenreState extends State<Genre> {
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
@@ -121,43 +119,43 @@ class _GenreState extends State<Genre> {
       ),
       body: loading
           ? Center(
-        child: CircularProgressIndicator(),
-      )
-          : ListView(
-        controller: controller,
-        children: <Widget>[
-          ListView.builder(
-            physics: NeverScrollableScrollPhysics(),
-            padding: EdgeInsets.symmetric(horizontal: 10),
-            shrinkWrap: true,
-            itemCount: items.length,
-            itemBuilder: (BuildContext context, int index) {
-              Entry entry = items[index];
-              return Padding(
-                padding: EdgeInsets.symmetric(horizontal: 5),
-                child: BookListItem(
-                  img: entry.link[1].href,
-                  title: entry.title.t,
-                  author: entry.author.name.t,
-                  desc: entry.summary.t,
-                  entry: entry,
-                ),
-              );
-            },
-          ),
-
-          SizedBox(height: 10,),
-
-          pagi
-              ?Container(
-            height: 80,
-            child: Center(
               child: CircularProgressIndicator(),
+            )
+          : ListView(
+              controller: controller,
+              children: <Widget>[
+                ListView.builder(
+                  physics: NeverScrollableScrollPhysics(),
+                  padding: EdgeInsets.symmetric(horizontal: 10),
+                  shrinkWrap: true,
+                  itemCount: items.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    Entry entry = items[index];
+                    return Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 5),
+                      child: BookListItem(
+                        img: entry.link[1].href,
+                        title: entry.title.t,
+                        author: entry.author.name.t,
+                        desc: entry.summary.t,
+                        entry: entry,
+                      ),
+                    );
+                  },
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                pagi
+                    ? Container(
+                        height: 80,
+                        child: Center(
+                          child: CircularProgressIndicator(),
+                        ),
+                      )
+                    : SizedBox(),
+              ],
             ),
-          )
-              :SizedBox(),
-        ],
-      ),
     );
   }
 }

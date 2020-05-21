@@ -9,18 +9,18 @@ class HomeProvider with ChangeNotifier {
   CategoryFeed recent = CategoryFeed();
   bool loading = true;
 
-  getFeeds() async{
+  getFeeds() async {
     setLoading(true);
-    Api.getCategory(Api.popular).then((popular){
+    Api.getCategory(Api.popular).then((popular) {
       setTop(popular);
-      Api.getCategory(Api.noteworthy).then((newReleases){
+      Api.getCategory(Api.noteworthy).then((newReleases) {
         setRecent(newReleases);
         setLoading(false);
-      }).catchError((e){
-        throw(e);
+      }).catchError((e) {
+        throw (e);
       });
-    }).catchError((e){
-      throw(e);
+    }).catchError((e) {
+      throw (e);
     });
   }
 

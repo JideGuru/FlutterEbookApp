@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_ebook_app/util/consts.dart';
 import 'package:flutter_ebook_app/view_models/app_provider.dart';
 import 'package:flutter_ebook_app/view_models/favorites_provider.dart';
 import 'package:flutter_ebook_app/views/downloads.dart';
 import 'package:flutter_ebook_app/views/favorites.dart';
-import 'package:flutter_ebook_app/util/consts.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
@@ -25,18 +25,14 @@ class _ProfileState extends State<Profile> {
       "title": "Downloads",
       "page": Downloads(),
     },
-    {
-      "icon": Feather.moon,
-      "title": "Dark Mode"
-    },
+    {"icon": Feather.moon, "title": "Dark Mode"},
   ];
-
 
   @override
   Widget build(BuildContext context) {
     // Remove Dark Switch if Device has Dark mode enaibled
-    if( MediaQuery.of(context).platformBrightness == Brightness.dark
-        && items.last["title"] == "Dark Mode"){
+    if (MediaQuery.of(context).platformBrightness == Brightness.dark &&
+        items.last["title"] == "Dark Mode") {
       items.removeLast();
     }
 
@@ -47,14 +43,13 @@ class _ProfileState extends State<Profile> {
           "Settings",
         ),
       ),
-
       body: ListView.separated(
         padding: EdgeInsets.symmetric(horizontal: 10),
         shrinkWrap: true,
         physics: NeverScrollableScrollPhysics(),
         itemCount: items.length,
         itemBuilder: (BuildContext context, int index) {
-          if(items[index]['title'] =="Dark Mode"){
+          if (items[index]['title'] == "Dark Mode") {
             return SwitchListTile(
               secondary: Icon(
                 items[index]['icon'],
@@ -62,10 +57,11 @@ class _ProfileState extends State<Profile> {
               title: Text(
                 items[index]['title'],
               ),
-              value: Provider.of<AppProvider>(context).theme == Constants.lightTheme
+              value: Provider.of<AppProvider>(context).theme ==
+                      Constants.lightTheme
                   ? false
                   : true,
-              onChanged: (v){
+              onChanged: (v) {
                 if (v) {
                   Provider.of<AppProvider>(context, listen: false)
                       .setTheme(Constants.darkTheme, "dark");
@@ -78,9 +74,8 @@ class _ProfileState extends State<Profile> {
           }
 
           return ListTile(
-            onTap: (){
-              Provider.of<FavoritesProvider>(context, listen: false)
-                  .getFeed();
+            onTap: () {
+              Provider.of<FavoritesProvider>(context, listen: false).getFeed();
               Navigator.push(
                 context,
                 PageTransition(
@@ -95,7 +90,6 @@ class _ProfileState extends State<Profile> {
             title: Text(
               items[index]['title'],
             ),
-
           );
         },
         separatorBuilder: (BuildContext context, int index) {

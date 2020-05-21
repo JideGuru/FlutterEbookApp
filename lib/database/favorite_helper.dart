@@ -3,16 +3,15 @@ import 'dart:io';
 import 'package:objectdb/objectdb.dart';
 import 'package:path_provider/path_provider.dart';
 
-class FavoriteDB{
-
-  getPath() async{
+class FavoriteDB {
+  getPath() async {
     Directory documentDirectory = await getApplicationDocumentsDirectory();
     final path = documentDirectory.path + '/favorites.db';
     return path;
   }
 
   //Insertion
-  add(Map item) async{
+  add(Map item) async {
     final db = ObjectDB(await getPath());
     db.open();
     db.insert(item);
@@ -20,7 +19,7 @@ class FavoriteDB{
     await db.close();
   }
 
-  Future<int> remove(Map item) async{
+  Future<int> remove(Map item) async {
     final db = ObjectDB(await getPath());
     db.open();
     int val = await db.remove(item);
@@ -29,7 +28,7 @@ class FavoriteDB{
     return val;
   }
 
-  Future<List> listAll() async{
+  Future<List> listAll() async {
     final db = ObjectDB(await getPath());
     db.open();
     List val = await db.find({});
@@ -38,7 +37,7 @@ class FavoriteDB{
     return val;
   }
 
-  Future<List> check(Map item) async{
+  Future<List> check(Map item) async {
     final db = ObjectDB(await getPath());
     db.open();
     List val = await db.find(item);

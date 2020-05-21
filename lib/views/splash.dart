@@ -1,9 +1,9 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_ebook_app/util/consts.dart';
 import 'package:flutter_ebook_app/view_models/home_provider.dart';
 import 'package:flutter_ebook_app/views/main_screen.dart';
-import 'package:flutter_ebook_app/util/consts.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
@@ -22,7 +22,6 @@ class _SplashState extends State<Splash> {
   startTimeout() {
     return new Timer(Duration(seconds: 2), handleTimeout);
   }
-
 
   void handleTimeout() {
     changeScreen();
@@ -58,7 +57,9 @@ class _SplashState extends State<Splash> {
               color: Theme.of(context).accentColor,
               size: 70,
             ),
-            SizedBox(height: 20,),
+            SizedBox(
+              height: 20,
+            ),
             Text(
               "${Constants.appName}",
               style: TextStyle(

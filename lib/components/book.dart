@@ -28,9 +28,10 @@ class BookItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: (){
+      onTap: () {
         Provider.of<DetailsProvider>(context, listen: false).setEntry(entry);
-        Provider.of<DetailsProvider>(context, listen: false).getFeed(entry.author.uri.t);
+        Provider.of<DetailsProvider>(context, listen: false)
+            .getFeed(entry.author.uri.t);
         Navigator.push(
           context,
           PageTransition(
@@ -42,7 +43,7 @@ class BookItem extends StatelessWidget {
               authorTag: authorTag,
             ),
           ),
-        ).then((v){
+        ).then((v) {
           Provider.of<FavoritesProvider>(context, listen: false).getFeed();
         });
       },
@@ -56,7 +57,8 @@ class BookItem extends StatelessWidget {
               tag: imgTag,
               child: CachedNetworkImage(
                 imageUrl: "$img",
-                placeholder: (context, url) => Center(child: CircularProgressIndicator()),
+                placeholder: (context, url) =>
+                    Center(child: CircularProgressIndicator()),
                 errorWidget: (context, url, error) => Image.asset(
                   "assets/images/place.png",
                   fit: BoxFit.cover,
@@ -66,9 +68,9 @@ class BookItem extends StatelessWidget {
               ),
             ),
           ),
-
-          SizedBox(height: 5,),
-
+          SizedBox(
+            height: 5,
+          ),
           Hero(
             tag: titleTag,
             child: Text(

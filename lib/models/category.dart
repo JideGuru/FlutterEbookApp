@@ -46,25 +46,25 @@ class Feed {
 
   Feed(
       {this.xmlLang,
-        this.xmlns,
-        this.xmlnsDcterms,
-        this.xmlnsThr,
-        this.xmlnsApp,
-        this.xmlnsOpensearch,
-        this.xmlnsOpds,
-        this.xmlnsXsi,
-        this.xmlnsOdl,
-        this.xmlnsSchema,
-        this.id,
-        this.title,
-        this.updated,
-        this.icon,
-        this.author,
-        this.link,
-        this.opensearchTotalResults,
-        this.opensearchItemsPerPage,
-        this.opensearchStartIndex,
-        this.entry});
+      this.xmlns,
+      this.xmlnsDcterms,
+      this.xmlnsThr,
+      this.xmlnsApp,
+      this.xmlnsOpensearch,
+      this.xmlnsOpds,
+      this.xmlnsXsi,
+      this.xmlnsOdl,
+      this.xmlnsSchema,
+      this.id,
+      this.title,
+      this.updated,
+      this.icon,
+      this.author,
+      this.link,
+      this.opensearchTotalResults,
+      this.opensearchItemsPerPage,
+      this.opensearchStartIndex,
+      this.entry});
 
   Feed.fromJson(Map<String, dynamic> json) {
     xmlLang = json['xml:lang'];
@@ -82,7 +82,7 @@ class Feed {
     updated = json['updated'] != null ? new Id.fromJson(json['updated']) : null;
     icon = json['icon'] != null ? new Id.fromJson(json['icon']) : null;
     author =
-    json['author'] != null ? new Author.fromJson(json['author']) : null;
+        json['author'] != null ? new Author.fromJson(json['author']) : null;
     if (json['link'] != null) {
       link = new List<Link>();
       json['link'].forEach((v) {
@@ -100,12 +100,12 @@ class Feed {
         : null;
     if (json['entry'] != null) {
       String t = json['entry'].runtimeType.toString();
-      if(t == "List<dynamic>" || t == "_GrowableList<dynamic>"){
+      if (t == "List<dynamic>" || t == "_GrowableList<dynamic>") {
         entry = new List<Entry>();
         json['entry'].forEach((v) {
           entry.add(new Entry.fromJson(v));
         });
-      }else{
+      } else {
         entry = new List<Entry>();
         entry.add(new Entry.fromJson(json['entry']));
       }
@@ -213,12 +213,12 @@ class Link {
 
   Link(
       {this.rel,
-        this.type,
-        this.href,
-        this.title,
-        this.opdsActiveFacet,
-        this.opdsFacetGroup,
-        this.thrCount});
+      this.type,
+      this.href,
+      this.title,
+      this.opdsActiveFacet,
+      this.opdsFacetGroup,
+      this.thrCount});
 
   Link.fromJson(Map<String, dynamic> json) {
     rel = json['rel'];
@@ -259,31 +259,31 @@ class Entry {
 
   Entry(
       {this.title,
-        this.id,
-        this.author,
-        this.published,
-        this.updated,
-        this.dctermsLanguage,
-        this.dctermsPublisher,
-        this.dctermsIssued,
-        this.summary,
-        this.category,
-        this.link,
-        this.schemaSeries});
+      this.id,
+      this.author,
+      this.published,
+      this.updated,
+      this.dctermsLanguage,
+      this.dctermsPublisher,
+      this.dctermsIssued,
+      this.summary,
+      this.category,
+      this.link,
+      this.schemaSeries});
 
   Entry.fromJson(Map<String, dynamic> json) {
     title = json['title'] != null ? new Id.fromJson(json['title']) : null;
     id = json['id'] != null ? new Id.fromJson(json['id']) : null;
-    if(json['author'] != null){
-      if(json['author'].runtimeType.toString() == "List<dynamic>"){
+    if (json['author'] != null) {
+      if (json['author'].runtimeType.toString() == "List<dynamic>") {
         author = Author1.fromJson(json['author'][0]);
-      }else{
+      } else {
         author = Author1.fromJson(json['author']);
       }
     }
 
     published =
-    json['published'] != null ? new Id.fromJson(json['published']) : null;
+        json['published'] != null ? new Id.fromJson(json['published']) : null;
     updated = json['updated'] != null ? new Id.fromJson(json['updated']) : null;
     dctermsLanguage = json[r'dcterms$language'] != null
         ? new Id.fromJson(json[r'dcterms$language'])
@@ -297,12 +297,12 @@ class Entry {
     summary = json['summary'] != null ? new Id.fromJson(json['summary']) : null;
     if (json['category'] != null) {
       String t = json['category'].runtimeType.toString();
-      if(t == "List<dynamic>" || t == "_GrowableList<dynamic>"){
+      if (t == "List<dynamic>" || t == "_GrowableList<dynamic>") {
         category = new List<Category>();
         json['category'].forEach((v) {
           category.add(new Category.fromJson(v));
         });
-      }else{
+      } else {
         category = new List<Category>();
         category.add(new Category.fromJson(json['category']));
       }

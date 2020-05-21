@@ -33,7 +33,8 @@ class BookListItem extends StatelessWidget {
     return InkWell(
       onTap: () {
         Provider.of<DetailsProvider>(context, listen: false).setEntry(entry);
-        Provider.of<DetailsProvider>(context, listen: false).getFeed(entry.author.uri.t);
+        Provider.of<DetailsProvider>(context, listen: false)
+            .getFeed(entry.author.uri.t);
         Navigator.push(
           context,
           PageTransition(
@@ -134,7 +135,7 @@ class BookListItem extends StatelessWidget {
                     height: 10,
                   ),
                   Text(
-                    "${desc.length<100?desc:desc.substring(0, 100)}..."
+                    "${desc.length < 100 ? desc : desc.substring(0, 100)}..."
                         .replaceAll(r"\n", "\n\n")
                         .replaceAll(r"\r", "")
                         .replaceAll(r"\'", "'"),
