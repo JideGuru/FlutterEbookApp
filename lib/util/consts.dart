@@ -8,11 +8,11 @@ class Constants {
 
   //Colors for theme
   static Color lightPrimary = Colors.white;
-  static Color darkPrimary = Colors.black;
+  static Color darkPrimary = Color(0xff1f1f1f);
   static Color lightAccent = Color(0xff06d6a7);
   static Color darkAccent = Color(0xff06d6a7);
   static Color lightBG = Colors.white;
-  static Color darkBG = Colors.black;
+  static Color darkBG = Color(0xff121212);
 
   static ThemeData lightTheme = ThemeData(
     fontFamily: "TimesNewRoman",
