@@ -144,101 +144,13 @@ class Details extends StatelessWidget {
                           SizedBox(
                             height: 5,
                           ),
-                          entry.category == null
-                              ? SizedBox()
-                              : Container(
-                                  height: entry.category.length < 3 ? 40 : 80,
-                                  child: GridView.builder(
-                                    shrinkWrap: true,
-                                    physics: NeverScrollableScrollPhysics(),
-                                    itemCount: entry.category.length > 4
-                                        ? 4
-                                        : entry.category.length,
-                                    gridDelegate:
-                                        SliverGridDelegateWithFixedCrossAxisCount(
-                                      crossAxisCount: 2,
-                                      childAspectRatio: 210 / 80,
-                                    ),
-                                    itemBuilder:
-                                        (BuildContext context, int index) {
-                                      Category cat = entry.category[index];
-                                      return Padding(
-                                        padding:
-                                            EdgeInsets.fromLTRB(0, 5, 5, 5),
-                                        child: Container(
-                                          decoration: BoxDecoration(
-                                            color: Theme.of(context)
-                                                .backgroundColor,
-                                            borderRadius: BorderRadius.all(
-                                              Radius.circular(20),
-                                            ),
-                                            border: Border.all(
-                                              color:
-                                                  Theme.of(context).accentColor,
-                                            ),
-                                          ),
-                                          child: Center(
-                                            child: Padding(
-                                              padding: EdgeInsets.symmetric(
-                                                  horizontal: 2),
-                                              child: Text(
-                                                "${cat.label}",
-                                                style: TextStyle(
-                                                  color: Theme.of(context)
-                                                      .accentColor,
-                                                  fontSize:
-                                                      cat.label.length > 18
-                                                          ? 6
-                                                          : 10,
-                                                  fontWeight: FontWeight.bold,
-                                                ),
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                      );
-                                    },
-                                  ),
-                                ),
+                          _buildCategory(entry, context),
                           Center(
                             child: Container(
                               height: 20,
                               width: MediaQuery.of(context).size.width,
-                              child: detailsProvider.downloaded
-                                  ? FlatButton(
-                                      onPressed: () {
-                                        detailsProvider.getDownload().then((c) {
-                                          if (c.isNotEmpty) {
-                                            Map dl = c[0];
-                                            String path = dl['path'];
-                                            EpubKitty.setConfig("androidBook",
-                                                "#06d6a7", "vertical", true);
-                                            EpubKitty.open(path);
-
-                                            pageChannel
-                                                .receiveBroadcastStream()
-                                                .listen((Object event) {
-                                              print('page:$event');
-                                            }, onError: null);
-                                          }
-                                        });
-                                      },
-                                      child: Text(
-                                        "Read Book",
-                                      ),
-                                    )
-                                  : FlatButton(
-                                      onPressed: () => downloadFile(
-                                        context,
-                                        entry.link[3].href,
-                                        entry.title.t
-                                            .replaceAll(" ", "_")
-                                            .replaceAll(r"\'", ""),
-                                      ),
-                                      child: Text(
-                                        "Download",
-                                      ),
-                                    ),
+                              child: _buildDownloadReadButton(
+                                  detailsProvider, context),
                             ),
                           ),
                         ],
@@ -284,36 +196,126 @@ class Details extends StatelessWidget {
               SizedBox(
                 height: 10,
               ),
-              detailsProvider.loading
-                  ? Container(
-                      height: 100,
-                      child: Center(
-                        child: CircularProgressIndicator(),
-                      ),
-                    )
-                  : ListView.builder(
-                      shrinkWrap: true,
-                      physics: NeverScrollableScrollPhysics(),
-                      itemCount: detailsProvider.related.feed.entry.length,
-                      itemBuilder: (BuildContext context, int index) {
-                        Entry entry = detailsProvider.related.feed.entry[index];
-                        return Padding(
-                          padding: EdgeInsets.symmetric(vertical: 5),
-                          child: BookListItem(
-                            img: entry.link[1].href,
-                            title: entry.title.t,
-                            author: entry.author.name.t,
-                            desc: entry.summary.t,
-                            entry: entry,
-                          ),
-                        );
-                      },
-                    ),
+              _buildMoreBook(detailsProvider),
             ],
           ),
         );
       },
     );
+  }
+
+  _buildMoreBook(DetailsProvider provider) {
+    if (provider.loading) {
+      return Container(
+        height: 100,
+        child: Center(
+          child: CircularProgressIndicator(),
+        ),
+      );
+    } else {
+      return ListView.builder(
+        shrinkWrap: true,
+        physics: NeverScrollableScrollPhysics(),
+        itemCount: provider.related.feed.entry.length,
+        itemBuilder: (BuildContext context, int index) {
+          Entry entry = provider.related.feed.entry[index];
+          return Padding(
+            padding: EdgeInsets.symmetric(vertical: 5),
+            child: BookListItem(
+              img: entry.link[1].href,
+              title: entry.title.t,
+              author: entry.author.name.t,
+              desc: entry.summary.t,
+              entry: entry,
+            ),
+          );
+        },
+      );
+    }
+  }
+
+  _buildDownloadReadButton(DetailsProvider provider, BuildContext context) {
+    if (provider.downloaded) {
+      return FlatButton(
+        onPressed: () {
+          provider.getDownload().then((c) {
+            if (c.isNotEmpty) {
+              Map dl = c[0];
+              String path = dl['path'];
+              EpubKitty.setConfig("androidBook", "#06d6a7", "vertical", true);
+              EpubKitty.open(path);
+
+              pageChannel.receiveBroadcastStream().listen((Object event) {
+                print('page:$event');
+              }, onError: null);
+            }
+          });
+        },
+        child: Text(
+          "Read Book",
+        ),
+      );
+    } else {
+      return FlatButton(
+        onPressed: () => downloadFile(
+          context,
+          entry.link[3].href,
+          entry.title.t.replaceAll(" ", "_").replaceAll(r"\'", ""),
+        ),
+        child: Text(
+          "Download",
+        ),
+      );
+    }
+  }
+
+  _buildCategory(Entry entry, BuildContext context) {
+    if (entry.category == null) {
+      return SizedBox();
+    } else {
+      return Container(
+        height: entry.category.length < 3 ? 55 : 95,
+        child: GridView.builder(
+          shrinkWrap: true,
+          physics: NeverScrollableScrollPhysics(),
+          itemCount: entry.category.length > 4 ? 4 : entry.category.length,
+          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 2,
+            childAspectRatio: 210 / 80,
+          ),
+          itemBuilder: (BuildContext context, int index) {
+            Category cat = entry.category[index];
+            return Padding(
+              padding: EdgeInsets.fromLTRB(0, 5, 5, 5),
+              child: Container(
+                decoration: BoxDecoration(
+                  color: Theme.of(context).backgroundColor,
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(20),
+                  ),
+                  border: Border.all(
+                    color: Theme.of(context).accentColor,
+                  ),
+                ),
+                child: Center(
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 2),
+                    child: Text(
+                      "${cat.label}",
+                      style: TextStyle(
+                        color: Theme.of(context).accentColor,
+                        fontSize: cat.label.length > 18 ? 6 : 10,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            );
+          },
+        ),
+      );
+    }
   }
 
   Future downloadFile(BuildContext context, String url, String filename) async {
