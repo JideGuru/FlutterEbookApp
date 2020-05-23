@@ -55,15 +55,5 @@ Please star⭐ the repo if you like what you see😉.
 **Olusegun Festus Babajide** [![Twitter Follow](https://img.shields.io/twitter/follow/iamjideguru.svg?style=social)](https://twitter.com/iamjideguru)
 
 
-## ☕️  Donate
-
-Buy me a cup of Coffee😁
-
-| Mode | Link/Wallet|
-| ------| ------------|
-| Bitcoin | 3GrziPW6Gz6S5mXo2EsiYpafW8vXVq5Rbv|
-| Buy me a coffee | <a href="https://www.buymeacoffee.com/Z05HyTFbf" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" style="height: 51px !important;width: 217px !important;" ></a>|
-
-
 ## 🔖 LICENCE
 [Apache-2.0](https://github.com/JideGuru/FlutterEbookApp/blob/master/LICENSE)
