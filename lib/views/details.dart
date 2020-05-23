@@ -16,7 +16,6 @@ import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:provider/provider.dart';
 
-// ignore: must_be_immutable
 class Details extends StatelessWidget {
   final Entry entry;
   final String imgTag;
@@ -335,7 +334,7 @@ class Details extends StatelessWidget {
         : await getApplicationSupportDirectory();
     if (Platform.isAndroid) {
       Directory(appDocDir.path.split("Android")[0] + "${Constants.appName}")
-          .create();
+          .createSync();
     }
 
     String path = Platform.isIOS
