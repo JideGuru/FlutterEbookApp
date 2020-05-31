@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_ebook_app/components/book_card.dart';
 import 'package:flutter_ebook_app/models/category.dart';
 import 'package:flutter_ebook_app/util/api.dart';
+import 'package:flutter_ebook_app/util/functions.dart';
 import 'package:flutter_ebook_app/view_models/home_provider.dart';
 import 'package:flutter_ebook_app/views/genre.dart';
-import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 
 class Explore extends StatefulWidget {
@@ -81,14 +81,11 @@ class _ExploreState extends State<Explore> {
           ),
           GestureDetector(
             onTap: () {
-              Navigator.push(
+              Functions.pushPage(
                 context,
-                PageTransition(
-                  type: PageTransitionType.rightToLeft,
-                  child: Genre(
-                    title: "${link.title}",
-                    url: Api.baseURL + link.href,
-                  ),
+                Genre(
+                  title: "${link.title}",
+                  url: Api.baseURL + link.href,
                 ),
               );
             },

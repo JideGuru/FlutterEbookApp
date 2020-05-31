@@ -58,7 +58,7 @@ class _GenreState extends State<Genre> {
           itemBuilder: (BuildContext context, int index) {
             Entry entry = provider.items[index];
             return Padding(
-              padding: EdgeInsets.symmetric(horizontal: 5),
+              padding: EdgeInsets.symmetric(horizontal: 5, vertical: 5.0),
               child: BookListItem(
                 img: entry.link[1].href,
                 title: entry.title.t,

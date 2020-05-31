@@ -30,7 +30,6 @@ class Api {
     } else {
       throw ("Error ${res.statusCode}");
     }
-
     return category;
   }
 }

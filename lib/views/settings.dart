@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_ebook_app/util/consts.dart';
+import 'package:flutter_ebook_app/util/functions.dart';
 import 'package:flutter_ebook_app/view_models/app_provider.dart';
-import 'package:flutter_ebook_app/view_models/favorites_provider.dart';
 import 'package:flutter_ebook_app/views/downloads.dart';
 import 'package:flutter_ebook_app/views/favorites.dart';
 import 'package:flutter_icons/flutter_icons.dart';
-import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 
 class Profile extends StatefulWidget {
@@ -57,13 +56,9 @@ class _ProfileState extends State<Profile> {
 
           return ListTile(
             onTap: () {
-              Provider.of<FavoritesProvider>(context, listen: false).getFeed();
-              Navigator.push(
+              Functions.pushPage(
                 context,
-                PageTransition(
-                  type: PageTransitionType.rightToLeft,
-                  child: items[index]['page'],
-                ),
+                items[index]['page'],
               );
             },
             leading: Icon(

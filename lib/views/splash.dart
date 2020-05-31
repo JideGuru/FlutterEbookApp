@@ -2,9 +2,9 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_ebook_app/util/consts.dart';
+import 'package:flutter_ebook_app/util/functions.dart';
 import 'package:flutter_ebook_app/views/main_screen.dart';
 import 'package:flutter_icons/flutter_icons.dart';
-import 'package:page_transition/page_transition.dart';
 
 class Splash extends StatefulWidget {
   @override
@@ -23,12 +23,9 @@ class _SplashState extends State<Splash> {
   }
 
   changeScreen() async {
-    Navigator.pushReplacement(
+    Functions.pushPageReplacement(
       context,
-      PageTransition(
-        type: PageTransitionType.rightToLeft,
-        child: MainScreen(),
-      ),
+      MainScreen(),
     );
   }
 
