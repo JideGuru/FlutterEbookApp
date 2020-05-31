@@ -20,7 +20,6 @@ class Api {
 
   static Future<CategoryFeed> getCategory(String url) async {
     Dio dio = Dio();
-    print(url);
     var res = await dio.get(url);
     CategoryFeed category;
     if (res.statusCode == 200) {
