@@ -12,9 +12,6 @@ class Splash extends StatefulWidget {
 }
 
 class _SplashState extends State<Splash> {
-  var timeout = const Duration(seconds: 2);
-  var ms = const Duration(milliseconds: 1);
-
   bool gone = false;
 
   startTimeout() {
