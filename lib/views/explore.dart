@@ -79,7 +79,6 @@ class _ExploreState extends State<Explore> {
               overflow: TextOverflow.ellipsis,
             ),
           ),
-          
           GestureDetector(
             onTap: () {
               Navigator.push(

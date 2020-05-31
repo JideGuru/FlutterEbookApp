@@ -33,7 +33,6 @@ class _ProfileState extends State<Profile> {
 
   @override
   Widget build(BuildContext context) {
-
     // Remove Dark Switch if Device has Dark mode enabled
     if (MediaQuery.of(context).platformBrightness == Brightness.dark &&
         items.last["title"] == "Dark Mode") {

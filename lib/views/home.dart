@@ -182,7 +182,7 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
   _buildNewSection(HomeProvider homeProvider) {
     return ListView.builder(
       primary: false,
-      padding: EdgeInsets.symmetric(horizontal: 15),
+      padding: EdgeInsets.symmetric(horizontal: 15.0),
       shrinkWrap: true,
       physics: NeverScrollableScrollPhysics(),
       itemCount: homeProvider.recent.feed.entry.length,
@@ -190,7 +190,7 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
         Entry entry = homeProvider.recent.feed.entry[index];
 
         return Padding(
-          padding: EdgeInsets.symmetric(horizontal: 5),
+          padding: EdgeInsets.symmetric(horizontal: 5.0, vertical: 5.0),
           child: BookListItem(
             img: entry.link[1].href,
             title: entry.title.t,
