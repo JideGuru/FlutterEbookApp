@@ -42,7 +42,7 @@ class _ProfileState extends State<Profile> {
       {
         "icon": Feather.file_text,
         "title": "Licenses",
-        "function": () => _pushPage(LicensePage()),
+        "function": () => _pushPageDialog(LicensePage()),
       },
     ];
   }
@@ -117,9 +117,34 @@ class _ProfileState extends State<Profile> {
     );
   }
 
-  showAbout() {
-    showAboutDialog(
-      context: context,
+  _pushPageDialog(Widget page) {
+    Functions.pushPageDialog(
+      context,
+      page,
     );
+  }
+
+  showAbout() {
+    showDialog(
+        context: context,
+        builder: (_) {
+          return AlertDialog(
+            title: Text(
+              "About",
+            ),
+            content: Text(
+              "Simple eBook app by JideGuru",
+            ),
+            actions: <Widget>[
+              FlatButton(
+                textColor: Theme.of(context).accentColor,
+                onPressed: () => Navigator.pop(context),
+                child: Text(
+                  "Close",
+                ),
+              ),
+            ],
+          );
+        });
   }
 }

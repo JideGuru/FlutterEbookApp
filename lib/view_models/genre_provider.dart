@@ -72,5 +72,4 @@ class GenreProvider extends ChangeNotifier {
       });
     }
   }
-
 }
