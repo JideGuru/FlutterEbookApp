@@ -32,9 +32,6 @@ class BookListItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Provider.of<DetailsProvider>(context, listen: false).setEntry(entry);
-        Provider.of<DetailsProvider>(context, listen: false)
-            .getFeed(entry.author.uri.t);
         Navigator.push(
           context,
           PageTransition(

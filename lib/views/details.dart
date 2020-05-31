@@ -4,6 +4,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:epub_kitty/epub_kitty.dart';
 import 'package:esys_flutter_share/esys_flutter_share.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_ebook_app/components/book_list_item.dart';
 import 'package:flutter_ebook_app/components/description_text.dart';
@@ -16,7 +17,7 @@ import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:provider/provider.dart';
 
-class Details extends StatelessWidget {
+class Details extends StatefulWidget {
   final Entry entry;
   final String imgTag;
   final String titleTag;
@@ -31,6 +32,23 @@ class Details extends StatelessWidget {
   }) : super(key: key);
   static const pageChannel =
       const EventChannel('com.xiaofwang.epub_kitty/page');
+
+  @override
+  _DetailsState createState() => _DetailsState();
+}
+
+class _DetailsState extends State<Details> {
+  @override
+  void initState() {
+    super.initState();
+    SchedulerBinding.instance.addPostFrameCallback(
+          (_) {
+        Provider.of<DetailsProvider>(context, listen: false).setEntry(widget.entry);
+        Provider.of<DetailsProvider>(context, listen: false)
+            .getFeed(widget.entry.author.uri.t.replaceAll(r"\&lang=en", ""));
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -58,8 +76,8 @@ class Details extends StatelessWidget {
               IconButton(
                 onPressed: () {
                   Share.text(
-                    "${entry.title.t} by ${entry.author.name.t}",
-                    "Read/Download ${entry.title.t} from ${entry.link[3].href}.",
+                    "${widget.entry.title.t} by ${widget.entry.author.name.t}",
+                    "Read/Download ${widget.entry.title.t} from ${widget.entry.link[3].href}.",
                     "text/plain",
                   );
                 },
@@ -82,9 +100,9 @@ class Details extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     Hero(
-                      tag: imgTag,
+                      tag: widget.imgTag,
                       child: CachedNetworkImage(
-                        imageUrl: "${entry.link[1].href}",
+                        imageUrl: "${widget.entry.link[1].href}",
                         placeholder: (context, url) => Container(
                           height: 200,
                           width: 130,
@@ -111,11 +129,11 @@ class Details extends StatelessWidget {
                             height: 5,
                           ),
                           Hero(
-                            tag: titleTag,
+                            tag: widget.titleTag,
                             child: Material(
                               type: MaterialType.transparency,
                               child: Text(
-                                "${entry.title.t.replaceAll(r"\", "")}",
+                                "${widget.entry.title.t.replaceAll(r"\", "")}",
                                 style: TextStyle(
                                   fontSize: 20,
                                   fontWeight: FontWeight.bold,
@@ -128,11 +146,11 @@ class Details extends StatelessWidget {
                             height: 5,
                           ),
                           Hero(
-                            tag: authorTag,
+                            tag: widget.authorTag,
                             child: Material(
                               type: MaterialType.transparency,
                               child: Text(
-                                "${entry.author.name.t}",
+                                "${widget.entry.author.name.t}",
                                 style: TextStyle(
                                   fontSize: 16,
                                   fontWeight: FontWeight.w800,
@@ -144,7 +162,7 @@ class Details extends StatelessWidget {
                           SizedBox(
                             height: 5,
                           ),
-                          _buildCategory(entry, context),
+                          _buildCategory(widget.entry, context),
                           Center(
                             child: Container(
                               height: 20,
@@ -177,7 +195,7 @@ class Details extends StatelessWidget {
                 height: 10,
               ),
               DescriptionTextWidget(
-                text: "${entry.summary.t}",
+                text: "${widget.entry.summary.t}",
               ),
               SizedBox(
                 height: 30,
@@ -245,7 +263,7 @@ class Details extends StatelessWidget {
               EpubKitty.setConfig("androidBook", "#06d6a7", "vertical", true);
               EpubKitty.open(path);
 
-              pageChannel.receiveBroadcastStream().listen((Object event) {
+              Details.pageChannel.receiveBroadcastStream().listen((Object event) {
                 print('page:$event');
               }, onError: null);
             }
@@ -259,8 +277,8 @@ class Details extends StatelessWidget {
       return FlatButton(
         onPressed: () => downloadFile(
           context,
-          entry.link[3].href,
-          entry.title.t.replaceAll(" ", "_").replaceAll(r"\'", ""),
+          widget.entry.link[3].href,
+          widget.entry.title.t.replaceAll(" ", "_").replaceAll(r"\'", ""),
         ),
         child: Text(
           "Download",
@@ -363,11 +381,11 @@ class Details extends StatelessWidget {
       if (v != null) {
         Provider.of<DetailsProvider>(context, listen: false).addDownload(
           {
-            "id": entry.published.t,
+            "id": widget.entry.published.t,
             "path": path,
-            "image": "${entry.link[1].href}",
+            "image": "${widget.entry.link[1].href}",
             "size": v,
-            "name": entry.title.t,
+            "name": widget.entry.title.t,
           },
         );
       }

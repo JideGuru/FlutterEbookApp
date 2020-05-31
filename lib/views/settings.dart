@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_ebook_app/util/consts.dart';
 import 'package:flutter_ebook_app/view_models/app_provider.dart';
@@ -35,6 +33,12 @@ class _ProfileState extends State<Profile> {
 
   @override
   Widget build(BuildContext context) {
+
+    // Remove Dark Switch if Device has Dark mode enabled
+    if (MediaQuery.of(context).platformBrightness == Brightness.dark &&
+        items.last["title"] == "Dark Mode") {
+      items.removeLast();
+    }
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
@@ -79,31 +83,25 @@ class _ProfileState extends State<Profile> {
   }
 
   Widget _buildThemeSwitch(Map item) {
-    // Do not display a Dark Mode switch if platform is iOS
-    // or Android 10 (because of the native Dark Mode theme)
-    if (Platform.isAndroid) {
-      return SwitchListTile(
-        secondary: Icon(
-          item['icon'],
-        ),
-        title: Text(
-          item['title'],
-        ),
-        value: Provider.of<AppProvider>(context).theme == Constants.lightTheme
-            ? false
-            : true,
-        onChanged: (v) {
-          if (v) {
-            Provider.of<AppProvider>(context, listen: false)
-                .setTheme(Constants.darkTheme, "dark");
-          } else {
-            Provider.of<AppProvider>(context, listen: false)
-                .setTheme(Constants.lightTheme, "light");
-          }
-        },
-      );
-    } else {
-      return SizedBox();
-    }
+    return SwitchListTile(
+      secondary: Icon(
+        item['icon'],
+      ),
+      title: Text(
+        item['title'],
+      ),
+      value: Provider.of<AppProvider>(context).theme == Constants.lightTheme
+          ? false
+          : true,
+      onChanged: (v) {
+        if (v) {
+          Provider.of<AppProvider>(context, listen: false)
+              .setTheme(Constants.darkTheme, "dark");
+        } else {
+          Provider.of<AppProvider>(context, listen: false)
+              .setTheme(Constants.lightTheme, "light");
+        }
+      },
+    );
   }
 }

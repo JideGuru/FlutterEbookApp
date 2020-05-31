@@ -68,13 +68,18 @@ class _ExploreState extends State<Explore> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
-          Text(
-            "${link.title}",
-            style: TextStyle(
-              fontSize: 20,
-              fontWeight: FontWeight.bold,
+          Flexible(
+            child: Text(
+              "${link.title}",
+              style: TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+              ),
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
             ),
           ),
+          
           GestureDetector(
             onTap: () {
               Navigator.push(

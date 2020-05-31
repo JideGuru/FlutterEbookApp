@@ -38,10 +38,6 @@ class BookCard extends StatelessWidget {
             Radius.circular(10),
           ),
           onTap: () {
-            Provider.of<DetailsProvider>(context, listen: false)
-                .setEntry(entry);
-            Provider.of<DetailsProvider>(context, listen: false)
-                .getFeed(entry.author.uri.t.replaceAll(r"\&lang=en", ""));
             Navigator.push(
               context,
               PageTransition(

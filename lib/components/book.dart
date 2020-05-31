@@ -29,9 +29,6 @@ class BookItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Provider.of<DetailsProvider>(context, listen: false).setEntry(entry);
-        Provider.of<DetailsProvider>(context, listen: false)
-            .getFeed(entry.author.uri.t);
         Navigator.push(
           context,
           PageTransition(
@@ -43,9 +40,7 @@ class BookItem extends StatelessWidget {
               authorTag: authorTag,
             ),
           ),
-        ).then((v) {
-          Provider.of<FavoritesProvider>(context, listen: false).getFeed();
-        });
+        );
       },
       child: Column(
         children: <Widget>[
