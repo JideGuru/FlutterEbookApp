@@ -38,4 +38,8 @@ class Functions {
       ),
     );
   }
+
+  static isDark(BuildContext context) {
+    return Theme.of(context).brightness == Brightness.dark;
+  }
 }

@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_ebook_app/util/consts.dart';
+import 'package:flutter_ebook_app/util/functions.dart';
+import 'package:flutter_ebook_app/util/theme_config.dart';
 import 'package:flutter_ebook_app/view_models/app_provider.dart';
 import 'package:flutter_ebook_app/view_models/details_provider.dart';
 import 'package:flutter_ebook_app/view_models/favorites_provider.dart';
 import 'package:flutter_ebook_app/view_models/genre_provider.dart';
 import 'package:flutter_ebook_app/view_models/home_provider.dart';
 import 'package:flutter_ebook_app/views/splash.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
 void main() {
@@ -33,8 +36,18 @@ class MyApp extends StatelessWidget {
           debugShowCheckedModeBanner: false,
           navigatorKey: appProvider.navigatorKey,
           title: Constants.appName,
-          theme: appProvider.theme,
-          darkTheme: Constants.darkTheme,
+          theme: appProvider.theme.copyWith(
+            textTheme: GoogleFonts.sourceSansProTextTheme(
+              Functions.isDark(context)
+                  ? ThemeConfig.darkTheme.textTheme
+                  : ThemeConfig.lightTheme.textTheme,
+            ),
+          ),
+          darkTheme: ThemeConfig.darkTheme.copyWith(
+            textTheme: GoogleFonts.sourceSansProTextTheme(
+              ThemeConfig.darkTheme.textTheme,
+            ),
+          ),
           home: Splash(),
         );
       },

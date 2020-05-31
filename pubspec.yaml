@@ -33,6 +33,7 @@ dependencies:
   path_provider: ^1.4.0
   dio: ^3.0.8
   permission_handler: ^4.2.0+hotfix.1
+  google_fonts: ^1.0.0
 
 dev_dependencies:
   flutter_test:
@@ -49,11 +50,3 @@ flutter:
 
   assets:
     - assets/images/
-
-  fonts:
-    - family: TimesNewRoman
-      fonts:
-        - asset: assets/fonts/times-new-roman.ttf
-        - asset: assets/fonts/times-new-roman-italic.ttf
-        - asset: assets/fonts/times-new-roman-bold.ttf
-        - asset: assets/fonts/times-new-roman bold-italic.ttf

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_ebook_app/util/consts.dart';
 import 'package:flutter_ebook_app/util/functions.dart';
+import 'package:flutter_ebook_app/util/theme_config.dart';
 import 'package:flutter_ebook_app/view_models/app_provider.dart';
 import 'package:flutter_ebook_app/views/downloads.dart';
 import 'package:flutter_ebook_app/views/favorites.dart';
@@ -84,16 +84,16 @@ class _ProfileState extends State<Profile> {
       title: Text(
         item['title'],
       ),
-      value: Provider.of<AppProvider>(context).theme == Constants.lightTheme
+      value: Provider.of<AppProvider>(context).theme == ThemeConfig.lightTheme
           ? false
           : true,
       onChanged: (v) {
         if (v) {
           Provider.of<AppProvider>(context, listen: false)
-              .setTheme(Constants.darkTheme, "dark");
+              .setTheme(ThemeConfig.darkTheme, "dark");
         } else {
           Provider.of<AppProvider>(context, listen: false)
-              .setTheme(Constants.lightTheme, "light");
+              .setTheme(ThemeConfig.lightTheme, "light");
         }
       },
     );
