@@ -82,7 +82,7 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
             "$title",
             style: TextStyle(
               fontSize: 20,
-              fontWeight: FontWeight.bold,
+              fontWeight: FontWeight.w500,
             ),
           ),
         ],

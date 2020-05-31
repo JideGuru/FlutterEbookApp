@@ -38,9 +38,7 @@ class MyApp extends StatelessWidget {
           title: Constants.appName,
           theme: appProvider.theme.copyWith(
             textTheme: GoogleFonts.sourceSansProTextTheme(
-              Functions.isDark(context)
-                  ? ThemeConfig.darkTheme.textTheme
-                  : ThemeConfig.lightTheme.textTheme,
+              appProvider.theme.textTheme,
             ),
           ),
           darkTheme: ThemeConfig.darkTheme.copyWith(

@@ -13,29 +13,45 @@ class Profile extends StatefulWidget {
 }
 
 class _ProfileState extends State<Profile> {
-  List items = [
-    {
-      "icon": Feather.heart,
-      "title": "Favorites",
-      "page": Favorites(),
-    },
-    {
-      "icon": Feather.download,
-      "title": "Downloads",
-      "page": Downloads(),
-    },
-    {
-      "icon": Feather.moon,
-      "title": "Dark Mode",
-    },
-  ];
+  List items;
+
+  @override
+  void initState() {
+    super.initState();
+    items = [
+      {
+        "icon": Feather.heart,
+        "title": "Favorites",
+        "function": () => _pushPage(Favorites()),
+      },
+      {
+        "icon": Feather.download,
+        "title": "Downloads",
+        "function": () => _pushPage(Downloads()),
+      },
+      {
+        "icon": Feather.moon,
+        "title": "Dark Mode",
+        "function": () => _pushPage(Downloads()),
+      },
+      {
+        "icon": Feather.info,
+        "title": "About",
+        "function": () => showAbout(),
+      },
+      {
+        "icon": Feather.file_text,
+        "title": "Licenses",
+        "function": () => _pushPage(LicensePage()),
+      },
+    ];
+  }
 
   @override
   Widget build(BuildContext context) {
     // Remove Dark Switch if Device has Dark mode enabled
-    if (MediaQuery.of(context).platformBrightness == Brightness.dark &&
-        items.last["title"] == "Dark Mode") {
-      items.removeLast();
+    if (MediaQuery.of(context).platformBrightness == Brightness.dark) {
+      items.removeWhere((item) => item['title'] == "Dark Mode");
     }
     return Scaffold(
       appBar: AppBar(
@@ -55,12 +71,7 @@ class _ProfileState extends State<Profile> {
           }
 
           return ListTile(
-            onTap: () {
-              Functions.pushPage(
-                context,
-                items[index]['page'],
-              );
-            },
+            onTap: items[index]['function'],
             leading: Icon(
               items[index]['icon'],
             ),
@@ -96,6 +107,19 @@ class _ProfileState extends State<Profile> {
               .setTheme(ThemeConfig.lightTheme, "light");
         }
       },
+    );
+  }
+
+  _pushPage(Widget page) {
+    Functions.pushPage(
+      context,
+      page,
+    );
+  }
+
+  showAbout() {
+    showAboutDialog(
+      context: context,
     );
   }
 }
