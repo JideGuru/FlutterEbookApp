@@ -6,30 +6,21 @@ import 'package:xml2json/xml2json.dart';
 
 class Api {
   static String baseURL = "https://catalog.feedbooks.com";
-  static String popular =
-      "https://catalog.feedbooks.com/publicdomain/browse/en/top.atom";
-  static String recent =
-      "https://catalog.feedbooks.com/publicdomain/browse/en/recent.atom";
-  static String awards =
-      "https://catalog.feedbooks.com/publicdomain/browse/en/awards.atom";
-  static String noteworthy =
-      "https://catalog.feedbooks.com/publicdomain/browse/en/homepage_selection.atom";
-  static String shortStory =
-      "https://catalog.feedbooks.com/publicdomain/browse/en/top.atom?cat=FBFIC029000";
-  static String sciFi =
-      "https://catalog.feedbooks.com/publicdomain/browse/en/top.atom?cat=FBFIC028000";
-  static String actionAdventure =
-      "https://catalog.feedbooks.com/publicdomain/browse/en/top.atom?cat=FBFIC002000";
-  static String mystery =
-      "https://catalog.feedbooks.com/publicdomain/browse/en/top.atom?cat=FBFIC022000";
-  static String romance =
-      "https://catalog.feedbooks.com/publicdomain/browse/en/top.atom?cat=FBFIC027000";
-  static String horror =
-      "https://catalog.feedbooks.com/publicdomain/browse/en/top.atom?cat=FBFIC015000";
+  static String publicDomainURL = "$baseURL/publicdomain/browse";
+  static String popular = "$publicDomainURL/top.atom";
+  static String recent = "$publicDomainURL/recent.atom";
+  static String awards = "$publicDomainURL/awards.atom";
+  static String noteworthy = "$publicDomainURL/homepage_selection.atom";
+  static String shortStory = "$publicDomainURL/top.atom?cat=FBFIC029000";
+  static String sciFi = "$publicDomainURL/top.atom?cat=FBFIC028000";
+  static String actionAdventure = "$publicDomainURL/top.atom?cat=FBFIC002000";
+  static String mystery = "$publicDomainURL/top.atom?cat=FBFIC022000";
+  static String romance = "$publicDomainURL/top.atom?cat=FBFIC027000";
+  static String horror = "$publicDomainURL/top.atom?cat=FBFIC015000";
 
   static Future<CategoryFeed> getCategory(String url) async {
     Dio dio = Dio();
-
+    print(url);
     var res = await dio.get(url);
     CategoryFeed category;
     if (res.statusCode == 200) {
