@@ -1,11 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_ebook_app/models/category.dart';
-import 'package:flutter_ebook_app/view_models/details_provider.dart';
-import 'package:flutter_ebook_app/view_models/favorites_provider.dart';
+import 'package:flutter_ebook_app/util/functions.dart';
 import 'package:flutter_ebook_app/views/details.dart';
-import 'package:page_transition/page_transition.dart';
-import 'package:provider/provider.dart';
 import 'package:uuid/uuid.dart';
 
 class BookItem extends StatelessWidget {
@@ -29,23 +26,15 @@ class BookItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Provider.of<DetailsProvider>(context, listen: false).setEntry(entry);
-        Provider.of<DetailsProvider>(context, listen: false)
-            .getFeed(entry.author.uri.t);
-        Navigator.push(
+        Functions.pushPage(
           context,
-          PageTransition(
-            type: PageTransitionType.rightToLeft,
-            child: Details(
-              entry: entry,
-              imgTag: imgTag,
-              titleTag: titleTag,
-              authorTag: authorTag,
-            ),
+          Details(
+            entry: entry,
+            imgTag: imgTag,
+            titleTag: titleTag,
+            authorTag: authorTag,
           ),
-        ).then((v) {
-          Provider.of<FavoritesProvider>(context, listen: false).getFeed();
-        });
+        );
       },
       child: Column(
         children: <Widget>[

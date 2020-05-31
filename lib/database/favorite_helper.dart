@@ -15,7 +15,6 @@ class FavoriteDB {
     final db = ObjectDB(await getPath());
     db.open();
     db.insert(item);
-    db.tidy();
     await db.close();
   }
 
@@ -23,7 +22,6 @@ class FavoriteDB {
     final db = ObjectDB(await getPath());
     db.open();
     int val = await db.remove(item);
-    db.tidy();
     await db.close();
     return val;
   }
@@ -32,7 +30,6 @@ class FavoriteDB {
     final db = ObjectDB(await getPath());
     db.open();
     List val = await db.find({});
-    db.tidy();
     await db.close();
     return val;
   }
@@ -41,7 +38,6 @@ class FavoriteDB {
     final db = ObjectDB(await getPath());
     db.open();
     List val = await db.find(item);
-    db.tidy();
     await db.close();
     return val;
   }

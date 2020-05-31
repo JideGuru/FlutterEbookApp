@@ -2,11 +2,9 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_ebook_app/util/consts.dart';
-import 'package:flutter_ebook_app/view_models/home_provider.dart';
+import 'package:flutter_ebook_app/util/functions.dart';
 import 'package:flutter_ebook_app/views/main_screen.dart';
 import 'package:flutter_icons/flutter_icons.dart';
-import 'package:page_transition/page_transition.dart';
-import 'package:provider/provider.dart';
 
 class Splash extends StatefulWidget {
   @override
@@ -14,9 +12,6 @@ class Splash extends StatefulWidget {
 }
 
 class _SplashState extends State<Splash> {
-  var timeout = const Duration(seconds: 2);
-  var ms = const Duration(milliseconds: 1);
-
   bool gone = false;
 
   startTimeout() {
@@ -28,14 +23,10 @@ class _SplashState extends State<Splash> {
   }
 
   changeScreen() async {
-    Navigator.pushReplacement(
+    Functions.pushPageReplacement(
       context,
-      PageTransition(
-        type: PageTransitionType.rightToLeft,
-        child: MainScreen(),
-      ),
+      MainScreen(),
     );
-    Provider.of<HomeProvider>(context, listen: false).getFeeds();
   }
 
   @override
