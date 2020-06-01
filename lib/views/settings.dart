@@ -126,25 +126,26 @@ class _ProfileState extends State<Profile> {
 
   showAbout() {
     showDialog(
-        context: context,
-        builder: (_) {
-          return AlertDialog(
-            title: Text(
-              "About",
-            ),
-            content: Text(
-              "Simple eBook app by JideGuru",
-            ),
-            actions: <Widget>[
-              FlatButton(
-                textColor: Theme.of(context).accentColor,
-                onPressed: () => Navigator.pop(context),
-                child: Text(
-                  "Close",
-                ),
+      context: context,
+      builder: (_) {
+        return AlertDialog(
+          title: Text(
+            "About",
+          ),
+          content: Text(
+            "Simple eBook app by JideGuru",
+          ),
+          actions: <Widget>[
+            FlatButton(
+              textColor: Theme.of(context).accentColor,
+              onPressed: () => Navigator.pop(context),
+              child: Text(
+                "Close",
               ),
-            ],
-          );
-        });
+            ),
+          ],
+        );
+      },
+    );
   }
 }
