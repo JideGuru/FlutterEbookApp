@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_ebook_app/components/custom_alert.dart';
 import 'package:flutter_ebook_app/util/consts.dart';
 
-class Dialogs{
+class Dialogs {
   showExitDialog(BuildContext context) {
     showDialog(
       context: context,
@@ -44,7 +44,7 @@ class Dialogs{
                         borderRadius: BorderRadius.circular(5.0),
                       ),
                       borderSide:
-                      BorderSide(color: Theme.of(context).accentColor),
+                          BorderSide(color: Theme.of(context).accentColor),
                       child: Text(
                         "No",
                         style: TextStyle(

@@ -23,10 +23,10 @@ class _FavoritesState extends State<Favorites> {
     getFavorites();
   }
 
-  getFavorites(){
+  getFavorites() {
     SchedulerBinding.instance.addPostFrameCallback(
-          (_) {
-        if(mounted){
+      (_) {
+        if (mounted) {
           Provider.of<FavoritesProvider>(context, listen: false).getFeed();
         }
       },
