@@ -14,8 +14,22 @@ class _FavoritesState extends State<Favorites> {
   @override
   void initState() {
     super.initState();
+    getFavorites();
+  }
+
+  @override
+  void deactivate() {
+    super.deactivate();
+    getFavorites();
+  }
+
+  getFavorites(){
     SchedulerBinding.instance.addPostFrameCallback(
-      (_) => Provider.of<FavoritesProvider>(context, listen: false).getFeed(),
+          (_) {
+        if(mounted){
+          Provider.of<FavoritesProvider>(context, listen: false).getFeed();
+        }
+      },
     );
   }
 
