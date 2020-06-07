@@ -8,12 +8,10 @@ import 'package:flutter_ebook_app/database/favorite_helper.dart';
 import 'package:flutter_ebook_app/models/category.dart';
 import 'package:flutter_ebook_app/util/api.dart';
 import 'package:flutter_ebook_app/util/consts.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 class DetailsProvider extends ChangeNotifier {
-  String message;
   CategoryFeed related = CategoryFeed();
   bool loading = true;
   Entry entry;
@@ -143,24 +141,6 @@ class DetailsProvider extends ChangeNotifier {
   void setLoading(value) {
     loading = value;
     notifyListeners();
-  }
-
-  bool isLoading() {
-    return loading;
-  }
-
-  void setMessage(value) {
-    message = value;
-    Fluttertoast.showToast(
-      msg: value,
-      toastLength: Toast.LENGTH_SHORT,
-      timeInSecForIos: 1,
-    );
-    notifyListeners();
-  }
-
-  String getMessage() {
-    return message;
   }
 
   void setRelated(value) {

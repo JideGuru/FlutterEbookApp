@@ -3,15 +3,17 @@ import 'dart:async';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_ebook_app/util/api.dart';
+import 'package:flutter_ebook_app/util/enum/api_request_status.dart';
+import 'package:flutter_ebook_app/util/functions.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 class GenreProvider extends ChangeNotifier {
   ScrollController controller = ScrollController();
   List items = List();
-  bool loading = true;
   int page = 1;
   bool loadingMore = false;
   bool loadMore = true;
+  APIRequestStatus apiRequestStatus = APIRequestStatus.loading;
 
   listener(url) {
     controller.addListener(() {
@@ -32,17 +34,14 @@ class GenreProvider extends ChangeNotifier {
   }
 
   getFeed(String url) {
-    loading = true;
-    notifyListeners();
+    setApiRequestStatus(APIRequestStatus.loading);
     print(url);
     Api.getCategory(url).then((feed) {
       items = feed.feed.entry;
-      loading = false;
-      notifyListeners();
+      setApiRequestStatus(APIRequestStatus.loaded);
       listener(url);
     }).catchError((e) {
-      loading = false;
-      notifyListeners();
+      checkError(e);
       Fluttertoast.showToast(
         msg: "$e",
         toastLength: Toast.LENGTH_SHORT,
@@ -53,7 +52,9 @@ class GenreProvider extends ChangeNotifier {
   }
 
   paginate(String url) {
-    if (!loading && !loadingMore && loadMore) {
+    if (apiRequestStatus != APIRequestStatus.loading &&
+        !loadingMore &&
+        loadMore) {
       Timer(Duration(milliseconds: 100), () {
         controller.jumpTo(controller.position.maxScrollExtent);
       });
@@ -71,5 +72,18 @@ class GenreProvider extends ChangeNotifier {
         throw (e);
       });
     }
+  }
+
+  void checkError(e) {
+    if (Functions.checkConnectionError(e)) {
+      setApiRequestStatus(APIRequestStatus.connectionError);
+    } else {
+      setApiRequestStatus(APIRequestStatus.error);
+    }
+  }
+
+  void setApiRequestStatus(APIRequestStatus value) {
+    apiRequestStatus = value;
+    notifyListeners();
   }
 }

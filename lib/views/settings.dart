@@ -53,6 +53,7 @@ class _ProfileState extends State<Profile> {
     if (MediaQuery.of(context).platformBrightness == Brightness.dark) {
       items.removeWhere((item) => item['title'] == "Dark Mode");
     }
+
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:flutter_ebook_app/components/body_builder.dart';
 import 'package:flutter_ebook_app/components/book_card.dart';
 import 'package:flutter_ebook_app/components/book_list_item.dart';
 import 'package:flutter_ebook_app/models/category.dart';
@@ -39,15 +40,21 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
               ),
             ),
           ),
-          body: homeProvider.loading
-              ? _buildProgressIndicator()
-              : _buildBodyList(homeProvider),
+          body: _buildBody(homeProvider),
         );
       },
     );
   }
 
-  _buildBodyList(HomeProvider homeProvider) {
+  Widget _buildBody(HomeProvider homeProvider) {
+    return BodyBuilder(
+      apiRequestStatus: homeProvider.apiRequestStatus,
+      child: _buildBodyList(homeProvider),
+      reload: () => homeProvider.getFeeds(),
+    );
+  }
+
+  Widget _buildBodyList(HomeProvider homeProvider) {
     return RefreshIndicator(
       onRefresh: () => homeProvider.getFeeds(),
       child: ListView(
@@ -63,12 +70,6 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
           _buildNewSection(homeProvider),
         ],
       ),
-    );
-  }
-
-  _buildProgressIndicator() {
-    return Center(
-      child: CircularProgressIndicator(),
     );
   }
 
@@ -98,7 +99,7 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
           primary: false,
           padding: EdgeInsets.symmetric(horizontal: 15),
           scrollDirection: Axis.horizontal,
-          itemCount: homeProvider.top.feed.entry.length,
+          itemCount: homeProvider?.top?.feed?.entry?.length ?? 0,
           shrinkWrap: true,
           itemBuilder: (BuildContext context, int index) {
             Entry entry = homeProvider.top.feed.entry[index];
@@ -123,7 +124,7 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
           primary: false,
           padding: EdgeInsets.symmetric(horizontal: 15),
           scrollDirection: Axis.horizontal,
-          itemCount: homeProvider.top.feed.link.length,
+          itemCount: homeProvider?.top?.feed?.link?.length ?? 0,
           shrinkWrap: true,
           itemBuilder: (BuildContext context, int index) {
             Link link = homeProvider.top.feed.link[index];
@@ -182,7 +183,7 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
       padding: EdgeInsets.symmetric(horizontal: 15.0),
       shrinkWrap: true,
       physics: NeverScrollableScrollPhysics(),
-      itemCount: homeProvider.recent.feed.entry.length,
+      itemCount: homeProvider?.recent?.feed?.entry?.length ?? 0,
       itemBuilder: (BuildContext context, int index) {
         Entry entry = homeProvider.recent.feed.entry[index];
 

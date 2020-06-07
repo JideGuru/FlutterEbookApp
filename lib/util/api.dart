@@ -20,7 +20,9 @@ class Api {
 
   static Future<CategoryFeed> getCategory(String url) async {
     Dio dio = Dio();
-    var res = await dio.get(url);
+    var res = await dio.get(url).catchError((e) {
+      print(e);
+    });
     CategoryFeed category;
     if (res.statusCode == 200) {
       Xml2Json xml2json = new Xml2Json();

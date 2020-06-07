@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:flutter_ebook_app/components/body_builder.dart';
 import 'package:flutter_ebook_app/components/book_list_item.dart';
+import 'package:flutter_ebook_app/components/loading_widget.dart';
 import 'package:flutter_ebook_app/models/category.dart';
 import 'package:flutter_ebook_app/view_models/genre_provider.dart';
 import 'package:provider/provider.dart';
@@ -38,11 +40,17 @@ class _GenreState extends State<Genre> {
             centerTitle: true,
             title: Text("${widget.title}"),
           ),
-          body: provider.loading
-              ? _buildProgressIndicator()
-              : _buildBodyList(provider),
+          body: _buildBody(provider),
         );
       },
+    );
+  }
+
+  Widget _buildBody(GenreProvider provider) {
+    return BodyBuilder(
+      apiRequestStatus: provider.apiRequestStatus,
+      child: _buildBodyList(provider),
+      reload: () => provider.getFeed(widget.url),
     );
   }
 
@@ -81,6 +89,6 @@ class _GenreState extends State<Genre> {
   }
 
   _buildProgressIndicator() {
-    return Center(child: CircularProgressIndicator());
+    return LoadingWidget();
   }
 }

@@ -6,6 +6,7 @@ import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_ebook_app/components/book_list_item.dart';
 import 'package:flutter_ebook_app/components/description_text.dart';
+import 'package:flutter_ebook_app/components/loading_widget.dart';
 import 'package:flutter_ebook_app/models/category.dart';
 import 'package:flutter_ebook_app/view_models/details_provider.dart';
 import 'package:flutter_icons/flutter_icons.dart';
@@ -120,9 +121,7 @@ class _DetailsState extends State<Details> {
               placeholder: (context, url) => Container(
                 height: 200,
                 width: 130,
-                child: Center(
-                  child: CircularProgressIndicator(),
-                ),
+                child: LoadingWidget(),
               ),
               errorWidget: (context, url, error) => Icon(Feather.x),
               fit: BoxFit.cover,
@@ -207,9 +206,7 @@ class _DetailsState extends State<Details> {
     if (provider.loading) {
       return Container(
         height: 100,
-        child: Center(
-          child: CircularProgressIndicator(),
-        ),
+        child: LoadingWidget(),
       );
     } else {
       return ListView.builder(
