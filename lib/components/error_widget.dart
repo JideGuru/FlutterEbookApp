@@ -17,7 +17,7 @@ class MyErrorWidget extends StatelessWidget {
           Text(
             "😔",
             style: TextStyle(
-              fontSize: 40,
+              fontSize: 60,
             ),
           ),
           Container(

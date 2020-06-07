@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 class LoadingWidget extends StatefulWidget {
   @override
@@ -9,7 +10,9 @@ class _LoadingWidgetState extends State<LoadingWidget> {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: CircularProgressIndicator(),
+      child: SpinKitWave(
+        color: Theme.of(context).accentColor,
+      ),
     );
   }
 }

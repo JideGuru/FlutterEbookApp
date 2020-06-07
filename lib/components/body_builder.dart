@@ -17,7 +17,6 @@ class BodyBuilder extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print(apiRequestStatus);
     return _buildBody();
   }
 

@@ -4,6 +4,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:epub_kitty/epub_kitty.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_ebook_app/components/loading_widget.dart';
 import 'package:flutter_ebook_app/database/download_helper.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:uuid/uuid.dart';
@@ -74,9 +75,7 @@ class _DownloadsState extends State<Downloads> {
                     placeholder: (context, url) => Container(
                       height: 70,
                       width: 70,
-                      child: Center(
-                        child: CircularProgressIndicator(),
-                      ),
+                      child: LoadingWidget(),
                     ),
                     errorWidget: (context, url, error) => Image.asset(
                       "assets/images/place.png",

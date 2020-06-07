@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_ebook_app/components/body_builder.dart';
 import 'package:flutter_ebook_app/components/book_card.dart';
+import 'package:flutter_ebook_app/components/loading_widget.dart';
 import 'package:flutter_ebook_app/models/category.dart';
 import 'package:flutter_ebook_app/util/api.dart';
 import 'package:flutter_ebook_app/util/functions.dart';
@@ -134,9 +135,7 @@ class _ExploreState extends State<Explore> {
         } else {
           return Container(
             height: 200,
-            child: Center(
-              child: CircularProgressIndicator(),
-            ),
+            child: LoadingWidget(),
           );
         }
       },
