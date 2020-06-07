@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_ebook_app/components/loading_widget.dart';
 import 'package:flutter_ebook_app/models/category.dart';
 import 'package:flutter_ebook_app/util/functions.dart';
 import 'package:flutter_ebook_app/views/details.dart';
@@ -54,8 +55,7 @@ class BookCard extends StatelessWidget {
               tag: imgTag,
               child: CachedNetworkImage(
                 imageUrl: "$img",
-                placeholder: (context, url) =>
-                    Center(child: CircularProgressIndicator()),
+                placeholder: (context, url) => LoadingWidget(isImage: true,),
                 errorWidget: (context, url, error) => Image.asset(
                   "assets/images/place.png",
                   fit: BoxFit.cover,
