@@ -35,19 +35,19 @@ class MyApp extends StatelessWidget {
           debugShowCheckedModeBanner: false,
           navigatorKey: appProvider.navigatorKey,
           title: Constants.appName,
-          theme: appProvider.theme.copyWith(
-            textTheme: GoogleFonts.sourceSansProTextTheme(
-              appProvider.theme.textTheme,
-            ),
-          ),
-          darkTheme: ThemeConfig.darkTheme.copyWith(
-            textTheme: GoogleFonts.sourceSansProTextTheme(
-              ThemeConfig.darkTheme.textTheme,
-            ),
-          ),
+          theme: themeData(appProvider.theme),
+          darkTheme: themeData(ThemeConfig.darkTheme),
           home: Splash(),
         );
       },
+    );
+  }
+
+  ThemeData themeData(ThemeData theme){
+    return theme.copyWith(
+      textTheme: GoogleFonts.sourceSansProTextTheme(
+        theme.textTheme,
+      ),
     );
   }
 }
