@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_ebook_app/components/body_builder.dart';
 import 'package:flutter_ebook_app/components/book_card.dart';
 import 'package:flutter_ebook_app/models/category.dart';
 import 'package:flutter_ebook_app/util/api.dart';
@@ -24,9 +25,11 @@ class _ExploreState extends State<Explore> {
               "Explore",
             ),
           ),
-          body: homeProvider.loading
-              ? _buildProgressIndicator()
-              : _buildBodyList(homeProvider),
+          body: BodyBuilder(
+            apiRequestStatus: homeProvider.apiRequestStatus,
+            child: _buildBodyList(homeProvider),
+            reload: () => homeProvider.getFeeds(),
+          ),
         );
       },
     );
@@ -34,7 +37,7 @@ class _ExploreState extends State<Explore> {
 
   _buildBodyList(HomeProvider homeProvider) {
     return ListView.builder(
-      itemCount: homeProvider.top.feed.link.length,
+      itemCount: homeProvider?.top?.feed?.link?.length ?? 0,
       itemBuilder: (BuildContext context, int index) {
         Link link = homeProvider.top.feed.link[index];
 
@@ -56,10 +59,6 @@ class _ExploreState extends State<Explore> {
         );
       },
     );
-  }
-
-  _buildProgressIndicator() {
-    return Center(child: CircularProgressIndicator());
   }
 
   _buildSectionHeader(Link link) {
