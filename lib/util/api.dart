@@ -20,7 +20,7 @@ class Api {
 
   static Future<CategoryFeed> getCategory(String url) async {
     Dio dio = Dio();
-    var res = await dio.get(url).catchError((e){
+    var res = await dio.get(url).catchError((e) {
       print(e);
     });
     CategoryFeed category;

@@ -52,7 +52,8 @@ class GenreProvider extends ChangeNotifier {
   }
 
   paginate(String url) {
-    if (apiRequestStatus != APIRequestStatus.loading && !loadingMore &&
+    if (apiRequestStatus != APIRequestStatus.loading &&
+        !loadingMore &&
         loadMore) {
       Timer(Duration(milliseconds: 100), () {
         controller.jumpTo(controller.position.maxScrollExtent);

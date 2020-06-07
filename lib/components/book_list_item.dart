@@ -65,7 +65,9 @@ class BookListItem extends StatelessWidget {
                     placeholder: (context, url) => Container(
                       height: 150,
                       width: 100,
-                      child: LoadingWidget(isImage: true,),
+                      child: LoadingWidget(
+                        isImage: true,
+                      ),
                     ),
                     errorWidget: (context, url, error) => Image.asset(
                       "assets/images/place.png",

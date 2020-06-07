@@ -43,7 +43,7 @@ class MyApp extends StatelessWidget {
     );
   }
 
-  ThemeData themeData(ThemeData theme){
+  ThemeData themeData(ThemeData theme) {
     return theme.copyWith(
       textTheme: GoogleFonts.sourceSansProTextTheme(
         theme.textTheme,

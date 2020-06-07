@@ -46,7 +46,7 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
     );
   }
 
-  Widget _buildBody(HomeProvider homeProvider){
+  Widget _buildBody(HomeProvider homeProvider) {
     return BodyBuilder(
       apiRequestStatus: homeProvider.apiRequestStatus,
       child: _buildBodyList(homeProvider),

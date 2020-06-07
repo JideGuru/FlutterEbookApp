@@ -55,10 +55,10 @@ class MyErrorWidget extends StatelessWidget {
   }
 
   getErrorText() {
-    if(isConnection){
+    if (isConnection) {
       return "There is a problem with your internet connection. "
           "\nPlease try again.";
-    }else{
+    } else {
       return "Could not load this page. \nPlease try again.";
     }
   }

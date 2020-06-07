@@ -13,12 +13,12 @@ class LoadingWidget extends StatelessWidget {
     );
   }
 
-  _buildBody(BuildContext context){
-    if(isImage){
+  _buildBody(BuildContext context) {
+    if (isImage) {
       return SpinKitRipple(
         color: Theme.of(context).accentColor,
       );
-    }else{
+    } else {
       return SpinKitWave(
         color: Theme.of(context).accentColor,
       );

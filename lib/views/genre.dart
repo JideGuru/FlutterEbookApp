@@ -46,7 +46,7 @@ class _GenreState extends State<Genre> {
     );
   }
 
-  Widget _buildBody(GenreProvider provider){
+  Widget _buildBody(GenreProvider provider) {
     return BodyBuilder(
       apiRequestStatus: provider.apiRequestStatus,
       child: _buildBodyList(provider),
