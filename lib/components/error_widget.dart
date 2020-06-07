@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class MyErrorWidget extends StatelessWidget {
-  final void Function() refreshCallBack;
+  final Function refreshCallBack;
   final bool isConnection;
 
   MyErrorWidget({@required this.refreshCallBack, this.isConnection = false});
@@ -10,24 +10,24 @@ class MyErrorWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       alignment: Alignment.center,
-      margin: EdgeInsets.only(top: 30.0, right: 20.0, left: 20.0),
+      margin: EdgeInsets.symmetric(horizontal: 20.0),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
           Text(
             "😔",
             style: TextStyle(
-              fontSize: 60,
+              fontSize: 60.0,
             ),
           ),
           Container(
-            margin: EdgeInsets.symmetric(vertical: 14),
+            margin: EdgeInsets.only(bottom: 15.0),
             child: Text(
               getErrorText(),
               textAlign: TextAlign.center,
               style: TextStyle(
                 color: Theme.of(context).textTheme.title.color,
-                fontSize: 17,
+                fontSize: 17.0,
                 fontWeight: FontWeight.w700,
               ),
             ),
@@ -36,19 +36,16 @@ class MyErrorWidget extends StatelessWidget {
             child: RaisedButton(
               onPressed: refreshCallBack,
               color: Theme.of(context).accentColor,
-              padding: EdgeInsets.symmetric(vertical: 2, horizontal: 12),
               shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(6),
+                borderRadius: BorderRadius.circular(5.0),
               ),
               child: Text(
-                "RETRY",
+                "TRY AGAIN",
                 style: TextStyle(
                   color: Colors.white,
-                  fontSize: 10,
-                  letterSpacing: 0.875,
-                  fontWeight: FontWeight.w700,
+                  fontSize: 15.0,
+                  fontWeight: FontWeight.bold,
                 ),
-                textAlign: TextAlign.left,
               ),
             ),
           ),
@@ -59,9 +56,10 @@ class MyErrorWidget extends StatelessWidget {
 
   getErrorText() {
     if(isConnection){
-      return "There is a problem with your internet connection. \nPlease try again.";
+      return "There is a problem with your internet connection. "
+          "\nPlease try again.";
     }else{
-      return "Something went wrong. \nPlease try again.";
+      return "Could not load this page. \nPlease try again.";
     }
   }
 }
