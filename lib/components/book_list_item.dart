@@ -128,7 +128,7 @@ class BookListItem extends StatelessWidget {
                   ),
                   Text(
                     "${desc.length < 100 ? desc : desc.substring(0, 100)}..."
-                        .replaceAll(r"\n", "\n\n")
+                        .replaceAll(r"\n", "\n")
                         .replaceAll(r"\r", "")
                         .replaceAll(r"\'", "'"),
                     style: TextStyle(

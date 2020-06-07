@@ -46,8 +46,7 @@ class AppProvider extends ChangeNotifier {
   Future<ThemeData> checkTheme() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     ThemeData t;
-    String r =
-        prefs.getString("theme") == null ? "light" : prefs.getString("theme");
+    String r = prefs.getString("theme") ?? "light";
 
     if (r == "light") {
       t = ThemeConfig.lightTheme;

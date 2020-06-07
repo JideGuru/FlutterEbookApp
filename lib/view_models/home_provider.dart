@@ -2,10 +2,8 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_ebook_app/models/category.dart';
 import 'package:flutter_ebook_app/util/api.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 
 class HomeProvider with ChangeNotifier {
-  String message;
   CategoryFeed top = CategoryFeed();
   CategoryFeed recent = CategoryFeed();
   bool loading = true;
@@ -28,24 +26,6 @@ class HomeProvider with ChangeNotifier {
   void setLoading(value) {
     loading = value;
     notifyListeners();
-  }
-
-  bool isLoading() {
-    return loading;
-  }
-
-  void setMessage(value) {
-    message = value;
-    Fluttertoast.showToast(
-      msg: value,
-      toastLength: Toast.LENGTH_SHORT,
-      timeInSecForIos: 1,
-    );
-    notifyListeners();
-  }
-
-  String getMessage() {
-    return message;
   }
 
   void setTop(value) {
