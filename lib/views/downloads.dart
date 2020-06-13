@@ -42,7 +42,7 @@ class _DownloadsState extends State<Downloads> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text("Downloads"),
+        title: Text('Downloads'),
       ),
       body: dls.isEmpty ? _buildEmptyListView() : _buildBodyList(),
     );
@@ -63,7 +63,7 @@ class _DownloadsState extends State<Downloads> {
           child: InkWell(
             onTap: () {
               String path = dl['path'];
-              EpubKitty.setConfig("androidBook", "#06d6a7", "vertical", true);
+              EpubKitty.setConfig('androidBook', '#06d6a7', 'vertical', true);
               EpubKitty.open(path);
             },
             child: Padding(
@@ -73,21 +73,21 @@ class _DownloadsState extends State<Downloads> {
                   CachedNetworkImage(
                     imageUrl: dl['image'],
                     placeholder: (context, url) => Container(
-                      height: 70,
-                      width: 70,
+                      height: 70.0,
+                      width: 70.0,
                       child: LoadingWidget(),
                     ),
                     errorWidget: (context, url, error) => Image.asset(
-                      "assets/images/place.png",
+                      'assets/images/place.png',
                       fit: BoxFit.cover,
-                      height: 70,
-                      width: 70,
+                      height: 70.0,
+                      width: 70.0,
                     ),
                     fit: BoxFit.cover,
-                    height: 70,
-                    width: 70,
+                    height: 70.0,
+                    width: 70.0,
                   ),
-                  SizedBox(width: 10),
+                  SizedBox(width: 10.0),
                   Flexible(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -95,7 +95,7 @@ class _DownloadsState extends State<Downloads> {
                         Text(
                           dl['name'],
                           style: TextStyle(
-                            fontSize: 15,
+                            fontSize: 15.0,
                             fontWeight: FontWeight.bold,
                           ),
                           maxLines: 2,
@@ -106,9 +106,9 @@ class _DownloadsState extends State<Downloads> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: <Widget>[
                             Text(
-                              "COMPLETED",
+                              'COMPLETED',
                               style: TextStyle(
-                                fontSize: 13,
+                                fontSize: 13.0,
                                 fontWeight: FontWeight.bold,
                                 color: Theme.of(context).accentColor,
                               ),
@@ -118,7 +118,7 @@ class _DownloadsState extends State<Downloads> {
                             Text(
                               dl['size'],
                               style: TextStyle(
-                                fontSize: 13,
+                                fontSize: 13.0,
                               ),
                               maxLines: 2,
                               overflow: TextOverflow.ellipsis,
@@ -146,14 +146,14 @@ class _DownloadsState extends State<Downloads> {
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
           Image.asset(
-            "assets/images/empty.png",
-            height: 300,
-            width: 300,
+            'assets/images/empty.png',
+            height: 300.0,
+            width: 300.0,
           ),
           Text(
-            "Nothing is here",
+            'Nothing is here',
             style: TextStyle(
-              fontSize: 24,
+              fontSize: 24.0,
               fontWeight: FontWeight.bold,
             ),
           ),
@@ -175,7 +175,7 @@ class _DownloadsState extends State<Downloads> {
   }
 
   _deleteBook(Map dl, int index) {
-    db.remove({"id": dl['id']}).then((v) async {
+    db.remove({'id': dl['id']}).then((v) async {
       File f = File(dl['path']);
       if (await f.exists()) {
         f.delete();
@@ -183,7 +183,7 @@ class _DownloadsState extends State<Downloads> {
       setState(() {
         dls.removeAt(index);
       });
-      print("done");
+      print('done');
     });
   }
 }

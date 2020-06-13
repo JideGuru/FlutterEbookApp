@@ -23,7 +23,7 @@ class _ExploreState extends State<Explore> {
           appBar: AppBar(
             centerTitle: true,
             title: Text(
-              "Explore",
+              'Explore',
             ),
           ),
           body: BodyBuilder(
@@ -49,11 +49,11 @@ class _ExploreState extends State<Explore> {
         }
 
         return Padding(
-          padding: EdgeInsets.symmetric(vertical: 10),
+          padding: EdgeInsets.symmetric(vertical: 10.0),
           child: Column(
             children: <Widget>[
               _buildSectionHeader(link),
-              SizedBox(height: 10),
+              SizedBox(height: 10.0),
               _buildSectionBookList(link),
             ],
           ),
@@ -64,15 +64,15 @@ class _ExploreState extends State<Explore> {
 
   _buildSectionHeader(Link link) {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 20),
+      padding: EdgeInsets.symmetric(horizontal: 20.0),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
           Flexible(
             child: Text(
-              "${link.title}",
+              '${link.title}',
               style: TextStyle(
-                fontSize: 20,
+                fontSize: 20.0,
                 fontWeight: FontWeight.w500,
               ),
               maxLines: 1,
@@ -84,13 +84,13 @@ class _ExploreState extends State<Explore> {
               Functions.pushPage(
                 context,
                 Genre(
-                  title: "${link.title}",
+                  title: '${link.title}',
                   url: Api.baseURL + link.href,
                 ),
               );
             },
             child: Text(
-              "See All",
+              'See All',
               style: TextStyle(
                 color: Theme.of(context).accentColor,
                 fontWeight: FontWeight.w400,
@@ -111,10 +111,10 @@ class _ExploreState extends State<Explore> {
           CategoryFeed category = snapshot.data;
 
           return Container(
-            height: 200,
+            height: 200.0,
             child: Center(
               child: ListView.builder(
-                padding: EdgeInsets.symmetric(horizontal: 15),
+                padding: EdgeInsets.symmetric(horizontal: 15.0),
                 scrollDirection: Axis.horizontal,
                 itemCount: category.feed.entry.length,
                 shrinkWrap: true,
@@ -122,7 +122,10 @@ class _ExploreState extends State<Explore> {
                   Entry entry = category.feed.entry[index];
 
                   return Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 5, vertical: 10),
+                    padding: EdgeInsets.symmetric(
+                      horizontal: 5.0,
+                      vertical: 10.0,
+                    ),
                     child: BookCard(
                       img: entry.link[1].href,
                       entry: entry,
@@ -134,7 +137,7 @@ class _ExploreState extends State<Explore> {
           );
         } else {
           return Container(
-            height: 200,
+            height: 200.0,
             child: LoadingWidget(),
           );
         }

@@ -41,7 +41,7 @@ class _DetailsState extends State<Details> {
         Provider.of<DetailsProvider>(context, listen: false)
             .setEntry(widget.entry);
         Provider.of<DetailsProvider>(context, listen: false)
-            .getFeed(widget.entry.author.uri.t.replaceAll(r"\&lang=en", ""));
+            .getFeed(widget.entry.author.uri.t.replaceAll(r'\&lang=en', ''));
       },
     );
   }
@@ -78,21 +78,21 @@ class _DetailsState extends State<Details> {
             ],
           ),
           body: ListView(
-            padding: EdgeInsets.symmetric(horizontal: 20),
+            padding: EdgeInsets.symmetric(horizontal: 20.0),
             children: <Widget>[
-              SizedBox(height: 10),
+              SizedBox(height: 10.0),
               _buildImageTitleSection(detailsProvider),
-              SizedBox(height: 30),
-              _buildSectionTitle("Book Description"),
+              SizedBox(height: 30.0),
+              _buildSectionTitle('Book Description'),
               _buildDivider(),
-              SizedBox(height: 10),
+              SizedBox(height: 10.0),
               DescriptionTextWidget(
-                text: "${widget.entry.summary.t}",
+                text: '${widget.entry.summary.t}',
               ),
-              SizedBox(height: 30),
-              _buildSectionTitle("More from Author"),
+              SizedBox(height: 30.0),
+              _buildSectionTitle('More from Author'),
               _buildDivider(),
-              SizedBox(height: 10),
+              SizedBox(height: 10.0),
               _buildMoreBook(detailsProvider),
             ],
           ),
@@ -109,7 +109,7 @@ class _DetailsState extends State<Details> {
 
   _buildImageTitleSection(DetailsProvider detailsProvider) {
     return Container(
-      height: 200,
+      height: 200.0,
       child: Row(
         mainAxisSize: MainAxisSize.max,
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -117,68 +117,60 @@ class _DetailsState extends State<Details> {
           Hero(
             tag: widget.imgTag,
             child: CachedNetworkImage(
-              imageUrl: "${widget.entry.link[1].href}",
+              imageUrl: '${widget.entry.link[1].href}',
               placeholder: (context, url) => Container(
-                height: 200,
-                width: 130,
+                height: 200.0,
+                width: 130.0,
                 child: LoadingWidget(),
               ),
               errorWidget: (context, url, error) => Icon(Feather.x),
               fit: BoxFit.cover,
-              height: 200,
-              width: 130,
+              height: 200.0,
+              width: 130.0,
             ),
           ),
-          SizedBox(
-            width: 20,
-          ),
+          SizedBox(width: 20.0),
           Flexible(
             child: Column(
               mainAxisSize: MainAxisSize.max,
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                SizedBox(
-                  height: 5,
-                ),
+                SizedBox(height: 5.0),
                 Hero(
                   tag: widget.titleTag,
                   child: Material(
                     type: MaterialType.transparency,
                     child: Text(
-                      "${widget.entry.title.t.replaceAll(r"\", "")}",
+                      '${widget.entry.title.t.replaceAll(r'\', '')}',
                       style: TextStyle(
-                        fontSize: 20,
+                        fontSize: 20.0,
                         fontWeight: FontWeight.bold,
                       ),
                       maxLines: 3,
                     ),
                   ),
                 ),
-                SizedBox(
-                  height: 5,
-                ),
+                SizedBox(height: 5.0),
                 Hero(
                   tag: widget.authorTag,
                   child: Material(
                     type: MaterialType.transparency,
                     child: Text(
-                      "${widget.entry.author.name.t}",
+                      '${widget.entry.author.name.t}',
                       style: TextStyle(
-                        fontSize: 16,
+                        fontSize: 16.0,
                         fontWeight: FontWeight.w800,
                         color: Colors.grey,
                       ),
                     ),
                   ),
                 ),
-                SizedBox(
-                  height: 5,
-                ),
+                SizedBox(height: 5.0),
                 _buildCategory(widget.entry, context),
                 Center(
                   child: Container(
-                    height: 20,
+                    height: 20.0,
                     width: MediaQuery.of(context).size.width,
                     child: _buildDownloadReadButton(detailsProvider, context),
                   ),
@@ -193,10 +185,10 @@ class _DetailsState extends State<Details> {
 
   _buildSectionTitle(String title) {
     return Text(
-      "$title",
+      '$title',
       style: TextStyle(
         color: Theme.of(context).accentColor,
-        fontSize: 20,
+        fontSize: 20.0,
         fontWeight: FontWeight.bold,
       ),
     );
@@ -205,7 +197,7 @@ class _DetailsState extends State<Details> {
   _buildMoreBook(DetailsProvider provider) {
     if (provider.loading) {
       return Container(
-        height: 100,
+        height: 100.0,
         child: LoadingWidget(),
       );
     } else {
@@ -216,7 +208,7 @@ class _DetailsState extends State<Details> {
         itemBuilder: (BuildContext context, int index) {
           Entry entry = provider.related.feed.entry[index];
           return Padding(
-            padding: EdgeInsets.symmetric(vertical: 5),
+            padding: EdgeInsets.symmetric(vertical: 5.0),
             child: BookListItem(
               img: entry.link[1].href,
               title: entry.title.t,
@@ -242,13 +234,13 @@ class _DetailsState extends State<Details> {
               // first value from the string as out local book path
               Map dl = dlList[0];
               String path = dl['path'];
-              EpubKitty.setConfig("androidBook", "#06d6a7", "vertical", true);
+              EpubKitty.setConfig('androidBook', '#06d6a7', 'vertical', true);
               EpubKitty.open(path);
             }
           });
         },
         child: Text(
-          "Read Book",
+          'Read Book',
         ),
       );
     } else {
@@ -256,10 +248,10 @@ class _DetailsState extends State<Details> {
         onPressed: () => provider.downloadFile(
           context,
           widget.entry.link[3].href,
-          widget.entry.title.t.replaceAll(" ", "_").replaceAll(r"\'", ""),
+          widget.entry.title.t.replaceAll(' ', '_').replaceAll(r"\'", "'"),
         ),
         child: Text(
-          "Download",
+          'Download',
         ),
       );
     }
@@ -270,7 +262,7 @@ class _DetailsState extends State<Details> {
       return SizedBox();
     } else {
       return Container(
-        height: entry.category.length < 3 ? 55 : 95,
+        height: entry.category.length < 3 ? 55.0 : 95.0,
         child: GridView.builder(
           shrinkWrap: true,
           physics: NeverScrollableScrollPhysics(),
@@ -282,7 +274,7 @@ class _DetailsState extends State<Details> {
           itemBuilder: (BuildContext context, int index) {
             Category cat = entry.category[index];
             return Padding(
-              padding: EdgeInsets.fromLTRB(0, 5, 5, 5),
+              padding: EdgeInsets.fromLTRB(0.0, 5.0, 5.0, 5.0),
               child: Container(
                 decoration: BoxDecoration(
                   color: Theme.of(context).backgroundColor,
@@ -295,12 +287,12 @@ class _DetailsState extends State<Details> {
                 ),
                 child: Center(
                   child: Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 2),
+                    padding: EdgeInsets.symmetric(horizontal: 2.0),
                     child: Text(
-                      "${cat.label}",
+                      '${cat.label}',
                       style: TextStyle(
                         color: Theme.of(context).accentColor,
-                        fontSize: cat.label.length > 18 ? 6 : 10,
+                        fontSize: cat.label.length > 18 ? 6.0 : 10.0,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
@@ -316,9 +308,10 @@ class _DetailsState extends State<Details> {
 
   _share() {
     Share.text(
-      "${widget.entry.title.t} by ${widget.entry.author.name.t}",
-      "Read/Download ${widget.entry.title.t} from ${widget.entry.link[3].href}.",
-      "text/plain",
+      '${widget.entry.title.t} by ${widget.entry.author.name.t}',
+      'Read/Download ${widget.entry.title.t} from ${widget.entry.link[3]
+          .href}.',
+      'text/plain',
     );
   }
 }

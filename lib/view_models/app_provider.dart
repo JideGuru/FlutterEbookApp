@@ -26,13 +26,13 @@ class AppProvider extends ChangeNotifier {
   void setTheme(value, c) {
     theme = value;
     SharedPreferences.getInstance().then((prefs) {
-      prefs.setString("theme", c).then((val) {
+      prefs.setString('theme', c).then((val) {
         SystemChrome.setEnabledSystemUIOverlays(SystemUiOverlay.values);
         SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
           statusBarColor:
-              c == "dark" ? ThemeConfig.darkPrimary : ThemeConfig.lightPrimary,
+              c == 'dark' ? ThemeConfig.darkPrimary : ThemeConfig.lightPrimary,
           statusBarIconBrightness:
-              c == "dark" ? Brightness.light : Brightness.dark,
+              c == 'dark' ? Brightness.light : Brightness.dark,
         ));
       });
     });
@@ -46,14 +46,14 @@ class AppProvider extends ChangeNotifier {
   Future<ThemeData> checkTheme() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     ThemeData t;
-    String r = prefs.getString("theme") ?? "light";
+    String r = prefs.getString('theme') ?? 'light';
 
-    if (r == "light") {
+    if (r == 'light') {
       t = ThemeConfig.lightTheme;
-      setTheme(ThemeConfig.lightTheme, "light");
+      setTheme(ThemeConfig.lightTheme, 'light');
     } else {
       t = ThemeConfig.darkTheme;
-      setTheme(ThemeConfig.darkTheme, "dark");
+      setTheme(ThemeConfig.darkTheme, 'dark');
     }
 
     return t;

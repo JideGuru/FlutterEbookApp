@@ -46,11 +46,9 @@ class _SplashState extends State<Splash> {
               color: Theme.of(context).accentColor,
               size: 70,
             ),
-            SizedBox(
-              height: 20,
-            ),
+            SizedBox(height: 20),
             Text(
-              "${Constants.appName}",
+              '${Constants.appName}',
               style: TextStyle(
                 color: Theme.of(context).accentColor,
                 fontSize: 25,

@@ -2,7 +2,7 @@ import 'dart:math';
 
 class Constants {
   //App related strings
-  static String appName = "Flutter Ebook App";
+  static String appName = 'Flutter Ebook App';
 
   static formatBytes(bytes, decimals) {
     if (bytes == 0) return 0.0;

@@ -41,7 +41,7 @@ class _MainScreenState extends State<MainScreen> {
                 Feather.home,
               ),
               title: Text(
-                "Home",
+                'Home',
               ),
             ),
             BottomNavigationBarItem(
@@ -49,7 +49,7 @@ class _MainScreenState extends State<MainScreen> {
                 Feather.compass,
               ),
               title: Text(
-                "Explore",
+                'Explore',
               ),
             ),
             BottomNavigationBarItem(
@@ -57,7 +57,7 @@ class _MainScreenState extends State<MainScreen> {
                 Feather.settings,
               ),
               title: Text(
-                "Settings",
+                'Settings',
               ),
             ),
           ],

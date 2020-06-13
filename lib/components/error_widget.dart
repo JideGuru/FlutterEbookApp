@@ -15,7 +15,7 @@ class MyErrorWidget extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
           Text(
-            "😔",
+            '😔',
             style: TextStyle(
               fontSize: 60.0,
             ),
@@ -40,7 +40,7 @@ class MyErrorWidget extends StatelessWidget {
                 borderRadius: BorderRadius.circular(5.0),
               ),
               child: Text(
-                "TRY AGAIN",
+                'TRY AGAIN',
                 style: TextStyle(
                   color: Colors.white,
                   fontSize: 15.0,
@@ -56,10 +56,10 @@ class MyErrorWidget extends StatelessWidget {
 
   getErrorText() {
     if (isConnection) {
-      return "There is a problem with your internet connection. "
-          "\nPlease try again.";
+      return 'There is a problem with your internet connection. '
+          '\nPlease try again.';
     } else {
-      return "Could not load this page. \nPlease try again.";
+      return 'Could not load this page. \nPlease try again.';
     }
   }
 }

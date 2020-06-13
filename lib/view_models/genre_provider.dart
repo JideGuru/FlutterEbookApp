@@ -43,7 +43,7 @@ class GenreProvider extends ChangeNotifier {
     }).catchError((e) {
       checkError(e);
       Fluttertoast.showToast(
-        msg: "$e",
+        msg: '$e',
         toastLength: Toast.LENGTH_SHORT,
         timeInSecForIos: 1,
       );
@@ -61,7 +61,7 @@ class GenreProvider extends ChangeNotifier {
       loadingMore = true;
       page = page + 1;
       notifyListeners();
-      Api.getCategory(url + "&page=$page").then((feed) {
+      Api.getCategory(url + '&page=$page').then((feed) {
         items.addAll(feed.feed.entry);
         loadingMore = false;
         notifyListeners();

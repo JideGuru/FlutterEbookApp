@@ -24,7 +24,7 @@ class _DescriptionTextWidgetState extends State<DescriptionTextWidget> {
       secondHalf = widget.text.substring(300, widget.text.length);
     } else {
       firstHalf = widget.text;
-      secondHalf = "";
+      secondHalf = '';
     }
   }
 
@@ -33,24 +33,24 @@ class _DescriptionTextWidgetState extends State<DescriptionTextWidget> {
     return Container(
       child: secondHalf.isEmpty
           ? Text(
-              "${flag ? (firstHalf + "...") : (firstHalf + secondHalf)}"
-                  .replaceAll(r"\n", "\n")
-                  .replaceAll(r"\r", "")
+              '${flag ? (firstHalf + '...') : (firstHalf + secondHalf)}'
+                  .replaceAll(r'\n', '\n')
+                  .replaceAll(r'\r', '')
                   .replaceAll(r"\'", "'"),
               style: TextStyle(
-                fontSize: 16,
+                fontSize: 16.0,
                 color: Theme.of(context).textTheme.caption.color,
               ),
             )
           : Column(
               children: <Widget>[
                 Text(
-                  "${flag ? (firstHalf + "...") : (firstHalf + secondHalf)}"
-                      .replaceAll(r"\n", "\n\n")
-                      .replaceAll(r"\r", "")
+                  '${flag ? (firstHalf + '...') : (firstHalf + secondHalf)}'
+                      .replaceAll(r'\n', '\n\n')
+                      .replaceAll(r'\r', '')
                       .replaceAll(r"\'", "'"),
                   style: TextStyle(
-                    fontSize: 16,
+                    fontSize: 16.0,
                     color: Theme.of(context).textTheme.caption.color,
                   ),
                 ),
@@ -59,7 +59,7 @@ class _DescriptionTextWidgetState extends State<DescriptionTextWidget> {
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: <Widget>[
                       Text(
-                        flag ? "show more" : "show less",
+                        flag ? 'show more' : 'show less',
                         style: TextStyle(color: Colors.blue),
                       ),
                     ],
