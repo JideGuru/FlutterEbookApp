@@ -41,33 +41,31 @@ class BookItem extends StatelessWidget {
         children: <Widget>[
           ClipRRect(
             borderRadius: BorderRadius.all(
-              Radius.circular(10),
+              Radius.circular(10.0),
             ),
             child: Hero(
               tag: imgTag,
               child: CachedNetworkImage(
-                imageUrl: "$img",
+                imageUrl: '$img',
                 placeholder: (context, url) => LoadingWidget(
                   isImage: true,
                 ),
                 errorWidget: (context, url, error) => Image.asset(
-                  "assets/images/place.png",
+                  'assets/images/place.png',
                   fit: BoxFit.cover,
                 ),
                 fit: BoxFit.cover,
-                height: 150,
+                height: 150.0,
               ),
             ),
           ),
-          SizedBox(
-            height: 5,
-          ),
+          SizedBox(height: 5.0),
           Hero(
             tag: titleTag,
             child: Text(
-              "${title.replaceAll(r"\", "")}",
+              '${title.replaceAll(r'\', '')}',
               style: TextStyle(
-                fontSize: 14,
+                fontSize: 14.0,
                 fontWeight: FontWeight.bold,
               ),
               textAlign: TextAlign.center,

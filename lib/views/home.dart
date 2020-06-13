@@ -34,9 +34,9 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
           appBar: AppBar(
             centerTitle: true,
             title: Text(
-              "${Constants.appName}",
+              '${Constants.appName}',
               style: TextStyle(
-                fontSize: 20,
+                fontSize: 20.0,
               ),
             ),
           ),
@@ -60,13 +60,13 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
       child: ListView(
         children: <Widget>[
           _buildFeaturedSection(homeProvider),
-          SizedBox(height: 20),
-          _buildSectionTitle("Categories"),
-          SizedBox(height: 10),
+          SizedBox(height: 20.0),
+          _buildSectionTitle('Categories'),
+          SizedBox(height: 10.0),
           _buildGenreSection(homeProvider),
-          SizedBox(height: 20),
-          _buildSectionTitle("Recently Added"),
-          SizedBox(height: 20),
+          SizedBox(height: 20.0),
+          _buildSectionTitle('Recently Added'),
+          SizedBox(height: 20.0),
           _buildNewSection(homeProvider),
         ],
       ),
@@ -75,14 +75,14 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
 
   _buildSectionTitle(String title) {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 20),
+      padding: EdgeInsets.symmetric(horizontal: 20.0),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
           Text(
-            "$title",
+            '$title',
             style: TextStyle(
-              fontSize: 20,
+              fontSize: 20.0,
               fontWeight: FontWeight.w500,
             ),
           ),
@@ -93,18 +93,18 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
 
   _buildFeaturedSection(HomeProvider homeProvider) {
     return Container(
-      height: 200,
+      height: 200.0,
       child: Center(
         child: ListView.builder(
           primary: false,
-          padding: EdgeInsets.symmetric(horizontal: 15),
+          padding: EdgeInsets.symmetric(horizontal: 15.0),
           scrollDirection: Axis.horizontal,
           itemCount: homeProvider?.top?.feed?.entry?.length ?? 0,
           shrinkWrap: true,
           itemBuilder: (BuildContext context, int index) {
             Entry entry = homeProvider.top.feed.entry[index];
             return Padding(
-              padding: EdgeInsets.symmetric(horizontal: 5, vertical: 10),
+              padding: EdgeInsets.symmetric(horizontal: 5.0, vertical: 10.0),
               child: BookCard(
                 img: entry.link[1].href,
                 entry: entry,
@@ -118,11 +118,11 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
 
   _buildGenreSection(HomeProvider homeProvider) {
     return Container(
-      height: 50,
+      height: 50.0,
       child: Center(
         child: ListView.builder(
           primary: false,
-          padding: EdgeInsets.symmetric(horizontal: 15),
+          padding: EdgeInsets.symmetric(horizontal: 15.0),
           scrollDirection: Axis.horizontal,
           itemCount: homeProvider?.top?.feed?.link?.length ?? 0,
           shrinkWrap: true,
@@ -136,32 +136,32 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
             }
 
             return Padding(
-              padding: EdgeInsets.symmetric(horizontal: 5, vertical: 10),
+              padding: EdgeInsets.symmetric(horizontal: 5.0, vertical: 10.0),
               child: Container(
                 decoration: BoxDecoration(
                   color: Theme.of(context).accentColor,
                   borderRadius: BorderRadius.all(
-                    Radius.circular(20),
+                    Radius.circular(20.0),
                   ),
                 ),
                 child: InkWell(
                   borderRadius: BorderRadius.all(
-                    Radius.circular(20),
+                    Radius.circular(20.0),
                   ),
                   onTap: () {
                     Functions.pushPage(
                       context,
                       Genre(
-                        title: "${link.title}",
+                        title: '${link.title}',
                         url: Api.baseURL + link.href,
                       ),
                     );
                   },
                   child: Center(
                     child: Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 10),
+                      padding: EdgeInsets.symmetric(horizontal: 10.0),
                       child: Text(
-                        "${link.title}",
+                        '${link.title}',
                         style: TextStyle(
                           color: Colors.white,
                         ),

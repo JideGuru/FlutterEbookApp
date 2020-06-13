@@ -42,7 +42,7 @@ class _FavoritesState extends State<Favorites> {
           appBar: AppBar(
             centerTitle: true,
             title: Text(
-              "Favorites",
+              'Favorites',
             ),
           ),
           body: favoritesProvider.posts.isEmpty
@@ -59,14 +59,14 @@ class _FavoritesState extends State<Favorites> {
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
           Image.asset(
-            "assets/images/empty.png",
-            height: 300,
-            width: 300,
+            'assets/images/empty.png',
+            height: 300.0,
+            width: 300.0,
           ),
           Text(
-            "Nothing is here",
+            'Nothing is here',
             style: TextStyle(
-              fontSize: 24,
+              fontSize: 24.0,
               fontWeight: FontWeight.bold,
             ),
           ),
@@ -77,7 +77,7 @@ class _FavoritesState extends State<Favorites> {
 
   _buildGridView(FavoritesProvider favoritesProvider) {
     return GridView.builder(
-      padding: EdgeInsets.fromLTRB(10, 20, 10, 0),
+      padding: EdgeInsets.fromLTRB(10.0, 20.0, 10.0, 0.0),
       shrinkWrap: true,
       itemCount: favoritesProvider.posts.length,
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
@@ -85,9 +85,9 @@ class _FavoritesState extends State<Favorites> {
         childAspectRatio: 200 / 340,
       ),
       itemBuilder: (BuildContext context, int index) {
-        Entry entry = Entry.fromJson(favoritesProvider.posts[index]["item"]);
+        Entry entry = Entry.fromJson(favoritesProvider.posts[index]['item']);
         return Padding(
-          padding: EdgeInsets.symmetric(horizontal: 5),
+          padding: EdgeInsets.symmetric(horizontal: 5.0),
           child: BookItem(
             img: entry.link[1].href,
             title: entry.title.t,

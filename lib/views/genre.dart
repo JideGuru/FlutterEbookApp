@@ -38,7 +38,7 @@ class _GenreState extends State<Genre> {
         return Scaffold(
           appBar: AppBar(
             centerTitle: true,
-            title: Text("${widget.title}"),
+            title: Text('${widget.title}'),
           ),
           body: _buildBody(provider),
         );
@@ -60,13 +60,13 @@ class _GenreState extends State<Genre> {
       children: <Widget>[
         ListView.builder(
           physics: NeverScrollableScrollPhysics(),
-          padding: EdgeInsets.symmetric(horizontal: 10),
+          padding: EdgeInsets.symmetric(horizontal: 10.0),
           shrinkWrap: true,
           itemCount: provider.items.length,
           itemBuilder: (BuildContext context, int index) {
             Entry entry = provider.items[index];
             return Padding(
-              padding: EdgeInsets.symmetric(horizontal: 5, vertical: 5.0),
+              padding: EdgeInsets.all(5.0),
               child: BookListItem(
                 img: entry.link[1].href,
                 title: entry.title.t,
@@ -77,10 +77,10 @@ class _GenreState extends State<Genre> {
             );
           },
         ),
-        SizedBox(height: 10),
+        SizedBox(height: 10.0),
         provider.loadingMore
             ? Container(
-                height: 80,
+                height: 80.0,
                 child: _buildProgressIndicator(),
               )
             : SizedBox(),

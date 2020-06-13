@@ -20,29 +20,29 @@ class _ProfileState extends State<Profile> {
     super.initState();
     items = [
       {
-        "icon": Feather.heart,
-        "title": "Favorites",
-        "function": () => _pushPage(Favorites()),
+        'icon': Feather.heart,
+        'title': 'Favorites',
+        'function': () => _pushPage(Favorites()),
       },
       {
-        "icon": Feather.download,
-        "title": "Downloads",
-        "function": () => _pushPage(Downloads()),
+        'icon': Feather.download,
+        'title': 'Downloads',
+        'function': () => _pushPage(Downloads()),
       },
       {
-        "icon": Feather.moon,
-        "title": "Dark Mode",
-        "function": () => _pushPage(Downloads()),
+        'icon': Feather.moon,
+        'title': 'Dark Mode',
+        'function': () => _pushPage(Downloads()),
       },
       {
-        "icon": Feather.info,
-        "title": "About",
-        "function": () => showAbout(),
+        'icon': Feather.info,
+        'title': 'About',
+        'function': () => showAbout(),
       },
       {
-        "icon": Feather.file_text,
-        "title": "Licenses",
-        "function": () => _pushPageDialog(LicensePage()),
+        'icon': Feather.file_text,
+        'title': 'Licenses',
+        'function': () => _pushPageDialog(LicensePage()),
       },
     ];
   }
@@ -51,14 +51,14 @@ class _ProfileState extends State<Profile> {
   Widget build(BuildContext context) {
     // Remove Dark Switch if Device has Dark mode enabled
     if (MediaQuery.of(context).platformBrightness == Brightness.dark) {
-      items.removeWhere((item) => item['title'] == "Dark Mode");
+      items.removeWhere((item) => item['title'] == 'Dark Mode');
     }
 
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
         title: Text(
-          "Settings",
+          'Settings',
         ),
       ),
       body: ListView.separated(
@@ -67,7 +67,7 @@ class _ProfileState extends State<Profile> {
         physics: NeverScrollableScrollPhysics(),
         itemCount: items.length,
         itemBuilder: (BuildContext context, int index) {
-          if (items[index]['title'] == "Dark Mode") {
+          if (items[index]['title'] == 'Dark Mode') {
             return _buildThemeSwitch(items[index]);
           }
 
@@ -102,10 +102,10 @@ class _ProfileState extends State<Profile> {
       onChanged: (v) {
         if (v) {
           Provider.of<AppProvider>(context, listen: false)
-              .setTheme(ThemeConfig.darkTheme, "dark");
+              .setTheme(ThemeConfig.darkTheme, 'dark');
         } else {
           Provider.of<AppProvider>(context, listen: false)
-              .setTheme(ThemeConfig.lightTheme, "light");
+              .setTheme(ThemeConfig.lightTheme, 'light');
         }
       },
     );
@@ -131,17 +131,17 @@ class _ProfileState extends State<Profile> {
       builder: (_) {
         return AlertDialog(
           title: Text(
-            "About",
+            'About',
           ),
           content: Text(
-            "Simple eBook app by JideGuru",
+            'Simple eBook app by JideGuru',
           ),
           actions: <Widget>[
             FlatButton(
               textColor: Theme.of(context).accentColor,
               onPressed: () => Navigator.pop(context),
               child: Text(
-                "Close",
+                'Close',
               ),
             ),
           ],

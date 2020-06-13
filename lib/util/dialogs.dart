@@ -10,35 +10,35 @@ class Dialogs {
       context: context,
       builder: (context) => CustomAlert(
         child: Padding(
-          padding: EdgeInsets.all(20),
+          padding: EdgeInsets.all(20.0),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
-              SizedBox(height: 15),
+              SizedBox(height: 15.0),
               Text(
                 Constants.appName,
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
-                  fontSize: 16,
+                  fontSize: 16.0,
                 ),
               ),
-              SizedBox(height: 25),
+              SizedBox(height: 25.0),
               Text(
-                "Are you sure you want to quit?",
+                'Are you sure you want to quit?',
                 style: TextStyle(
                   fontWeight: FontWeight.w500,
-                  fontSize: 14,
+                  fontSize: 14.0,
                 ),
               ),
-              SizedBox(height: 40),
+              SizedBox(height: 40.0),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
                   Container(
-                    height: 40,
-                    width: 130,
+                    height: 40.0,
+                    width: 130.0,
                     child: OutlineButton(
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(5.0),
@@ -46,7 +46,7 @@ class Dialogs {
                       borderSide:
                           BorderSide(color: Theme.of(context).accentColor),
                       child: Text(
-                        "No",
+                        'No',
                         style: TextStyle(
                           color: Theme.of(context).accentColor,
                         ),
@@ -56,14 +56,14 @@ class Dialogs {
                     ),
                   ),
                   Container(
-                    height: 40,
-                    width: 130,
+                    height: 40.0,
+                    width: 130.0,
                     child: RaisedButton(
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(5.0),
                       ),
                       child: Text(
-                        "Yes",
+                        'Yes',
                         style: TextStyle(
                           color: Colors.white,
                         ),
@@ -74,7 +74,7 @@ class Dialogs {
                   ),
                 ],
               ),
-              SizedBox(height: 20),
+              SizedBox(height: 20.0),
             ],
           ),
         ),

@@ -34,7 +34,7 @@ class DetailsProvider extends ChangeNotifier {
   }
 
   checkFav() async {
-    List c = await favDB.check({"id": entry.published.t});
+    List c = await favDB.check({'id': entry.published.t});
     if (c.isNotEmpty) {
       setFaved(true);
     } else {
@@ -43,19 +43,19 @@ class DetailsProvider extends ChangeNotifier {
   }
 
   addFav() async {
-    await favDB.add({"id": entry.published.t, "item": entry.toJson()});
+    await favDB.add({'id': entry.published.t, 'item': entry.toJson()});
     checkFav();
   }
 
   removeFav() async {
-    favDB.remove({"id": entry.published.t}).then((v) {
+    favDB.remove({'id': entry.published.t}).then((v) {
       print(v);
       checkFav();
     });
   }
 
   checkDownload() async {
-    List c = await dlDB.check({"id": entry.published.t});
+    List c = await dlDB.check({'id': entry.published.t});
     if (c.isNotEmpty) {
       setDownloaded(true);
     } else {
@@ -64,7 +64,7 @@ class DetailsProvider extends ChangeNotifier {
   }
 
   Future<List> getDownload() async {
-    List c = await dlDB.check({"id": entry.published.t});
+    List c = await dlDB.check({'id': entry.published.t});
     return c;
   }
 
@@ -74,7 +74,7 @@ class DetailsProvider extends ChangeNotifier {
   }
 
   removeDownload() async {
-    dlDB.remove({"id": entry.published.t}).then((v) {
+    dlDB.remove({'id': entry.published.t}).then((v) {
       print(v);
       checkDownload();
     });
@@ -97,14 +97,14 @@ class DetailsProvider extends ChangeNotifier {
         ? await getExternalStorageDirectory()
         : await getApplicationSupportDirectory();
     if (Platform.isAndroid) {
-      Directory(appDocDir.path.split("Android")[0] + "${Constants.appName}")
+      Directory(appDocDir.path.split('Android')[0] + '${Constants.appName}')
           .createSync();
     }
 
     String path = Platform.isIOS
-        ? appDocDir.path + "/$filename.epub"
-        : appDocDir.path.split("Android")[0] +
-            "${Constants.appName}/$filename.epub";
+        ? appDocDir.path + '/$filename.epub'
+        : appDocDir.path.split('Android')[0] +
+            '${Constants.appName}/$filename.epub';
     print(path);
     File file = File(path);
     if (!await file.exists()) {
@@ -127,11 +127,11 @@ class DetailsProvider extends ChangeNotifier {
       if (v != null) {
         addDownload(
           {
-            "id": entry.published.t,
-            "path": path,
-            "image": "${entry.link[1].href}",
-            "size": v,
-            "name": entry.title.t,
+            'id': entry.published.t,
+            'path': path,
+            'image': '${entry.link[1].href}',
+            'size': v,
+            'name': entry.title.t,
           },
         );
       }
