@@ -85,7 +85,7 @@ class _ExploreState extends State<Explore> {
                 context,
                 Genre(
                   title: '${link.title}',
-                  url: Api.baseURL + link.href,
+                  url: link.href,
                 ),
               );
             },
@@ -104,7 +104,7 @@ class _ExploreState extends State<Explore> {
 
   _buildSectionBookList(Link link) {
     return FutureBuilder<CategoryFeed>(
-      future: Api.getCategory(Api.baseURL + link.href),
+      future: Api.getCategory(link.href),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.done &&
             snapshot.hasData) {

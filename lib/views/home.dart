@@ -153,7 +153,7 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
                       context,
                       Genre(
                         title: '${link.title}',
-                        url: Api.baseURL + link.href,
+                        url: link.href,
                       ),
                     );
                   },
