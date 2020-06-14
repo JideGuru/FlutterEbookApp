@@ -1,0 +1,22 @@
+name: Client Tests
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+jobs:
+  test:
+    name: Test client on ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+    steps:
+      - uses: actions/checkout@v1
+      - uses: subosito/flutter-action@v1
+        with:
+          flutter-version: '1.17.3'
+          channel: 'stable'
+      - run: flutter pub get
+      - run: flutter analyze --no-pub
+      - run: flutter format lib/
