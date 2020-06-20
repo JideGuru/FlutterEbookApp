@@ -41,19 +41,10 @@ class _SplashState extends State<Splash> {
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Icon(
-              Feather.book_open,
-              color: Theme.of(context).accentColor,
-              size: 70,
-            ),
-            SizedBox(height: 20),
-            Text(
-              '${Constants.appName}',
-              style: TextStyle(
-                color: Theme.of(context).accentColor,
-                fontSize: 25,
-                fontWeight: FontWeight.bold,
-              ),
+            Image.asset(
+              "assets/images/app-icon.png",
+              height: 300.0,
+              width: 300.0,
             ),
           ],
         ),
