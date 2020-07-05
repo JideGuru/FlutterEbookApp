@@ -234,7 +234,7 @@ class _DetailsState extends State<Details> {
               // first value from the string as out local book path
               Map dl = dlList[0];
               String path = dl['path'];
-              EpubKitty.setConfig('androidBook', '#06d6a7', 'vertical', true);
+              EpubKitty.setConfig('androidBook', '#2ca8e2', 'vertical', true);
               EpubKitty.open(path);
             }
           });

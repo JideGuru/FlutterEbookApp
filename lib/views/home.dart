@@ -4,7 +4,6 @@ import 'package:flutter_ebook_app/components/body_builder.dart';
 import 'package:flutter_ebook_app/components/book_card.dart';
 import 'package:flutter_ebook_app/components/book_list_item.dart';
 import 'package:flutter_ebook_app/models/category.dart';
-import 'package:flutter_ebook_app/util/api.dart';
 import 'package:flutter_ebook_app/util/consts.dart';
 import 'package:flutter_ebook_app/util/functions.dart';
 import 'package:flutter_ebook_app/view_models/home_provider.dart';
