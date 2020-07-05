@@ -48,12 +48,6 @@ class MyApp extends StatelessWidget {
       textTheme: GoogleFonts.sourceSansProTextTheme(
         theme.textTheme,
       ),
-      pageTransitionsTheme: PageTransitionsTheme(
-        builders: {
-          TargetPlatform.android: ZoomPageTransitionsBuilder(),
-          TargetPlatform.iOS: CupertinoPageTransitionsBuilder(),
-        },
-      ),
     );
   }
 }

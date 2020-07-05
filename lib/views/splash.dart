@@ -1,10 +1,8 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_ebook_app/util/consts.dart';
 import 'package:flutter_ebook_app/util/functions.dart';
 import 'package:flutter_ebook_app/views/main_screen.dart';
-import 'package:flutter_icons/flutter_icons.dart';
 
 class Splash extends StatefulWidget {
   @override
