@@ -62,15 +62,18 @@ class BookItem extends StatelessWidget {
           SizedBox(height: 5.0),
           Hero(
             tag: titleTag,
-            child: Text(
-              '${title.replaceAll(r'\', '')}',
-              style: TextStyle(
-                fontSize: 14.0,
-                fontWeight: FontWeight.bold,
+            child: Material(
+              type: MaterialType.transparency,
+              child: Text(
+                '${title.replaceAll(r'\', '')}',
+                style: TextStyle(
+                  fontSize: 14.0,
+                  fontWeight: FontWeight.bold,
+                ),
+                textAlign: TextAlign.center,
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
               ),
-              textAlign: TextAlign.center,
-              maxLines: 2,
-              overflow: TextOverflow.ellipsis,
             ),
           ),
         ],
