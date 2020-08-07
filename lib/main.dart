@@ -43,6 +43,7 @@ class MyApp extends StatelessWidget {
     );
   }
 
+  // Apply font to our app's theme
   ThemeData themeData(ThemeData theme) {
     return theme.copyWith(
       textTheme: GoogleFonts.sourceSansProTextTheme(
