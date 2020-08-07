@@ -219,23 +219,24 @@ class _DetailsState extends State<Details> {
     }
   }
 
+  openBook(DetailsProvider provider) async {
+    List dlList = await provider.getDownload();
+    if (dlList.isNotEmpty) {
+      // dlList is a list of the downloads relating to this Book's id.
+      // The list will only contain one item since we can only
+      // download a book once. Then we use `dlList[0]` to choose the
+      // first value from the string as out local book path
+      Map dl = dlList[0];
+      String path = dl['path'];
+      EpubKitty.setConfig('androidBook', '#2ca8e2', 'vertical', true);
+      EpubKitty.open(path);
+    }
+  }
+
   _buildDownloadReadButton(DetailsProvider provider, BuildContext context) {
     if (provider.downloaded) {
       return FlatButton(
-        onPressed: () {
-          provider.getDownload().then((dlList) {
-            if (dlList.isNotEmpty) {
-              // dlList is a list of the downloads relating to this Book's id.
-              // The list will only contain one item since we can only
-              // download a book once. Then we use `dlList[0]` to choose the
-              // first value from the string as out local book path
-              Map dl = dlList[0];
-              String path = dl['path'];
-              EpubKitty.setConfig('androidBook', '#2ca8e2', 'vertical', true);
-              EpubKitty.open(path);
-            }
-          });
-        },
+        onPressed: () => openBook(provider),
         child: Text(
           'Read Book',
         ),

@@ -23,6 +23,7 @@ class DetailsProvider extends ChangeNotifier {
   bool faved = false;
   bool downloaded = false;
   Api api = Api();
+
   getFeed(String url) async {
     setLoading(true);
     checkFav();
@@ -31,7 +32,7 @@ class DetailsProvider extends ChangeNotifier {
       CategoryFeed feed = await api.getCategory(url);
       setRelated(feed);
       setLoading(false);
-    }catch(e){
+    } catch (e) {
       throw (e);
     }
   }
@@ -60,9 +61,15 @@ class DetailsProvider extends ChangeNotifier {
 
   // check if book has been downloaded before
   checkDownload() async {
-    List c = await dlDB.check({'id': entry.published.t});
-    if (c.isNotEmpty) {
-      setDownloaded(true);
+    List downloads = await dlDB.check({'id': entry.published.t});
+    if (downloads.isNotEmpty) {
+      // check if book has been deleted
+      String path = downloads[0]['path'];
+      if(File(path).existsSync()){
+        setDownloaded(true);
+      }else{
+        setDownloaded(false);
+      }
     } else {
       setDownloaded(false);
     }
