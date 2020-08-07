@@ -33,7 +33,7 @@ Please star⭐ the repo if you like what you see😉.
 
 ## 📸 ScreenShots
 
-<img src="ss/mockup.png"/>
+<!-- <img src="ss/mockup.png"/> -->
 
 | Light| Dark|
 |------|-------|
