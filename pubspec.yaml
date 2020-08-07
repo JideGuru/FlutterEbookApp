@@ -22,18 +22,18 @@ dependencies:
   cupertino_icons: ^0.1.2
   provider: ^4.0.1
   shared_preferences: ^0.5.4+5
-  flutter_icons: ^1.0.0+1
-  xml2json: ^4.1.1
-  fluttertoast: ^3.1.3
+  flutter_icons: ^1.1.0
+  xml2json: ^4.3.0
+  fluttertoast: ^7.0.2
   esys_flutter_share: ^1.0.2
-  cached_network_image: ^2.0.0
-  uuid: ^2.0.4
+  cached_network_image: ^2.2.0+1
+  uuid: ^2.2.0
   objectdb: ^1.0.7+1
   epub_kitty: ^0.1.7
   path_provider: ^1.4.0
-  dio: ^3.0.8
+  dio: ^3.0.9
   permission_handler: ^4.2.0+hotfix.1
-  google_fonts: ^1.0.0
+  google_fonts: ^1.1.0
   flutter_spinkit: ^4.1.2+1
 
 dev_dependencies:

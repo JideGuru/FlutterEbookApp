@@ -7,7 +7,7 @@ import 'package:flutter_ebook_app/models/category.dart';
 import 'package:flutter_ebook_app/util/consts.dart';
 import 'package:flutter_ebook_app/util/functions.dart';
 import 'package:flutter_ebook_app/view_models/home_provider.dart';
-import 'package:flutter_ebook_app/views/genre.dart';
+import 'package:flutter_ebook_app/views/genre/genre.dart';
 import 'package:provider/provider.dart';
 
 class Home extends StatefulWidget {

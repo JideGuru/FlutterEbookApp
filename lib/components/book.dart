@@ -3,8 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_ebook_app/components/loading_widget.dart';
 import 'package:flutter_ebook_app/models/category.dart';
 import 'package:flutter_ebook_app/util/functions.dart';
-import 'package:flutter_ebook_app/views/details.dart';
 import 'package:uuid/uuid.dart';
+
+import '../views/details/details.dart';
 
 class BookItem extends StatelessWidget {
   final String img;

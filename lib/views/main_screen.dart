@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_ebook_app/util/dialogs.dart';
-import 'package:flutter_ebook_app/views/explore.dart';
-import 'package:flutter_ebook_app/views/home.dart';
-import 'package:flutter_ebook_app/views/settings.dart';
+import 'package:flutter_ebook_app/views/explore/explore.dart';
+import 'package:flutter_ebook_app/views/home/home.dart';
+import 'package:flutter_ebook_app/views/settings/settings.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 
 class MainScreen extends StatefulWidget {

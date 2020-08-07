@@ -45,7 +45,7 @@ class GenreProvider extends ChangeNotifier {
       Fluttertoast.showToast(
         msg: '$e',
         toastLength: Toast.LENGTH_SHORT,
-        timeInSecForIos: 1,
+        timeInSecForIosWeb: 1,
       );
       throw (e);
     });

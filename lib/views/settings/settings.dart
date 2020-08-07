@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_ebook_app/util/functions.dart';
 import 'package:flutter_ebook_app/util/theme_config.dart';
 import 'package:flutter_ebook_app/view_models/app_provider.dart';
-import 'package:flutter_ebook_app/views/downloads.dart';
-import 'package:flutter_ebook_app/views/favorites.dart';
+import 'package:flutter_ebook_app/views/downloads/downloads.dart';
+import 'package:flutter_ebook_app/views/favorites/favorites.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:provider/provider.dart';
 

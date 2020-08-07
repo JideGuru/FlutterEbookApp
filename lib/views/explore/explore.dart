@@ -6,7 +6,7 @@ import 'package:flutter_ebook_app/models/category.dart';
 import 'package:flutter_ebook_app/util/api.dart';
 import 'package:flutter_ebook_app/util/functions.dart';
 import 'package:flutter_ebook_app/view_models/home_provider.dart';
-import 'package:flutter_ebook_app/views/genre.dart';
+import 'package:flutter_ebook_app/views/genre/genre.dart';
 import 'package:provider/provider.dart';
 
 class Explore extends StatefulWidget {
