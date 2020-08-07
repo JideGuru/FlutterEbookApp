@@ -7,6 +7,8 @@ import 'package:flutter_ebook_app/util/enum/api_request_status.dart';
 import 'package:flutter_ebook_app/util/functions.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
+import '../models/category.dart';
+
 class GenreProvider extends ChangeNotifier {
   ScrollController controller = ScrollController();
   List items = List();
@@ -14,6 +16,7 @@ class GenreProvider extends ChangeNotifier {
   bool loadingMore = false;
   bool loadMore = true;
   APIRequestStatus apiRequestStatus = APIRequestStatus.loading;
+  Api api = Api();
 
   listener(url) {
     controller.addListener(() {
@@ -33,25 +36,21 @@ class GenreProvider extends ChangeNotifier {
     });
   }
 
-  getFeed(String url) {
+  getFeed(String url) async {
     setApiRequestStatus(APIRequestStatus.loading);
     print(url);
-    Api.getCategory(url).then((feed) {
+    try {
+      CategoryFeed feed = await api.getCategory(url);
       items = feed.feed.entry;
       setApiRequestStatus(APIRequestStatus.loaded);
       listener(url);
-    }).catchError((e) {
+    } catch (e) {
       checkError(e);
-      Fluttertoast.showToast(
-        msg: '$e',
-        toastLength: Toast.LENGTH_SHORT,
-        timeInSecForIosWeb: 1,
-      );
       throw (e);
-    });
+    }
   }
 
-  paginate(String url) {
+  paginate(String url) async {
     if (apiRequestStatus != APIRequestStatus.loading &&
         !loadingMore &&
         loadMore) {
@@ -61,25 +60,36 @@ class GenreProvider extends ChangeNotifier {
       loadingMore = true;
       page = page + 1;
       notifyListeners();
-      Api.getCategory(url + '&page=$page').then((feed) {
+      try {
+        CategoryFeed feed = await api.getCategory(url + '&page=$page');
         items.addAll(feed.feed.entry);
         loadingMore = false;
         notifyListeners();
-      }).catchError((e) {
+      } catch (e) {
         loadMore = false;
         loadingMore = false;
         notifyListeners();
         throw (e);
-      });
+      }
     }
   }
 
   void checkError(e) {
     if (Functions.checkConnectionError(e)) {
       setApiRequestStatus(APIRequestStatus.connectionError);
+      showToast('Connection error');
     } else {
       setApiRequestStatus(APIRequestStatus.error);
+      showToast('Something went wrong, please try again');
     }
+  }
+
+  showToast(msg) {
+    Fluttertoast.showToast(
+      msg: '$msg',
+      toastLength: Toast.LENGTH_SHORT,
+      timeInSecForIosWeb: 1,
+    );
   }
 
   void setApiRequestStatus(APIRequestStatus value) {

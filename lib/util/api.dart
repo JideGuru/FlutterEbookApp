@@ -5,6 +5,7 @@ import 'package:flutter_ebook_app/models/category.dart';
 import 'package:xml2json/xml2json.dart';
 
 class Api {
+  Dio dio = Dio();
   static String baseURL = 'https://catalog.feedbooks.com';
   static String publicDomainURL = '$baseURL/publicdomain/browse';
   static String popular = '$publicDomainURL/top.atom';
@@ -18,10 +19,9 @@ class Api {
   static String romance = '$publicDomainURL/top.atom?cat=FBFIC027000';
   static String horror = '$publicDomainURL/top.atom?cat=FBFIC015000';
 
-  static Future<CategoryFeed> getCategory(String url) async {
-    Dio dio = Dio();
+  Future<CategoryFeed> getCategory(String url) async {
     var res = await dio.get(url).catchError((e) {
-      print(e);
+      throw(e);
     });
     CategoryFeed category;
     if (res.statusCode == 200) {

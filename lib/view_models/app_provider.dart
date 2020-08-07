@@ -1,6 +1,5 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_ebook_app/util/theme_config.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -23,19 +22,11 @@ class AppProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  void setTheme(value, c) {
+  // change the Theme in the provider and SharedPreferences
+  void setTheme(value, c) async {
     theme = value;
-    SharedPreferences.getInstance().then((prefs) {
-      prefs.setString('theme', c).then((val) {
-        SystemChrome.setEnabledSystemUIOverlays(SystemUiOverlay.values);
-        SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-          statusBarColor:
-              c == 'dark' ? ThemeConfig.darkPrimary : ThemeConfig.lightPrimary,
-          statusBarIconBrightness:
-              c == 'dark' ? Brightness.light : Brightness.dark,
-        ));
-      });
-    });
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setString('theme', c);
     notifyListeners();
   }
 

@@ -11,6 +11,8 @@ import 'package:flutter_ebook_app/util/consts.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
 
+import '../models/category.dart';
+
 class DetailsProvider extends ChangeNotifier {
   CategoryFeed related = CategoryFeed();
   bool loading = true;
@@ -20,19 +22,21 @@ class DetailsProvider extends ChangeNotifier {
 
   bool faved = false;
   bool downloaded = false;
-
+  Api api = Api();
   getFeed(String url) async {
     setLoading(true);
     checkFav();
     checkDownload();
-    Api.getCategory(url).then((feed) {
+    try {
+      CategoryFeed feed = await api.getCategory(url);
       setRelated(feed);
       setLoading(false);
-    }).catchError((e) {
+    }catch(e){
       throw (e);
-    });
+    }
   }
 
+  // check if book is favorited
   checkFav() async {
     List c = await favDB.check({'id': entry.published.t});
     if (c.isNotEmpty) {
@@ -54,6 +58,7 @@ class DetailsProvider extends ChangeNotifier {
     });
   }
 
+  // check if book has been downloaded before
   checkDownload() async {
     List c = await dlDB.check({'id': entry.published.t});
     if (c.isNotEmpty) {

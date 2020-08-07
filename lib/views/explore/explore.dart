@@ -15,6 +15,8 @@ class Explore extends StatefulWidget {
 }
 
 class _ExploreState extends State<Explore> {
+  Api api = Api();
+
   @override
   Widget build(BuildContext context) {
     return Consumer<HomeProvider>(
@@ -104,7 +106,7 @@ class _ExploreState extends State<Explore> {
 
   _buildSectionBookList(Link link) {
     return FutureBuilder<CategoryFeed>(
-      future: Api.getCategory(link.href),
+      future: api.getCategory(link.href),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.done &&
             snapshot.hasData) {
