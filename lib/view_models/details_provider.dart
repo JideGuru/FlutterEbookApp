@@ -65,7 +65,8 @@ class DetailsProvider extends ChangeNotifier {
     if (downloads.isNotEmpty) {
       // check if book has been deleted
       String path = downloads[0]['path'];
-      if(File(path).existsSync()){
+      print(path);
+      if(await File(path).exists()){
         setDownloaded(true);
       }else{
         setDownloaded(false);
@@ -107,7 +108,7 @@ class DetailsProvider extends ChangeNotifier {
   startDownload(BuildContext context, String url, String filename) async {
     Directory appDocDir = Platform.isAndroid
         ? await getExternalStorageDirectory()
-        : await getApplicationSupportDirectory();
+        : await getApplicationDocumentsDirectory();
     if (Platform.isAndroid) {
       Directory(appDocDir.path.split('Android')[0] + '${Constants.appName}')
           .createSync();
