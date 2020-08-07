@@ -4,9 +4,9 @@ import 'package:flutter_ebook_app/components/book_card.dart';
 import 'package:flutter_ebook_app/components/loading_widget.dart';
 import 'package:flutter_ebook_app/models/category.dart';
 import 'package:flutter_ebook_app/util/api.dart';
-import 'package:flutter_ebook_app/util/functions.dart';
+import 'package:flutter_ebook_app/util/router.dart';
 import 'package:flutter_ebook_app/view_models/home_provider.dart';
-import 'package:flutter_ebook_app/views/genre.dart';
+import 'package:flutter_ebook_app/views/genre/genre.dart';
 import 'package:provider/provider.dart';
 
 class Explore extends StatefulWidget {
@@ -15,6 +15,8 @@ class Explore extends StatefulWidget {
 }
 
 class _ExploreState extends State<Explore> {
+  Api api = Api();
+
   @override
   Widget build(BuildContext context) {
     return Consumer<HomeProvider>(
@@ -81,7 +83,7 @@ class _ExploreState extends State<Explore> {
           ),
           GestureDetector(
             onTap: () {
-              Functions.pushPage(
+              Router.pushPage(
                 context,
                 Genre(
                   title: '${link.title}',
@@ -104,7 +106,7 @@ class _ExploreState extends State<Explore> {
 
   _buildSectionBookList(Link link) {
     return FutureBuilder<CategoryFeed>(
-      future: Api.getCategory(link.href),
+      future: api.getCategory(link.href),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.done &&
             snapshot.hasData) {

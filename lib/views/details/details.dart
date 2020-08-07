@@ -3,7 +3,6 @@ import 'package:epub_kitty/epub_kitty.dart';
 import 'package:esys_flutter_share/esys_flutter_share.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_ebook_app/components/book_list_item.dart';
 import 'package:flutter_ebook_app/components/description_text.dart';
 import 'package:flutter_ebook_app/components/loading_widget.dart';
@@ -31,8 +30,6 @@ class Details extends StatefulWidget {
 }
 
 class _DetailsState extends State<Details> {
-  static const pageChannel = EventChannel('com.xiaofwang.epub_kitty/page');
-
   @override
   void initState() {
     super.initState();
@@ -222,23 +219,24 @@ class _DetailsState extends State<Details> {
     }
   }
 
+  openBook(DetailsProvider provider) async {
+    List dlList = await provider.getDownload();
+    if (dlList.isNotEmpty) {
+      // dlList is a list of the downloads relating to this Book's id.
+      // The list will only contain one item since we can only
+      // download a book once. Then we use `dlList[0]` to choose the
+      // first value from the string as out local book path
+      Map dl = dlList[0];
+      String path = dl['path'];
+      EpubKitty.setConfig('androidBook', '#2ca8e2', 'vertical', true);
+      EpubKitty.open(path);
+    }
+  }
+
   _buildDownloadReadButton(DetailsProvider provider, BuildContext context) {
     if (provider.downloaded) {
       return FlatButton(
-        onPressed: () {
-          provider.getDownload().then((dlList) {
-            if (dlList.isNotEmpty) {
-              // dlList is a list of the downloads relating to this Book's id.
-              // The list will only contain one item since we can only
-              // download a book once. Then we use `dlList[0]` to choose the
-              // first value from the string as out local book path
-              Map dl = dlList[0];
-              String path = dl['path'];
-              EpubKitty.setConfig('androidBook', '#2ca8e2', 'vertical', true);
-              EpubKitty.open(path);
-            }
-          });
-        },
+        onPressed: () => openBook(provider),
         child: Text(
           'Read Book',
         ),
@@ -309,8 +307,7 @@ class _DetailsState extends State<Details> {
   _share() {
     Share.text(
       '${widget.entry.title.t} by ${widget.entry.author.name.t}',
-      'Read/Download ${widget.entry.title.t} from ${widget.entry.link[3]
-          .href}.',
+      'Read/Download ${widget.entry.title.t} from ${widget.entry.link[3].href}.',
       'text/plain',
     );
   }

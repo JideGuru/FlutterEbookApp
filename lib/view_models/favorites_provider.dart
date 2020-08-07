@@ -6,13 +6,12 @@ class FavoritesProvider extends ChangeNotifier {
   bool loading = true;
   var db = FavoriteDB();
 
-  getFeed() async {
+  getFavorites() async {
     setLoading(true);
     posts.clear();
-    db.listAll().then((all) {
-      posts.addAll(all);
-      setLoading(false);
-    });
+    List all = await db.listAll();
+    posts.addAll(all);
+    setLoading(false);
   }
 
   void setLoading(value) {

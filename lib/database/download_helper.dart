@@ -45,4 +45,10 @@ class DownloadsDB {
     await db.close();
     return val;
   }
+
+  clear() async {
+    final db = ObjectDB(await getPath());
+    db.open();
+    db.remove({});
+  }
 }

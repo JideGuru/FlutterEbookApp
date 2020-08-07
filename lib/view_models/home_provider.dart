@@ -9,22 +9,19 @@ class HomeProvider with ChangeNotifier {
   CategoryFeed top = CategoryFeed();
   CategoryFeed recent = CategoryFeed();
   APIRequestStatus apiRequestStatus = APIRequestStatus.loading;
+  Api api = Api();
 
   getFeeds() async {
     setApiRequestStatus(APIRequestStatus.loading);
-    Api.getCategory(Api.popular).then((popular) {
+    try {
+      CategoryFeed popular = await api.getCategory(Api.popular);
       setTop(popular);
-      Api.getCategory(Api.noteworthy).then((newReleases) {
-        setRecent(newReleases);
-        setApiRequestStatus(APIRequestStatus.loaded);
-      }).catchError((e) {
-        checkError(e);
-        throw (e);
-      });
-    }).catchError((e) {
+      CategoryFeed newReleases = await api.getCategory(Api.noteworthy);
+      setRecent(newReleases);
+      setApiRequestStatus(APIRequestStatus.loaded);
+    } catch (e) {
       checkError(e);
-      throw (e);
-    });
+    }
   }
 
   void checkError(e) {
