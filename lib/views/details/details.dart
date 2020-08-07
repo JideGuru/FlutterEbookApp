@@ -3,7 +3,6 @@ import 'package:epub_kitty/epub_kitty.dart';
 import 'package:esys_flutter_share/esys_flutter_share.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_ebook_app/components/book_list_item.dart';
 import 'package:flutter_ebook_app/components/description_text.dart';
 import 'package:flutter_ebook_app/components/loading_widget.dart';
@@ -31,8 +30,6 @@ class Details extends StatefulWidget {
 }
 
 class _DetailsState extends State<Details> {
-  static const pageChannel = EventChannel('com.xiaofwang.epub_kitty/page');
-
   @override
   void initState() {
     super.initState();
@@ -309,8 +306,7 @@ class _DetailsState extends State<Details> {
   _share() {
     Share.text(
       '${widget.entry.title.t} by ${widget.entry.author.name.t}',
-      'Read/Download ${widget.entry.title.t} from ${widget.entry.link[3]
-          .href}.',
+      'Read/Download ${widget.entry.title.t} from ${widget.entry.link[3].href}.',
       'text/plain',
     );
   }

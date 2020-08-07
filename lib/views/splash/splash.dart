@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_ebook_app/util/functions.dart';
+import 'package:flutter_ebook_app/util/router.dart';
 import 'package:flutter_ebook_app/views/main_screen.dart';
 
 class Splash extends StatefulWidget {
@@ -19,7 +19,7 @@ class _SplashState extends State<Splash> {
   }
 
   changeScreen() async {
-    Functions.pushPageReplacement(
+    Router.pushPageReplacement(
       context,
       MainScreen(),
     );

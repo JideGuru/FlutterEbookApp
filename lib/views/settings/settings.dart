@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_ebook_app/util/functions.dart';
-import 'package:flutter_ebook_app/util/theme_config.dart';
+import 'package:flutter_ebook_app/theme/theme_config.dart';
+import 'package:flutter_ebook_app/util/router.dart';
 import 'package:flutter_ebook_app/view_models/app_provider.dart';
 import 'package:flutter_ebook_app/views/downloads/downloads.dart';
 import 'package:flutter_ebook_app/views/favorites/favorites.dart';
@@ -112,17 +112,11 @@ class _ProfileState extends State<Profile> {
   }
 
   _pushPage(Widget page) {
-    Functions.pushPage(
-      context,
-      page,
-    );
+    Router.pushPage(context, page);
   }
 
   _pushPageDialog(Widget page) {
-    Functions.pushPageDialog(
-      context,
-      page,
-    );
+    Router.pushPageDialog(context, page);
   }
 
   showAbout() {

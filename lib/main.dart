@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_ebook_app/util/consts.dart';
-import 'package:flutter_ebook_app/util/theme_config.dart';
+import 'package:flutter_ebook_app/theme/theme_config.dart';
 import 'package:flutter_ebook_app/view_models/app_provider.dart';
 import 'package:flutter_ebook_app/view_models/details_provider.dart';
 import 'package:flutter_ebook_app/view_models/favorites_provider.dart';

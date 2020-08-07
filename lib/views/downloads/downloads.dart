@@ -3,7 +3,6 @@ import 'dart:io';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:epub_kitty/epub_kitty.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_ebook_app/components/loading_widget.dart';
 import 'package:flutter_ebook_app/database/download_helper.dart';
 import 'package:flutter_icons/flutter_icons.dart';
@@ -15,9 +14,6 @@ class Downloads extends StatefulWidget {
 }
 
 class _DownloadsState extends State<Downloads> {
-  static const pageChannel =
-      const EventChannel('com.xiaofwang.epub_kitty/page');
-
   bool done = true;
   var db = DownloadsDB();
   static final uuid = Uuid();

@@ -5,7 +5,7 @@ import 'package:flutter_ebook_app/components/book_card.dart';
 import 'package:flutter_ebook_app/components/book_list_item.dart';
 import 'package:flutter_ebook_app/models/category.dart';
 import 'package:flutter_ebook_app/util/consts.dart';
-import 'package:flutter_ebook_app/util/functions.dart';
+import 'package:flutter_ebook_app/util/router.dart';
 import 'package:flutter_ebook_app/view_models/home_provider.dart';
 import 'package:flutter_ebook_app/views/genre/genre.dart';
 import 'package:provider/provider.dart';
@@ -148,7 +148,7 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
                     Radius.circular(20.0),
                   ),
                   onTap: () {
-                    Functions.pushPage(
+                    Router.pushPage(
                       context,
                       Genre(
                         title: '${link.title}',
