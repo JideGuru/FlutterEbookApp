@@ -1,10 +1,12 @@
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:epub_kitty/epub_kitty.dart';
+import 'package:epub_viewer/epub_viewer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_ebook_app/components/loading_widget.dart';
 import 'package:flutter_ebook_app/database/download_helper.dart';
+import 'package:flutter_ebook_app/database/locator_helper.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:uuid/uuid.dart';
 
@@ -57,10 +59,24 @@ class _DownloadsState extends State<Downloads> {
           background: _dismissibleBackground(),
           onDismissed: (d) => _deleteBook(dl, index),
           child: InkWell(
-            onTap: () {
+            onTap: () async {
               String path = dl['path'];
-              EpubKitty.setConfig('androidBook', '#06d6a7', 'vertical', true);
-              EpubKitty.open(path);
+              List locator = await LocatorDB().getLocator(dl['id']);
+
+              EpubViewer.setConfig('androidBook', '#2ca8e2', 'vertical', true);
+              EpubViewer.open(
+                  path,
+                  lastLocation: locator.isNotEmpty
+                      ?locator[0]
+                      :null
+              );
+              EpubViewer.locatorStream.listen((event) async {
+                // Get locator here
+                Map json = jsonDecode(event);
+                json['bookId'] = dl['id'];
+                // Save locator to your database
+                await LocatorDB().update(json);
+              });
             },
             child: Padding(
               padding: EdgeInsets.symmetric(vertical: 5, horizontal: 15),

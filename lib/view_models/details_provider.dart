@@ -39,7 +39,7 @@ class DetailsProvider extends ChangeNotifier {
 
   // check if book is favorited
   checkFav() async {
-    List c = await favDB.check({'id': entry.published.t});
+    List c = await favDB.check({'id': entry.id.t.toString()});
     if (c.isNotEmpty) {
       setFaved(true);
     } else {
@@ -48,12 +48,12 @@ class DetailsProvider extends ChangeNotifier {
   }
 
   addFav() async {
-    await favDB.add({'id': entry.published.t, 'item': entry.toJson()});
+    await favDB.add({'id': entry.id.t.toString(), 'item': entry.toJson()});
     checkFav();
   }
 
   removeFav() async {
-    favDB.remove({'id': entry.published.t}).then((v) {
+    favDB.remove({'id': entry.id.t.toString()}).then((v) {
       print(v);
       checkFav();
     });
@@ -61,7 +61,7 @@ class DetailsProvider extends ChangeNotifier {
 
   // check if book has been downloaded before
   checkDownload() async {
-    List downloads = await dlDB.check({'id': entry.published.t});
+    List downloads = await dlDB.check({'id': entry.id.t.toString()});
     if (downloads.isNotEmpty) {
       // check if book has been deleted
       String path = downloads[0]['path'];
@@ -77,7 +77,7 @@ class DetailsProvider extends ChangeNotifier {
   }
 
   Future<List> getDownload() async {
-    List c = await dlDB.check({'id': entry.published.t});
+    List c = await dlDB.check({'id': entry.id.t.toString()});
     return c;
   }
 
@@ -87,7 +87,7 @@ class DetailsProvider extends ChangeNotifier {
   }
 
   removeDownload() async {
-    dlDB.remove({'id': entry.published.t}).then((v) {
+    dlDB.remove({'id': entry.id.t.toString()}).then((v) {
       print(v);
       checkDownload();
     });
@@ -140,7 +140,7 @@ class DetailsProvider extends ChangeNotifier {
       if (v != null) {
         addDownload(
           {
-            'id': entry.published.t,
+            'id': entry.id.t.toString(),
             'path': path,
             'image': '${entry.link[1].href}',
             'size': v,
