@@ -13,7 +13,8 @@ The [Feedbooks API](http://www.feedbooks.com/api) was used to fetch books. <br>
 <br>
 <a href="https://www.vecteezy.com/vector-art/599678-book-reading-logo-and-symbols-template-icons">App
 icon</a> <br> <br>
-<a href="https://play.google.com/store/apps/details?id=dev.jideguru.flutterEbookApp"><img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" width="200"></img></a>
+<!--
+<a href="https://play.google.com/store/apps/details?id=dev.jideguru.flutterEbookApp"><img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" width="200"></img></a> -->
 <br> Please star⭐ the repo if you like what you see😉.
 
 ## 💻 Requirements
