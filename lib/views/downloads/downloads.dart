@@ -61,14 +61,18 @@ class _DownloadsState extends State<Downloads> {
           child: InkWell(
             onTap: () async {
               String path = dl['path'];
-              List locator = await LocatorDB().getLocator(dl['id']);
+              List locators = await LocatorDB().getLocator(dl['id']);
 
-              EpubViewer.setConfig('androidBook', '#2ca8e2', 'vertical', true);
+              EpubViewer.setConfig(
+                'androidBook', Theme.of(context).accentColor,
+                EpubScrollDirection.VERTICAL,
+                true,
+              );
               EpubViewer.open(
                   path,
-                  lastLocation: locator.isNotEmpty
-                      ?locator[0]
-                      :null
+                  lastLocation: locators.isNotEmpty
+                      ? EpubLocator.fromJson(locators[0])
+                      : null
               );
               EpubViewer.locatorStream.listen((event) async {
                 // Get locator here
