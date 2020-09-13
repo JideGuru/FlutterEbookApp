@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:io';
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:epub_viewer/epub_viewer.dart';
@@ -236,9 +235,11 @@ class _DetailsState extends State<Details> {
       List locators = await LocatorDB().getLocator(widget.entry.id.t.toString());
 
       EpubViewer.setConfig(
-        'androidBook', Theme.of(context).accentColor,
-        EpubScrollDirection.VERTICAL,
-        true,
+        identifier: 'androidBook',
+        themeColor: Theme.of(context).accentColor,
+        scrollDirection: EpubScrollDirection.VERTICAL,
+        enableTts: false,
+        allowSharing: true,
       );
       EpubViewer.open(
           path,

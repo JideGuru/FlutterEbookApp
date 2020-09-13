@@ -64,9 +64,11 @@ class _DownloadsState extends State<Downloads> {
               List locators = await LocatorDB().getLocator(dl['id']);
 
               EpubViewer.setConfig(
-                'androidBook', Theme.of(context).accentColor,
-                EpubScrollDirection.VERTICAL,
-                true,
+                identifier: 'androidBook',
+                themeColor: Theme.of(context).accentColor,
+                scrollDirection: EpubScrollDirection.VERTICAL,
+                enableTts: false,
+                allowSharing: true,
               );
               EpubViewer.open(
                   path,
