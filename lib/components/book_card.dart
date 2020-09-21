@@ -38,7 +38,7 @@ class BookCard extends StatelessWidget {
             Radius.circular(10.0),
           ),
           onTap: () {
-            Router.pushPage(
+            MyRouter.pushPage(
               context,
               Details(
                 entry: entry,
