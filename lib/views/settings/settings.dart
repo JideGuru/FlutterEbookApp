@@ -112,11 +112,11 @@ class _ProfileState extends State<Profile> {
   }
 
   _pushPage(Widget page) {
-    Router.pushPage(context, page);
+    MyRouter.pushPage(context, page);
   }
 
   _pushPageDialog(Widget page) {
-    Router.pushPageDialog(context, page);
+    MyRouter.pushPageDialog(context, page);
   }
 
   showAbout() {

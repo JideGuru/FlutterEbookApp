@@ -19,7 +19,7 @@ class _SplashState extends State<Splash> {
   }
 
   changeScreen() async {
-    Router.pushPageReplacement(
+    MyRouter.pushPageReplacement(
       context,
       MainScreen(),
     );

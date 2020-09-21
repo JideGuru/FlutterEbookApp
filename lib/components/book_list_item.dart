@@ -32,7 +32,7 @@ class BookListItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Router.pushPage(
+        MyRouter.pushPage(
           context,
           Details(
             entry: entry,

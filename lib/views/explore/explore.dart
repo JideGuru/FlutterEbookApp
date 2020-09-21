@@ -83,7 +83,7 @@ class _ExploreState extends State<Explore> {
           ),
           GestureDetector(
             onTap: () {
-              Router.pushPage(
+              MyRouter.pushPage(
                 context,
                 Genre(
                   title: '${link.title}',

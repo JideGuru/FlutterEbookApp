@@ -148,7 +148,7 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
                     Radius.circular(20.0),
                   ),
                   onTap: () {
-                    Router.pushPage(
+                    MyRouter.pushPage(
                       context,
                       Genre(
                         title: '${link.title}',
