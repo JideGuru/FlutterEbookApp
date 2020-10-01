@@ -109,7 +109,6 @@ class _DetailsState extends State<Details> {
 
   _buildImageTitleSection(DetailsProvider detailsProvider) {
     return Container(
-      height: 200.0,
       child: Row(
         mainAxisSize: MainAxisSize.max,
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -232,7 +231,8 @@ class _DetailsState extends State<Details> {
       Map dl = dlList[0];
       String path = dl['path'];
 
-      List locators = await LocatorDB().getLocator(widget.entry.id.t.toString());
+      List locators =
+          await LocatorDB().getLocator(widget.entry.id.t.toString());
 
       EpubViewer.setConfig(
         identifier: 'androidBook',
@@ -241,12 +241,9 @@ class _DetailsState extends State<Details> {
         enableTts: false,
         allowSharing: true,
       );
-      EpubViewer.open(
-          path,
-          lastLocation: locators.isNotEmpty
-              ? EpubLocator.fromJson(locators[0])
-              : null
-      );
+      EpubViewer.open(path,
+          lastLocation:
+              locators.isNotEmpty ? EpubLocator.fromJson(locators[0]) : null);
       EpubViewer.locatorStream.listen((event) async {
         // Get locator here
         Map json = jsonDecode(event);
