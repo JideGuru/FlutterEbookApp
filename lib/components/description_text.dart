@@ -33,7 +33,7 @@ class _DescriptionTextWidgetState extends State<DescriptionTextWidget> {
     return Container(
       child: secondHalf.isEmpty
           ? Text(
-              '${flag ? (firstHalf + '...') : (firstHalf + secondHalf)}'
+              '${flag ? (firstHalf) : (firstHalf + secondHalf)}'
                   .replaceAll(r'\n', '\n')
                   .replaceAll(r'\r', '')
                   .replaceAll(r"\'", "'"),
