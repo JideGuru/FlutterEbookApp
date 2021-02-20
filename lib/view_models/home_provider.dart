@@ -16,7 +16,7 @@ class HomeProvider with ChangeNotifier {
     try {
       CategoryFeed popular = await api.getCategory(Api.popular);
       setTop(popular);
-      CategoryFeed newReleases = await api.getCategory(Api.noteworthy);
+      CategoryFeed newReleases = await api.getCategory(Api.recent);
       setRecent(newReleases);
       setApiRequestStatus(APIRequestStatus.loaded);
     } catch (e) {
