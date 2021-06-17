@@ -82,7 +82,9 @@ class DetailsProvider extends ChangeNotifier {
   }
 
   addDownload(Map body) async {
-    await dlDB.removeAllWithId({'id': entry.id.t.toString()});
+    //only  remove Ageist item  from  db , using  removeAllWithId()  case
+    // unexpected results  by  removing   all  other  enters
+    await dlDB.remove({'id': entry.id.t.toString()});
     await dlDB.add(body);
     checkDownload();
   }
