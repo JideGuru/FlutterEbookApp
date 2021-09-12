@@ -11,7 +11,7 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
-  PageController _pageController;
+  late PageController _pageController;
   int _page = 0;
 
   @override
@@ -23,11 +23,7 @@ class _MainScreenState extends State<MainScreen> {
           physics: NeverScrollableScrollPhysics(),
           controller: _pageController,
           onPageChanged: onPageChanged,
-          children: <Widget>[
-            Home(),
-            Explore(),
-            Profile(),
-          ],
+          children: <Widget>[Home(), Explore(), Profile()],
         ),
         bottomNavigationBar: BottomNavigationBar(
           backgroundColor: Theme.of(context).primaryColor,
@@ -37,28 +33,16 @@ class _MainScreenState extends State<MainScreen> {
           type: BottomNavigationBarType.fixed,
           items: <BottomNavigationBarItem>[
             BottomNavigationBarItem(
-              icon: Icon(
-                Feather.home,
-              ),
-              title: Text(
-                'Home',
-              ),
+              icon: Icon(Feather.home),
+              label: 'Home',
             ),
             BottomNavigationBarItem(
-              icon: Icon(
-                Feather.compass,
-              ),
-              title: Text(
-                'Explore',
-              ),
+              icon: Icon(Feather.compass),
+              label: 'Explore',
             ),
             BottomNavigationBarItem(
-              icon: Icon(
-                Feather.settings,
-              ),
-              title: Text(
-                'Settings',
-              ),
+              icon: Icon(Feather.settings),
+              label: 'Settings',
             ),
           ],
           onTap: navigationTapped,
