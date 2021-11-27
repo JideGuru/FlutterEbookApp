@@ -15,12 +15,12 @@ class BookListItem extends StatelessWidget {
   final Entry entry;
 
   BookListItem({
-    Key key,
-    @required this.img,
-    @required this.title,
-    @required this.author,
-    @required this.desc,
-    @required this.entry,
+    Key? key,
+    required this.img,
+    required this.title,
+    required this.author,
+    required this.desc,
+    required this.entry,
   }) : super(key: key);
 
   static final uuid = Uuid();
@@ -99,7 +99,7 @@ class BookListItem extends StatelessWidget {
                         style: TextStyle(
                           fontSize: 17.0,
                           fontWeight: FontWeight.bold,
-                          color: Theme.of(context).textTheme.headline6.color,
+                          color: Theme.of(context).textTheme.headline6!.color,
                         ),
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis,
@@ -131,7 +131,7 @@ class BookListItem extends StatelessWidget {
                         .replaceAll(r'\"', '"'),
                     style: TextStyle(
                       fontSize: 13.0,
-                      color: Theme.of(context).textTheme.caption.color,
+                      color: Theme.of(context).textTheme.caption!.color,
                     ),
                   ),
                 ],

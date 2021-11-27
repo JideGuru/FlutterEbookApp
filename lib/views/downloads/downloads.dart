@@ -20,7 +20,7 @@ class _DownloadsState extends State<Downloads> {
   var db = DownloadsDB();
   static final uuid = Uuid();
 
-  List dls = List();
+  List dls = [];
 
   getDownloads() async {
     List l = await db.listAll();
@@ -70,12 +70,10 @@ class _DownloadsState extends State<Downloads> {
                 enableTts: false,
                 allowSharing: true,
               );
-              EpubViewer.open(
-                  path,
+              EpubViewer.open(path,
                   lastLocation: locators.isNotEmpty
                       ? EpubLocator.fromJson(locators[0])
-                      : null
-              );
+                      : null);
               EpubViewer.locatorStream.listen((event) async {
                 // Get locator here
                 Map json = jsonDecode(event);

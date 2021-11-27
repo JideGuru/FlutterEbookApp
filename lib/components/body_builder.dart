@@ -6,13 +6,13 @@ import 'package:flutter_ebook_app/util/enum/api_request_status.dart';
 class BodyBuilder extends StatelessWidget {
   final APIRequestStatus apiRequestStatus;
   final Widget child;
-  final Function reload;
+  final VoidCallback reload;
 
   BodyBuilder(
-      {Key key,
-      @required this.apiRequestStatus,
-      @required this.child,
-      @required this.reload})
+      {Key? key,
+      required this.apiRequestStatus,
+      required this.child,
+      required this.reload})
       : super(key: key);
 
   @override

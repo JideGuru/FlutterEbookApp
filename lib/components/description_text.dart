@@ -3,15 +3,15 @@ import 'package:flutter/material.dart';
 class DescriptionTextWidget extends StatefulWidget {
   final String text;
 
-  DescriptionTextWidget({@required this.text});
+  DescriptionTextWidget({required this.text});
 
   @override
   _DescriptionTextWidgetState createState() => _DescriptionTextWidgetState();
 }
 
 class _DescriptionTextWidgetState extends State<DescriptionTextWidget> {
-  String firstHalf;
-  String secondHalf;
+  String? firstHalf;
+  String? secondHalf;
 
   bool flag = true;
 
@@ -31,27 +31,27 @@ class _DescriptionTextWidgetState extends State<DescriptionTextWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: secondHalf.isEmpty
+      child: secondHalf!.isEmpty
           ? Text(
-              '${flag ? (firstHalf) : (firstHalf + secondHalf)}'
+              '${flag ? (firstHalf) : (firstHalf! + secondHalf!)}'
                   .replaceAll(r'\n', '\n')
                   .replaceAll(r'\r', '')
                   .replaceAll(r"\'", "'"),
               style: TextStyle(
                 fontSize: 16.0,
-                color: Theme.of(context).textTheme.caption.color,
+                color: Theme.of(context).textTheme.caption!.color,
               ),
             )
           : Column(
               children: <Widget>[
                 Text(
-                  '${flag ? (firstHalf + '...') : (firstHalf + secondHalf)}'
+                  '${flag ? (firstHalf! + '...') : (firstHalf! + secondHalf!)}'
                       .replaceAll(r'\n', '\n\n')
                       .replaceAll(r'\r', '')
                       .replaceAll(r"\'", "'"),
                   style: TextStyle(
                     fontSize: 16.0,
-                    color: Theme.of(context).textTheme.caption.color,
+                    color: Theme.of(context).textTheme.caption!.color,
                   ),
                 ),
                 InkWell(

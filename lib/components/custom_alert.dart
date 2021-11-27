@@ -4,13 +4,13 @@ import 'package:flutter/material.dart';
 
 // ignore: must_be_immutable
 class CustomAlert extends StatelessWidget {
+  CustomAlert({Key? key, required this.child}) : super(key: key);
+
   final Widget child;
 
-  CustomAlert({Key key, @required this.child}) : super(key: key);
-
-  double deviceWidth;
-  double deviceHeight;
-  double dialogHeight;
+  double? deviceWidth;
+  double? deviceHeight;
+  double? dialogHeight;
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +23,7 @@ class CustomAlert extends StatelessWidget {
     deviceHeight = orientation == Orientation.portrait
         ? viewsSize.height
         : viewsSize.width;
-    dialogHeight = deviceHeight * (0.50);
+    dialogHeight = deviceHeight! * (0.50);
 
     return MediaQuery(
       data: MediaQueryData(),
@@ -44,7 +44,7 @@ class CustomAlert extends StatelessWidget {
                     children: <Widget>[
                       Center(
                         child: Container(
-                          width: deviceWidth * 0.9,
+                          width: deviceWidth! * 0.9,
                           child: GestureDetector(
                             onTap: () {},
                             child: Card(

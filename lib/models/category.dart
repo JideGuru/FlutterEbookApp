@@ -1,7 +1,7 @@
 class CategoryFeed {
-  String version;
-  String encoding;
-  Feed feed;
+  String? version;
+  String? encoding;
+  Feed? feed;
 
   CategoryFeed({this.version, this.encoding, this.feed});
 
@@ -16,33 +16,33 @@ class CategoryFeed {
     data['version'] = this.version;
     data['encoding'] = this.encoding;
     if (this.feed != null) {
-      data['feed'] = this.feed.toJson();
+      data['feed'] = this.feed!.toJson();
     }
     return data;
   }
 }
 
 class Feed {
-  String xmlLang;
-  String xmlns;
-  String xmlnsDcterms;
-  String xmlnsThr;
-  String xmlnsApp;
-  String xmlnsOpensearch;
-  String xmlnsOpds;
-  String xmlnsXsi;
-  String xmlnsOdl;
-  String xmlnsSchema;
-  Id id;
-  Id title;
-  Id updated;
-  Id icon;
-  Author author;
-  List<Link> link;
-  Id opensearchTotalResults;
-  Id opensearchItemsPerPage;
-  Id opensearchStartIndex;
-  List<Entry> entry;
+  String? xmlLang;
+  String? xmlns;
+  String? xmlnsDcterms;
+  String? xmlnsThr;
+  String? xmlnsApp;
+  String? xmlnsOpensearch;
+  String? xmlnsOpds;
+  String? xmlnsXsi;
+  String? xmlnsOdl;
+  String? xmlnsSchema;
+  Id? id;
+  Id? title;
+  Id? updated;
+  Id? icon;
+  Author? author;
+  List<Link>? link;
+  Id? opensearchTotalResults;
+  Id? opensearchItemsPerPage;
+  Id? opensearchStartIndex;
+  List<Entry>? entry;
 
   Feed(
       {this.xmlLang,
@@ -84,9 +84,9 @@ class Feed {
     author =
         json['author'] != null ? new Author.fromJson(json['author']) : null;
     if (json['link'] != null) {
-      link = new List<Link>();
+      link = [];
       json['link'].forEach((v) {
-        link.add(new Link.fromJson(v));
+        link!.add(new Link.fromJson(v));
       });
     }
     opensearchTotalResults = json[r'opensearch$totalResults'] != null
@@ -101,13 +101,13 @@ class Feed {
     if (json['entry'] != null) {
       String t = json['entry'].runtimeType.toString();
       if (t == 'List<dynamic>' || t == '_GrowableList<dynamic>') {
-        entry = new List<Entry>();
+        entry = [];
         json['entry'].forEach((v) {
-          entry.add(new Entry.fromJson(v));
+          entry!.add(new Entry.fromJson(v));
         });
       } else {
-        entry = new List<Entry>();
-        entry.add(new Entry.fromJson(json['entry']));
+        entry = [];
+        entry!.add(new Entry.fromJson(json['entry']));
       }
     }
   }
@@ -125,41 +125,41 @@ class Feed {
     data[r'xmlns$odl'] = this.xmlnsOdl;
     data[r'xmlns$schema'] = this.xmlnsSchema;
     if (this.id != null) {
-      data['id'] = this.id.toJson();
+      data['id'] = this.id!.toJson();
     }
     if (this.title != null) {
-      data['title'] = this.title.toJson();
+      data['title'] = this.title!.toJson();
     }
     if (this.updated != null) {
-      data['updated'] = this.updated.toJson();
+      data['updated'] = this.updated!.toJson();
     }
     if (this.icon != null) {
-      data['icon'] = this.icon.toJson();
+      data['icon'] = this.icon!.toJson();
     }
     if (this.author != null) {
-      data['author'] = this.author.toJson();
+      data['author'] = this.author!.toJson();
     }
     if (this.link != null) {
-      data['link'] = this.link.map((v) => v.toJson()).toList();
+      data['link'] = this.link!.map((v) => v.toJson()).toList();
     }
     if (this.opensearchTotalResults != null) {
-      data[r'opensearch$totalResults'] = this.opensearchTotalResults.toJson();
+      data[r'opensearch$totalResults'] = this.opensearchTotalResults!.toJson();
     }
     if (this.opensearchItemsPerPage != null) {
-      data[r'opensearch$itemsPerPage'] = this.opensearchItemsPerPage.toJson();
+      data[r'opensearch$itemsPerPage'] = this.opensearchItemsPerPage!.toJson();
     }
     if (this.opensearchStartIndex != null) {
-      data[r'opensearch$startIndex'] = this.opensearchStartIndex.toJson();
+      data[r'opensearch$startIndex'] = this.opensearchStartIndex!.toJson();
     }
     if (this.entry != null) {
-      data['entry'] = this.entry.map((v) => v.toJson()).toList();
+      data['entry'] = this.entry!.map((v) => v.toJson()).toList();
     }
     return data;
   }
 }
 
 class Id {
-  String t;
+  String? t;
 
   Id({this.t});
 
@@ -175,9 +175,9 @@ class Id {
 }
 
 class Author {
-  Id name;
-  Id uri;
-  Id email;
+  Id? name;
+  Id? uri;
+  Id? email;
 
   Author({this.name, this.uri, this.email});
 
@@ -190,26 +190,26 @@ class Author {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     if (this.name != null) {
-      data['name'] = this.name.toJson();
+      data['name'] = this.name!.toJson();
     }
     if (this.uri != null) {
-      data['uri'] = this.uri.toJson();
+      data['uri'] = this.uri!.toJson();
     }
     if (this.email != null) {
-      data['email'] = this.email.toJson();
+      data['email'] = this.email!.toJson();
     }
     return data;
   }
 }
 
 class Link {
-  String rel;
-  String type;
-  String href;
-  String title;
-  String opdsActiveFacet;
-  String opdsFacetGroup;
-  String thrCount;
+  String? rel;
+  String? type;
+  String? href;
+  String? title;
+  String? opdsActiveFacet;
+  String? opdsFacetGroup;
+  String? thrCount;
 
   Link(
       {this.rel,
@@ -244,18 +244,18 @@ class Link {
 }
 
 class Entry {
-  Id title;
-  Id id;
-  Author1 author;
-  Id published;
-  Id updated;
-  Id dctermsLanguage;
-  Id dctermsPublisher;
-  Id dctermsIssued;
-  Id summary;
-  List<Category> category;
-  List<Link1> link;
-  SchemaSeries schemaSeries;
+  Id? title;
+  Id? id;
+  Author1? author;
+  Id? published;
+  Id? updated;
+  Id? dctermsLanguage;
+  Id? dctermsPublisher;
+  Id? dctermsIssued;
+  Id? summary;
+  List<Category>? category;
+  List<Link1>? link;
+  SchemaSeries? schemaSeries;
 
   Entry(
       {this.title,
@@ -298,19 +298,19 @@ class Entry {
     if (json['category'] != null) {
       String t = json['category'].runtimeType.toString();
       if (t == 'List<dynamic>' || t == '_GrowableList<dynamic>') {
-        category = new List<Category>();
+        category = [];
         json['category'].forEach((v) {
-          category.add(new Category.fromJson(v));
+          category!.add(new Category.fromJson(v));
         });
       } else {
-        category = new List<Category>();
-        category.add(new Category.fromJson(json['category']));
+        category = [];
+        category!.add(new Category.fromJson(json['category']));
       }
     }
     if (json['link'] != null) {
-      link = new List<Link1>();
+      link = [];
       json['link'].forEach((v) {
-        link.add(new Link1.fromJson(v));
+        link!.add(new Link1.fromJson(v));
       });
     }
     schemaSeries = json[r'schema$Series'] != null
@@ -321,48 +321,48 @@ class Entry {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     if (this.title != null) {
-      data['title'] = this.title.toJson();
+      data['title'] = this.title!.toJson();
     }
     if (this.id != null) {
-      data['id'] = this.id.toJson();
+      data['id'] = this.id!.toJson();
     }
     if (this.author != null) {
-      data['author'] = this.author.toJson();
+      data['author'] = this.author!.toJson();
     }
     if (this.published != null) {
-      data['published'] = this.published.toJson();
+      data['published'] = this.published!.toJson();
     }
     if (this.updated != null) {
-      data['updated'] = this.updated.toJson();
+      data['updated'] = this.updated!.toJson();
     }
     if (this.dctermsLanguage != null) {
-      data[r'dcterms$language'] = this.dctermsLanguage.toJson();
+      data[r'dcterms$language'] = this.dctermsLanguage!.toJson();
     }
     if (this.dctermsPublisher != null) {
-      data[r'dcterms$publisher'] = this.dctermsPublisher.toJson();
+      data[r'dcterms$publisher'] = this.dctermsPublisher!.toJson();
     }
     if (this.dctermsIssued != null) {
-      data[r'dcterms$issued'] = this.dctermsIssued.toJson();
+      data[r'dcterms$issued'] = this.dctermsIssued!.toJson();
     }
     if (this.summary != null) {
-      data['summary'] = this.summary.toJson();
+      data['summary'] = this.summary!.toJson();
     }
     if (this.category != null) {
-      data['category'] = this.category.map((v) => v.toJson()).toList();
+      data['category'] = this.category!.map((v) => v.toJson()).toList();
     }
     if (this.link != null) {
-      data['link'] = this.link.map((v) => v.toJson()).toList();
+      data['link'] = this.link!.map((v) => v.toJson()).toList();
     }
     if (this.schemaSeries != null) {
-      data[r'schema$Series'] = this.schemaSeries.toJson();
+      data[r'schema$Series'] = this.schemaSeries!.toJson();
     }
     return data;
   }
 }
 
 class Author1 {
-  Id name;
-  Id uri;
+  Id? name;
+  Id? uri;
 
   Author1({this.name, this.uri});
 
@@ -374,19 +374,19 @@ class Author1 {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     if (this.name != null) {
-      data['name'] = this.name.toJson();
+      data['name'] = this.name!.toJson();
     }
     if (this.uri != null) {
-      data['uri'] = this.uri.toJson();
+      data['uri'] = this.uri!.toJson();
     }
     return data;
   }
 }
 
 class Category {
-  String label;
-  String term;
-  String scheme;
+  String? label;
+  String? term;
+  String? scheme;
 
   Category({this.label, this.term, this.scheme});
 
@@ -406,10 +406,10 @@ class Category {
 }
 
 class Link1 {
-  String type;
-  String rel;
-  String title;
-  String href;
+  String? type;
+  String? rel;
+  String? title;
+  String? href;
 
   Link1({this.type, this.rel, this.title, this.href});
 
@@ -431,9 +431,9 @@ class Link1 {
 }
 
 class SchemaSeries {
-  String schemaPosition;
-  String schemaName;
-  String schemaUrl;
+  String? schemaPosition;
+  String? schemaName;
+  String? schemaUrl;
 
   SchemaSeries({this.schemaPosition, this.schemaName, this.schemaUrl});
 
