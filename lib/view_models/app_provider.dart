@@ -9,7 +9,7 @@ class AppProvider extends ChangeNotifier {
   }
 
   ThemeData theme = ThemeConfig.lightTheme;
-  Key key = UniqueKey();
+  Key? key = UniqueKey();
   GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
   void setKey(value) {

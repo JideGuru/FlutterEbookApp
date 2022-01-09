@@ -7,7 +7,7 @@ class DownloadAlert extends StatefulWidget {
   final String url;
   final String path;
 
-  DownloadAlert({Key key, @required this.url, @required this.path})
+  DownloadAlert({Key? key, required this.url, required this.path})
       : super(key: key);
 
   @override

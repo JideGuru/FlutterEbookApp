@@ -16,7 +16,7 @@ import '../models/category.dart';
 class DetailsProvider extends ChangeNotifier {
   CategoryFeed related = CategoryFeed();
   bool loading = true;
-  Entry entry;
+  Entry? entry;
   var favDB = FavoriteDB();
   var dlDB = DownloadsDB();
 
@@ -39,7 +39,7 @@ class DetailsProvider extends ChangeNotifier {
 
   // check if book is favorited
   checkFav() async {
-    List c = await favDB.check({'id': entry.id.t.toString()});
+    List c = await favDB.check({'id': entry!.id!.t.toString()});
     if (c.isNotEmpty) {
       setFaved(true);
     } else {
@@ -48,12 +48,12 @@ class DetailsProvider extends ChangeNotifier {
   }
 
   addFav() async {
-    await favDB.add({'id': entry.id.t.toString(), 'item': entry.toJson()});
+    await favDB.add({'id': entry!.id!.t.toString(), 'item': entry!.toJson()});
     checkFav();
   }
 
   removeFav() async {
-    favDB.remove({'id': entry.id.t.toString()}).then((v) {
+    favDB.remove({'id': entry!.id!.t.toString()}).then((v) {
       print(v);
       checkFav();
     });
@@ -61,14 +61,14 @@ class DetailsProvider extends ChangeNotifier {
 
   // check if book has been downloaded before
   checkDownload() async {
-    List downloads = await dlDB.check({'id': entry.id.t.toString()});
+    List downloads = await dlDB.check({'id': entry!.id!.t.toString()});
     if (downloads.isNotEmpty) {
       // check if book has been deleted
       String path = downloads[0]['path'];
       print(path);
-      if(await File(path).exists()){
+      if (await File(path).exists()) {
         setDownloaded(true);
-      }else{
+      } else {
         setDownloaded(false);
       }
     } else {
@@ -77,29 +77,28 @@ class DetailsProvider extends ChangeNotifier {
   }
 
   Future<List> getDownload() async {
-    List c = await dlDB.check({'id': entry.id.t.toString()});
+    List c = await dlDB.check({'id': entry!.id!.t.toString()});
     return c;
   }
 
   addDownload(Map body) async {
-    await dlDB.removeAllWithId({'id': entry.id.t.toString()});
+    await dlDB.removeAllWithId({'id': entry!.id!.t.toString()});
     await dlDB.add(body);
     checkDownload();
   }
 
   removeDownload() async {
-    dlDB.remove({'id': entry.id.t.toString()}).then((v) {
+    dlDB.remove({'id': entry!.id!.t.toString()}).then((v) {
       print(v);
       checkDownload();
     });
   }
 
   Future downloadFile(BuildContext context, String url, String filename) async {
-    PermissionStatus permission = await PermissionHandler()
-        .checkPermissionStatus(PermissionGroup.storage);
+    PermissionStatus permission = await Permission.storage.status;
 
     if (permission != PermissionStatus.granted) {
-      await PermissionHandler().requestPermissions([PermissionGroup.storage]);
+      await Permission.storage.request();
       startDownload(context, url, filename);
     } else {
       startDownload(context, url, filename);
@@ -107,17 +106,17 @@ class DetailsProvider extends ChangeNotifier {
   }
 
   startDownload(BuildContext context, String url, String filename) async {
-    Directory appDocDir = Platform.isAndroid
+    Directory? appDocDir = Platform.isAndroid
         ? await getExternalStorageDirectory()
         : await getApplicationDocumentsDirectory();
     if (Platform.isAndroid) {
-      Directory(appDocDir.path.split('Android')[0] + '${Constants.appName}')
+      Directory(appDocDir!.path.split('Android')[0] + '${Constants.appName}')
           .createSync();
     }
 
     String path = Platform.isIOS
-        ? appDocDir.path + '/$filename.epub'
-        : appDocDir.path.split('Android')[0] +
+        ? appDocDir!.path + '/$filename.epub'
+        : appDocDir!.path.split('Android')[0] +
             '${Constants.appName}/$filename.epub';
     print(path);
     File file = File(path);
@@ -141,11 +140,11 @@ class DetailsProvider extends ChangeNotifier {
       if (v != null) {
         addDownload(
           {
-            'id': entry.id.t.toString(),
+            'id': entry!.id!.t.toString(),
             'path': path,
-            'image': '${entry.link[1].href}',
+            'image': '${entry!.link![1].href}',
             'size': v,
-            'name': entry.title.t,
+            'name': entry!.title!.t,
           },
         );
       }
