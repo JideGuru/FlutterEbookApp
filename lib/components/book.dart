@@ -13,10 +13,10 @@ class BookItem extends StatelessWidget {
   final Entry entry;
 
   BookItem({
-    Key key,
-    @required this.img,
-    @required this.title,
-    @required this.entry,
+    Key? key,
+    required this.img,
+    required this.title,
+    required this.entry,
   }) : super(key: key);
 
   static final uuid = Uuid();

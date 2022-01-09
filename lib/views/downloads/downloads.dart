@@ -20,7 +20,7 @@ class _DownloadsState extends State<Downloads> {
   var db = DownloadsDB();
   static final uuid = Uuid();
 
-  List dls = List();
+  List dls = [];
 
   getDownloads() async {
     List l = await db.listAll();

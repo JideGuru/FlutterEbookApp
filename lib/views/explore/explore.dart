@@ -20,7 +20,7 @@ class _ExploreState extends State<Explore> {
   @override
   Widget build(BuildContext context) {
     return Consumer<HomeProvider>(
-      builder: (BuildContext context, HomeProvider homeProvider, Widget child) {
+      builder: (BuildContext context, HomeProvider homeProvider, Widget? child) {
         return Scaffold(
           appBar: AppBar(
             centerTitle: true,
@@ -40,9 +40,9 @@ class _ExploreState extends State<Explore> {
 
   _buildBodyList(HomeProvider homeProvider) {
     return ListView.builder(
-      itemCount: homeProvider?.top?.feed?.link?.length ?? 0,
+      itemCount: homeProvider.top.feed?.link?.length ?? 0,
       itemBuilder: (BuildContext context, int index) {
-        Link link = homeProvider.top.feed.link[index];
+        Link link = homeProvider.top.feed!.link![index];
 
         // We don't need the tags from 0-9 because
         // they are not categories
@@ -87,7 +87,7 @@ class _ExploreState extends State<Explore> {
                 context,
                 Genre(
                   title: '${link.title}',
-                  url: link.href,
+                  url: link.href!,
                 ),
               );
             },
@@ -106,11 +106,11 @@ class _ExploreState extends State<Explore> {
 
   _buildSectionBookList(Link link) {
     return FutureBuilder<CategoryFeed>(
-      future: api.getCategory(link.href),
+      future: api.getCategory(link.href!),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.done &&
             snapshot.hasData) {
-          CategoryFeed category = snapshot.data;
+          CategoryFeed category = snapshot.data!;
 
           return Container(
             height: 200.0,
@@ -118,10 +118,10 @@ class _ExploreState extends State<Explore> {
               child: ListView.builder(
                 padding: EdgeInsets.symmetric(horizontal: 15.0),
                 scrollDirection: Axis.horizontal,
-                itemCount: category.feed.entry.length,
+                itemCount: category.feed!.entry!.length,
                 shrinkWrap: true,
                 itemBuilder: (BuildContext context, int index) {
-                  Entry entry = category.feed.entry[index];
+                  Entry entry = category.feed!.entry![index];
 
                   return Padding(
                     padding: EdgeInsets.symmetric(
@@ -129,7 +129,7 @@ class _ExploreState extends State<Explore> {
                       vertical: 10.0,
                     ),
                     child: BookCard(
-                      img: entry.link[1].href,
+                      img: entry.link![1].href!,
                       entry: entry,
                     ),
                   );

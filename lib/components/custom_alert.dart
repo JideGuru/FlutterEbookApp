@@ -6,11 +6,11 @@ import 'package:flutter/material.dart';
 class CustomAlert extends StatelessWidget {
   final Widget child;
 
-  CustomAlert({Key key, @required this.child}) : super(key: key);
+  CustomAlert({Key? key, required this.child}) : super(key: key);
 
-  double deviceWidth;
-  double deviceHeight;
-  double dialogHeight;
+  late double deviceWidth;
+  late double deviceHeight;
+  late double dialogHeight;
 
   @override
   Widget build(BuildContext context) {

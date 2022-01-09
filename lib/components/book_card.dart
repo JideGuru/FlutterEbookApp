@@ -12,9 +12,9 @@ class BookCard extends StatelessWidget {
   final Entry entry;
 
   BookCard({
-    Key key,
-    @required this.img,
-    @required this.entry,
+    Key? key,
+    required this.img,
+    required this.entry,
   }) : super(key: key);
 
   static final uuid = Uuid();

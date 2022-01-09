@@ -8,19 +8,11 @@ import 'package:uuid/uuid.dart';
 import '../views/details/details.dart';
 
 class BookListItem extends StatelessWidget {
-  final String img;
-  final String title;
-  final String author;
-  final String desc;
   final Entry entry;
 
   BookListItem({
-    Key key,
-    @required this.img,
-    @required this.title,
-    @required this.author,
-    @required this.desc,
-    @required this.entry,
+    Key? key,
+    required this.entry,
   }) : super(key: key);
 
   static final uuid = Uuid();
@@ -62,7 +54,7 @@ class BookListItem extends StatelessWidget {
                 child: Hero(
                   tag: imgTag,
                   child: CachedNetworkImage(
-                    imageUrl: '$img',
+                    imageUrl: '${entry.link![1].href!}',
                     placeholder: (context, url) => Container(
                       height: 150.0,
                       width: 100.0,
@@ -95,11 +87,11 @@ class BookListItem extends StatelessWidget {
                     child: Material(
                       type: MaterialType.transparency,
                       child: Text(
-                        '${title.replaceAll(r'\', '')}',
+                        '${entry.title!.t!.replaceAll(r'\', '')}',
                         style: TextStyle(
                           fontSize: 17.0,
                           fontWeight: FontWeight.bold,
-                          color: Theme.of(context).textTheme.headline6.color,
+                          color: Theme.of(context).textTheme.headline6!.color,
                         ),
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis,
@@ -114,7 +106,7 @@ class BookListItem extends StatelessWidget {
                     child: Material(
                       type: MaterialType.transparency,
                       child: Text(
-                        '$author',
+                        '${entry.author!.name!.t!}',
                         style: TextStyle(
                           fontSize: 14.0,
                           fontWeight: FontWeight.w800,
@@ -125,13 +117,13 @@ class BookListItem extends StatelessWidget {
                   ),
                   SizedBox(height: 10.0),
                   Text(
-                    '${desc.length < 100 ? desc : desc.substring(0, 100)}...'
+                    '${entry.summary!.t!.length < 100 ? entry.summary!.t! : entry.summary!.t!.substring(0, 100)}...'
                         .replaceAll(r'\n', '\n')
                         .replaceAll(r'\r', '')
                         .replaceAll(r'\"', '"'),
                     style: TextStyle(
                       fontSize: 13.0,
-                      color: Theme.of(context).textTheme.caption.color,
+                      color: Theme.of(context).textTheme.caption!.color,
                     ),
                   ),
                 ],
