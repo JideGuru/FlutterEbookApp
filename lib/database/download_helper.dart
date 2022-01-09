@@ -37,6 +37,7 @@ class DownloadsDB {
     final db = ObjectDB(await getPath());
     List val = await db.find({});
     await db.close();
+    print(val);
     return val;
   }
 
