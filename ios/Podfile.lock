@@ -1,0 +1,105 @@
+PODS:
+  - AEXML (4.6.0)
+  - epub_viewer (0.0.2):
+    - EpubViewerKit (~> 0.1.3)
+    - Flutter
+  - EpubViewerKit (0.1.3):
+    - AEXML (= 4.6.0)
+    - FontBlaster (= 5.1.1)
+    - MenuItemKit (= 4.0.1)
+    - RealmSwift (= 5.5.1)
+    - SSZipArchive (= 2.2.3)
+    - ZFDragableModalTransition (= 0.6)
+  - Flutter (1.0.0)
+  - fluttertoast (0.0.2):
+    - Flutter
+    - Toast
+  - FMDB (2.7.5):
+    - FMDB/standard (= 2.7.5)
+  - FMDB/standard (2.7.5)
+  - FontBlaster (5.1.1)
+  - MenuItemKit (4.0.1)
+  - path_provider (0.0.1):
+    - Flutter
+  - "permission_handler (5.1.0+2)":
+    - Flutter
+  - Realm (5.5.1):
+    - Realm/Headers (= 5.5.1)
+  - Realm/Headers (5.5.1)
+  - RealmSwift (5.5.1):
+    - Realm (= 5.5.1)
+  - share (0.0.1):
+    - Flutter
+  - shared_preferences (0.0.1):
+    - Flutter
+  - sqflite (0.0.2):
+    - Flutter
+    - FMDB (>= 2.7.5)
+  - SSZipArchive (2.2.3)
+  - Toast (4.0.0)
+  - ZFDragableModalTransition (0.6)
+
+DEPENDENCIES:
+  - epub_viewer (from `.symlinks/plugins/epub_viewer/ios`)
+  - Flutter (from `Flutter`)
+  - fluttertoast (from `.symlinks/plugins/fluttertoast/ios`)
+  - path_provider (from `.symlinks/plugins/path_provider/ios`)
+  - permission_handler (from `.symlinks/plugins/permission_handler/ios`)
+  - share (from `.symlinks/plugins/share/ios`)
+  - shared_preferences (from `.symlinks/plugins/shared_preferences/ios`)
+  - sqflite (from `.symlinks/plugins/sqflite/ios`)
+
+SPEC REPOS:
+  trunk:
+    - AEXML
+    - EpubViewerKit
+    - FMDB
+    - FontBlaster
+    - MenuItemKit
+    - Realm
+    - RealmSwift
+    - SSZipArchive
+    - Toast
+    - ZFDragableModalTransition
+
+EXTERNAL SOURCES:
+  epub_viewer:
+    :path: ".symlinks/plugins/epub_viewer/ios"
+  Flutter:
+    :path: Flutter
+  fluttertoast:
+    :path: ".symlinks/plugins/fluttertoast/ios"
+  path_provider:
+    :path: ".symlinks/plugins/path_provider/ios"
+  permission_handler:
+    :path: ".symlinks/plugins/permission_handler/ios"
+  share:
+    :path: ".symlinks/plugins/share/ios"
+  shared_preferences:
+    :path: ".symlinks/plugins/shared_preferences/ios"
+  sqflite:
+    :path: ".symlinks/plugins/sqflite/ios"
+
+SPEC CHECKSUMS:
+  AEXML: 2fbb73d8724797ed2cde888731e176fa4d44dd83
+  epub_viewer: 422e82cc0068756c376102e3fa0e0fda570ddeb8
+  EpubViewerKit: 5f6c8ff9161bba18d6742c59b3c575c19f0623a9
+  Flutter: 434fef37c0980e73bb6479ef766c45957d4b510c
+  fluttertoast: 6122fa75143e992b1d3470f61000f591a798cc58
+  FMDB: 2ce00b547f966261cd18927a3ddb07cb6f3db82a
+  FontBlaster: 8897ebdbb4b6ace3ab78c92b665d88c954f19e4a
+  MenuItemKit: 1459920e984d823e1bcc858b7a964f94e6bfa0f6
+  path_provider: abfe2b5c733d04e238b0d8691db0cfd63a27a93c
+  permission_handler: ccb20a9fad0ee9b1314a52b70b76b473c5f8dab0
+  Realm: c2ffe0667f9c98c9ba65f608ba85684d39826145
+  RealmSwift: 5a35c1c35c3e1925e6fcd092c881d5cc4a826bff
+  share: 0b2c3e82132f5888bccca3351c504d0003b3b410
+  shared_preferences: af6bfa751691cdc24be3045c43ec037377ada40d
+  sqflite: 6d358c025f5b867b29ed92fc697fd34924e11904
+  SSZipArchive: 62d4947b08730e4cda640473b0066d209ff033c9
+  Toast: 91b396c56ee72a5790816f40d3a94dd357abc196
+  ZFDragableModalTransition: 0d294eaaba6edfcb9839595de765f9ca06a4b524
+
+PODFILE CHECKSUM: a75497545d4391e2d394c3668e20cfb1c2bbd4aa
+
+COCOAPODS: 1.11.2
