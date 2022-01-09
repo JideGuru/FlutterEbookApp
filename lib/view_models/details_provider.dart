@@ -99,6 +99,10 @@ class DetailsProvider extends ChangeNotifier {
 
     if (permission != PermissionStatus.granted) {
       await Permission.storage.request();
+      // access media location needed for android 10/Q
+      await Permission.accessMediaLocation.request();
+      // manage external storage needed for android 11/R
+      await Permission.manageExternalStorage.request();
       startDownload(context, url, filename);
     } else {
       startDownload(context, url, filename);
