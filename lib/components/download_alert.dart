@@ -78,9 +78,9 @@ class _DownloadAlertState extends State<DownloadAlert> {
                 child: LinearProgressIndicator(
                   value: double.parse(progress) / 100.0,
                   valueColor:
-                      AlwaysStoppedAnimation(Theme.of(context).accentColor),
+                      AlwaysStoppedAnimation(Theme.of(context).colorScheme.secondary),
                   backgroundColor:
-                      Theme.of(context).accentColor.withOpacity(0.3),
+                      Theme.of(context).colorScheme.secondary.withOpacity(0.3),
                 ),
               ),
               SizedBox(height: 5.0),

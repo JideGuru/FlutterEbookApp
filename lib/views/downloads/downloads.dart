@@ -7,7 +7,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_ebook_app/components/loading_widget.dart';
 import 'package:flutter_ebook_app/database/download_helper.dart';
 import 'package:flutter_ebook_app/database/locator_helper.dart';
-import 'package:flutter_icons/flutter_icons.dart';
 import 'package:uuid/uuid.dart';
 
 class Downloads extends StatefulWidget {
@@ -65,7 +64,7 @@ class _DownloadsState extends State<Downloads> {
 
               EpubViewer.setConfig(
                 identifier: 'androidBook',
-                themeColor: Theme.of(context).accentColor,
+                themeColor: Theme.of(context).colorScheme.secondary,
                 scrollDirection: EpubScrollDirection.VERTICAL,
                 enableTts: false,
                 allowSharing: true,
@@ -128,7 +127,7 @@ class _DownloadsState extends State<Downloads> {
                               style: TextStyle(
                                 fontSize: 13.0,
                                 fontWeight: FontWeight.bold,
-                                color: Theme.of(context).accentColor,
+                                color: Theme.of(context).colorScheme.secondary,
                               ),
                               maxLines: 2,
                               overflow: TextOverflow.ellipsis,
@@ -186,7 +185,7 @@ class _DownloadsState extends State<Downloads> {
       padding: EdgeInsets.only(right: 20.0),
       color: Colors.red,
       child: Icon(
-        Feather.trash_2,
+        Icons.delete,
         color: Colors.white,
       ),
     );
