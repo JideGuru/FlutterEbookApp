@@ -10,7 +10,7 @@ import 'package:flutter_ebook_app/components/loading_widget.dart';
 import 'package:flutter_ebook_app/database/locator_helper.dart';
 import 'package:flutter_ebook_app/models/category.dart';
 import 'package:flutter_ebook_app/view_models/details_provider.dart';
-import 'package:flutter_icons/flutter_icons.dart';
+
 import 'package:provider/provider.dart';
 import 'package:share/share.dart';
 
@@ -63,7 +63,7 @@ class _DetailsState extends State<Details> {
                   }
                 },
                 icon: Icon(
-                  detailsProvider.faved ? Icons.favorite : Feather.heart,
+                  detailsProvider.faved ? Icons.favorite : Icons.thumbs_up_down,
                   color: detailsProvider.faved
                       ? Colors.red
                       : Theme.of(context).iconTheme.color,
@@ -72,7 +72,7 @@ class _DetailsState extends State<Details> {
               IconButton(
                 onPressed: () => _share(),
                 icon: Icon(
-                  Feather.share,
+                  Icons.share,
                 ),
               ),
             ],
@@ -122,7 +122,7 @@ class _DetailsState extends State<Details> {
                 width: 130.0,
                 child: LoadingWidget(),
               ),
-              errorWidget: (context, url, error) => Icon(Feather.x),
+              errorWidget: (context, url, error) => Icon(Icons.error),
               fit: BoxFit.cover,
               height: 200.0,
               width: 130.0,
@@ -297,7 +297,7 @@ class _DetailsState extends State<Details> {
                     Radius.circular(20),
                   ),
                   border: Border.all(
-                    color: Theme.of(context).accentColor,
+                    color: Theme.of(context).colorScheme.secondary,
                   ),
                 ),
                 child: Center(
@@ -306,7 +306,7 @@ class _DetailsState extends State<Details> {
                     child: Text(
                       '${cat.label}',
                       style: TextStyle(
-                        color: Theme.of(context).accentColor,
+                        color: Theme.of(context).colorScheme.secondary,
                         fontSize: cat.label!.length > 18 ? 6.0 : 10.0,
                         fontWeight: FontWeight.bold,
                       ),
@@ -322,9 +322,7 @@ class _DetailsState extends State<Details> {
   }
 
   _share() {
-    Share.share(
-      '${widget.entry.title!.t} by ${widget.entry.author!.name!.t}'
-      'Read/Download ${widget.entry.title!.t} from ${widget.entry.link![3].href}.'
-    );
+    Share.share('${widget.entry.title!.t} by ${widget.entry.author!.name!.t}'
+        'Read/Download ${widget.entry.title!.t} from ${widget.entry.link![3].href}.');
   }
 }

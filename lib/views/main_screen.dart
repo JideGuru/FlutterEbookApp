@@ -3,7 +3,7 @@ import 'package:flutter_ebook_app/util/dialogs.dart';
 import 'package:flutter_ebook_app/views/explore/explore.dart';
 import 'package:flutter_ebook_app/views/home/home.dart';
 import 'package:flutter_ebook_app/views/settings/settings.dart';
-import 'package:flutter_icons/flutter_icons.dart';
+
 
 class MainScreen extends StatefulWidget {
   @override
@@ -33,15 +33,15 @@ class _MainScreenState extends State<MainScreen> {
           type: BottomNavigationBarType.fixed,
           items: <BottomNavigationBarItem>[
             BottomNavigationBarItem(
-              icon: Icon(Feather.home),
+              icon: Icon(Icons.home_max_rounded),
               label: 'Home',
             ),
             BottomNavigationBarItem(
-              icon: Icon(Feather.compass),
+              icon: Icon(Icons.explore),
               label: 'Explore',
             ),
             BottomNavigationBarItem(
-              icon: Icon(Feather.settings),
+              icon: Icon(Icons.settings),
               label: 'Settings',
             ),
           ],

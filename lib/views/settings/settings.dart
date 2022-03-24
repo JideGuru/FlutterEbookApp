@@ -4,7 +4,7 @@ import 'package:flutter_ebook_app/util/router.dart';
 import 'package:flutter_ebook_app/view_models/app_provider.dart';
 import 'package:flutter_ebook_app/views/downloads/downloads.dart';
 import 'package:flutter_ebook_app/views/favorites/favorites.dart';
-import 'package:flutter_icons/flutter_icons.dart';
+
 import 'package:provider/provider.dart';
 
 class Profile extends StatefulWidget {
@@ -20,27 +20,27 @@ class _ProfileState extends State<Profile> {
     super.initState();
     items = [
       {
-        'icon': Feather.heart,
+        'icon': Icons.heart_broken,
         'title': 'Favorites',
         'function': () => _pushPage(Favorites()),
       },
       {
-        'icon': Feather.download,
+        'icon': Icons.download,
         'title': 'Downloads',
         'function': () => _pushPage(Downloads()),
       },
       {
-        'icon': Feather.moon,
+        'icon': Icons.dark_mode,
         'title': 'Dark Mode',
         'function': () => _pushPage(Downloads()),
       },
       {
-        'icon': Feather.info,
+        'icon': Icons.info,
         'title': 'About',
         'function': () => showAbout(),
       },
       {
-        'icon': Feather.file_text,
+        'icon':Icons.chat_bubble_outline_rounded,
         'title': 'Licenses',
         'function': () => _pushPageDialog(LicensePage()),
       },
