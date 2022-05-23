@@ -17,7 +17,7 @@ environment:
   sdk: ">=2.12.0 <3.0.0"
 
 dependencies:
-  cached_network_image: ^3.1.0
+  cached_network_image: ^3.2.1
   cupertino_icons: ^1.0.3
   dio: ^4.0.0
   epub_viewer: ^0.2.2
@@ -36,6 +36,9 @@ dependencies:
   shared_preferences: ^2.0.7
   uuid: ^3.0.4
   xml2json: ^5.3.1
+
+dependency_overrides:
+  platform: ^3.1.0
 
 dev_dependencies:
   flutter_test:

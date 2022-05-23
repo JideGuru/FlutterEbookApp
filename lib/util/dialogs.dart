@@ -36,15 +36,11 @@ class Dialogs {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
+
                   Container(
                     height: 40.0,
                     width: 130.0,
-                    child: OutlineButton(
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(5.0),
-                      ),
-                      borderSide:
-                          BorderSide(color: Theme.of(context).accentColor),
+                    child: TextButton(
                       child: Text(
                         'No',
                         style: TextStyle(
@@ -52,7 +48,6 @@ class Dialogs {
                         ),
                       ),
                       onPressed: () => Navigator.pop(context),
-                      color: Colors.white,
                     ),
                   ),
                   Container(

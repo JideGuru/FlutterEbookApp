@@ -36,7 +36,7 @@ class _DetailsState extends State<Details> {
   @override
   void initState() {
     super.initState();
-    SchedulerBinding.instance!.addPostFrameCallback(
+    SchedulerBinding.instance.addPostFrameCallback(
       (_) {
         Provider.of<DetailsProvider>(context, listen: false)
             .setEntry(widget.entry);
