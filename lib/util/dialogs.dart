@@ -44,7 +44,7 @@ class Dialogs {
                       child: Text(
                         'No',
                         style: TextStyle(
-                          color: Theme.of(context).accentColor,
+                          color: Theme.of(context).colorScheme.secondary,
                         ),
                       ),
                       onPressed: () => Navigator.pop(context),
@@ -64,7 +64,7 @@ class Dialogs {
                         ),
                       ),
                       onPressed: () => exit(0),
-                      color: Theme.of(context).accentColor,
+                      color: Theme.of(context).colorScheme.secondary,
                     ),
                   ),
                 ],

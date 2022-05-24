@@ -1,12 +1,10 @@
-import 'dart:convert';
 import 'dart:io';
 
 import 'package:cached_network_image/cached_network_image.dart';
-// import 'package:epub_viewer/epub_viewer.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_ebook_app/components/loading_widget.dart';
 import 'package:flutter_ebook_app/database/download_helper.dart';
-import 'package:flutter_ebook_app/database/locator_helper.dart';
 import 'package:flutter_ebook_app/util/router.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:iridium_reader_widget/views/viewers/epub_screen.dart';
@@ -63,35 +61,8 @@ class _DownloadsState extends State<Downloads> {
           child: InkWell(
             onTap: () async {
               String path = dl['path'];
-              List locators = await LocatorDB().getLocator(dl['id']);
 
-              MyRouter.pushPage(
-                  context,
-                  EpubScreen.fromPath(filePath: path)
-                // EpubScreen(
-                //   asset: FileAsset(File(path)),
-                // ),
-              );
-              // EpubViewer.setConfig(
-              //   identifier: 'androidBook',
-              //   themeColor: Theme.of(context).accentColor,
-              //   scrollDirection: EpubScrollDirection.VERTICAL,
-              //   enableTts: false,
-              //   allowSharing: true,
-              // );
-              // EpubViewer.open(
-              //     path,
-              //     lastLocation: locators.isNotEmpty
-              //         ? EpubLocator.fromJson(locators[0])
-              //         : null
-              // );
-              // EpubViewer.locatorStream.listen((event) async {
-              //   // Get locator here
-              //   Map json = jsonDecode(event);
-              //   json['bookId'] = dl['id'];
-              //   // Save locator to your database
-              //   await LocatorDB().update(json);
-              // });
+              MyRouter.pushPage(context, EpubScreen.fromPath(filePath: path));
             },
             child: Padding(
               padding: EdgeInsets.symmetric(vertical: 5, horizontal: 15),
@@ -137,7 +108,7 @@ class _DownloadsState extends State<Downloads> {
                               style: TextStyle(
                                 fontSize: 13.0,
                                 fontWeight: FontWeight.bold,
-                                color: Theme.of(context).accentColor,
+                                color: Theme.of(context).colorScheme.secondary,
                               ),
                               maxLines: 2,
                               overflow: TextOverflow.ellipsis,

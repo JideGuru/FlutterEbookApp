@@ -35,7 +35,7 @@ class MyErrorWidget extends StatelessWidget {
           Container(
             child: RaisedButton(
               onPressed: () => refreshCallBack(),
-              color: Theme.of(context).accentColor,
+              color: Theme.of(context).colorScheme.secondary,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(5.0),
               ),

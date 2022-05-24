@@ -132,7 +132,7 @@ class _ProfileState extends State<Profile> {
           ),
           actions: <Widget>[
             FlatButton(
-              textColor: Theme.of(context).accentColor,
+              textColor: Theme.of(context).colorScheme.secondary,
               onPressed: () => Navigator.pop(context),
               child: Text(
                 'Close',

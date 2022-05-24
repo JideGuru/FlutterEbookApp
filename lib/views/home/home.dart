@@ -138,7 +138,7 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
               padding: EdgeInsets.symmetric(horizontal: 5.0, vertical: 10.0),
               child: Container(
                 decoration: BoxDecoration(
-                  color: Theme.of(context).accentColor,
+                  color: Theme.of(context).colorScheme.secondary,
                   borderRadius: BorderRadius.all(
                     Radius.circular(20.0),
                   ),

@@ -94,7 +94,7 @@ class _ExploreState extends State<Explore> {
             child: Text(
               'See All',
               style: TextStyle(
-                color: Theme.of(context).accentColor,
+                color: Theme.of(context).colorScheme.secondary,
                 fontWeight: FontWeight.w400,
               ),
             ),

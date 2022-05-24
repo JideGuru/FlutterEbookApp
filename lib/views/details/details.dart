@@ -186,7 +186,7 @@ class _DetailsState extends State<Details> {
     return Text(
       '$title',
       style: TextStyle(
-        color: Theme.of(context).accentColor,
+        color: Theme.of(context).colorScheme.secondary,
         fontSize: 20.0,
         fontWeight: FontWeight.bold,
       ),
@@ -280,7 +280,7 @@ class _DetailsState extends State<Details> {
                     Radius.circular(20),
                   ),
                   border: Border.all(
-                    color: Theme.of(context).accentColor,
+                    color: Theme.of(context).colorScheme.secondary,
                   ),
                 ),
                 child: Center(
@@ -289,7 +289,7 @@ class _DetailsState extends State<Details> {
                     child: Text(
                       '${cat.label}',
                       style: TextStyle(
-                        color: Theme.of(context).accentColor,
+                        color: Theme.of(context).colorScheme.secondary,
                         fontSize: cat.label!.length > 18 ? 6.0 : 10.0,
                         fontWeight: FontWeight.bold,
                       ),

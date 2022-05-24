@@ -49,6 +49,9 @@ class MyApp extends StatelessWidget {
       textTheme: GoogleFonts.sourceSansProTextTheme(
         theme.textTheme,
       ),
+      colorScheme: theme.colorScheme.copyWith(
+        secondary: ThemeConfig.lightAccent,
+      ),
     );
   }
 }
