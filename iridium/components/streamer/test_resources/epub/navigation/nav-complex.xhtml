@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:epub="http://www.idpf.org/2007/ops">
+<head>
+  <meta charset="utf-8" />
+</head>
+<body>
+  <nav epub:type="toc">
+    <h2>Table of Contents</h2>
+    <ol>
+      <li><a href="chapter1.xhtml">Chapter 1</a></li>
+      <!-- `hidden` should not be ignored when reporting the list of Link -->
+      <li hidden=""><a href="chapter2.xhtml">Chapter 2</a></li> 
+    </ol>
+  </nav>
+  
+  <nav epub:type="page-list">
+    <h2>Page List</h2>
+    <ol>
+      <li><a href="chapter1.xhtml#page1">1</a></li>
+      <li><a href="chapter1.xhtml#page2">2</a></li>
+    </ol>
+  </nav>
+
+  <nav epub:type="landmarks">
+    <h2>Landmarks</h2>
+    <ol>
+      <li><a epub:type="toc" href="#toc">Table of Contents</a></li>
+      <li><a epub:type="bodymatter" href="chapter1.xhtml">Begin Reading</a></li>
+    </ol>
+  </nav>
+</body>
+</html>

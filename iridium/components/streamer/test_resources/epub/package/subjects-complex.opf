@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<package xml:lang="en" xmlns="http://www.idpf.org/2007/opf" unique-identifier="pub-id" version="3.0" >
+  <metadata xmlns:dc="http://purl.org/dc/elements/1.1/">
+    <dc:title>Alice's Adventures in Wonderland</dc:title> 
+    <dc:subject id="subject">FICTION / Occult &amp; Supernatural</dc:subject>
+    <meta refines="#subject" property="alternate-script" xml:lang="fr">FICTION / Occulte &amp; Surnaturel</meta>
+    <meta refines="#subject" property="file-as" xml:lang="fr">occult</meta>
+    <meta refines="#subject" property="authority">BISAC</meta>
+    <meta refines="#subject" property="term">FIC024000</meta>
+  </metadata>
+  <manifest>
+    <item id="titlepage" href="titlepage.xhtml"/>
+  </manifest>
+  <spine>
+    <itemref idref="titlepage"/>
+  </spine>
+</package>

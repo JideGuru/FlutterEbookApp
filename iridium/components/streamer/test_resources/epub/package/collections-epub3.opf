@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<package xmlns="http://www.idpf.org/2007/opf" unique-identifier="pub-id" version="3.0" xml:lang="en">
+  <metadata xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:dcterms="http://purl.org/dc/terms/">
+    <dc:title>Alice's Adventures in Wonderland</dc:title>
+
+    <meta property="belongs-to-collection" id="c1">Series A  </meta>
+    <meta refines="#c1" property="collection-type">series</meta>
+    <meta refines="#c1" property="alternate-script" xml:lang="fr">  Série A   </meta>
+    <meta refines="#c1" property="group-position">2</meta>
+    <meta refines="#c1" property="dcterms:identifier">ser-a</meta>
+
+    
+    <meta property="belongs-to-collection" id="c2">Series B</meta>
+    <meta refines="#c2" property="collection-type">series</meta>
+    <meta refines="#c2" property="group-position">1.5</meta>
+    
+    <meta property="belongs-to-collection" id="c3">Collection A</meta>
+    <meta refines="#c3" property="collection-type">unknown</meta>
+    
+    <meta property="belongs-to-collection" id="c4">Collection B</meta>
+  </metadata>
+  <manifest>
+    <item id="titlepage" href="titlepage.xhtml"/>
+  </manifest>
+  <spine>
+    <itemref idref="titlepage"/>
+  </spine>
+</package>

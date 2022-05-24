@@ -1,0 +1,41 @@
+<ncx xmlns="http://www.daisy.org/z3986/2005/ncx/">
+  <docTitle>
+       <text>Document Title</text>
+   </docTitle>
+
+  <navMap>
+    <navPoint>
+      <navLabel><text>Chapter 1</text></navLabel>
+      <content src="xhtml/chapter1.xhtml"/>
+    </navPoint>
+    <navPoint>
+      <navLabel><text>Chapter 2</text></navLabel>
+      <content src="xhtml/chapter2.xhtml"/>
+    </navPoint>
+  </navMap>
+
+  <pageList>
+    <pageTarget id="p1" type="normal" value="1">
+      <navLabel><text>1</text></navLabel>
+      <content src="xhtml/chapter1.xhtml#page1"/>
+    </pageTarget>
+    <pageTarget id="p2" type="normal" value="2">
+      <navLabel><text>2</text></navLabel>
+      <content src="xhtml/chapter1.xhtml#page2"/>
+    </pageTarget>        
+  </pageList>
+
+  <navList>
+    <navLabel>
+      <text>List of Illustrations</text>
+    </navLabel>
+    <navTarget id="ill-1">
+      <navLabel><text>Portratit of Georg Gisze (Holbein)</text></navLabel>
+      <content src="content.html#ill1"/>
+    </navTarget>
+    <navTarget id="ill-2">
+      <navLabel><text>The adoration of the lamb (Van Eyck)</text></navLabel>
+      <content src="content.html#ill2"/>
+    </navTarget>
+  </navList>
+</ncx>

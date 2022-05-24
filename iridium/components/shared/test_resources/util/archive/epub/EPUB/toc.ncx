@@ -1,0 +1,713 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ncx xmlns="http://www.daisy.org/z3986/2005/ncx/" xmlns:ncx="http://www.daisy.org/z3986/2005/ncx/"
+	version="2005-1" xml:lang="en">
+	<head>
+		<meta name="dtb:uid" content="http://www.gutenberg.org/ebooks/25545"/>
+	</head>
+	<docTitle>
+		<text>Children's Literature</text>
+	</docTitle>
+	<navMap>
+		<navInfo>
+			<text>THE CONTENTS</text>
+		</navInfo>
+		<navPoint id="np-313">
+			<navLabel>
+				<text>SECTION IV FAIRY STORIES—MODERN FANTASTIC TALES</text>
+			</navLabel>
+			<content src="s04.xhtml#pgepubid00492"/>
+			<navPoint id="np-315">
+				<navLabel>
+					<text>BIBLIOGRAPHY</text>
+				</navLabel>
+				<content src="s04.xhtml#pgepubid00495"/>
+			</navPoint>
+			<navPoint id="np-317">
+				<navLabel>
+					<text>INTRODUCTORY</text>
+				</navLabel>
+				<content src="s04.xhtml#pgepubid00498"/>
+			</navPoint>
+			<!--Abram S. Isaacs-->
+			<navPoint id="np-319">
+				<navLabel>
+					<text>190 A FOUR-LEAVED CLOVER</text>
+				</navLabel>
+				<content src="s04.xhtml#pgepubid00503"/>
+				<navPoint id="d1e54">
+					<navLabel>
+						<text> I. The Rabbi and the Diadem </text>
+					</navLabel>
+					<content src="s04.xhtml#pgepubid99001"/>
+				</navPoint>
+				<navPoint id="d1e60">
+					<navLabel>
+						<text> II. Friendship </text>
+					</navLabel>
+					<content src="s04.xhtml#pgepubid99002"/>
+				</navPoint>
+				<navPoint id="d1e66">
+					<navLabel>
+						<text> III. True Charity </text>
+					</navLabel>
+					<content src="s04.xhtml#pgepubid99003"/>
+				</navPoint>
+				<navPoint id="d1e72">
+					<navLabel>
+						<text> IV. An Eastern Garden </text>
+					</navLabel>
+					<content src="s04.xhtml#pgepubid99004"/>
+				</navPoint>
+			</navPoint>
+			<!--Samuel Taylor Coleridge-->
+			<navPoint id="np-321">
+				<navLabel>
+					<text>191 THE LORD HELPETH MAN AND BEAST</text>
+				</navLabel>
+				<content src="s04.xhtml#pgepubid00508"/>
+			</navPoint>
+			<!--Hans Christian Andersen-->
+			<navPoint id="np-323">
+				<navLabel>
+					<text>192 THE REAL PRINCESS</text>
+				</navLabel>
+				<content src="s04.xhtml#pgepubid00512"/>
+			</navPoint>
+			<navPoint id="np-325">
+				<navLabel>
+					<text>193 THE EMPEROR'S NEW CLOTHES</text>
+				</navLabel>
+				<content src="s04.xhtml#pgepubid00515"/>
+			</navPoint>
+			<navPoint id="np-327">
+				<navLabel>
+					<text>194 THE NIGHTINGALE</text>
+				</navLabel>
+				<content src="s04.xhtml#pgepubid00520"/>
+			</navPoint>
+			<navPoint id="np-329">
+				<navLabel>
+					<text>195 THE FIR TREE</text>
+				</navLabel>
+				<content src="s04.xhtml#pgepubid00529"/>
+			</navPoint>
+			<navPoint id="np-331">
+				<navLabel>
+					<text>196 THE TINDER-BOX</text>
+				</navLabel>
+				<content src="s04.xhtml#pgepubid00536"/>
+			</navPoint>
+			<navPoint id="np-333">
+				<navLabel>
+					<text>197 THE HARDY TIN SOLDIER</text>
+				</navLabel>
+				<content src="s04.xhtml#pgepubid00543"/>
+			</navPoint>
+			<navPoint id="np-335">
+				<navLabel>
+					<text>198 THE UGLY DUCKLING</text>
+				</navLabel>
+				<content src="s04.xhtml#pgepubid00548"/>
+			</navPoint>
+			<!--Frances Browne-->
+			<navPoint id="np-337">
+				<navLabel>
+					<text>199 THE STORY OF FAIRYFOOT</text>
+				</navLabel>
+				<content src="s04.xhtml#pgepubid00556"/>
+			</navPoint>
+			<!--Oscar Wilde-->
+			<navPoint id="np-339">
+				<navLabel>
+					<text>200 THE HAPPY PRINCE</text>
+				</navLabel>
+				<content src="s04.xhtml#pgepubid00566"/>
+			</navPoint>
+			<!--Raymond MacDonald Alden-->
+			<navPoint id="np-341">
+				<navLabel>
+					<text>201 THE KNIGHTS OF THE SILVER SHIELD</text>
+				</navLabel>
+				<content src="s04.xhtml#pgepubid00574"/>
+			</navPoint>
+			<!--Jean Ingelow-->
+			<navPoint id="np-343">
+				<navLabel>
+					<text>202 THE PRINCE'S DREAM</text>
+				</navLabel>
+				<content src="s04.xhtml#pgepubid00580"/>
+			</navPoint>
+			<!--Frank R. Stockton-->
+			<navPoint id="np-345">
+				<navLabel>
+					<text>203 OLD PIPES AND THE DRYAD</text>
+				</navLabel>
+				<content src="s04.xhtml#pgepubid00588"/>
+			</navPoint>
+			<!--John Ruskin-->
+			<navPoint id="np-347">
+				<navLabel>
+					<text>204 THE KING OF THE GOLDEN RIVER OR THE BLACK BROTHERS</text>
+				</navLabel>
+				<content src="s04.xhtml#pgepubid00602"/>
+			</navPoint>
+		</navPoint>
+	</navMap>
+	<pageList>
+		<navInfo>
+			<text>Pages</text>
+		</navInfo>
+		<pageTarget type="normal">
+			<navLabel>
+				<text>169</text>
+			</navLabel>
+			<content src="s04.xhtml#Page_169"/>
+		</pageTarget>
+		<pageTarget type="normal">
+			<navLabel>
+				<text>170</text>
+			</navLabel>
+			<content src="s04.xhtml#Page_170"/>
+		</pageTarget>
+		<pageTarget type="normal">
+			<navLabel>
+				<text>171</text>
+			</navLabel>
+			<content src="s04.xhtml#Page_171"/>
+		</pageTarget>
+		<pageTarget type="normal">
+			<navLabel>
+				<text>172</text>
+			</navLabel>
+			<content src="s04.xhtml#Page_172"/>
+		</pageTarget>
+		<pageTarget type="normal">
+			<navLabel>
+				<text>173</text>
+			</navLabel>
+			<content src="s04.xhtml#Page_173"/>
+		</pageTarget>
+		<pageTarget type="normal">
+			<navLabel>
+				<text>174</text>
+			</navLabel>
+			<content src="s04.xhtml#Page_174"/>
+		</pageTarget>
+		<pageTarget type="normal">
+			<navLabel>
+				<text>175</text>
+			</navLabel>
+			<content src="s04.xhtml#Page_175"/>
+		</pageTarget>
+		<pageTarget type="normal">
+			<navLabel>
+				<text>176</text>
+			</navLabel>
+			<content src="s04.xhtml#Page_176"/>
+		</pageTarget>
+		<pageTarget type="normal">
+			<navLabel>
+				<text>177</text>
+			</navLabel>
+			<content src="s04.xhtml#Page_177"/>
+		</pageTarget>
+		<pageTarget type="normal">
+			<navLabel>
+				<text>178</text>
+			</navLabel>
+			<content src="s04.xhtml#Page_178"/>
+		</pageTarget>
+		<pageTarget type="normal">
+			<navLabel>
+				<text>179</text>
+			</navLabel>
+			<content src="s04.xhtml#Page_179"/>
+		</pageTarget>
+		<pageTarget type="normal">
+			<navLabel>
+				<text>180</text>
+			</navLabel>
+			<content src="s04.xhtml#Page_180"/>
+		</pageTarget>
+		<pageTarget type="normal">
+			<navLabel>
+				<text>181</text>
+			</navLabel>
+			<content src="s04.xhtml#Page_181"/>
+		</pageTarget>
+		<pageTarget type="normal">
+			<navLabel>
+				<text>182</text>
+			</navLabel>
+			<content src="s04.xhtml#Page_182"/>
+		</pageTarget>
+		<pageTarget type="normal">
+			<navLabel>
+				<text>183</text>
+			</navLabel>
+			<content src="s04.xhtml#Page_183"/>
+		</pageTarget>
+		<pageTarget type="normal">
+			<navLabel>
+				<text>184</text>
+			</navLabel>
+			<content src="s04.xhtml#Page_184"/>
+		</pageTarget>
+		<pageTarget type="normal">
+			<navLabel>
+				<text>185</text>
+			</navLabel>
+			<content src="s04.xhtml#Page_185"/>
+		</pageTarget>
+		<pageTarget type="normal">
+			<navLabel>
+				<text>186</text>
+			</navLabel>
+			<content src="s04.xhtml#Page_186"/>
+		</pageTarget>
+		<pageTarget type="normal">
+			<navLabel>
+				<text>187</text>
+			</navLabel>
+			<content src="s04.xhtml#Page_187"/>
+		</pageTarget>
+		<pageTarget type="normal">
+			<navLabel>
+				<text>188</text>
+			</navLabel>
+			<content src="s04.xhtml#Page_188"/>
+		</pageTarget>
+		<pageTarget type="normal">
+			<navLabel>
+				<text>189</text>
+			</navLabel>
+			<content src="s04.xhtml#Page_189"/>
+		</pageTarget>
+		<pageTarget type="normal">
+			<navLabel>
+				<text>190</text>
+			</navLabel>
+			<content src="s04.xhtml#Page_190"/>
+		</pageTarget>
+		<pageTarget type="normal">
+			<navLabel>
+				<text>191</text>
+			</navLabel>
+			<content src="s04.xhtml#Page_191"/>
+		</pageTarget>
+		<pageTarget type="normal">
+			<navLabel>
+				<text>192</text>
+			</navLabel>
+			<content src="s04.xhtml#Page_192"/>
+		</pageTarget>
+		<pageTarget type="normal">
+			<navLabel>
+				<text>193</text>
+			</navLabel>
+			<content src="s04.xhtml#Page_193"/>
+		</pageTarget>
+		<pageTarget type="normal">
+			<navLabel>
+				<text>194</text>
+			</navLabel>
+			<content src="s04.xhtml#Page_194"/>
+		</pageTarget>
+		<pageTarget type="normal">
+			<navLabel>
+				<text>195</text>
+			</navLabel>
+			<content src="s04.xhtml#Page_195"/>
+		</pageTarget>
+		<pageTarget type="normal">
+			<navLabel>
+				<text>196</text>
+			</navLabel>
+			<content src="s04.xhtml#Page_196"/>
+		</pageTarget>
+		<pageTarget type="normal">
+			<navLabel>
+				<text>197</text>
+			</navLabel>
+			<content src="s04.xhtml#Page_197"/>
+		</pageTarget>
+		<pageTarget type="normal">
+			<navLabel>
+				<text>198</text>
+			</navLabel>
+			<content src="s04.xhtml#Page_198"/>
+		</pageTarget>
+		<pageTarget type="normal">
+			<navLabel>
+				<text>199</text>
+			</navLabel>
+			<content src="s04.xhtml#Page_199"/>
+		</pageTarget>
+		<pageTarget type="normal">
+			<navLabel>
+				<text>200</text>
+			</navLabel>
+			<content src="s04.xhtml#Page_200"/>
+		</pageTarget>
+		<pageTarget type="normal">
+			<navLabel>
+				<text>201</text>
+			</navLabel>
+			<content src="s04.xhtml#Page_201"/>
+		</pageTarget>
+		<pageTarget type="normal">
+			<navLabel>
+				<text>202</text>
+			</navLabel>
+			<content src="s04.xhtml#Page_202"/>
+		</pageTarget>
+		<pageTarget type="normal">
+			<navLabel>
+				<text>203</text>
+			</navLabel>
+			<content src="s04.xhtml#Page_203"/>
+		</pageTarget>
+		<pageTarget type="normal">
+			<navLabel>
+				<text>204</text>
+			</navLabel>
+			<content src="s04.xhtml#Page_204"/>
+		</pageTarget>
+		<pageTarget type="normal">
+			<navLabel>
+				<text>205</text>
+			</navLabel>
+			<content src="s04.xhtml#Page_205"/>
+		</pageTarget>
+		<pageTarget type="normal">
+			<navLabel>
+				<text>206</text>
+			</navLabel>
+			<content src="s04.xhtml#Page_206"/>
+		</pageTarget>
+		<pageTarget type="normal">
+			<navLabel>
+				<text>207</text>
+			</navLabel>
+			<content src="s04.xhtml#Page_207"/>
+		</pageTarget>
+		<pageTarget type="normal">
+			<navLabel>
+				<text>208</text>
+			</navLabel>
+			<content src="s04.xhtml#Page_208"/>
+		</pageTarget>
+		<pageTarget type="normal">
+			<navLabel>
+				<text>209</text>
+			</navLabel>
+			<content src="s04.xhtml#Page_209"/>
+		</pageTarget>
+		<pageTarget type="normal">
+			<navLabel>
+				<text>210</text>
+			</navLabel>
+			<content src="s04.xhtml#Page_210"/>
+		</pageTarget>
+		<pageTarget type="normal">
+			<navLabel>
+				<text>211</text>
+			</navLabel>
+			<content src="s04.xhtml#Page_211"/>
+		</pageTarget>
+		<pageTarget type="normal">
+			<navLabel>
+				<text>212</text>
+			</navLabel>
+			<content src="s04.xhtml#Page_212"/>
+		</pageTarget>
+		<pageTarget type="normal">
+			<navLabel>
+				<text>213</text>
+			</navLabel>
+			<content src="s04.xhtml#Page_213"/>
+		</pageTarget>
+		<pageTarget type="normal">
+			<navLabel>
+				<text>214</text>
+			</navLabel>
+			<content src="s04.xhtml#Page_214"/>
+		</pageTarget>
+		<pageTarget type="normal">
+			<navLabel>
+				<text>215</text>
+			</navLabel>
+			<content src="s04.xhtml#Page_215"/>
+		</pageTarget>
+		<pageTarget type="normal">
+			<navLabel>
+				<text>216</text>
+			</navLabel>
+			<content src="s04.xhtml#Page_216"/>
+		</pageTarget>
+		<pageTarget type="normal">
+			<navLabel>
+				<text>217</text>
+			</navLabel>
+			<content src="s04.xhtml#Page_217"/>
+		</pageTarget>
+		<pageTarget type="normal">
+			<navLabel>
+				<text>218</text>
+			</navLabel>
+			<content src="s04.xhtml#Page_218"/>
+		</pageTarget>
+		<pageTarget type="normal">
+			<navLabel>
+				<text>219</text>
+			</navLabel>
+			<content src="s04.xhtml#Page_219"/>
+		</pageTarget>
+		<pageTarget type="normal">
+			<navLabel>
+				<text>220</text>
+			</navLabel>
+			<content src="s04.xhtml#Page_220"/>
+		</pageTarget>
+		<pageTarget type="normal">
+			<navLabel>
+				<text>221</text>
+			</navLabel>
+			<content src="s04.xhtml#Page_221"/>
+		</pageTarget>
+		<pageTarget type="normal">
+			<navLabel>
+				<text>222</text>
+			</navLabel>
+			<content src="s04.xhtml#Page_222"/>
+		</pageTarget>
+		<pageTarget type="normal">
+			<navLabel>
+				<text>223</text>
+			</navLabel>
+			<content src="s04.xhtml#Page_223"/>
+		</pageTarget>
+		<pageTarget type="normal">
+			<navLabel>
+				<text>224</text>
+			</navLabel>
+			<content src="s04.xhtml#Page_224"/>
+		</pageTarget>
+		<pageTarget type="normal">
+			<navLabel>
+				<text>225</text>
+			</navLabel>
+			<content src="s04.xhtml#Page_225"/>
+		</pageTarget>
+		<pageTarget type="normal">
+			<navLabel>
+				<text>226</text>
+			</navLabel>
+			<content src="s04.xhtml#Page_226"/>
+		</pageTarget>
+		<pageTarget type="normal">
+			<navLabel>
+				<text>227</text>
+			</navLabel>
+			<content src="s04.xhtml#Page_227"/>
+		</pageTarget>
+		<pageTarget type="normal">
+			<navLabel>
+				<text>228</text>
+			</navLabel>
+			<content src="s04.xhtml#Page_228"/>
+		</pageTarget>
+		<pageTarget type="normal">
+			<navLabel>
+				<text>229</text>
+			</navLabel>
+			<content src="s04.xhtml#Page_229"/>
+		</pageTarget>
+		<pageTarget type="normal">
+			<navLabel>
+				<text>230</text>
+			</navLabel>
+			<content src="s04.xhtml#Page_230"/>
+		</pageTarget>
+		<pageTarget type="normal">
+			<navLabel>
+				<text>231</text>
+			</navLabel>
+			<content src="s04.xhtml#Page_231"/>
+		</pageTarget>
+		<pageTarget type="normal">
+			<navLabel>
+				<text>232</text>
+			</navLabel>
+			<content src="s04.xhtml#Page_232"/>
+		</pageTarget>
+		<pageTarget type="normal">
+			<navLabel>
+				<text>233</text>
+			</navLabel>
+			<content src="s04.xhtml#Page_233"/>
+		</pageTarget>
+		<pageTarget type="normal">
+			<navLabel>
+				<text>234</text>
+			</navLabel>
+			<content src="s04.xhtml#Page_234"/>
+		</pageTarget>
+		<pageTarget type="normal">
+			<navLabel>
+				<text>235</text>
+			</navLabel>
+			<content src="s04.xhtml#Page_235"/>
+		</pageTarget>
+		<pageTarget type="normal">
+			<navLabel>
+				<text>236</text>
+			</navLabel>
+			<content src="s04.xhtml#Page_236"/>
+		</pageTarget>
+		<pageTarget type="normal">
+			<navLabel>
+				<text>237</text>
+			</navLabel>
+			<content src="s04.xhtml#Page_237"/>
+		</pageTarget>
+		<pageTarget type="normal">
+			<navLabel>
+				<text>238</text>
+			</navLabel>
+			<content src="s04.xhtml#Page_238"/>
+		</pageTarget>
+		<pageTarget type="normal">
+			<navLabel>
+				<text>239</text>
+			</navLabel>
+			<content src="s04.xhtml#Page_239"/>
+		</pageTarget>
+		<pageTarget type="normal">
+			<navLabel>
+				<text>240</text>
+			</navLabel>
+			<content src="s04.xhtml#Page_240"/>
+		</pageTarget>
+		<pageTarget type="normal">
+			<navLabel>
+				<text>241</text>
+			</navLabel>
+			<content src="s04.xhtml#Page_241"/>
+		</pageTarget>
+		<pageTarget type="normal">
+			<navLabel>
+				<text>242</text>
+			</navLabel>
+			<content src="s04.xhtml#Page_242"/>
+		</pageTarget>
+		<pageTarget type="normal">
+			<navLabel>
+				<text>243</text>
+			</navLabel>
+			<content src="s04.xhtml#Page_243"/>
+		</pageTarget>
+		<pageTarget type="normal">
+			<navLabel>
+				<text>244</text>
+			</navLabel>
+			<content src="s04.xhtml#Page_244"/>
+		</pageTarget>
+		<pageTarget type="normal">
+			<navLabel>
+				<text>245</text>
+			</navLabel>
+			<content src="s04.xhtml#Page_245"/>
+		</pageTarget>
+		<pageTarget type="normal">
+			<navLabel>
+				<text>246</text>
+			</navLabel>
+			<content src="s04.xhtml#Page_246"/>
+		</pageTarget>
+		<pageTarget type="normal">
+			<navLabel>
+				<text>247</text>
+			</navLabel>
+			<content src="s04.xhtml#Page_247"/>
+		</pageTarget>
+		<pageTarget type="normal">
+			<navLabel>
+				<text>248</text>
+			</navLabel>
+			<content src="s04.xhtml#Page_248"/>
+		</pageTarget>
+		<pageTarget type="normal">
+			<navLabel>
+				<text>249</text>
+			</navLabel>
+			<content src="s04.xhtml#Page_249"/>
+		</pageTarget>
+		<pageTarget type="normal">
+			<navLabel>
+				<text>250</text>
+			</navLabel>
+			<content src="s04.xhtml#Page_250"/>
+		</pageTarget>
+		<pageTarget type="normal">
+			<navLabel>
+				<text>251</text>
+			</navLabel>
+			<content src="s04.xhtml#Page_251"/>
+		</pageTarget>
+		<pageTarget type="normal">
+			<navLabel>
+				<text>252</text>
+			</navLabel>
+			<content src="s04.xhtml#Page_252"/>
+		</pageTarget>
+		<pageTarget type="normal">
+			<navLabel>
+				<text>253</text>
+			</navLabel>
+			<content src="s04.xhtml#Page_253"/>
+		</pageTarget>
+		<pageTarget type="normal">
+			<navLabel>
+				<text>254</text>
+			</navLabel>
+			<content src="s04.xhtml#Page_254"/>
+		</pageTarget>
+		<pageTarget type="normal">
+			<navLabel>
+				<text>255</text>
+			</navLabel>
+			<content src="s04.xhtml#Page_255"/>
+		</pageTarget>
+		<pageTarget type="normal">
+			<navLabel>
+				<text>256</text>
+			</navLabel>
+			<content src="s04.xhtml#Page_256"/>
+		</pageTarget>
+		<pageTarget type="normal">
+			<navLabel>
+				<text>257</text>
+			</navLabel>
+			<content src="s04.xhtml#Page_257"/>
+		</pageTarget>
+		<pageTarget type="normal">
+			<navLabel>
+				<text>258</text>
+			</navLabel>
+			<content src="s04.xhtml#Page_258"/>
+		</pageTarget>
+		<pageTarget type="normal">
+			<navLabel>
+				<text>259</text>
+			</navLabel>
+			<content src="s04.xhtml#Page_259"/>
+		</pageTarget>
+		<pageTarget type="normal">
+			<navLabel>
+				<text>260</text>
+			</navLabel>
+			<content src="s04.xhtml#Page_260"/>
+		</pageTarget>
+	</pageList>
+</ncx>

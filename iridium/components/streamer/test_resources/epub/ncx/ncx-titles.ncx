@@ -1,0 +1,37 @@
+<ncx xmlns="http://www.daisy.org/z3986/2005/ncx/">
+  <docTitle>
+       <text>Document Title</text>
+   </docTitle>
+
+  <navMap>
+      <navPoint>
+        <navLabel>
+          <text>
+              A link
+              with new lines
+              splitting the text
+          </text>
+        </navLabel>
+        <content src="xhtml/chapter1.xhtml"/>            
+    </navPoint>
+    
+      <navPoint>
+        <navLabel>
+          <text>
+                  A   link   with      ignorable    spaces        
+          </text>
+        </navLabel>
+        <content src="xhtml/chapter2.xhtml"/>            
+    </navPoint>
+    
+     <navPoint>
+      <navLabel><text> <!-- A zero-length text label must be ignored --> </text></navLabel>
+      <content src="xhtml/chapter3.xhtml"/>            
+    </navPoint>
+  
+    <navPoint>
+      <navLabel><text>An unlinked element without children must be ignored</text>
+      </navLabel>
+    </navPoint>
+  </navMap>
+</ncx>

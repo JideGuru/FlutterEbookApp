@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<encryption xmlns="urn:oasis:names:tc:opendocument:xmlns:container" xmlns:enc="http://www.w3.org/2001/04/xmlenc#" xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns:comp="http://www.idpf.org/2016/encryption#compression">
+  <enc:EncryptedData Id="ED1">
+    <enc:EncryptionMethod Algorithm="http://www.w3.org/2001/04/xmlenc#kw-aes128"/>
+    <ds:KeyInfo>
+      <ds:RetrievalMethod URI="#EK"
+        Type="http://www.w3.org/2001/04/xmlenc#EncryptedKey"/>
+    </ds:KeyInfo>
+    <enc:CipherData>
+      <enc:CipherReference URI="OEBPS/images/image.jpeg"/>
+    </enc:CipherData>
+  </enc:EncryptedData>
+  <enc:EncryptedData Id="ED2">
+    <enc:EncryptionMethod Algorithm="http://www.w3.org/2001/04/xmlenc#kw-aes128"/>
+    <ds:KeyInfo>
+      <ds:RetrievalMethod URI="#EK"
+        Type="http://www.w3.org/2001/04/xmlenc#EncryptedKey"/>
+    </ds:KeyInfo>
+    <enc:CipherData>
+      <enc:CipherReference URI="OEBPS/xhtml/chapter.xhtml"/>
+    </enc:CipherData>
+    <enc:EncryptionProperties>
+      <enc:EncryptionProperty xmlns="http://www.w3.org/2001/04/xmlenc#">
+        <comp:Compression xmlns="http://www.idpf.org/2016/encryption#compression" Method="8" OriginalLength="12914"></comp:Compression>
+      </enc:EncryptionProperty>
+    </enc:EncryptionProperties>
+  </enc:EncryptedData>
+</encryption>

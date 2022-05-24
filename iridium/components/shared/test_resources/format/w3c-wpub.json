@@ -1,0 +1,13 @@
+{
+    "@context" : ["https://schema.org","https://www.w3.org/ns/wp-context"],
+    "type"     : "Book",
+    "url"      : "https://publisher.example.org/mobydick",
+    "name"     : "Moby Dick",
+    "readingOrder" : [
+        "html/title.html",
+        "html/copyright.html",
+        "html/introduction.html",
+        "html/epigraph.html",
+        "html/c001.html",
+    ]
+}

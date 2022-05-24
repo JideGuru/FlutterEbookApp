@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entry xmlns="http://www.w3.org/2005/Atom"
+    xmlns:dc="http://purl.org/dc/terms/">
+    <title>Bob, Son of Bob</title>
+    <id>urn:uuid:6409a00b-7bf2-405e-826c-3fdff0fd0734</id>
+    <updated>2010-01-10T10:01:11Z</updated>
+
+    <author>
+        <name>Bob the Recursive</name>
+        <uri>http://opds-spec.org/authors/1285</uri>
+    </author>
+    <dc:language>en</dc:language>
+    <dc:issued>1917</dc:issued>
+    <category scheme="http://www.bisg.org/standards/bisac_subject/index.html"
+        term="FIC020000"
+        label="FICTION / Men's Adventure"/>
+
+    <summary type="text">The story of the son of the Bob and the gallant part he played in the lives of a man and a woman.</summary>
+    <content type="text">The story of the son of the Bob and the gallant part he played in the lives of a man and a woman. Bob begins his humble life under the wandering eye of his senile mother, but quickly learns how to escape into the wilder world. Follow Bob as he uncovers his father's past and uses those lessons to improve the lives of others.</content>
+
+    <link rel="http://opds-spec.org/image"
+        href="/covers/4561.lrg.png"
+        type="image/png"/>
+    <link rel="http://opds-spec.org/image/thumbnail"
+        href="/covers/4561.thmb.gif"
+        type="image/gif"/>
+
+    <link rel="self"
+        href="/opds-catalogs/entries/4571.complete.xml"
+        type="application/atom+xml;type=entry;profile=opds-catalog"/>
+
+    <link rel="http://opds-spec.org/acquisition"
+        href="/content/free/4561.epub"
+        type="application/epub+zip"/>
+    <link rel="http://opds-spec.org/acquisition"
+        href="/content/free/4561.mobi"
+        type="application/x-mobipocket-ebook"/>
+</entry>

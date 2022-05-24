@@ -1,0 +1,44 @@
+{
+  "@context": "http://readium.org/webpub-manifest/context.jsonld",
+  
+  "metadata": {
+    "identifier": "urn:isbn:9782203001152",
+    "title": "Objectif Lune",
+    "author": "Hergé",
+    "language": "fr",
+    "publisher": "Casterman",
+    "published": "1953-12-30",
+    "modified": "2018-12-10T18:21:18Z",
+    "numberOfPages": 62,
+    "readingProgression": "ltr",
+    "belongsTo": {
+      "series": {
+        "name": "Les Aventures de Tintin",
+        "position": 16
+      }
+    }
+  },
+
+  "links": [
+    {"rel": "self", "href": "http://example.org/manifest.json", "type": "application/divina+json"}
+  ],
+
+  "readingOrder": [
+    {
+      "rel": "cover",
+      "href": "http://example.org/cover.jpg",
+      "type": "image/jpeg",
+      "properties": { "page": "center" }
+    },
+    {
+      "href": "http://example.org/page1.jpg",
+      "type": "image/jpeg",
+      "properties": { "page": "left" }
+    },
+    {
+      "href": "http://example.org/page2.jpg",
+      "type": "image/jpeg",
+      "properties": { "page": "right" }
+    }
+  ]
+}

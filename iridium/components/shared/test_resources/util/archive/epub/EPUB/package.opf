@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<package xmlns="http://www.idpf.org/2007/opf" version="3.0" unique-identifier="id">
+	<metadata xmlns:dc="http://purl.org/dc/elements/1.1/">
+		<dc:identifier id="id">http://www.gutenberg.org/ebooks/25545</dc:identifier>
+		<meta property="dcterms:modified">2010-02-17T04:39:13Z</meta>
+
+		<dc:title id="t1">Children's Literature</dc:title>
+		<meta refines="#t1" property="title-type">main</meta>
+		<meta refines="#t1" property="display-seq">1</meta>
+
+		<dc:title id="t2">A Textbook of Sources for Teachers and Teacher-Training Classes</dc:title>
+		<meta refines="#t2" property="title-type">subtitle</meta>
+		<meta refines="#t2" property="display-seq">2</meta>
+
+		<dc:creator id="curry">Charles Madison Curry</dc:creator>
+		<meta property="file-as" refines="#curry">Curry, Charles Madison</meta>
+
+		<dc:creator id="clippinger">Erle Elsworth Clippinger</dc:creator>
+		<meta property="file-as" refines="#clippinger">Clippinger, Erle Elsworth</meta>
+
+		<dc:language>en</dc:language>
+
+		<dc:date>2008-05-20</dc:date>
+
+		<dc:subject>Children -- Books and reading</dc:subject>
+		<dc:subject>Children's literature -- Study and teaching</dc:subject>
+
+		<dc:source>http://www.gutenberg.org/files/25545/25545-h/25545-h.htm</dc:source>
+		<dc:rights>Public domain in the USA.</dc:rights>
+	</metadata>
+	<manifest>
+		<item href="images/cover.png" id="cover-img" media-type="image/png" properties="cover-image"/>
+		<item href="css/epub.css" id="css01" media-type="text/css"/>
+		<item href="css/nav.css" id="css02" media-type="text/css"/>
+		<item href="cover.xhtml" id="cover" media-type="application/xhtml+xml"/>
+		<item href="s04.xhtml" id="s04" media-type="application/xhtml+xml"/>
+		<item href="nav.xhtml" id="nav" media-type="application/xhtml+xml" properties="nav scripted"/>
+		<item href="toc.ncx" id="ncx" media-type="application/x-dtbncx+xml"/>
+	</manifest>
+	<spine toc="ncx">
+		<itemref idref="cover"/>
+		<itemref idref="nav"/>
+		<itemref idref="s04"/>
+	</spine>
+</package>

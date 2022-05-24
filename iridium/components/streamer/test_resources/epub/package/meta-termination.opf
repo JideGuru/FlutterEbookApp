@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<package xmlns="http://www.idpf.org/2007/opf" unique-identifier="pub-id" version="3.0">
+  <metadata xmlns:dc="http://purl.org/dc/elements/1.1/">
+    <dc:title>Alice's Adventures in Wonderland</dc:title>
+    <meta id="narrator1" refines="#narrator2" property="media:narrator">Media Overlays Narrator</meta>
+    <meta id="narrator2" refines="#narrator1" property="role">nrt</meta>
+  </metadata>
+  <manifest>
+    <item id="titlepage" href="titlepage.xhtml"/>
+  </manifest>
+  <spine>
+    <itemref idref="titlepage"/>
+  </spine>
+</package>

@@ -1,0 +1,26 @@
+name: mno_server
+description: Contains the server functions to serve resources in the webview.
+version: 0.1.0
+homepage: https://github.com/Mantano/mno_server_dart
+publish_to: none
+
+environment:
+  sdk: ">=2.12.0 <3.0.0"
+
+dependencies:
+  bloc: ^8.0.2
+  dartx: ^1.0.0
+  equatable: ^2.0.3
+  fimber: ^0.6.4
+  intl: ^0.17.0
+  meta: ^1.7.0
+  path: ^1.8.0
+  rxdart: ^0.27.3
+  universal_io: ^2.0.4
+  mno_commons:
+    path: ../commons
+  mno_shared:
+    path: ../shared
+
+dev_dependencies:
+  lints: ^1.0.1

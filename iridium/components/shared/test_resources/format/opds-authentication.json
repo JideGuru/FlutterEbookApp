@@ -1,0 +1,28 @@
+{
+  "id": "http://example.com/auth.json",
+  "title": "Public Library",
+  "description": "Enter a valid library card number and PIN code to authenticate on our service.",
+  "links": [
+    {"rel": "logo", "href": "http://example.com/logo.jpg", "type": "image/jpeg", "width": 90, "height": 90},
+    {"rel": "help", "href": "mailto:support@example.org"},
+    {"rel": "help", "href": "tel:1800836482"},
+    {"rel": "help", "href": "http://example.com/support", "type": "text/html"},
+    {"rel": "register", "href": "http://example.com/registration", "type": "text/html"}
+  ],
+  "authentication": [
+    {
+      "type": "http://opds-spec.org/auth/basic",
+      "labels": {
+        "login": "Library card",
+        "password": "PIN"
+      }
+    },
+    {
+      "type": "http://opds-spec.org/auth/oauth/implicit",
+      "links": [
+        {"rel": "authenticate", "href": "http://example.com/oauth", "type": "text/html"},
+        {"rel": "refresh", "href": "http://example.com/oauth/refresh", "type": "application/json"}
+      ]
+    }
+  ]
+}

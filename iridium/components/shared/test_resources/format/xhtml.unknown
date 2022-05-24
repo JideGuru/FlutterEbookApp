@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/css" href="http://www.w3.org/MarkUp/style/xhtml2.css"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 2.0//EN"
+    "http://www.w3.org/MarkUp/DTD/xhtml2.dtd">
+<html xmlns="http://www.w3.org/2002/06/xhtml2" xml:lang="en"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.w3.org/2002/06/xhtml2
+                          http://www.w3.org/MarkUp/SCHEMA/xhtml2.xsd"
+>
+  <head>
+    <title>Sample XHTML Document</title>
+  </head>
+  <body>
+  </body>
+</html>

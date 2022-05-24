@@ -1,0 +1,64 @@
+<?xml version="1.0"?>
+<package xmlns="http://www.idpf.org/2007/opf" unique-identifier="pub-id" version="3.0" >
+  <metadata xmlns:dc="http://purl.org/dc/elements/1.1/">
+    <dc:title>Alice's Adventures in Wonderland</dc:title> 
+
+    <!-- dc:creator is by default an Author -->
+    <dc:creator>Author 1</dc:creator>
+    <!-- dc:publisher is by default a Publisher -->
+    <dc:publisher>Publisher 1</dc:publisher>
+    <!-- dc:contributor is by default a Contributor -->
+    <dc:contributor>Contributor 1</dc:contributor>
+    
+    <!-- Unknown roles are ignored -->
+    <dc:contributor id="unknown">Contributor 2</dc:contributor> 
+    <meta refines="#unknown" property="role">unknown</meta>
+    <!-- file-as property is parsed-->
+    <dc:contributor id="sorting">Contributor 3</dc:contributor>
+    <meta refines="#sorting" property="file-as">Sorting Key</meta>
+    
+     <!-- Localized contributor -->
+    <dc:contributor id="localized">Contributor 4</dc:contributor> 
+    <meta refines="#localized" property="alternate-script" xml:lang="fr">Contributeur 4 en français</meta>
+    
+    <!-- Only the first role is used -->
+    <dc:contributor id="cameleon">Cameleon</dc:contributor> 
+    <meta refines="#cameleon" property="role">aut</meta>
+    <meta refines="#cameleon" property="role">pbl</meta>
+    
+    <!-- Media Overlays narrator -->
+    <meta property="media:narrator">Media Overlays Narrator</meta>
+
+    <!-- Various roles -->
+    <dc:contributor id="author-2">Author 2</dc:contributor>
+    <meta refines="#author-2" property="role">aut</meta>
+    
+    <dc:contributor id="publisher">Publisher 2</dc:contributor> 
+    <meta refines="#publisher" property="role">pbl</meta>
+
+    <dc:contributor id="translator">Translator</dc:contributor> 
+    <meta refines="#translator" property="role">trl</meta>
+
+    <dc:contributor id="editor">Editor</dc:contributor> 
+    <meta refines="#editor" property="role">edt</meta>
+
+    <dc:contributor id="artist">Artist</dc:contributor> 
+    <meta refines="#artist" property="role">art</meta>
+
+    <dc:contributor id="illustrator">Illustrator</dc:contributor> 
+    <meta refines="#illustrator" property="role">ill</meta>
+
+    <dc:contributor id="colorist">Colorist</dc:contributor> 
+    <meta refines="#colorist" property="role">clr</meta>
+
+    <dc:contributor id="narrator">Narrator</dc:contributor> 
+    <meta refines="#narrator" property="role">nrt</meta>
+    
+  </metadata>
+  <manifest>
+    <item id="titlepage" href="titlepage.xhtml" media-type="application/xhtml+xml" />
+  </manifest>
+  <spine>
+    <itemref idref="titlepage"/>
+  </spine>
+</package>

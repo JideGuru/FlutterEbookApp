@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<encryption xmlns="urn:oasis:names:tc:opendocument:xmlns:container" xmlns:encrypt="http://www.w3.org/2001/04/xmlenc#" xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns:comp="http://www.idpf.org/2016/encryption#compression">
+  <encrypt:EncryptedData>
+    <encrypt:EncryptionMethod Algorithm="http://www.w3.org/2001/04/xmlenc#aes256-cbc"></encrypt:EncryptionMethod>
+    <ds:KeyInfo>
+      <ds:RetrievalMethod URI="license.lcpl#/encryption/content_key" Type="http://readium.org/2014/01/lcp#EncryptedContentKey"></ds:RetrievalMethod>
+    </ds:KeyInfo>
+    <encrypt:CipherData>
+      <encrypt:CipherReference URI="OEBPS/xhtml/chapter01.xhtml"></encrypt:CipherReference>
+    </encrypt:CipherData>
+    <encrypt:EncryptionProperties>
+      <encrypt:EncryptionProperty>
+        <comp:Compression Method="8" OriginalLength="13291"></comp:Compression>
+      </encrypt:EncryptionProperty>
+    </encrypt:EncryptionProperties>
+  </encrypt:EncryptedData>
+  <encrypt:EncryptedData>
+    <encrypt:EncryptionMethod Algorithm="http://www.w3.org/2001/04/xmlenc#aes256-cbc"></encrypt:EncryptionMethod>
+    <ds:KeyInfo>
+      <ds:RetrievalMethod URI="license.lcpl#/encryption/content_key" Type="http://readium.org/2014/01/lcp#EncryptedContentKey"></ds:RetrievalMethod>
+    </ds:KeyInfo>
+    <encrypt:CipherData>
+      <encrypt:CipherReference URI="OEBPS/xhtml/chapter02.xhtml"></encrypt:CipherReference>
+    </encrypt:CipherData>
+    <encrypt:EncryptionProperties>
+      <encrypt:EncryptionProperty>
+        <comp:Compression Method="4" OriginalLength="12914"></comp:Compression>
+      </encrypt:EncryptionProperty>
+    </encrypt:EncryptionProperties>
+  </encrypt:EncryptedData>
+</encryption>

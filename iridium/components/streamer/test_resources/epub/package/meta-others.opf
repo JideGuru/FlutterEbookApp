@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<package xmlns="http://www.idpf.org/2007/opf" unique-identifier="pub-id" version="3.0" prefix="my: http://my.url/#">
+  <metadata xmlns:dc="http://purl.org/dc/elements/1.1/">
+    <dc:title>Alice's Adventures in Wonderland</dc:title>
+    <dc:source>Feedbooks</dc:source>
+    <meta id="source1" property="dcterms:source">Web</meta>
+    <meta refines="#source1" property="my:scheme">http</meta>
+    <meta name="dcterms:source" content="Internet"/>
+    <meta id="r0" property="my:property0">refines0</meta>
+    <meta id="r1" refines="r0" property="my:property1">refines1</meta>
+    <meta id="r2" refines="r1" property="my:property2">refines2</meta>
+    <meta id="r3" refines="r1" property="my:property3">refines3</meta>
+  </metadata>
+  <manifest>
+    <item id="titlepage" href="titlepage.xhtml"/>
+  </manifest>
+  <spine>
+    <itemref idref="titlepage"/>
+  </spine>
+</package>

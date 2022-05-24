@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<package xmlns="http://www.idpf.org/2007/opf" unique-identifier="pub-id" version="3.0" >
+  <metadata xmlns:dc="http://purl.org/dc/elements/1.1/">
+    <dc:title id="title">Alice's Adventures in Wonderland</dc:title>
+    <meta refines="#title" property="alternate-script" xml:lang="fr">Les Aventures d'Alice au pays des merveilles</meta>
+    <meta refines="#title" property="file-as">Adventures</meta>
+    
+    <dc:title id="subtitle" xml:lang="en-GB">Alice returns to the magical world from her childhood adventure</dc:title>
+    <meta refines="#subtitle" property="title-type">subtitle</meta>
+    <meta refines="#subtitle" property="alternate-script" xml:lang="fr">Alice retourne dans le monde magique des aventures de son enfance</meta>
+    <dc:language>en</dc:language> 
+  </metadata>
+  <manifest>
+    <item id="titlepage" href="titlepage.xhtml" media-type="application/xhtml+xml" />
+  </manifest>
+  <spine>
+    <itemref idref="titlepage"/>
+  </spine>
+</package>

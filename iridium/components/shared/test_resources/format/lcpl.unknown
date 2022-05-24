@@ -1,0 +1,26 @@
+{
+  "encryption": {
+    "content_key": {
+      "algorithm": "http://www.w3.org/2001/04/xmlenc#aes256-cbc",
+      "encrypted_value": "/k8RpXqf4E2WEunCp76E8PjhS051NXwAXeTD1ioazYxCRGvHLAck/KQ3cCh5JxDmCK0nRLyAxs1X0aA3z55boQ=="
+    },
+    "profile": "http://readium.org/lcp/basic-profile",
+    "user_key": {
+      "algorithm": "http://www.w3.org/2001/04/xmlenc#sha256",
+      "key_check": "jJEjUDipHK3OjGt6kFq7dcOLZuicQFUYwQ+TYkAIWKm6Xv6kpHFhF7LOkUK/Owww",
+      "text_hint": "Enter your email address"
+    }
+  },
+  "id": "ef15e740-697f-11e3-949a-0800200c9a66",
+  "issued": "2013-11-04T01:08:15+01:00",
+  "links": [
+    {
+      "rel": "hint",
+      "href": "https://www.imaginaryebookretailer.com/lcp/hint",
+      "type": "text/html"
+    }
+  ],
+  "provider": "https://www.imaginaryebookretailer.com",
+  "updated": "2014-02-21T09:44:17+01:00",
+  "user": {"id": "d9f298a7-7f34-49e7-8aae-4378ecb1d597"}
+}

@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<package xmlns="http://www.idpf.org/2007/opf" unique-identifier="pub-id" version="3.0">
+  <metadata xmlns:dc="http://purl.org/dc/elements/1.1/">
+    <dc:title>Alice's Adventures in Wonderland</dc:title>
+  </metadata>
+  <manifest>
+    <item id="item1" href="chap1_docbook.xml" media-type="application/docbook+xml" fallback="fall1"/>
+    <item id="fall1" href="chap1.xml" media-type="application/z3998-auth+xml" fallback="fall2" />
+    <item id="fall2" href="chap1.xhtml" media-type="application/xhtml+xml"/>
+  </manifest>
+  <spine>
+    <itemref idref="titlepage"/>
+  </spine>
+</package>
