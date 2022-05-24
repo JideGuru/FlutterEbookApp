@@ -20,7 +20,7 @@ dependencies:
   cached_network_image: ^3.2.1
   cupertino_icons: ^1.0.3
   dio: ^4.0.0
-  epub_viewer: ^0.2.2
+#  epub_viewer: ^0.2.2
   flutter:
     sdk: flutter
   flutter_icons:
@@ -36,6 +36,8 @@ dependencies:
   shared_preferences: ^2.0.7
   uuid: ^3.0.4
   xml2json: ^5.3.1
+  iridium_reader_widget:
+    path: ../iridium/reader_widget
 
 dependency_overrides:
   platform: ^3.1.0
