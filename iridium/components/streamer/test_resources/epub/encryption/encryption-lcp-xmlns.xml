@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<encryption xmlns="urn:oasis:names:tc:opendocument:xmlns:container">
+  <EncryptedData xmlns="http://www.w3.org/2001/04/xmlenc#">
+    <EncryptionMethod xmlns="http://www.w3.org/2001/04/xmlenc#" Algorithm="http://www.w3.org/2001/04/xmlenc#aes256-cbc"></EncryptionMethod>
+    <KeyInfo xmlns="http://www.w3.org/2000/09/xmldsig#">
+      <RetrievalMethod xmlns="http://www.w3.org/2000/09/xmldsig#" URI="license.lcpl#/encryption/content_key" Type="http://readium.org/2014/01/lcp#EncryptedContentKey"></RetrievalMethod>
+    </KeyInfo>
+    <CipherData xmlns="http://www.w3.org/2001/04/xmlenc#">
+      <CipherReference xmlns="http://www.w3.org/2001/04/xmlenc#" URI="OEBPS/xhtml/chapter01.xhtml"></CipherReference>
+    </CipherData>
+    <EncryptionProperties xmlns="http://www.w3.org/2001/04/xmlenc#">
+      <EncryptionProperty xmlns="http://www.w3.org/2001/04/xmlenc#">
+        <Compression xmlns="http://www.idpf.org/2016/encryption#compression" Method="8" OriginalLength="13291"></Compression>
+      </EncryptionProperty>
+    </EncryptionProperties>
+  </EncryptedData>
+  <EncryptedData xmlns="http://www.w3.org/2001/04/xmlenc#">
+    <EncryptionMethod xmlns="http://www.w3.org/2001/04/xmlenc#" Algorithm="http://www.w3.org/2001/04/xmlenc#aes256-cbc"></EncryptionMethod>
+    <KeyInfo xmlns="http://www.w3.org/2000/09/xmldsig#">
+      <RetrievalMethod xmlns="http://www.w3.org/2000/09/xmldsig#" URI="license.lcpl#/encryption/content_key" Type="http://readium.org/2014/01/lcp#EncryptedContentKey"></RetrievalMethod>
+    </KeyInfo>
+    <CipherData xmlns="http://www.w3.org/2001/04/xmlenc#">
+      <CipherReference xmlns="http://www.w3.org/2001/04/xmlenc#" URI="OEBPS/xhtml/chapter02.xhtml"></CipherReference>
+    </CipherData>
+    <EncryptionProperties xmlns="http://www.w3.org/2001/04/xmlenc#">
+      <EncryptionProperty xmlns="http://www.w3.org/2001/04/xmlenc#">
+        <Compression xmlns="http://www.idpf.org/2016/encryption#compression" Method="4" OriginalLength="12914"></Compression>
+      </EncryptionProperty>
+    </EncryptionProperties>
+  </EncryptedData>
+</encryption>

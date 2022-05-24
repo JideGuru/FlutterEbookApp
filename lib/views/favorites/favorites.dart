@@ -24,7 +24,7 @@ class _FavoritesState extends State<Favorites> {
   }
 
   getFavorites() {
-    SchedulerBinding.instance!.addPostFrameCallback(
+    SchedulerBinding.instance.addPostFrameCallback(
       (_) {
         if (mounted) {
           Provider.of<FavoritesProvider>(context, listen: false).getFavorites();

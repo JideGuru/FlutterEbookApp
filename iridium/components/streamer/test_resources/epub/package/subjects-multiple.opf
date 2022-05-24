@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<package xmlns="http://www.idpf.org/2007/opf" unique-identifier="pub-id" version="3.0" >
+  <metadata xmlns:dc="http://purl.org/dc/elements/1.1/">
+    <dc:title>Alice's Adventures in Wonderland</dc:title> 
+    <dc:subject>fiction</dc:subject>
+    <!-- Won't be split because there are several dc:subject tags -->
+    <dc:subject>  apple; banana,  pear  </dc:subject>
+  </metadata>
+  <manifest>
+    <item id="titlepage" href="titlepage.xhtml"/>
+  </manifest>
+  <spine>
+    <itemref idref="titlepage"/>
+  </spine>
+</package>

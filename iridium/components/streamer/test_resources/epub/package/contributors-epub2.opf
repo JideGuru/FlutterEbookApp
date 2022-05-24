@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<package xmlns="http://www.idpf.org/2007/opf" unique-identifier="pub-id" version="2.0" >
+  <metadata xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:opf="http://www.idpf.org/2007/opf">
+    <dc:title>Alice's Adventures in Wonderland</dc:title> 
+
+    <!-- dc:creator is by default an Author -->
+    <dc:creator>Author 1</dc:creator>
+    <!-- dc:publisher is by default a Publisher -->
+    <dc:publisher>Publisher 1</dc:publisher>
+    <!-- dc:contributor is by default a Contributor -->
+    <dc:contributor>Contributor 1</dc:contributor>
+    
+    <dc:contributor id="unknown" opf:role="unknown">Contributor 2</dc:contributor> 
+    <!-- file-as attribute is parsed -->
+    <dc:contributor opf:file-as="Sorting Key">Contributor 3</dc:contributor>
+    
+    <!-- Various roles -->
+    <dc:contributor id="author-2" opf:role="aut">Author 2</dc:contributor>
+    <dc:contributor id="publisher" opf:role="pbl">Publisher 2</dc:contributor> 
+    <dc:contributor id="translator" opf:role="trl">Translator</dc:contributor> 
+    <dc:contributor id="editor" opf:role="edt">Editor</dc:contributor> 
+    <dc:contributor id="artist" opf:role="art">Artist</dc:contributor> 
+    <dc:contributor id="colorist" opf:role="clr">Colorist</dc:contributor> 
+    <dc:contributor id="narrator" opf:role="nrt">Narrator</dc:contributor> 
+    <dc:contributor id="illustrator" opf:role="ill">Illustrator</dc:contributor> 
+    
+  </metadata>
+  <manifest>
+    <item id="titlepage" href="titlepage.xhtml" media-type="application/xhtml+xml" />
+  </manifest>
+  <spine>
+    <itemref idref="titlepage"/>
+  </spine>
+</package>

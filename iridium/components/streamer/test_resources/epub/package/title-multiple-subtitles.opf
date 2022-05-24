@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<package xmlns="http://www.idpf.org/2007/opf" unique-identifier="pub-id" version="3.0" >
+  <metadata xmlns:dc="http://purl.org/dc/elements/1.1/">
+    <dc:title id="title">Alice's Adventures in Wonderland</dc:title> 
+    <dc:title id="subtitle1">Subtitle 1</dc:title>
+    <meta refines="#subtitle1" property="title-type">subtitle</meta>
+    <meta refines="#subtitle1" property="display-seq">2</meta>
+    <dc:title id="subtitle2">Subtitle 2</dc:title>
+    <meta refines="#subtitle2" property="title-type">subtitle</meta>
+    <meta refines="#subtitle2" property="display-seq">1</meta>
+    <dc:language>en</dc:language> 
+  </metadata>
+  <manifest>
+    <item id="titlepage" href="titlepage.xhtml" media-type="application/xhtml+xml" />
+  </manifest>
+  <spine>
+    <itemref idref="titlepage"/>
+  </spine>
+</package>

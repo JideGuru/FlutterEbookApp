@@ -15,7 +15,16 @@ class ThemeConfig {
     cursorColor: lightAccent,
     scaffoldBackgroundColor: lightBG,
     appBarTheme: AppBarTheme(
+      color: lightPrimary,
       elevation: 0.0,
+      titleTextStyle: TextStyle(
+        color: Colors.black,
+        fontSize: 20,
+        fontWeight: FontWeight.w800,
+      ),
+      iconTheme: IconThemeData(
+        color: Colors.black,
+      ),
     ),
   );
 
@@ -27,7 +36,16 @@ class ThemeConfig {
     scaffoldBackgroundColor: darkBG,
     cursorColor: darkAccent,
     appBarTheme: AppBarTheme(
+      color: darkPrimary,
       elevation: 0.0,
+      titleTextStyle: TextStyle(
+        color: Colors.white,
+        fontSize: 20,
+        fontWeight: FontWeight.w800,
+      ),
+      iconTheme: IconThemeData(
+        color: Colors.white,
+      ),
     ),
   );
 }

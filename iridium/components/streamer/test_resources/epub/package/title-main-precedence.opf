@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<package xmlns="http://www.idpf.org/2007/opf" unique-identifier="pub-id" version="3.0" >
+  <metadata xmlns:dc="http://purl.org/dc/elements/1.1/">
+    <dc:title>Alice's Adventures in Wonderland</dc:title> 
+    <dc:title id="main">Main title takes precedence</dc:title>
+    <meta refines="#main" property="title-type">main</meta>
+  </metadata>
+  <manifest>
+    <item id="titlepage" href="titlepage.xhtml" media-type="application/xhtml+xml" />
+  </manifest>
+  <spine>
+    <itemref idref="titlepage"/>
+  </spine>
+</package>

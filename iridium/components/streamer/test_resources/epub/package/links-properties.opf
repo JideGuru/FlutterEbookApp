@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<package xmlns="http://www.idpf.org/2007/opf" unique-identifier="pub-id" version="3.0" >
+  <metadata xmlns:dc="http://purl.org/dc/elements/1.1/">
+    <dc:title>Alice's Adventures in Wonderland</dc:title> 
+  </metadata>
+  <manifest>
+    <item id="cover" href="cover.png" properties="cover-image"/>
+    <item id="chapter01" href="chapter01.xhtml" properties="mathml"/>
+    <item id="chapter02" href="chapter02.xhtml" properties="remote-resources"/>
+    <item id="chapter03" href="chapter03.xhtml" properties="scripted svg"/>
+    <item id="chapter04" href="chapter04.xhtml" properties="nav"/>
+    <item id="chapter05" href="chapter05.xhtml"/>
+    <item id="chapter06" href="chapter06.xhtml"/>
+    <item id="chapter07" href="chapter07.xhtml"/>
+    <item id="chapter08" href="chapter08.xhtml"/>
+    <item id="chapter07" href="chapter07.xhtml"/>
+    <item id="chapter08" href="chapter08.xhtml"/>
+  </manifest>
+  <spine>
+    <itemref idref="chapter01" properties="rendition:flow-auto rendition:layout-pre-paginated rendition:orientation-auto rendition:page-spread-right"/>
+    <itemref idref="chapter02" properties="rendition:flow-paginated rendition:layout-reflowable rendition:orientation-landscape page-spread-left"/>
+    <itemref idref="chapter03" properties="rendition:flow-scrolled-continuous rendition:orientation-portrait rendition:page-spread-center"/>
+    <itemref idref="chapter04" properties="rendition:flow-scrolled-doc rendition:spread-auto"/>
+    <itemref idref="chapter05" properties="rendition:spread-both"/>
+    <itemref idref="chapter06" properties="rendition:spread-landscape"/>
+    <itemref idref="chapter07" properties="rendition:spread-none"/>
+    <itemref idref="chapter08" properties="rendition:spread-portrait"/>
+  </spine>
+</package>

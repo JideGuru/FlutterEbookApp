@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<package xmlns="http://www.idpf.org/2007/opf" unique-identifier="pub-id" version="3.0" >
+  <metadata xmlns:dc="http://purl.org/dc/elements/1.1/">
+    <dc:title>Alice's Adventures in Wonderland</dc:title> 
+    <meta property="media:duration" refines="#chapter02_smil">0:32:29</meta>
+  </metadata>
+  
+  <manifest>
+    <!-- Font -->
+    <item id="font0" href="fonts/MinionPro.otf" media-type="application/vnd.ms-opentype"/>
+    <!-- Navigation document -->
+    <item id="nav" href="nav.xhtml" media-type="application/xhtml+xml" properties="nav"/>
+    <!-- Path in parent folder -->
+    <item id="css" href="../style.css" media-type="text/css"/>
+    <!-- Spine items -->
+    <item id="chapter01" href="chapter01.xhtml" media-type="application/xhtml+xml"/>
+    <!-- Ignored in the spine -->
+    <item id="chapter02" href="chapter02.xhtml" media-type="application/xhtml+xml"/>
+    <!-- First item in the spine -->
+    <item id="titlepage" href="../titlepage.xhtml" media-type="application/xhtml+xml"/>
+    <!-- SMIL without duration -->
+    <item id="chapter01_smil" href="chapter01.smil" media-type="application/smil+xml"/>
+    <!-- SMIL with duration -->
+    <item id="chapter02_smil" href="chapter02.smil" media-type="application/smil+xml"/>
+    <!-- Cover image -->
+    <item id="img01a" href="images/alice01a.png" media-type="image/png" properties="cover-image"/>
+    <!-- Images -->
+    <item id="img02a" href="images/alice02a.gif" media-type="image/gif"/>
+    <!-- No media type -->
+    <item id="nomediatype" href="nomediatype.txt"/>
+    <!-- Items are ignored when missing an `href` -->
+    <item id="nohref" media-type="text/plain"/>
+  </manifest>
+  <spine>
+    <itemref idref="titlepage"/>
+    <itemref idref="chapter01"/>
+    <!-- Items are ignored if not linear -->
+    <itemref idref="chapter02" linear="no"/>
+    <!-- Items are ignored when missing an `id` -->
+    <itemref/>
+    <!-- Items are ignored when not part of the manifest items -->
+    <itemref idref="idnotfound"/>
+  </spine>
+</package>

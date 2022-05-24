@@ -1,0 +1,97 @@
+name: iridium_reader_widget
+description: Plug and play ebook reader widget
+version: 0.0.1
+homepage:
+
+environment:
+  sdk: ">=2.16.0-134.1.beta <3.0.0"
+  flutter: ">=1.17.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  mno_commons:
+    path: ../components/commons
+  mno_navigator:
+    path: ../components/navigator
+  mno_server:
+    path: ../components/server
+  mno_streamer:
+    path: ../components/streamer
+  mno_opds:
+    path: ../components/opds
+  mno_shared:
+    path: ../components/shared
+  cupertino_icons: ^1.0.4
+  provider: ^6.0.2
+  shared_preferences: ^2.0.12
+  #  flutter_icons: ^1.1.0
+  flutter_font_icons: ^2.2.4
+  xml2json: ^5.3.2
+  fluttertoast: ^8.0.8
+#  cached_network_image: ^3.2.0
+  dartx: ^1.0.0
+  uuid: ^3.0.5
+  objectdb: ^1.2.1+1
+  path_provider: ^2.0.8
+  dio: ^4.0.4
+  permission_handler: ^8.3.0
+  google_fonts: ^2.2.0
+#  flutter_spinkit: ^5.1.0
+  idb_shim: ^2.0.1
+#  idb_sqflite: ^1.1.0
+#  sqflite_common_ffi: ^2.1.0+2
+  flutter_fimber: ^0.6.4
+  fimber: ^0.6.4
+  bloc: ^8.0.2
+  flutter_bloc: ^8.0.1
+  flutter_inappwebview: ^5.3.2
+  json_theme: ^3.2.5
+  new_version: ^0.3.0
+
+dependency_overrides:
+  platform: ^3.1.0
+
+dev_dependencies:
+  flutter_lints: ^1.0.4
+#  flutter_test:
+#    sdk: flutter
+
+# For information on the generic Dart part of this file, see the
+# following page: https://dart.dev/tools/pub/pubspec
+
+# The following section is specific to Flutter.
+flutter:
+
+  # To add assets to your package, add an assets section, like this:
+  assets:
+    - assets/images/
+    - assets/fonts/
+#    - assets/images/icon_menu.png
+
+  #
+  # For details regarding assets in packages, see
+  # https://flutter.dev/assets-and-images/#from-packages
+  #
+  # An image asset can refer to one or more resolution-specific "variants", see
+  # https://flutter.dev/assets-and-images/#resolution-aware.
+
+  # To add custom fonts to your package, add a fonts section here,
+  # in this "flutter" section. Each entry in this list should have a
+  # "family" key with the font family name, and a "fonts" key with a
+  # list giving the asset and other descriptors for the font. For
+  # example:
+  # fonts:
+  #   - family: Schyler
+  #     fonts:
+  #       - asset: fonts/Schyler-Regular.ttf
+  #       - asset: fonts/Schyler-Italic.ttf
+  #         style: italic
+  #   - family: Trajan Pro
+  #     fonts:
+  #       - asset: fonts/TrajanPro.ttf
+  #       - asset: fonts/TrajanPro_Bold.ttf
+  #         weight: 700
+  #
+  # For details regarding fonts in packages, see
+  # https://flutter.dev/custom-fonts/#from-packages

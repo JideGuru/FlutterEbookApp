@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entry xmlns:schema="http://schema.org/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:opds="http://opds-spec.org/2010/catalog" xmlns:thr="http://purl.org/syndication/thread/1.0" xmlns="http://www.w3.org/2005/Atom" xmlns:dcterms="http://purl.org/dc/terms/">
+<title>Before the Devil Breaks You</title>
+<id>http://www.feedbooks.com/item/2300550</id>
+<dcterms:identifier xsi:type="dcterms:URI">urn:ISBN:9780748122479</dcterms:identifier>
+<author>
+  <name>Libba Bray</name>
+  <uri>http://www.feedbooks.com/search?query=contributor%3A%22Libba+Bray%22</uri>
+</author>
+<published>2017-03-23T12:54:23Z</published>
+<updated>2020-02-04T17:10:38Z</updated>
+<dcterms:language>en</dcterms:language>
+<dcterms:publisher>Atom</dcterms:publisher>
+<dcterms:issued>2017-10-03</dcterms:issued>
+<summary>The Diviners are back in this thrilling and eerie third installment by #1 New York Timesbestselling author Libba Bray.New York City.1927.Lights are bright.Jazz is king.Parties are wild.And the dead are coming...After battling a supernatural sleepi...</summary>
+<dcterms:extent>560 pages</dcterms:extent>
+<schema:Series schema:name="The Diviners" schema:url="http://www.feedbooks.com/list/33329.atom" schema:position="3"/>
+<category scheme="http://www.feedbooks.com/categories" label="Fiction" term="FBFIC000000"/>
+<category scheme="http://www.feedbooks.com/categories" label="Juvenile &amp; Young Adult" term="FBJUV000000"/>
+<category scheme="http://www.feedbooks.com/categories" label="Fantasy, Magic" term="FBJUV037000"/>
+<link type="text/html" title="View on Feedbooks" rel="alternate" href="http://www.feedbooks.com/item/2300550"/>
+<link type="image/jpeg" rel="http://opds-spec.org/image" href="https://covers.feedbooks.net/item/2300550.jpg?size=large&amp;t=1548412737"/>
+<link type="image/jpeg" rel="http://opds-spec.org/image/thumbnail" href="https://covers.feedbooks.net/item/2300550.jpg?size=large&amp;t=1548412737"/>
+  <content type="html">&lt;p&gt;&lt;b&gt;The Diviners are back in this thrilling and eerie third installment by #1 &lt;i&gt;New York Times&lt;/i&gt;bestselling author Libba Bray.&lt;/b&gt;&lt;i&gt;New York City.&lt;/i&gt;&lt;i&gt;1927.&lt;/i&gt;&lt;i&gt;Lights are bright.&lt;/i&gt;&lt;i&gt;Jazz is king.&lt;/i&gt;&lt;i&gt;Parties are wild.&lt;/i&gt;&lt;i&gt;And the dead are coming...&lt;/i&gt;&lt;i&gt;&lt;/i&gt;After battling a supernatural sleeping sickness that early claimed two of their own, the Diviners have had enough of lies. They're more determined than ever to uncover the mystery behind their extraordinary powers, even as they face off against an all-new terror. Out on Ward's Island, far from the city's bustle, sits a mental hospital haunted by the lost souls of people long forgotten--ghosts who have unusual and dangerous ties to the man in the stovepipe hat, also known as the King of Crows.With terrible accounts of murder and possession flooding in from all over, and New York City on the verge of panic, the Diviners must band together and brave the sinister ghosts invading the asylum, a fight that will bring them fact-to-face with the King of Crows. But as the explosive secrets of the past come to light, loyalties and friendships will be tested, love will hang in the balance, and the Diviners will question all that they've ever known. All the while, malevolent forces gather from every corner in a battle for the very soul of a nation--a fight that could claim the Diviners themselves.Heart-pounding action and terrifying moments will leave you breathless in the third book of the four-book Diviners series by #1 &lt;i&gt;New York Times &lt;/i&gt;bestselling author Libba Bray.&lt;/p&gt;</content>
+  <link type="application/atom+xml;type=entry;profile=opds-catalog" rel="self" href="http://www.feedbooks.com/item/2300550.atom"/>
+<link type="text/html" rel="http://opds-spec.org/acquisition/buy" href="http://www.feedbooks.com/item/2300550/buy">
+  <opds:price currencycode="EUR">3.99</opds:price>
+  <opds:indirectAcquisition type="application/vnd.adobe.adept+xml">
+    <opds:indirectAcquisition type="application/epub+zip"/>
+  </opds:indirectAcquisition>
+</link>
+<link type="application/epub+zip" rel="http://opds-spec.org/acquisition/sample" href="http://www.feedbooks.com/item/2300550/preview"/>
+<link type="application/atom+xml;profile=opds-catalog;kind=acquisition" title="In the same series" rel="http://www.feedbooks.com/opds/same_series" href="http://www.feedbooks.com/list/33329.atom"/>
+<link type="application/atom+xml;profile=opds-catalog;kind=acquisition" title="More books by Libba Bray" rel="http://www.feedbooks.com/opds/same_author" href="http://www.feedbooks.com/store/recent.atom?contributor=Libba+Bray&amp;amp;lang=en"/>
+<link type="application/atom+xml;profile=opds-catalog;kind=navigation" title="Categories for this book" rel="related" href="http://www.feedbooks.com/item/2300550/categories.atom"/>
+<link type="application/atom+xml;profile=opds-catalog;kind=acquisition" title="From the same collection" rel="related" href="http://www.feedbooks.com/store/top.atom?collection=Diviners&amp;lang=en"/>
+<link type="application/atom+xml;profile=opds-catalog;kind=acquisition" title="From the same publisher" rel="related" href="http://www.feedbooks.com/store/top.atom?lang=en&amp;amp;publisher=Atom"/>
+</entry>

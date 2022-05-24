@@ -1,16 +1,16 @@
-import 'dart:convert';
-
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:epub_viewer/epub_viewer.dart';
+
+// import 'package:epub_viewer/epub_viewer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_ebook_app/components/book_list_item.dart';
 import 'package:flutter_ebook_app/components/description_text.dart';
 import 'package:flutter_ebook_app/components/loading_widget.dart';
-import 'package:flutter_ebook_app/database/locator_helper.dart';
 import 'package:flutter_ebook_app/models/category.dart';
+import 'package:flutter_ebook_app/util/router.dart';
 import 'package:flutter_ebook_app/view_models/details_provider.dart';
 import 'package:flutter_icons/flutter_icons.dart';
+import 'package:iridium_reader_widget/views/viewers/epub_screen.dart';
 import 'package:provider/provider.dart';
 import 'package:share/share.dart';
 
@@ -36,7 +36,7 @@ class _DetailsState extends State<Details> {
   @override
   void initState() {
     super.initState();
-    SchedulerBinding.instance!.addPostFrameCallback(
+    SchedulerBinding.instance.addPostFrameCallback(
       (_) {
         Provider.of<DetailsProvider>(context, listen: false)
             .setEntry(widget.entry);
@@ -169,7 +169,7 @@ class _DetailsState extends State<Details> {
                 _buildCategory(widget.entry, context),
                 Center(
                   child: Container(
-                    height: 20.0,
+                    height: 50.0,
                     width: MediaQuery.of(context).size.width,
                     child: _buildDownloadReadButton(detailsProvider, context),
                   ),
@@ -227,39 +227,21 @@ class _DetailsState extends State<Details> {
       Map dl = dlList[0];
       String path = dl['path'];
 
-      List locators =
-          await LocatorDB().getLocator(widget.entry.id!.t!.toString());
-
-      EpubViewer.setConfig(
-        identifier: 'androidBook',
-        themeColor: Theme.of(context).accentColor,
-        scrollDirection: EpubScrollDirection.VERTICAL,
-        enableTts: false,
-        allowSharing: true,
-      );
-      EpubViewer.open(path,
-          lastLocation:
-              locators.isNotEmpty ? EpubLocator.fromJson(locators[0]) : null);
-      EpubViewer.locatorStream.listen((event) async {
-        // Get locator here
-        Map json = jsonDecode(event);
-        json['bookId'] = widget.entry.id!.t!.toString();
-        // Save locator to your database
-        await LocatorDB().update(json);
-      });
+      MyRouter.pushPage(context, EpubScreen.fromPath(filePath: path));
     }
   }
 
   _buildDownloadReadButton(DetailsProvider provider, BuildContext context) {
     if (provider.downloaded) {
-      return FlatButton(
+      return TextButton(
         onPressed: () => openBook(provider),
         child: Text(
           'Read Book',
+          style: TextStyle(fontSize: 13, color: Colors.black),
         ),
       );
     } else {
-      return FlatButton(
+      return TextButton(
         onPressed: () => provider.downloadFile(
           context,
           widget.entry.link![3].href!,
@@ -267,6 +249,7 @@ class _DetailsState extends State<Details> {
         ),
         child: Text(
           'Download',
+          style: TextStyle(fontSize: 13, color: Colors.black),
         ),
       );
     }
@@ -322,9 +305,7 @@ class _DetailsState extends State<Details> {
   }
 
   _share() {
-    Share.share(
-      '${widget.entry.title!.t} by ${widget.entry.author!.name!.t}'
-      'Read/Download ${widget.entry.title!.t} from ${widget.entry.link![3].href}.'
-    );
+    Share.share('${widget.entry.title!.t} by ${widget.entry.author!.name!.t}'
+        'Read/Download ${widget.entry.title!.t} from ${widget.entry.link![3].href}.');
   }
 }

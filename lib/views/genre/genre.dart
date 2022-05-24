@@ -25,7 +25,7 @@ class _GenreState extends State<Genre> {
   @override
   void initState() {
     super.initState();
-    SchedulerBinding.instance!.addPostFrameCallback(
+    SchedulerBinding.instance.addPostFrameCallback(
       (_) => Provider.of<GenreProvider>(context, listen: false)
           .getFeed(widget.url),
     );

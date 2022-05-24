@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>urn:uuid:2853dacf-ed79-42f5-8e8a-a7bb3d1ae6a2</id>
+    <link rel="self"
+        href="/opds-catalogs/root.xml"
+        type="application/atom+xml;profile=opds-catalog;kind=navigation"/>
+    <link rel="start"
+        href="/opds-catalogs/root.xml"
+        type="application/atom+xml;profile=opds-catalog;kind=navigation"/>
+    <title>OPDS Catalog Root Example</title>
+    <updated>2010-01-10T10:03:10Z</updated>
+    <author>
+        <name>Spec Writer</name>
+        <uri>http://opds-spec.org</uri>
+    </author>
+
+    <entry>
+        <title>Popular Publications</title>
+        <link rel="http://opds-spec.org/sort/popular"
+            href="/opds-catalogs/popular.xml"
+            type="application/atom+xml;profile=opds-catalog;kind=acquisition"/>
+        <updated>2010-01-10T10:01:01Z</updated>
+        <id>urn:uuid:d49e8018-a0e0-499e-9423-7c175fa0c56e</id>
+        <content type="text">Popular publications from this catalog based on downloads.</content>
+    </entry>
+    <entry>
+        <title>New Publications</title>
+        <link rel="http://opds-spec.org/sort/new"
+            href="/opds-catalogs/new.xml"
+            type="application/atom+xml;profile=opds-catalog;kind=acquisition"/>
+        <updated>2010-01-10T10:02:00Z</updated>
+        <id>urn:uuid:d49e8018-a0e0-499e-9423-7c175fa0c56c</id>
+        <content type="text">Recent publications from this catalog.</content>
+    </entry>
+    <entry>
+        <title>Unpopular Publications</title>
+        <link rel="subsection"
+            href="/opds-catalogs/unpopular.xml"
+            type="application/atom+xml;profile=opds-catalog;kind=acquisition"/>
+        <updated>2010-01-10T10:01:00Z</updated>
+        <id>urn:uuid:d49e8018-a0e0-499e-9423-7c175fa0c56d</id>
+        <content type="text">Publications that could use some love.</content>
+    </entry>
+</feed>

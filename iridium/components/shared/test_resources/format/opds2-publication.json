@@ -1,0 +1,29 @@
+{
+  "metadata": {
+    "@type": "http://schema.org/Book",
+    "title": "Moby-Dick",
+    "author": "Herman Melville",
+    "identifier": "urn:isbn:978031600000X",
+    "language": "en",
+    "modified": "2015-09-29T17:00:00Z"
+  },
+  "links": [
+    {"rel": "self", "href": "http://example.org/manifest.json", "type": "application/webpub+json"},
+    {
+      "href": "/buy",
+      "rel": "http://opds-spec.org/acquisition/buy",
+      "type": "application/epub+zip",
+      "properties": {
+        "price": {
+          "currency": "USD",
+          "value": 4.99
+        }
+      }
+    }
+  ],
+  "images": [
+    {"href": "http://example.org/cover.jpg", "type": "image/jpeg", "height": 1400, "width": 800},
+    {"href": "http://example.org/cover-small.jpg", "type": "image/jpeg", "height": 700, "width": 400},
+    {"href": "http://example.org/cover.svg", "type": "image/svg+xml"}
+  ]
+}

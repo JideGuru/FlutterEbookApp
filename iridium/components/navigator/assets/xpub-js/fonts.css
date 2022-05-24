@@ -1,0 +1,40 @@
+@font-face {
+ font-family: "Amiri";
+ src: url("/google_fonts/Amiri/Amiri-Regular.ttf");
+}
+@font-face {
+ font-family: "Amiri";
+ src: url("/google_fonts/Amiri/Amiri-Bold.ttf");
+ font-weight: bold;
+}
+@font-face {
+ font-family: "Amiri";
+ src: url("/google_fonts/Amiri/Amiri-Italic.ttf");
+ font-style: italic, oblique;
+}
+@font-face {
+ font-family: "Amiri";
+ src: url("/google_fonts/Amiri/Amiri-BoldItalic.ttf");
+ font-weight: bold;
+ font-style: italic, oblique;
+}
+@font-face {
+ font-family: "Crimson Text";
+ src: url("/google_fonts/Crimson_Text/CrimsonText-Regular.ttf");
+}
+@font-face {
+ font-family: "Crimson Text";
+ src: url("/google_fonts/Crimson_Text/CrimsonText-Bold.ttf");
+ font-weight: bold;
+}
+@font-face {
+ font-family: "Crimson Text";
+ src: url("/google_fonts/Crimson_Text/CrimsonText-Italic.ttf");
+ font-style: italic, oblique;
+}
+@font-face {
+ font-family: "Crimson Text";
+ src: url("/google_fonts/Crimson_Text/CrimsonText-BoldItalic.ttf");
+ font-weight: bold;
+ font-style: italic, oblique;
+}

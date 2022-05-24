@@ -1,0 +1,13 @@
+html {
+    font-size: 24px;
+}
+parsererror {
+    display: none !important;
+}
+
+@page {
+    margin: 50px;
+}
+.mno-tts-active {
+    text-decoration: underline;
+}

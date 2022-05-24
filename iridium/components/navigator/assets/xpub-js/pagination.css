@@ -1,0 +1,69 @@
+:root {
+    --RS__viewportHeight: 99.9vh;
+}
+
+.xpub_container {
+    height: var(--RS__viewportHeight);
+    min-height: var(--RS__viewportHeight);
+    overflow-x: scroll;
+    scroll-snap-type: x mandatory;
+
+}
+
+#xpub_contenuSpineItem {
+    /* We fix the position to be able to add positioned pages at the end*/
+    position: relative;
+
+    margin: var(--RS__verticalMargin) var(--RS__pageGutter) !important;
+    height: calc(var(--RS__viewportHeight) - 2 *  var(--RS__verticalMargin));
+    min-height: calc(var(--RS__viewportHeight) - 2 *  var(--RS__verticalMargin));
+    max-height: calc(var(--RS__viewportHeight) - 2 *  var(--RS__verticalMargin));
+
+    -webkit-column-width: var(--RS__colWidth);
+    -moz-column-width: var(--RS__colWidth);
+    column-width: var(--RS__colWidth);
+
+    -webkit-column-gap: calc(2 * var(--RS__pageGutter));
+    -moz-column-gap: calc(2 * var(--RS__pageGutter));
+    column-gap: calc(2 * var(--RS__pageGutter));
+    -moz-column-fill: auto;
+    column-fill: auto;
+}
+
+#xpub_paginator {
+    margin-top: calc(-1 * var(--RS__viewportHeight));
+    width: calc(var(--RS__colCount) * 100vw);
+    display: flex;
+}
+
+/* coloration */
+/*
+#xpub_paginator > div:nth-child(even) {
+    opacity: 20%;
+    background-color: #87EA87 !important;
+}
+#xpub_paginator > div:nth-child(odd) {
+    opacity: 20%;
+    background-color: #87CCEA !important;
+}
+*/
+.xpub_page_overlay {
+    scroll-snap-align: center;
+    height: var(--RS__viewportHeight);
+    min-height: var(--RS__viewportHeight);
+    width: 100vw;
+    min-width: 100vw;
+}
+.xpub_page_bookmark {
+    float: right;
+    right: 0;
+    top: 0;
+    height: 48px;
+    width: 48px;
+}
+.xpub_page_bookmark img {
+    display: none;
+    opacity: 0.6;
+    height: 48px;
+    width: 48px;
+}

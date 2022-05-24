@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<package xmlns="http://www.idpf.org/2007/opf" unique-identifier="pub-id" version="2.0" >
+  <metadata xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:opf="http://www.idpf.org/2007/opf">
+    <dc:title>Alice's Adventures in Wonderland</dc:title> 
+    <dc:date opf:event="modification">2012-04-02T12:47:00Z</dc:date>
+    <dc:date opf:event="publication">1865-07-04</dc:date>
+  </metadata>
+  <manifest>
+    <item id="titlepage" href="titlepage.xhtml"/>
+  </manifest>
+  <spine>
+    <itemref idref="titlepage"/>
+  </spine>
+</package>
