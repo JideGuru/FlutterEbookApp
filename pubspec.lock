@@ -308,7 +308,7 @@ packages:
   iridium_reader_widget:
     dependency: "direct main"
     description:
-      path: "../iridium/reader_widget"
+      path: "iridium/reader_widget"
       relative: true
     source: path
     version: "0.0.1"
@@ -378,42 +378,42 @@ packages:
   mno_commons:
     dependency: transitive
     description:
-      path: "../iridium/components/commons"
+      path: "iridium/components/commons"
       relative: true
     source: path
     version: "0.1.2"
   mno_navigator:
     dependency: transitive
     description:
-      path: "../iridium/components/navigator"
+      path: "iridium/components/navigator"
       relative: true
     source: path
     version: "0.1.0"
   mno_opds:
     dependency: transitive
     description:
-      path: "../iridium/components/opds"
+      path: "iridium/components/opds"
       relative: true
     source: path
     version: "0.1.1"
   mno_server:
     dependency: transitive
     description:
-      path: "../iridium/components/server"
+      path: "iridium/components/server"
       relative: true
     source: path
     version: "0.1.0"
   mno_shared:
     dependency: transitive
     description:
-      path: "../iridium/components/shared"
+      path: "iridium/components/shared"
       relative: true
     source: path
     version: "0.1.3"
   mno_streamer:
     dependency: transitive
     description:
-      path: "../iridium/components/streamer"
+      path: "iridium/components/streamer"
       relative: true
     source: path
     version: "0.1.1"

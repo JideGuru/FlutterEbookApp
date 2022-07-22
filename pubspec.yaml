@@ -37,7 +37,7 @@ dependencies:
   uuid: ^3.0.4
   xml2json: ^5.3.1
   iridium_reader_widget:
-    path: ../iridium/reader_widget
+    path: ./iridium/reader_widget
 
 dependency_overrides:
   platform: ^3.1.0
