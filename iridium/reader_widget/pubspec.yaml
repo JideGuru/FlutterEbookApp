@@ -54,8 +54,8 @@ dependency_overrides:
 
 dev_dependencies:
   flutter_lints: ^1.0.4
-#  flutter_test:
-#    sdk: flutter
+  flutter_test:
+    sdk: flutter
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

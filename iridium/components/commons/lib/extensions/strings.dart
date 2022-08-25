@@ -118,7 +118,9 @@ extension StringHashExtension on String {
   String get sha1 => crypto.sha1.convert(toUtf8()).toString();
 }
 
-extension NullableStringIsNullOrBlankExtension on String? {
-  /// Returns `true` if the String is either null or empty.
-  bool get isNullOrBlank => this?.isBlank ?? true;
-}
+// dartx has implemented the following extensions in
+// https://github.com/leisim/dartx/commit/430cb04d27bd857a2cd7d3a3191ffa5d33200dd9
+// extension NullableStringIsNullOrBlankExtension on String? {
+//   /// Returns `true` if the String is either null or empty.
+//   bool get isNullOrBlank => this?.isBlank ?? true;
+// }
