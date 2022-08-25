@@ -33,6 +33,11 @@ class FavoriteDB {
     return val;
   }
 
+  Future<Stream<List>> listAllStream() async {
+    final db = ObjectDB(FileSystemStorage(await getPath()));
+    return db.find({}).asStream();
+  }
+
   Future<List> check(Map item) async {
     final db = ObjectDB(FileSystemStorage(await getPath()));
     List val = await db.find(item);

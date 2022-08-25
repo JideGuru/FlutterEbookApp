@@ -17,17 +17,11 @@ class _FavoritesState extends State<Favorites> {
     getFavorites();
   }
 
-  @override
-  void deactivate() {
-    super.deactivate();
-    getFavorites();
-  }
-
   getFavorites() {
     SchedulerBinding.instance.addPostFrameCallback(
       (_) {
         if (mounted) {
-          Provider.of<FavoritesProvider>(context, listen: false).getFavorites();
+          Provider.of<FavoritesProvider>(context, listen: false).listen();
         }
       },
     );
@@ -45,7 +39,7 @@ class _FavoritesState extends State<Favorites> {
               'Favorites',
             ),
           ),
-          body: favoritesProvider.posts.isEmpty
+          body: favoritesProvider.favorites.isEmpty
               ? _buildEmptyListView()
               : _buildGridView(favoritesProvider),
         );
@@ -79,13 +73,13 @@ class _FavoritesState extends State<Favorites> {
     return GridView.builder(
       padding: EdgeInsets.fromLTRB(10.0, 20.0, 10.0, 0.0),
       shrinkWrap: true,
-      itemCount: favoritesProvider.posts.length,
+      itemCount: favoritesProvider.favorites.length,
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 3,
         childAspectRatio: 200 / 340,
       ),
       itemBuilder: (BuildContext context, int index) {
-        Entry entry = Entry.fromJson(favoritesProvider.posts[index]['item']);
+        Entry entry = Entry.fromJson(favoritesProvider.favorites[index]['item']);
         return Padding(
           padding: EdgeInsets.symmetric(horizontal: 5.0),
           child: BookItem(
