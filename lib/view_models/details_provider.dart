@@ -10,8 +10,6 @@ import 'package:flutter_ebook_app/util/consts.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
 
-import '../models/category.dart';
-
 class DetailsProvider extends ChangeNotifier {
   CategoryFeed related = CategoryFeed();
   bool loading = true;

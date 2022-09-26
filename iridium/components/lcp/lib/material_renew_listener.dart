@@ -34,8 +34,8 @@ class MaterialRenewListener implements RenewListener {
 
   @override
   Future<bool> openWebPage(Uri url) async {
-    if (await canLaunch(url.toString())) {
-      return launch(url.toString());
+    if (await canLaunchUrl(url)) {
+      return launchUrl(url);
     } else {
       throw 'Could not launch $url';
     }
