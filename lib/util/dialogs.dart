@@ -53,9 +53,12 @@ class Dialogs {
                   Container(
                     height: 40.0,
                     width: 130.0,
-                    child: RaisedButton(
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(5.0),
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(5.0),
+                        ),
+                        backgroundColor: Theme.of(context).colorScheme.secondary,
                       ),
                       child: Text(
                         'Yes',
@@ -64,7 +67,6 @@ class Dialogs {
                         ),
                       ),
                       onPressed: () => exit(0),
-                      color: Theme.of(context).colorScheme.secondary,
                     ),
                   ),
                 ],

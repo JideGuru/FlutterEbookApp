@@ -33,11 +33,13 @@ class MyErrorWidget extends StatelessWidget {
             ),
           ),
           Container(
-            child: RaisedButton(
+            child: ElevatedButton(
               onPressed: () => refreshCallBack(),
-              color: Theme.of(context).colorScheme.secondary,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(5.0),
+              style: ElevatedButton.styleFrom(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(5.0),
+                ),
+                backgroundColor: Theme.of(context).colorScheme.secondary,
               ),
               child: Text(
                 'TRY AGAIN',

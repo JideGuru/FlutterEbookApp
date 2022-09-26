@@ -131,12 +131,13 @@ class _ProfileState extends State<Profile> {
             'Simple eBook app by JideGuru',
           ),
           actions: <Widget>[
-            FlatButton(
-              textColor: Theme.of(context).colorScheme.secondary,
+            TextButton(
+              style: TextButton.styleFrom(
+                  textStyle: TextStyle(
+                color: Theme.of(context).colorScheme.secondary,
+              )),
               onPressed: () => Navigator.pop(context),
-              child: Text(
-                'Close',
-              ),
+              child: Text('Close'),
             ),
           ],
         );
