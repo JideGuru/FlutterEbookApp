@@ -1,24 +1,23 @@
-# 📖📖 Flutter eBook App [![Codemagic build status](https://api.codemagic.io/apps/5e230defc5faa60315b1df62/5e230defc5faa60315b1df61/status_badge.svg)](https://codemagic.io/apps/5e230defc5faa60315b1df62/5e230defc5faa60315b1df61/latest_build)
-
-[![Twitter Follow](https://img.shields.io/twitter/follow/iamjideguru.svg?style=social)](https://twitter.com/iamjideguru)
+<div align="center">
+  <img src="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/320/joypixels/340/open-book_1f4d6.png" height="60"/>
+ 
+# Flutter eBook App 
+</div>
 
 A simple Flutter app to Read and Download books. The Books included in the app
 are from the [Public Domain](https://en.wikipedia.org/wiki/Public_domain)
 (Expired Copyright and completely free).
 
-<a href="http://www.feedbooks.com/"><img src="ss/logo_feedbooks.png" width="200"/></a>
-<br>
+<a href="http://www.feedbooks.com/"><img src="ss/logo_feedbooks.png" height="50"/></a>
 
 The [Feedbooks API](http://www.feedbooks.com/api) was used to fetch books. <br>
-<br>
-<a href="https://www.vecteezy.com/vector-art/599678-book-reading-logo-and-symbols-template-icons">App
-icon</a> <br> <br>
-To download this app, <a href="https://codemagic.io/apps/5e230defc5faa60315b1df62/5e230defc5faa60315b1df61/latest_build">click here</a> to see the codemagic builds. You can choose to install the `apk` or the `ipa(ios)`.
-<!--
-<a href="https://play.google.com/store/apps/details?id=dev.jideguru.flutterEbookApp"><img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" width="200"></img></a> -->
-<br> Please star⭐ the repo if you like what you see😉.
 
-## 💻 Requirements
+Please star <img src="https://emojipedia-us.s3.amazonaws.com/source/microsoft-teams/337/star_2b50.png" height="20"/> this repo if you like our app.
+
+## 📱 Download 
+<a href="https://play.google.com/store/apps/details?id=dev.jideguru.flutterEbookApp"><img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" width="200"></img></a> 
+
+## 💻 Development Requirements
 
 - Any Operating System (ie. MacOS X, Linux, Windows)
 - Any IDE with Flutter SDK installed (ie. IntelliJ, Android Studio, VSCode etc)
@@ -58,9 +57,8 @@ To download this app, <a href="https://codemagic.io/apps/5e230defc5faa60315b1df6
 
 ## 🤓 Author(s)
 
-**Olusegun Festus Babajide**
-[![Twitter Follow](https://img.shields.io/twitter/follow/iamjideguru.svg?style=social)](https://twitter.com/iamjideguru)
+Built and maintained with <img src="https://emojipedia-us.s3.amazonaws.com/source/microsoft-teams/337/red-heart_2764-fe0f.png" height="20"/> by **[Olusegun Festus Babajide](https://twitter.com/iamjideguru)**
 
 ## 🔖 LICENCE
 
-[Apache-2.0](https://github.com/JideGuru/FlutterEbookApp/blob/master/LICENSE)
+This project is licensed under [Apache-2.0](https://github.com/JideGuru/FlutterEbookApp/blob/master/LICENSE)
