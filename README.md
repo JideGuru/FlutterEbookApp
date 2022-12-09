@@ -58,7 +58,7 @@ To download this app, <a href="https://codemagic.io/apps/5e230defc5faa60315b1df6
 
 ## 🤓 Author(s)
 
-**Olusegun Festus Babajide**
+**Festus Babajide Olusegun**
 [![Twitter Follow](https://img.shields.io/twitter/follow/iamjideguru.svg?style=social)](https://twitter.com/iamjideguru)
 
 ## 🔖 LICENCE
