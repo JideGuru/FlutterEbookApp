@@ -35,7 +35,7 @@ dependencies:
   objectdb: ^1.2.1+1
   path_provider: ^2.0.8
   dio: ^4.0.4
-  permission_handler: ^8.3.0
+  permission_handler: ^10.2.0
   google_fonts: ^2.2.0
 #  flutter_spinkit: ^5.1.0
   idb_shim: ^2.0.1

@@ -29,7 +29,7 @@ dependencies:
   google_fonts: ^2.1.0
   objectdb: ^1.2.1+1
   path_provider: ^2.0.3
-  permission_handler: ^8.1.6
+  permission_handler: ^10.2.0
   provider: ^6.0.0
   share: 2.0.4
   shared_preferences: ^2.0.7
