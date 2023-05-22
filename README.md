@@ -64,3 +64,9 @@ To download this app, <a href="https://codemagic.io/apps/5e230defc5faa60315b1df6
 ## 🔖 LICENCE
 
 [Apache-2.0](https://github.com/JideGuru/FlutterEbookApp/blob/master/LICENSE)
+
+
+<a href="https://github.com/JideGuru/FlutterEbookApp">
+        <img width="500" alt="Star History Chart" src="https://api.star-history.com/svg?repos=JideGuru/FlutterEbookApp&type=Date">
+      </a> 
+
