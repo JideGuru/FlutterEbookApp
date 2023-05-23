@@ -3,12 +3,12 @@ import 'dart:io';
 import 'package:objectdb/objectdb.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:objectdb/src/objectdb_storage_filesystem.dart';
+import 'package:path/path.dart' as path;
 
 class LocatorDB {
   getPath() async {
     Directory documentDirectory = await getApplicationDocumentsDirectory();
-    final path = documentDirectory.path + '/locator.db';
-    return path;
+    return path.join(documentDirectory.path, 'locator.db');
   }
 
   //Insertion
@@ -21,7 +21,7 @@ class LocatorDB {
   update(Map item) async {
     final db = ObjectDB(FileSystemStorage(await getPath()));
     int update = await db.update({'bookId': item['bookId']}, item);
-    if(update == 0){
+    if (update == 0) {
       db.insert(item);
     }
     await db.close();
