@@ -9,6 +9,7 @@ import 'package:flutter_ebook_app/util/api.dart';
 import 'package:flutter_ebook_app/util/consts.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:path/path.dart' as path;
 
 class DetailsProvider extends ChangeNotifier {
   CategoryFeed related = CategoryFeed();
@@ -116,12 +117,12 @@ class DetailsProvider extends ChangeNotifier {
           .createSync();
     }
 
-    String path = Platform.isIOS
-        ? appDocDir!.path + '/$filename.epub'
-        : appDocDir!.path.split('Android')[0] +
-            '${Constants.appName}/$filename.epub';
-    print(path);
-    File file = File(path);
+    String filePath = Platform.isIOS
+        ? path.join(appDocDir!.path, '$filename.epub')
+        : path.join(appDocDir!.path.split('Android')[0], Constants.appName,
+            '$filename.epub');
+    print(filePath);
+    File file = File(filePath);
     if (!await file.exists()) {
       await file.create();
     } else {
@@ -134,7 +135,7 @@ class DetailsProvider extends ChangeNotifier {
       context: context,
       builder: (context) => DownloadAlert(
         url: url,
-        path: path,
+        path: filePath,
       ),
     ).then((v) {
       // When the download finishes, we then add the book
@@ -143,7 +144,7 @@ class DetailsProvider extends ChangeNotifier {
         addDownload(
           {
             'id': entry!.id!.t.toString(),
-            'path': path,
+            'path': filePath,
             'image': '${entry!.link![1].href}',
             'size': v,
             'name': entry!.title!.t,
