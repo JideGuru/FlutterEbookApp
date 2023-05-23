@@ -1,16 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_ebook_app/theme/theme_config.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:welltested/welltested.dart';
 
+@Welltested()
 class AppProvider extends ChangeNotifier {
-  AppProvider() {
+  AppProvider(this.prefs) {
     checkTheme();
   }
 
   ThemeData theme = ThemeConfig.lightTheme;
   Key? key = UniqueKey();
   GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
-
+  SharedPreferences prefs;
   void setKey(value) {
     key = value;
     notifyListeners();
@@ -24,7 +26,6 @@ class AppProvider extends ChangeNotifier {
   // change the Theme in the provider and SharedPreferences
   void setTheme(value, c) async {
     theme = value;
-    SharedPreferences prefs = await SharedPreferences.getInstance();
     await prefs.setString('theme', c);
     notifyListeners();
   }
@@ -34,7 +35,6 @@ class AppProvider extends ChangeNotifier {
   }
 
   Future<ThemeData> checkTheme() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
     ThemeData t;
     String r = prefs.getString('theme') ?? 'light';
 

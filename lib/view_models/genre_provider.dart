@@ -3,11 +3,14 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_ebook_app/util/api.dart';
 import 'package:flutter_ebook_app/util/enum/api_request_status.dart';
+import 'package:flutter_ebook_app/util/flutter_toast.dart';
 import 'package:flutter_ebook_app/util/functions.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:welltested/welltested.dart';
 
 import '../models/category.dart';
 
+@Welltested()
 class GenreProvider extends ChangeNotifier {
   ScrollController controller = ScrollController();
   List items = [];
@@ -16,6 +19,7 @@ class GenreProvider extends ChangeNotifier {
   bool loadMore = true;
   APIRequestStatus apiRequestStatus = APIRequestStatus.loading;
   Api api = Api();
+  FlutterToastWrapper flutterToastWrapper = FlutterToastWrapper();
 
   listener(url) {
     controller.addListener(() {
@@ -84,7 +88,7 @@ class GenreProvider extends ChangeNotifier {
   }
 
   showToast(msg) {
-    Fluttertoast.showToast(
+    flutterToastWrapper.showToast(
       msg: '$msg',
       toastLength: Toast.LENGTH_SHORT,
       timeInSecForIosWeb: 1,

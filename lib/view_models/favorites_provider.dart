@@ -2,28 +2,31 @@ import 'dart:async';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter_ebook_app/database/favorite_helper.dart';
+import 'package:welltested/welltested.dart';
 
+@Welltested()
 class FavoritesProvider extends ChangeNotifier {
   List favorites = [];
   var db = FavoriteDB();
 
-  StreamSubscription<List>? _streamSubscription;
+  @visibleForTesting
+  StreamSubscription<List>? streamSubscription;
 
   Future<void> listen() async {
-    if (_streamSubscription != null) {
-      _streamSubscription!.cancel();
-      _streamSubscription = null;
+    if (streamSubscription != null) {
+      streamSubscription!.cancel();
+      streamSubscription = null;
     }
-    _streamSubscription = (await db.listAllStream()).listen(
+    streamSubscription = (await db.listAllStream()).listen(
       (books) => favorites = books,
     );
   }
 
   @override
   void dispose() {
-    if (_streamSubscription != null) {
-      _streamSubscription!.cancel();
-      _streamSubscription = null;
+    if (streamSubscription != null) {
+      streamSubscription!.cancel();
+      streamSubscription = null;
     }
     super.dispose();
   }
