@@ -13,9 +13,9 @@ import 'package:example/main.dart';
 
 void main() {
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {
-    var dirPath =
-        (await Utils.getFileFromAsset('packages/iridium_reader_widget/assets/books/accessible_epub_3.epub'))
-            .path;
+    var dirPath = (await Utils.getFileFromAsset(
+            'packages/iridium_reader_widget/assets/books/accessible_epub_3.epub'))
+        .path;
     // Build our app and trigger a frame.
     await tester.pumpWidget(MyApp(dirPath));
 

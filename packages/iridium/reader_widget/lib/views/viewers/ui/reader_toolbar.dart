@@ -77,7 +77,8 @@ class ReaderToolbarState extends State<ReaderToolbar> {
   Widget _firstRow(BuildContext context) => Row(
         children: <Widget>[
           ToolbarButton(
-            asset: 'packages/iridium_reader_widget/assets/images/ic_skip_previous_white_24dp.png',
+            asset:
+                'packages/iridium_reader_widget/assets/images/ic_skip_previous_white_24dp.png',
             onPressed: onPrevious,
           ),
           const SizedBox(width: 8.0),
@@ -86,7 +87,8 @@ class ReaderToolbarState extends State<ReaderToolbar> {
           _buildNbPages(context),
           const SizedBox(width: 8.0),
           ToolbarButton(
-            asset: 'packages/iridium_reader_widget/assets/images/ic_skip_next_white_24dp.png',
+            asset:
+                'packages/iridium_reader_widget/assets/images/ic_skip_next_white_24dp.png',
             onPressed: onNext,
           ),
         ],

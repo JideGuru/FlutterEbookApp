@@ -37,7 +37,7 @@ To download this app, <a href="https://codemagic.io/apps/5e230defc5faa60315b1df6
 <!-- <img src="ss/mockup.png"/> -->
 
 | Light                             | Dark                              |
-| --------------------------------- | --------------------------------- |
+|-----------------------------------|-----------------------------------|
 | <img src="ss/1.png" width="400">  | <img src="ss/2.png" width="400">  |
 | <img src="ss/3.png" width="400">  | <img src="ss/4.png" width="400">  |
 | <img src="ss/5.png" width="400">  | <img src="ss/6.png" width="400">  |
@@ -48,13 +48,13 @@ To download this app, <a href="https://codemagic.io/apps/5e230defc5faa60315b1df6
 
 ## 🔌 Plugins
 
-| Name                                                    | Usage                                               |
-| ------------------------------------------------------- | --------------------------------------------------- |
-| [**Provider**](https://pub.dev/packages/provider)       | State Management                                    |
-| [**Object DB**](https://pub.dev/packages/objectdb)      | NoSQL database to store Favorites & Downloads       |
-| [**XML2JSON**](https://pub.dev/packages/xml2json)       | Convert XML to JSON                                 |
-| [**DIO**](https://pub.dev/packages/dio)                 | Network calls and File Download                     |
-| [**Iridium Reader**](https://github.com/Mantano/iridium_reader_widget) | Plug and play reader widget for epubs |
+| Name                                                                   | Usage                                         |
+|------------------------------------------------------------------------|-----------------------------------------------|
+| [**Riverpod**](https://pub.dev/packages/flutter_riverpod)              | State Management                              |
+| [**Sembast**](https://pub.dev/packages/sembast)                        | NoSQL database to store Favorites & Downloads |
+| [**XML2JSON**](https://pub.dev/packages/xml2json)                      | Convert XML to JSON                           |
+| [**DIO**](https://pub.dev/packages/dio)                                | Network calls and File Download               |
+| [**Iridium Reader**](https://github.com/Mantano/iridium_reader_widget) | Plug and play reader widget for epubs         |
 
 ## 🤓 Author(s)
 

@@ -1,45 +1,37 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_ebook_app/util/consts.dart';
+import 'package:flutter_ebook_app/src/features/common/constants/strings.dart';
+import 'package:flutter_ebook_app/src/features/common/data/local/local_storage.dart';
+import 'package:flutter_ebook_app/src/features/common/data/notifiers/current_app_theme/current_app_theme_state_notifier.dart';
+import 'package:flutter_ebook_app/src/features/common/database/database_config.dart';
 import 'package:flutter_ebook_app/theme/theme_config.dart';
-import 'package:flutter_ebook_app/view_models/app_provider.dart';
-import 'package:flutter_ebook_app/view_models/details_provider.dart';
-import 'package:flutter_ebook_app/view_models/favorites_provider.dart';
-import 'package:flutter_ebook_app/view_models/genre_provider.dart';
-import 'package:flutter_ebook_app/view_models/home_provider.dart';
-import 'package:flutter_ebook_app/views/splash/splash.dart';
+import 'package:flutter_ebook_app/src/features/splash/screens/splash_screen.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
+import 'package:sembast/sembast.dart';
 
-void main() {
-  runApp(
-    MultiProvider(
-      providers: [
-        ChangeNotifierProvider(create: (_) => AppProvider()),
-        ChangeNotifierProvider(create: (_) => HomeProvider()),
-        ChangeNotifierProvider(create: (_) => DetailsProvider()),
-        ChangeNotifierProvider(create: (_) => FavoritesProvider()),
-        ChangeNotifierProvider(create: (_) => GenreProvider()),
-      ],
-      child: MyApp(),
-    ),
-  );
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  LocalStorage();
+  await DatabaseConfig.init(StoreRef<dynamic, dynamic>.main());
+  runApp(const ProviderScope(child: MyApp()));
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends ConsumerWidget {
+  const MyApp({super.key});
+
   @override
-  Widget build(BuildContext context) {
-    return Consumer<AppProvider>(
-      builder: (BuildContext context, AppProvider appProvider, Widget? child) {
-        return MaterialApp(
-          key: appProvider.key,
-          debugShowCheckedModeBanner: false,
-          navigatorKey: appProvider.navigatorKey,
-          title: Constants.appName,
-          theme: themeData(appProvider.theme),
-          darkTheme: themeData(ThemeConfig.darkTheme),
-          home: Splash(),
-        );
-      },
+  Widget build(BuildContext context, WidgetRef ref) {
+    final currentAppTheme = ref.watch(currentAppThemeStateNotifierProvider);
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      title: Strings.appName,
+      theme: themeData(
+        currentAppTheme == CurrentAppTheme.dark
+            ? ThemeConfig.darkTheme
+            : ThemeConfig.lightTheme,
+      ),
+      darkTheme: themeData(ThemeConfig.darkTheme),
+      home: const SplashScreen(),
     );
   }
 
