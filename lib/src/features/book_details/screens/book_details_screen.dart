@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_ebook_app/src/features/common/widgets/error_widget.dart';
 import 'package:flutter_ebook_app/src/features/common/widgets/modal_dialogs/download_alert.dart';
 import 'package:flutter_ebook_app/src/features/common/widgets/loading_widget.dart';
 import 'package:flutter_ebook_app/src/features/book_details/data/notifier/book_details_state_notifier.dart';
@@ -362,6 +363,16 @@ class _MoreBooksFromAuthorState extends ConsumerState<_MoreBooksFromAuthor> {
                   child: BookListItem(entry: entry),
                 );
               },
+            );
+          },
+          loadFailure: () {
+            return MyErrorWidget(
+              refreshCallBack: () {
+                ref
+                    .read(bookDetailsStateNotifierProvider.notifier)
+                    .fetch(widget.authorUrl);
+              },
+              isConnection: false,
             );
           },
         );

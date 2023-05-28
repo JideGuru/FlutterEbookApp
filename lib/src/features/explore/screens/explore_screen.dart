@@ -166,6 +166,17 @@ class _SectionBookListState extends ConsumerState<_SectionBookList> {
                   ),
                 );
               },
+              loadFailure: () {
+                return MyErrorWidget(
+                  refreshCallBack: () {
+                    ref
+                        .read(genreFeedStateNotifierProvider(widget.link.href!)
+                            .notifier)
+                        .fetch();
+                  },
+                  isConnection: false,
+                );
+              },
             ),
       ),
     );
