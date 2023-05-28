@@ -48,13 +48,16 @@ class _CustomAlertState extends State<CustomAlert> {
                 child: Stack(
                   children: <Widget>[
                     Center(
-                      child: Card(
-                        shape: const RoundedRectangleBorder(
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(10.0),
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 40),
+                        child: Card(
+                          shape: const RoundedRectangleBorder(
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(10.0),
+                            ),
                           ),
+                          child: widget.child,
                         ),
-                        child: widget.child,
                       ),
                     ),
                   ],
