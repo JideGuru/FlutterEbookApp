@@ -15,15 +15,15 @@ analyzer:
 
 linter:
   rules:
-     avoid_print: true
-     prefer_single_quotes: true
-     always_use_package_imports: true
-     empty_statements: true
-     always_declare_return_types: true
-     camel_case_extensions: true
+    avoid_print: true
+    prefer_single_quotes: true
+    always_use_package_imports: true
+    empty_statements: true
+    always_declare_return_types: true
+    camel_case_extensions: true
 
 dart_code_metrics:
   rules:
-#    - avoid-dynamic
+    #    - avoid-dynamic
     - prefer-trailing-comma
     - no-empty-block
