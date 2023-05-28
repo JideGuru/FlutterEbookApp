@@ -41,7 +41,7 @@ abstract class DatabaseConfig {
 
   static String get downloadsDatabaseName => 'download.db';
 
-  static String get favoritesDatabaseName => 'favorites.db';
+  static String get favoritesDatabaseName => 'favorites11.db';
 
   static Future<String> _generateDbPath(String dbName) async {
     final dir = await getApplicationDocumentsDirectory();

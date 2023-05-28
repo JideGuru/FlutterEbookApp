@@ -296,7 +296,7 @@ class Entry {
     summary = json['summary'] != null ? Id.fromJson(json['summary']) : null;
     if (json['category'] != null) {
       String? t = json['category'].runtimeType.toString();
-      if (t == 'List<dynamic>' || t == '_GrowableList<dynamic>') {
+      if (t.toLowerCase().contains('list')) {
         category = <Category>[];
         json['category'].forEach((v) {
           category!.add(Category.fromJson(v));

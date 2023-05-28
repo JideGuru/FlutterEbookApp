@@ -25,7 +25,6 @@ mixin _$HomeFeedState {
     required TResult Function() loadFailure,
   }) =>
       throw _privateConstructorUsedError;
-
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
@@ -43,7 +42,6 @@ mixin _$HomeFeedState {
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
-
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(HomeFeedStateStarted value) started,
@@ -52,7 +50,6 @@ mixin _$HomeFeedState {
     required TResult Function(HomeFeedStateLoadFailure value) loadFailure,
   }) =>
       throw _privateConstructorUsedError;
-
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(HomeFeedStateStarted value)? started,
@@ -84,9 +81,9 @@ class _$HomeFeedStateCopyWithImpl<$Res, $Val extends HomeFeedState>
     implements $HomeFeedStateCopyWith<$Res> {
   _$HomeFeedStateCopyWithImpl(this._value, this._then);
 
-// ignore: unused_field
+  // ignore: unused_field
   final $Val _value;
-// ignore: unused_field
+  // ignore: unused_field
   final $Res Function($Val) _then;
 }
 
