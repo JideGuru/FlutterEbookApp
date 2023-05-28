@@ -12,8 +12,7 @@ import 'package:sembast/sembast.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   LocalStorage();
-  DatabaseConfig.init(StoreRef<dynamic, dynamic>.main());
-  await Future.delayed(const Duration(milliseconds: 1000));
+  await DatabaseConfig.init(StoreRef<dynamic, dynamic>.main());
   runApp(const ProviderScope(child: MyApp()));
 }
 

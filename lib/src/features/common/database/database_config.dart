@@ -12,14 +12,15 @@ abstract class DatabaseConfig {
     return database;
   }
 
-  static void init(StoreRef<dynamic, dynamic> store) => _initDatabases(
+  static Future<void> init(StoreRef<dynamic, dynamic> store) async =>
+      _initDatabases(
         databaseNames,
         store,
       );
 
   static final Map<String, Database> _instances = {};
 
-  static void _initDatabases(
+  static Future<void> _initDatabases(
     List<String> dbNames,
     StoreRef<dynamic, dynamic> store,
   ) async {

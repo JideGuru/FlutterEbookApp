@@ -18,14 +18,12 @@ class CurrentAppThemeService {
   CurrentAppTheme getCurrentAppTheme() {
     final isDarkMode =
         _sharedPreferences!.getBool(SharedPreferencesKeys.isDarkMode);
-    print('DARK MODE $isDarkMode');
     return (isDarkMode ?? false) ? CurrentAppTheme.dark : CurrentAppTheme.light;
   }
 
   bool getIsDarkMode() {
     final isDarkMode =
         _sharedPreferences!.getBool(SharedPreferencesKeys.isDarkMode);
-    print('DARK MODE $isDarkMode');
     return (isDarkMode ?? false);
   }
 }
