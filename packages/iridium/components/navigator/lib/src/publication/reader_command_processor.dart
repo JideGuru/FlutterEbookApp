@@ -20,8 +20,8 @@ class GoToHrefCommandProcessor extends ReaderCommandProcessor<GoToHrefCommand> {
 
   @override
   int findSpineItemIndex(GoToHrefCommand command, Publication publication) =>
-      publication.pageLinks.indexWhere(
-              (spineItem) => spineItem.href.removePrefix("/") == command.href.removePrefix("/"));
+      publication.pageLinks.indexWhere((spineItem) =>
+          spineItem.href.removePrefix("/") == command.href.removePrefix("/"));
   @override
   OpenPageRequest createOpenPageRequestForCommand(GoToHrefCommand command) =>
       OpenPageRequest.fromElementId(command.href, command.fragment);
