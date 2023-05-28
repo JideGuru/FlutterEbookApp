@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_ebook_app/src/features/common/data/notifiers/favorites/favorites_state_notifier.dart';
 import 'package:flutter_ebook_app/src/features/common/widgets/error_widget.dart';
 import 'package:flutter_ebook_app/src/features/common/widgets/modal_dialogs/download_alert.dart';
 import 'package:flutter_ebook_app/src/features/common/widgets/loading_widget.dart';
@@ -14,7 +15,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:iridium_reader_widget/views/viewers/epub_screen.dart';
 import 'package:share/share.dart';
 
-class BookDetailsScreen extends StatelessWidget {
+class BookDetailsScreen extends ConsumerStatefulWidget {
   final Entry entry;
   final String imgTag;
   final String titleTag;
@@ -29,19 +30,52 @@ class BookDetailsScreen extends StatelessWidget {
   });
 
   @override
+  ConsumerState<BookDetailsScreen> createState() => _BookDetailsScreenState();
+}
+
+class _BookDetailsScreenState extends ConsumerState<BookDetailsScreen> {
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      ref.read(favoritesStateNotifierProvider.notifier).listen();
+      ref.read(downloadsStateNotifierProvider.notifier).listen();
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         actions: <Widget>[
-          IconButton(
-            onPressed: () async {
-              /// TODO(jideguru): reimplement favorites
-            },
-            icon: Icon(
-              Feather.heart,
-              color: Theme.of(context).iconTheme.color,
-            ),
-          ),
+          ref.watch(favoritesStateNotifierProvider).maybeWhen(
+                orElse: () => const SizedBox.shrink(),
+                listening: (favorites) {
+                  final favorited = favorites.indexWhere(
+                        (element) => element.id!.t == widget.entry.id!.t,
+                      ) !=
+                      -1;
+                  return IconButton(
+                    onPressed: () async {
+                      if (favorited) {
+                        ref
+                            .watch(favoritesStateNotifierProvider.notifier)
+                            .deleteBook(widget.entry.id!.t);
+                      } else {
+                        ref
+                            .watch(favoritesStateNotifierProvider.notifier)
+                            .addBook(widget.entry, widget.entry.id!.t);
+                      }
+                    },
+                    icon: Icon(
+                      favorited ? Icons.favorite : Feather.heart,
+                      color: favorited
+                          ? Colors.red
+                          : Theme.of(context).iconTheme.color,
+                    ),
+                  );
+                },
+              ),
           IconButton(
             onPressed: () => _share(),
             icon: const Icon(Feather.share),
@@ -53,16 +87,16 @@ class BookDetailsScreen extends StatelessWidget {
         children: [
           const SizedBox(height: 10.0),
           _BookDescriptionSection(
-            entry: entry,
-            authorTag: authorTag,
-            imgTag: imgTag,
-            titleTag: titleTag,
+            entry: widget.entry,
+            authorTag: widget.authorTag,
+            imgTag: widget.imgTag,
+            titleTag: widget.titleTag,
           ),
           const SizedBox(height: 30.0),
           const _SectionTitle(title: 'Book Description'),
           const _Divider(),
           const SizedBox(height: 10.0),
-          DescriptionTextWidget(text: '${entry.summary!.t}'),
+          DescriptionTextWidget(text: '${widget.entry.summary!.t}'),
           const SizedBox(height: 30.0),
           const _SectionTitle(
             title: 'More from Author',
@@ -70,7 +104,8 @@ class BookDetailsScreen extends StatelessWidget {
           const _Divider(),
           const SizedBox(height: 10.0),
           _MoreBooksFromAuthor(
-            authorUrl: entry.author!.uri!.t!.replaceAll(r'\&lang=en', ''),
+            authorUrl:
+                widget.entry.author!.uri!.t!.replaceAll(r'\&lang=en', ''),
           ),
           const SizedBox(height: 30.0),
         ],
@@ -79,8 +114,8 @@ class BookDetailsScreen extends StatelessWidget {
   }
 
   void _share() {
-    Share.share('${entry.title!.t} by ${entry.author!.name!.t}'
-        'Read/Download ${entry.title!.t} from ${entry.link![3].href}.');
+    Share.share('${widget.entry.title!.t} by ${widget.entry.author!.name!.t}'
+        'Read/Download ${widget.entry.title!.t} from ${widget.entry.link![3].href}.');
   }
 }
 
@@ -227,42 +262,29 @@ class _CategoryChips extends StatelessWidget {
   }
 }
 
-class _DownloadButton extends ConsumerStatefulWidget {
+class _DownloadButton extends ConsumerWidget {
   final Entry entry;
 
   const _DownloadButton({required this.entry});
 
-  @override
-  ConsumerState<_DownloadButton> createState() => _DownloadButtonState();
-}
-
-class _DownloadButtonState extends ConsumerState<_DownloadButton> {
-  String get id => widget.entry.id!.t.toString();
+  String get id => entry.id!.t.toString();
 
   @override
-  void initState() {
-    super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      ref.read(downloadsStateNotifierProvider.notifier).listen();
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    String id = widget.entry.id!.t.toString();
+  Widget build(BuildContext context, WidgetRef ref) {
+    String id = entry.id!.t.toString();
     return ref.watch(downloadsStateNotifierProvider).maybeWhen(
       orElse: () {
-        return _downloadButton();
+        return _downloadButton(context);
       },
       listening: (books) {
         final bookIsDownloaded =
             books.indexWhere((element) => element['id'] == id) != -1;
         if (!bookIsDownloaded) {
-          return _downloadButton();
+          return _downloadButton(context);
         }
         final book = books.firstWhere((element) => element['id'] == id);
         return TextButton(
-          onPressed: () => openBook(book['path']),
+          onPressed: () => openBook(book['path'], context),
           child: Text(
             'Read Book'.toUpperCase(),
             style: TextStyle(
@@ -276,14 +298,14 @@ class _DownloadButtonState extends ConsumerState<_DownloadButton> {
     );
   }
 
-  Widget _downloadButton() => TextButton(
+  Widget _downloadButton(BuildContext context) => TextButton(
         onPressed: () {
           DownloadAlert.show(
             context: context,
-            url: widget.entry.link![3].href!,
-            name: widget.entry.title!.t ?? '',
-            image: '${widget.entry.link![1].href}',
-            id: widget.entry.id!.t.toString(),
+            url: entry.link![3].href!,
+            name: entry.title!.t ?? '',
+            image: '${entry.link![1].href}',
+            id: entry.id!.t.toString(),
           );
         },
         child: Text(
@@ -296,7 +318,7 @@ class _DownloadButtonState extends ConsumerState<_DownloadButton> {
         ),
       );
 
-  Future<void> openBook(String path) async {
+  Future<void> openBook(String path, BuildContext context) async {
     MyRouter.pushPage(context, EpubScreen.fromPath(filePath: path));
   }
 }
@@ -347,7 +369,7 @@ class _MoreBooksFromAuthorState extends ConsumerState<_MoreBooksFromAuthor> {
   Widget build(BuildContext context) {
     return ref.watch(bookDetailsStateNotifierProvider).maybeWhen(
           orElse: () => const SizedBox.shrink(),
-          loadInProgress: () => LoadingWidget(),
+          loadInProgress: () => const LoadingWidget(),
           loadSuccess: (related) {
             if (related.feed!.entry == null || related.feed!.entry!.isEmpty) {
               return const Text('Empty');

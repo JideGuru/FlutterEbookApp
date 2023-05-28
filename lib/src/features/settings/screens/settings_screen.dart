@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_ebook_app/src/features/common/data/notifiers/current_app_theme/current_app_theme_state_notifier.dart';
 import 'package:flutter_ebook_app/src/features/downloads/screens/download_screen.dart';
 import 'package:flutter_ebook_app/router.dart';
+import 'package:flutter_ebook_app/src/features/favorites/screens/favorites_screen.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -19,11 +20,11 @@ class _SettingsScreenState extends State<SettingsScreen> {
   void initState() {
     super.initState();
     items = [
-      // {
-      //   'icon': Feather.heart,
-      //   'title': 'Favorites',
-      //   'function': () => _pushPage(Favorites()),
-      // },
+      {
+        'icon': Feather.heart,
+        'title': 'Favorites',
+        'function': () => _pushPage(const FavoritesScreen()),
+      },
       {
         'icon': Feather.download,
         'title': 'Downloads',
