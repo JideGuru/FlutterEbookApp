@@ -14,8 +14,10 @@ The [Feedbooks API](http://www.feedbooks.com/api) was used to fetch books. <br>
 <a href="https://www.vecteezy.com/vector-art/599678-book-reading-logo-and-symbols-template-icons">App
 icon</a> <br> <br>
 To download this app, <a href="https://codemagic.io/apps/5e230defc5faa60315b1df62/5e230defc5faa60315b1df61/latest_build">click here</a> to see the codemagic builds. You can choose to install the `apk` or the `ipa(ios)`.
+
 <!--
 <a href="https://play.google.com/store/apps/details?id=dev.jideguru.flutterEbookApp"><img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" width="200"></img></a> -->
+
 <br> Please star⭐ the repo if you like what you see😉.
 
 ## 💻 Requirements
@@ -37,7 +39,7 @@ To download this app, <a href="https://codemagic.io/apps/5e230defc5faa60315b1df6
 <!-- <img src="ss/mockup.png"/> -->
 
 | Light                             | Dark                              |
-|-----------------------------------|-----------------------------------|
+| --------------------------------- | --------------------------------- |
 | <img src="ss/1.png" width="400">  | <img src="ss/2.png" width="400">  |
 | <img src="ss/3.png" width="400">  | <img src="ss/4.png" width="400">  |
 | <img src="ss/5.png" width="400">  | <img src="ss/6.png" width="400">  |
@@ -49,7 +51,7 @@ To download this app, <a href="https://codemagic.io/apps/5e230defc5faa60315b1df6
 ## 🔌 Plugins
 
 | Name                                                                   | Usage                                         |
-|------------------------------------------------------------------------|-----------------------------------------------|
+| ---------------------------------------------------------------------- | --------------------------------------------- |
 | [**Riverpod**](https://pub.dev/packages/flutter_riverpod)              | State Management                              |
 | [**Sembast**](https://pub.dev/packages/sembast)                        | NoSQL database to store Favorites & Downloads |
 | [**XML2JSON**](https://pub.dev/packages/xml2json)                      | Convert XML to JSON                           |
@@ -65,8 +67,6 @@ To download this app, <a href="https://codemagic.io/apps/5e230defc5faa60315b1df6
 
 [Apache-2.0](https://github.com/JideGuru/FlutterEbookApp/blob/master/LICENSE)
 
-
 <a href="https://github.com/JideGuru/FlutterEbookApp">
         <img width="500" alt="Star History Chart" src="https://api.star-history.com/svg?repos=JideGuru/FlutterEbookApp&type=Date">
-      </a> 
-
+      </a>
