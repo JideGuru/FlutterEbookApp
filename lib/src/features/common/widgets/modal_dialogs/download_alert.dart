@@ -4,7 +4,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_ebook_app/src/features/common/constants/strings.dart';
 import 'package:flutter_ebook_app/src/features/common/constants/utils.dart';
-import 'package:flutter_ebook_app/src/features/common/widgets/custom_alert.dart';
+import 'package:flutter_ebook_app/src/features/common/widgets/modal_dialogs/custom_alert.dart';
 import 'package:flutter_ebook_app/src/features/common/data/notifiers/downloads/downloads_state_notifier.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:path_provider/path_provider.dart';

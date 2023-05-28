@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 
 class ThemeConfig {
   static Color lightPrimary = Colors.white;
-  static Color darkPrimary = Color(0xff1f1f1f);
-  static Color lightAccent = Color(0xff2ca8e2);
-  static Color darkAccent = Color(0xff2ca8e2);
+  static Color darkPrimary = const Color(0xff1f1f1f);
+  static Color lightAccent = const Color(0xff2ca8e2);
+  static Color darkAccent = const Color(0xff2ca8e2);
   static Color lightBG = Colors.white;
-  static Color darkBG = Color(0xff121212);
+  static Color darkBG = const Color(0xff121212);
 
   static ThemeData lightTheme = ThemeData(
     backgroundColor: lightBG,
@@ -15,12 +15,12 @@ class ThemeConfig {
     appBarTheme: AppBarTheme(
       color: lightPrimary,
       elevation: 0.0,
-      titleTextStyle: TextStyle(
+      titleTextStyle: const TextStyle(
         color: Colors.black,
         fontSize: 20,
         fontWeight: FontWeight.w800,
       ),
-      iconTheme: IconThemeData(
+      iconTheme: const IconThemeData(
         color: Colors.black,
       ),
     ),
@@ -34,12 +34,12 @@ class ThemeConfig {
     appBarTheme: AppBarTheme(
       color: darkPrimary,
       elevation: 0.0,
-      titleTextStyle: TextStyle(
+      titleTextStyle: const TextStyle(
         color: Colors.white,
         fontSize: 20,
         fontWeight: FontWeight.w800,
       ),
-      iconTheme: IconThemeData(
+      iconTheme: const IconThemeData(
         color: Colors.white,
       ),
     ),

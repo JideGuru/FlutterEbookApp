@@ -30,7 +30,7 @@ class MyErrorWidget extends StatelessWidget {
               getErrorText(),
               textAlign: TextAlign.center,
               style: TextStyle(
-                color: Theme.of(context).textTheme.headline6!.color,
+                color: Theme.of(context).textTheme.titleLarge!.color,
                 fontSize: 17.0,
                 fontWeight: FontWeight.w700,
               ),

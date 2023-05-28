@@ -29,7 +29,7 @@ class _ExploreScreenState extends ConsumerState<ExploreScreen> {
       appBar: AppBar(centerTitle: true, title: const Text('Explore')),
       body: homeDataState.maybeWhen(
         orElse: () => const SizedBox.shrink(),
-        loadInProgress: () => LoadingWidget(),
+        loadInProgress: () => const LoadingWidget(),
         loadSuccess: (popular, recent) {
           return ListView.builder(
             itemCount: popular.feed?.link?.length ?? 0,
@@ -143,7 +143,7 @@ class _SectionBookListState extends ConsumerState<_SectionBookList> {
             .watch(genreFeedStateNotifierProvider(widget.link.href!))
             .maybeWhen(
               orElse: () => const SizedBox.shrink(),
-              loadInProgress: () => LoadingWidget(),
+              loadInProgress: () => const LoadingWidget(),
               loadSuccess: (books, __) {
                 return Center(
                   child: ListView.builder(

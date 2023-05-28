@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_ebook_app/src/features/home/screens/home_screen.dart';
 import 'package:flutter_ebook_app/src/features/tabs/screens/tabs_screen.dart';
 import 'package:flutter_ebook_app/router.dart';
 
@@ -22,11 +21,7 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   void changeScreen() async {
-    MyRouter.pushPageReplacement(
-      context,
-      // MainScreen(),
-      TabsScreen(),
-    );
+    MyRouter.pushPageReplacement(context, const TabsScreen());
   }
 
   @override

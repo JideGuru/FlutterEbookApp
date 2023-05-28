@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_ebook_app/src/features/common/constants/strings.dart';
-import 'package:flutter_ebook_app/src/features/common/widgets/custom_alert.dart';
+import 'package:flutter_ebook_app/src/features/common/widgets/modal_dialogs/custom_alert.dart';
 
 class ExitModalDialog extends StatelessWidget {
   const ExitModalDialog({Key? key}) : super(key: key);

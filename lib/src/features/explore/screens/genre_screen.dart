@@ -78,7 +78,7 @@ class _GenreScreenState extends ConsumerState<GenreScreen> {
         duration: const Duration(milliseconds: 500),
         child: ref.watch(genreFeedStateNotifierProvider(widget.url)).maybeWhen(
               orElse: () => const SizedBox.shrink(),
-              loadInProgress: () => LoadingWidget(),
+              loadInProgress: () => const LoadingWidget(),
               loadSuccess: (books, loadingMore) {
                 return ListView(
                   controller: _scrollController,
@@ -98,7 +98,7 @@ class _GenreScreenState extends ConsumerState<GenreScreen> {
                     ),
                     const SizedBox(height: 10.0),
                     if (loadingMore)
-                      SizedBox(height: 80.0, child: LoadingWidget()),
+                      const SizedBox(height: 80.0, child: LoadingWidget()),
                   ],
                 );
               },

@@ -71,7 +71,7 @@ class _DownloadsScreenState extends ConsumerState<DownloadsScreen> {
                       children: <Widget>[
                         CachedNetworkImage(
                           imageUrl: book['image'],
-                          placeholder: (context, url) => SizedBox(
+                          placeholder: (context, url) => const SizedBox(
                             height: 70.0,
                             width: 70.0,
                             child: LoadingWidget(),

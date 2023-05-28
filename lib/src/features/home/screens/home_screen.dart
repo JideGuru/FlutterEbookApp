@@ -48,7 +48,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
         duration: const Duration(milliseconds: 500),
         child: homeDataState.maybeWhen(
           orElse: () => const SizedBox.shrink(),
-          loadInProgress: () => LoadingWidget(),
+          loadInProgress: () => const LoadingWidget(),
           loadSuccess: (popular, recent) {
             return RefreshIndicator(
               onRefresh: () async => loadData(),

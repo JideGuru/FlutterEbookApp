@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class DescriptionTextWidget extends StatefulWidget {
   final String text;
 
-  DescriptionTextWidget({super.key, required this.text});
+  const DescriptionTextWidget({super.key, required this.text});
 
   @override
   _DescriptionTextWidgetState createState() => _DescriptionTextWidgetState();
@@ -39,7 +39,7 @@ class _DescriptionTextWidgetState extends State<DescriptionTextWidget> {
                   .replaceAll(r"\'", "'"),
               style: TextStyle(
                 fontSize: 16.0,
-                color: Theme.of(context).textTheme.caption!.color,
+                color: Theme.of(context).textTheme.bodySmall!.color,
               ),
             )
           : Column(
@@ -51,7 +51,7 @@ class _DescriptionTextWidgetState extends State<DescriptionTextWidget> {
                       .replaceAll(r"\'", "'"),
                   style: TextStyle(
                     fontSize: 16.0,
-                    color: Theme.of(context).textTheme.caption!.color,
+                    color: Theme.of(context).textTheme.bodySmall!.color,
                   ),
                 ),
                 InkWell(

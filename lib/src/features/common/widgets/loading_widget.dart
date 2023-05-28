@@ -8,20 +8,9 @@ class LoadingWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Color color = Theme.of(context).colorScheme.secondary;
     return Center(
-      child: _buildBody(context),
+      child: isImage ? SpinKitRipple(color: color) : SpinKitWave(color: color),
     );
-  }
-
-  StatefulWidget _buildBody(BuildContext context) {
-    if (isImage) {
-      return SpinKitRipple(
-        color: Theme.of(context).colorScheme.secondary,
-      );
-    } else {
-      return SpinKitWave(
-        color: Theme.of(context).colorScheme.secondary,
-      );
-    }
   }
 }

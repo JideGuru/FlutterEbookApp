@@ -51,7 +51,7 @@ class BookCard extends StatelessWidget {
               tag: imgTag,
               child: CachedNetworkImage(
                 imageUrl: img,
-                placeholder: (context, url) => LoadingWidget(
+                placeholder: (context, url) => const LoadingWidget(
                   isImage: true,
                 ),
                 errorWidget: (context, url, error) => Image.asset(

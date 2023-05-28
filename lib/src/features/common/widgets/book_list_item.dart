@@ -50,7 +50,7 @@ class BookListItem extends StatelessWidget {
                   tag: imgTag,
                   child: CachedNetworkImage(
                     imageUrl: entry.link![1].href!,
-                    placeholder: (context, url) => SizedBox(
+                    placeholder: (context, url) => const SizedBox(
                       height: 150.0,
                       width: 100.0,
                       child: LoadingWidget(
@@ -86,7 +86,7 @@ class BookListItem extends StatelessWidget {
                         style: TextStyle(
                           fontSize: 17.0,
                           fontWeight: FontWeight.bold,
-                          color: Theme.of(context).textTheme.headline6!.color,
+                          color: Theme.of(context).textTheme.titleLarge!.color,
                         ),
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis,
@@ -116,7 +116,7 @@ class BookListItem extends StatelessWidget {
                         .replaceAll(r'\"', '"'),
                     style: TextStyle(
                       fontSize: 13.0,
-                      color: Theme.of(context).textTheme.caption!.color,
+                      color: Theme.of(context).textTheme.bodySmall!.color,
                     ),
                   ),
                 ],

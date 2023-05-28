@@ -27,12 +27,12 @@ class _SettingsScreenState extends State<SettingsScreen> {
       {
         'icon': Feather.download,
         'title': 'Downloads',
-        'function': () => _pushPage(DownloadsScreen()),
+        'function': () => _pushPage(const DownloadsScreen()),
       },
       {
         'icon': Feather.moon,
         'title': 'Dark Mode',
-        'function': () {},
+        'function': null,
       },
       {
         'icon': Feather.info,

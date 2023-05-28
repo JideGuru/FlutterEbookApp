@@ -34,11 +34,7 @@ class BookDetailsScreen extends StatelessWidget {
         actions: <Widget>[
           IconButton(
             onPressed: () async {
-              // if (detailsProvider.faved) {
-              //   detailsProvider.removeFav();
-              // } else {
-              //   detailsProvider.addFav();
-              // }
+              /// TODO(jideguru): reimplement favorites
             },
             icon: Icon(
               Feather.heart,
