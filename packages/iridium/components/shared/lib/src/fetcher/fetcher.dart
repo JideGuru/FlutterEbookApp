@@ -10,7 +10,7 @@ import 'package:mno_shared/fetcher.dart';
 import 'package:mno_shared/publication.dart';
 import 'package:mno_shared/src/util/archive/archive.dart';
 import 'package:path/path.dart';
-import 'package:universal_io/io.dart';
+import 'package:universal_io/io.dart' hide Link;
 import 'package:xml/xml.dart';
 
 /// Provides access to a [Resource] from a [Link].

@@ -94,11 +94,11 @@ class PublicationFactory {
   /// Compute a Publication [Link] from an Epub metadata link
   Link _mapEpubLink(EpubLink link) {
     List<String> contains = [];
-    if (link.rels.contains(Vocabularies.link + "record")) {
-      if (link.properties.contains(Vocabularies.link + "onix")) {
+    if (link.rels.contains("${Vocabularies.link}record")) {
+      if (link.properties.contains("${Vocabularies.link}onix")) {
         contains.add("onix");
       }
-      if (link.properties.contains(Vocabularies.link + "xmp")) {
+      if (link.properties.contains("${Vocabularies.link}xmp")) {
         contains.add("xmp");
       }
     }
@@ -130,10 +130,10 @@ class PublicationFactory {
 
   /// Compute a Publication [Link] for an epub [Item] and its fallbacks
   Link _computeLink(Item item, {Set<String> fallbackChain = const {}}) {
-    Product2<Set<String>, Properties> tuple =
+    (Set<String>, Properties) tuple =
         _computePropertiesAndRels(item, _itemrefByIdref[item.id]);
-    Set<String> rels = tuple.item1;
-    Properties properties = tuple.item2;
+    Set<String> rels = tuple.$1;
+    Properties properties = tuple.$2;
     return Link(
         id: item.id,
         href: item.href,
@@ -144,15 +144,15 @@ class PublicationFactory {
         alternates: _computeAlternates(item, fallbackChain));
   }
 
-  Product2<Set<String>, Properties> _computePropertiesAndRels(
+  (Set<String>, Properties) _computePropertiesAndRels(
       Item item, Itemref? itemref) {
     Map<String, dynamic> properties = {};
     Set<String> rels = {};
-    Product3<List<String>, List<String>, List<String>> parsedItemProperties =
+    (List<String>, List<String>, List<String>) parsedItemProperties =
         _parseItemProperties(item.properties);
-    List<String> manifestRels = parsedItemProperties.item1;
-    List<String> contains = parsedItemProperties.item2;
-    List<String> others = parsedItemProperties.item3;
+    List<String> manifestRels = parsedItemProperties.$1;
+    List<String> contains = parsedItemProperties.$2;
+    List<String> others = parsedItemProperties.$3;
     rels.addAll(manifestRels);
     if (contains.isNotEmpty) {
       properties["contains"] = contains;
@@ -172,7 +172,7 @@ class PublicationFactory {
     encryptionData[item.href.addPrefix('/')]
         ?.let((it) => properties["encrypted"] = it.toJson());
 
-    return Product2(rels, Properties(otherProperties: properties));
+    return (rels, Properties(otherProperties: properties));
   }
 
   /// Compute alternate links for [item], checking for an infinite recursion
@@ -192,39 +192,39 @@ class PublicationFactory {
     return [fallback, mediaOverlays].filterNotNull().toList();
   }
 
-  Product3<List<String>, List<String>, List<String>> _parseItemProperties(
+  (List<String>, List<String>, List<String>) _parseItemProperties(
       List<String> properties) {
     List<String> rels = [];
     List<String> contains = [];
     List<String> others = [];
     for (String property in properties) {
       switch (property) {
-        case Vocabularies.item + "scripted":
+        case "${Vocabularies.item}scripted":
           contains.add("js");
           break;
-        case Vocabularies.item + "mathml":
+        case "${Vocabularies.item}mathml":
           contains.add("mathml");
           break;
-        case Vocabularies.item + "svg":
+        case "${Vocabularies.item}svg":
           contains.add("svg");
           break;
-        case Vocabularies.item + "xmp-record":
+        case "${Vocabularies.item}xmp-record":
           contains.add("xmp");
           break;
-        case Vocabularies.item + "remote-resources":
+        case "${Vocabularies.item}remote-resources":
           contains.add("remote-resources");
           break;
-        case Vocabularies.item + "nav":
+        case "${Vocabularies.item}nav":
           rels.add("contents");
           break;
-        case Vocabularies.item + "cover-image":
+        case "${Vocabularies.item}cover-image":
           rels.add("cover");
           break;
         default:
           others.add(property);
       }
     }
-    return Product3(rels, contains, others);
+    return (rels, contains, others);
   }
 
   Map<String, String> _parseItemrefProperties(List<String> properties) {
@@ -247,13 +247,13 @@ class PublicationFactory {
 
   String? _parsePage(String property) {
     switch (property) {
-      case Vocabularies.rendition + "page-spread-center":
+      case "${Vocabularies.rendition}page-spread-center":
         return "center";
-      case Vocabularies.rendition + "page-spread-left":
-      case Vocabularies.itemref + "page-spread-left":
+      case "${Vocabularies.rendition}page-spread-left":
+      case "${Vocabularies.itemref}page-spread-left":
         return "left";
-      case Vocabularies.rendition + "page-spread-right":
-      case Vocabularies.itemref + "page-spread-right":
+      case "${Vocabularies.rendition}page-spread-right":
+      case "${Vocabularies.itemref}page-spread-right":
         return "right";
       default:
         return null;
@@ -262,14 +262,14 @@ class PublicationFactory {
 
   String? _parseSpread(String property) {
     switch (property) {
-      case Vocabularies.rendition + "spread-node":
+      case "${Vocabularies.rendition}spread-node":
         return "none";
-      case Vocabularies.rendition + "spread-auto":
+      case "${Vocabularies.rendition}spread-auto":
         return "auto";
-      case Vocabularies.rendition + "spread-landscape":
+      case "${Vocabularies.rendition}spread-landscape":
         return "landscape";
-      case Vocabularies.rendition + "spread-portrait":
-      case Vocabularies.rendition + "spread-both":
+      case "${Vocabularies.rendition}spread-portrait":
+      case "${Vocabularies.rendition}spread-both":
         return "both";
       default:
         return null;
@@ -278,9 +278,9 @@ class PublicationFactory {
 
   String? _parseLayout(String property) {
     switch (property) {
-      case Vocabularies.rendition + "layout-reflowable":
+      case "${Vocabularies.rendition}layout-reflowable":
         return "reflowable";
-      case Vocabularies.rendition + "layout-pre-paginated":
+      case "${Vocabularies.rendition}layout-pre-paginated":
         return "fixed";
       default:
         return null;
@@ -289,11 +289,11 @@ class PublicationFactory {
 
   String? _parseOrientation(String property) {
     switch (property) {
-      case Vocabularies.rendition + "orientation-auto":
+      case "${Vocabularies.rendition}orientation-auto":
         return "auto";
-      case Vocabularies.rendition + "orientation-landscape":
+      case "${Vocabularies.rendition}orientation-landscape":
         return "landscape";
-      case Vocabularies.rendition + "orientation-portrait":
+      case "${Vocabularies.rendition}orientation-portrait":
         return "portrait";
       default:
         return null;
@@ -302,12 +302,12 @@ class PublicationFactory {
 
   String? _parseOverflow(String property) {
     switch (property) {
-      case Vocabularies.rendition + "flow-auto":
+      case "${Vocabularies.rendition}flow-auto":
         return "auto";
-      case Vocabularies.rendition + "flow-paginated":
+      case "${Vocabularies.rendition}flow-paginated":
         return "paginated";
-      case Vocabularies.rendition + "flow-scrolled-continuous":
-      case Vocabularies.rendition + "flow-scrolled-doc":
+      case "${Vocabularies.rendition}flow-scrolled-continuous":
+      case "${Vocabularies.rendition}flow-scrolled-doc":
         return "scrolled";
       default:
         return null;

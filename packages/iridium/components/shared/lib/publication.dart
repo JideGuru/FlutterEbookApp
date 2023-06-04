@@ -3,6 +3,7 @@
 // found in the LICENSE file.
 
 export 'src/publication/asset/file_asset.dart';
+export 'src/publication/asset/http_asset.dart';
 export 'src/publication/asset/publication_asset.dart';
 export 'src/publication/collection.dart';
 export 'src/publication/content_protection.dart';

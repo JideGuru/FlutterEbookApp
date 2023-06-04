@@ -51,6 +51,5 @@ class UriTemplate {
       string.split(",").map((it) => parameters[it] ?? "").join(",");
 
   String _expandFormStyle(String string, Map<String, String> parameters) =>
-      "?" +
-      string.split(",").map((it) => '$it=${parameters[it] ?? ""}').join("&");
+      "?${string.split(",").map((it) => '$it=${parameters[it] ?? ""}').join("&")}";
 }

@@ -9,7 +9,10 @@ class ThemeConfig {
   static Color darkBG = const Color(0xff121212);
 
   static ThemeData lightTheme = ThemeData(
-    backgroundColor: lightBG,
+    colorScheme: ColorScheme.fromSwatch().copyWith(
+      secondary: lightBG,
+      brightness: Brightness.light,
+    ),
     primaryColor: lightPrimary,
     scaffoldBackgroundColor: lightBG,
     appBarTheme: AppBarTheme(
@@ -28,7 +31,10 @@ class ThemeConfig {
 
   static ThemeData darkTheme = ThemeData(
     brightness: Brightness.dark,
-    backgroundColor: darkBG,
+    colorScheme: ColorScheme.fromSwatch().copyWith(
+      secondary: darkBG,
+      brightness: Brightness.dark,
+    ),
     primaryColor: darkPrimary,
     scaffoldBackgroundColor: darkBG,
     appBarTheme: AppBarTheme(

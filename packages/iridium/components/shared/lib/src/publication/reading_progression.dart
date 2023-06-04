@@ -24,6 +24,7 @@ class ReadingProgression with EquatableMixin {
 
   /// Underlying enum value for [ReadingProgression]. To be used with `switch` to make sure the cases match all values.
   final String value;
+
   const ReadingProgression._(this.value);
 
   /// Creates from a BCP 47 language.
@@ -34,6 +35,7 @@ class ReadingProgression with EquatableMixin {
       return ReadingProgression.ltr;
     }
   }
+
   factory ReadingProgression.fromValue(String? value) => _values
       .firstWhere((it) => it.value == value?.toLowerCase(), orElse: () => auto);
 
@@ -45,6 +47,46 @@ class ReadingProgression with EquatableMixin {
       case "rtl":
       default:
         return PresentationPage.right;
+    }
+  }
+
+  /// Indicates whether this reading progression is on the horizontal axis, or null if unknown.
+  bool? isHorizontal() {
+    switch (value) {
+      case "rtl":
+      case "ltr":
+        return true;
+      case "ttb":
+      case "btt":
+        return false;
+      case "auto":
+      default:
+        return null;
+    }
+  }
+
+  /// Indicates whether items in this reading progression must be placed in natural or reverse order in the webviews
+  bool isReverseOrder() {
+    /*
+    fun VisualNavigator.goLeft(animated: Boolean = false, completion: () -> Unit = {}): Boolean {
+    return when (readingProgression) {
+        ReadingProgression.LTR, ReadingProgression.TTB, ReadingProgression.AUTO ->
+            goBackward(animated = animated, completion = completion)
+
+        ReadingProgression.RTL, ReadingProgression.BTT ->
+            goForward(animated = animated, completion = completion)
+    }
+}
+     */
+    switch (value) {
+      case "rtl":
+      case "btt":
+        return true;
+      case "ltr":
+      case "ttb":
+      case "auto": // Don't know exactly what this means ;-)
+      default:
+        return false;
     }
   }
 

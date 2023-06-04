@@ -19,20 +19,13 @@ import 'package:mno_shared/publication.dart';
 /// @param links Used to retrieve similar publications for the given contributor.
 class Contributor extends Collection {
   Contributor({
-    required LocalizedString localizedName,
-    String? identifier,
-    LocalizedString? localizedSortAs,
-    Set<String> roles = const {},
-    double? position,
-    List<Link> links = const [],
-  }) : super(
-          localizedName: localizedName,
-          identifier: identifier,
-          localizedSortAs: localizedSortAs,
-          roles: roles,
-          position: position,
-          links: links,
-        );
+    required super.localizedName,
+    super.identifier,
+    super.localizedSortAs,
+    super.roles,
+    super.position,
+    super.links,
+  });
 
   static Contributor fromString(String name) =>
       Contributor(localizedName: LocalizedString.fromString(name));

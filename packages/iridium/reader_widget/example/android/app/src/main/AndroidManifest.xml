@@ -1,5 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.mantano.example">
+    <uses-permission android:name="android.permission.INTERNET"/>
    <application
         android:label="example"
         android:name="${applicationName}"

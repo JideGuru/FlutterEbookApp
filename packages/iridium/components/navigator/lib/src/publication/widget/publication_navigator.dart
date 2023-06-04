@@ -4,6 +4,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:mno_commons/utils/functions.dart';
 import 'package:mno_navigator/epub.dart';
 import 'package:mno_navigator/publication.dart';
@@ -23,13 +24,13 @@ abstract class PublicationNavigator extends StatefulWidget {
   final PublicationController publicationController;
 
   const PublicationNavigator({
-    Key? key,
+    super.key,
     required this.waitingScreenBuilder,
     required this.displayErrorBuilder,
     required this.onReaderContextCreated,
     required this.wrapper,
     required this.publicationController,
-  }) : super(key: key);
+  });
 }
 
 abstract class PublicationNavigatorState<T extends PublicationNavigator>
@@ -51,23 +52,25 @@ abstract class PublicationNavigatorState<T extends PublicationNavigator>
     super.dispose();
   }
 
+  EdgeInsets get readerPadding => EdgeInsets.zero;
+
   @override
   Widget build(BuildContext context) => BlocProvider<CurrentSpineItemBloc>(
         create: (BuildContext context) =>
             publicationController.currentSpineItemBloc,
-        child: FutureBuilder<ReaderContext>(
+        child: FutureBuilder<ReaderContext?>(
             future: publicationController.createReaderContext(context),
             builder:
-                (BuildContext context, AsyncSnapshot<ReaderContext> snapshot) {
+                (BuildContext context, AsyncSnapshot<ReaderContext?> snapshot) {
               if (!snapshot.hasData) {
                 return widget.waitingScreenBuilder(context);
               }
               readerContext = snapshot.data;
-              return buildUiForReaderContext(context, readerContext!);
+              return _buildUiForReaderContext(context, readerContext!);
             }),
       );
 
-  Widget buildUiForReaderContext(
+  Widget _buildUiForReaderContext(
       BuildContext context, ReaderContext readerContext) {
     widget.onReaderContextCreated(readerContext);
     if (readerContext.hasError) {
@@ -83,25 +86,38 @@ abstract class PublicationNavigatorState<T extends PublicationNavigator>
           bloc: publicationController.serverBloc,
           builder: (BuildContext context, ServerState state) =>
               (state is ServerStarted)
-                  ? wrapReaderView(spine, state)
+                  ? LayoutBuilder(builder: (context, constraints) {
+                      readerContext.viewportWidth = (constraints.maxWidth *
+                              WidgetsBinding.instance.window.devicePixelRatio)
+                          .toInt();
+                      return wrapReaderView(spine, state);
+                    })
                   : widget.waitingScreenBuilder(context)),
     );
   }
 
+  @protected
   Widget wrapReaderView(List<Link> spine, ServerStarted serverState) {
+    Widget readerWidget = Padding(
+      padding: readerPadding,
+      child: buildReaderView(spine, serverState),
+    );
     if (widget.wrapper != null) {
-      return widget.wrapper!(
-          context, buildReaderView(spine, serverState), spine, serverState);
+      return widget.wrapper!(context, readerWidget, spine, serverState);
     }
-    return buildReaderView(spine, serverState);
+    return readerWidget;
   }
 
   Widget buildReaderView(List<Link> spine, ServerStarted serverState);
 
-  Widget buildProgressIndicator(BuildContext context) => Center(
+  Widget buildProgressIndicatorOld(BuildContext context) => Center(
         child: CircularProgressIndicator(
           valueColor: AlwaysStoppedAnimation<Color>(
               Theme.of(context).colorScheme.secondary),
         ),
       );
+
+  Widget buildProgressIndicator(BuildContext context) => Center(
+      child: SpinKitChasingDots(
+          size: 100.0, color: Theme.of(context).colorScheme.secondary));
 }

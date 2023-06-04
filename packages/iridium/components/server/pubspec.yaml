@@ -5,22 +5,34 @@ homepage: https://github.com/Mantano/mno_server_dart
 publish_to: none
 
 environment:
-  sdk: ">=2.12.0 <3.0.0"
+  sdk: '>=3.0.0 <4.0.0'
+  flutter: '>=3.3.0'
 
 dependencies:
-  bloc: ^8.0.2
-  dartx: ^1.0.0
-  equatable: ^2.0.3
-  fimber: ^0.6.4
-  intl: ^0.17.0
-  meta: ^1.7.0
-  path: ^1.8.0
-  rxdart: ^0.27.3
-  universal_io: ^2.0.4
+  flutter:
+    sdk: flutter
   mno_commons:
     path: ../commons
   mno_shared:
     path: ../shared
+  mno_streamer:
+    path: ../streamer
+  mno_webview:
+    path: ../webview
+  bloc: ^8.1.2
+  dartx: ^1.1.0
+  dfunc: ^0.9.0
+  equatable: ^2.0.5
+  fimber: ^0.6.6
+  flutter_inappwebview: ^5.7.2+3
+  intl: ^0.18.1
+  meta: ^1.9.1
+  path: ^1.8.3
+  rxdart: ^0.27.7
+  universal_io: ^2.2.1
+
+dependency_overrides:
+  collection: ^1.17.2
 
 dev_dependencies:
-  lints: ^1.0.1
+  lints: ^2.1.0

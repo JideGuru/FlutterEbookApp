@@ -339,7 +339,7 @@ void main() async {
               .otherMetadata;
       expect(
           otherMetadata,
-          containsPair(Vocabularies.dcterms + "source", [
+          containsPair("${Vocabularies.dcterms}source", [
             "Feedbooks",
             {"@value": "Web", "http://my.url/#scheme": "http"},
             "Internet"
@@ -358,7 +358,7 @@ void main() async {
       expect(
           otherMetadata.keys,
           containsAll([
-            Vocabularies.dcterms + "source",
+            "${Vocabularies.dcterms}source",
             "presentation",
             "http://my.url/#property0"
           ]));

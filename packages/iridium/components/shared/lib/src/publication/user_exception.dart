@@ -20,7 +20,7 @@ class UserException implements Exception {
   String getUserMessage(LocalizationsRepository localizationsRepository,
       {bool includesCauses = true}) {
     // Convert complex objects to strings, such as Date, to be interpolated.
-    List<Object> _args = args.map((arg) {
+    List<Object> sanitizedArgs = args.map((arg) {
       if (arg is DateTime) {
         return DateFormat.d().add_MMM().add_y().format(arg);
       } else {
@@ -28,7 +28,7 @@ class UserException implements Exception {
       }
     }).toList();
 
-    return localizationsRepository.getMessage(userMessageId, _args);
+    return localizationsRepository.getMessage(userMessageId, sanitizedArgs);
   }
 
   @override

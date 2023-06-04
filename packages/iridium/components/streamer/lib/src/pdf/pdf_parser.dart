@@ -45,49 +45,47 @@ class PdfParser extends PublicationParser implements StreamPublicationParser {
     if (pdfLink == null) {
       throw Exception("Unable to find PDF file.");
     }
+    String fileHref = pdfLink.href;
 
     PdfDocument document = await pdfFactory.openResource(fetcher.get(pdfLink));
     String title = document.title?.ifBlank(() => null) ?? fallbackTitle;
 
-    // TODO implement lookup the table of content
-    // List<Link> tableOfContents = document.outline.toLinks(fileHref);
+    List<Link> tableOfContents = document.outline(fileHref);
 
     Manifest manifest = Manifest(
-        metadata: Metadata(
-          identifier: document.identifier,
-          localizedTitle: LocalizedString.fromString(title),
-          authors: [document.author]
-              .whereNotNull()
-              .where(((s) => s.isNotBlank))
-              .mapNotNull(Contributor.fromString)
-              .toList(),
-          numberOfPages: document.pageCount,
-        ),
-        readingOrder: [
-          pdfLink
-        ],
-        resources: [
-          Link(
-            href: "cover.png",
-            type: MediaType.png.toString(),
-            rels: {'cover'},
-          )
-        ],
-        subcollections: {
-          "pageList": [
-            PublicationCollection(
-                links: List.generate(
-                    document.pageCount,
-                    (index) => Link(
-                          id: "$_rootHref?page=$index",
-                          href: "$_rootHref?page=$index",
-                          type: MediaType.pdf.toString(),
-                          title: title,
-                        )))
-          ]
-        }
-        // tableOfContents: tableOfContents
-        );
+      metadata: Metadata(
+        identifier: document.identifier,
+        localizedTitle: LocalizedString.fromString(title),
+        authors: [document.author]
+            .whereNotNull()
+            .where(((s) => s.isNotBlank))
+            .mapNotNull(Contributor.fromString)
+            .toList(),
+        numberOfPages: document.pageCount,
+      ),
+      readingOrder: [pdfLink],
+      resources: [
+        Link(
+          href: "cover.png",
+          type: MediaType.png.toString(),
+          rels: {'cover'},
+        )
+      ],
+      subcollections: {
+        "pageList": [
+          PublicationCollection(
+              links: List.generate(
+                  document.pageCount,
+                  (index) => Link(
+                        id: "$_rootHref?page=$index",
+                        href: "$_rootHref?page=$index",
+                        type: MediaType.pdf.toString(),
+                        title: title,
+                      )))
+        ]
+      },
+      tableOfContents: tableOfContents,
+    );
     ServicesBuilder servicesBuilder = ServicesBuilder.create(
         positions: PdfPositionsService.create,
         cover: document.cover?.let(InMemoryCoverService.createFactory));

@@ -2,7 +2,6 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
-import 'package:dfunc/dfunc.dart';
 import 'package:fimber/fimber.dart';
 import 'package:mno_shared/fetcher.dart';
 import 'package:mno_shared/mediatype.dart';
@@ -37,21 +36,21 @@ class LcpdfPositionsService extends PositionsService {
 
   Future<List<List<Locator>>> _computePositions() async {
     // Calculates the page count of each resource from the reading order.
-    List<Product2<int, Link>> resources =
+    List<(int, Link)> resources =
         await Future.wait(readingOrder.map((link) async {
       int pageCount = (await _openPdfAt(link))?.pageCount ?? 0;
-      return Product2(pageCount, link);
+      return (pageCount, link);
     }));
 
-    int totalPageCount = resources.fold(0, (prev, it) => prev + it.item1);
+    int totalPageCount = resources.fold(0, (prev, it) => prev + it.$1);
     if (totalPageCount <= 0) {
       return [];
     }
 
     int lastPositionOfPreviousResource = 0;
     return resources.map((it) {
-      int? pageCount = it.item1;
-      Link link = it.item2;
+      int? pageCount = it.$1;
+      Link link = it.$2;
       List<Locator> positions = _createPositionsOf(link,
           pageCount: pageCount,
           totalPageCount: totalPageCount,

@@ -17,10 +17,10 @@ class ReaderAppBar extends StatefulWidget {
   final PublicationController publicationController;
 
   const ReaderAppBar({
-    Key? key,
+    super.key,
     required this.readerContext,
     required this.publicationController,
-  }) : super(key: key);
+  });
 
   @override
   State<StatefulWidget> createState() => ReaderAppBarState();

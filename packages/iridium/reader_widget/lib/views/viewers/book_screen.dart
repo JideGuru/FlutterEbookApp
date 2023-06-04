@@ -1,28 +1,42 @@
+import 'dart:async';
 import 'dart:io';
 
 import 'package:dartx/dartx.dart';
 import 'package:fimber/fimber.dart';
-import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:iridium_reader_widget/views/viewers/ui/reader_app_bar.dart';
 import 'package:iridium_reader_widget/views/viewers/ui/reader_toolbar.dart';
-import 'package:iridium_reader_widget/views/viewers/model/in_memory_reader_annotation_repository.dart';
 import 'package:mno_commons/utils/functions.dart';
+import 'package:mno_navigator/epub.dart';
 import 'package:mno_navigator/publication.dart';
 import 'package:mno_server/mno_server.dart';
 import 'package:mno_shared/publication.dart';
 import 'package:mno_streamer/parser.dart';
+import 'package:mno_webview/webview.dart';
+
+typedef PaginationCallback = Function(PaginationInfo paginationInfo);
 
 abstract class BookScreen extends StatefulWidget {
   final FileAsset asset;
+  final ReaderAnnotationRepository? readerAnnotationRepository;
+  final PaginationCallback? paginationCallback;
 
-  const BookScreen({Key? key, required this.asset}) : super(key: key);
+  const BookScreen({
+    super.key,
+    required this.asset,
+    this.readerAnnotationRepository,
+    this.paginationCallback,
+  });
 }
 
 abstract class BookScreenState<T extends BookScreen,
     PubController extends PublicationController> extends State<T> {
   late PubController publicationController;
   late ReaderContext readerContext;
+
+  ReaderAnnotationRepository get readerAnnotationRepository =>
+      widget.readerAnnotationRepository ?? InMemoryReaderAnnotationRepository();
 
   @override
   void initState() {
@@ -33,7 +47,7 @@ abstract class BookScreenState<T extends BookScreen,
         openLocation,
         widget.asset,
         createStreamer(),
-        InMemoryReaderAnnotationRepository(),
+        readerAnnotationRepository,
         handlersProvider);
   }
 
@@ -74,7 +88,7 @@ abstract class BookScreenState<T extends BookScreen,
       builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {
         if (snapshot.data!) {
           return WillPopScope(
-            onWillPop: _onWillPop,
+            onWillPop: onWillPop,
             child: Scaffold(
               body: createPublicationNavigator(
                 waitingScreenBuilder: buildWaitingScreen,
@@ -89,14 +103,11 @@ abstract class BookScreenState<T extends BookScreen,
         return const SizedBox.shrink();
       });
 
-  Future<bool> _onWillPop() async => true;
+  Future<bool> onWillPop() async => true;
 
   Widget buildWaitingScreen(BuildContext context) => Center(
-        child: CircularProgressIndicator(
-          valueColor: AlwaysStoppedAnimation<Color>(
-              Theme.of(context).colorScheme.secondary),
-        ),
-      );
+      child: SpinKitChasingDots(
+          size: 100, color: Theme.of(context).colorScheme.secondary));
 
   void _displayErrorDialog(BuildContext context, UserException userException) {
     // TODO open error dialog
@@ -105,37 +116,39 @@ abstract class BookScreenState<T extends BookScreen,
 
   void onReaderContextCreated(ReaderContext readerContext) {
     this.readerContext = readerContext;
+    if (widget.paginationCallback != null) {
+      readerContext.currentLocationStream.listen(widget.paginationCallback);
+    }
   }
 
   Widget buildWidgetWrapper(BuildContext context, Widget child,
-      List<Link> spineItems, ServerStarted state) {
-    return Stack(
-      children: <Widget>[
-        buildBackground(),
-        SafeArea(
-          child: child,
-        ),
-        Align(
-          alignment: Alignment.bottomCenter,
-          child: ReaderToolbar(
-            readerContext: readerContext,
-            onPrevious: publicationController.onPrevious,
-            onNext: publicationController.onNext,
+          List<Link> spineItems, ServerStarted state) =>
+      Stack(
+        children: <Widget>[
+          buildBackground(),
+          SafeArea(
+            child: child,
           ),
-        ),
-        SafeArea(
-          top: false,
-          child: Align(
-            alignment: Alignment.topCenter,
-            child: ReaderAppBar(
+          Align(
+            alignment: Alignment.bottomCenter,
+            child: ReaderToolbar(
               readerContext: readerContext,
-              publicationController: publicationController,
+              onSkipLeft: publicationController.onSkipLeft,
+              onSkipRight: publicationController.onSkipRight,
             ),
           ),
-        ),
-      ],
-    );
-  }
+          SafeArea(
+            top: false,
+            child: Align(
+              alignment: Alignment.topCenter,
+              child: ReaderAppBar(
+                readerContext: readerContext,
+                publicationController: publicationController,
+              ),
+            ),
+          ),
+        ],
+      );
 
   Widget buildBackground() => const SizedBox.shrink();
 

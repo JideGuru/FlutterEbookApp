@@ -5,7 +5,7 @@
 import 'dart:typed_data';
 
 import 'package:mno_shared/src/streams/stream.dart';
-import 'package:universal_io/io.dart';
+import 'package:universal_io/io.dart' hide Link;
 
 /// Random access stream to a file.
 class FileStream extends DataStream {

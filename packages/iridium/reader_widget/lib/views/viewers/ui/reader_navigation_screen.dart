@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:iridium_reader_widget/views/viewers/ui/bookmarks_panel.dart';
+import 'package:iridium_reader_widget/views/viewers/ui/annotations_panel.dart';
 import 'package:iridium_reader_widget/views/viewers/ui/content_panel.dart';
 import 'package:mno_navigator/publication.dart';
 
 class ReaderNavigationScreen extends StatefulWidget {
   final ReaderContext readerContext;
 
-  const ReaderNavigationScreen({Key? key, required this.readerContext})
-      : super(key: key);
+  const ReaderNavigationScreen({super.key, required this.readerContext});
 
   @override
   State<ReaderNavigationScreen> createState() => _ReaderNavigationScreenState();
@@ -19,7 +18,7 @@ class _ReaderNavigationScreenState extends State<ReaderNavigationScreen>
 
   @override
   void initState() {
-    _tabController = TabController(length: 2, vsync: this);
+    _tabController = TabController(length: 3, vsync: this);
     super.initState();
   }
 
@@ -39,6 +38,7 @@ class _ReaderNavigationScreenState extends State<ReaderNavigationScreen>
             tabs: const [
               Tab(text: "Contents"),
               Tab(text: "Bookmarks"),
+              Tab(text: "Highlights"),
             ],
           ),
         ),
@@ -49,8 +49,13 @@ class _ReaderNavigationScreenState extends State<ReaderNavigationScreen>
               ContentPanel(
                 readerContext: widget.readerContext,
               ),
-              BookmarksPanel(
+              AnnotationsPanel(
                 readerContext: widget.readerContext,
+                annotationType: AnnotationType.bookmark,
+              ),
+              AnnotationsPanel(
+                readerContext: widget.readerContext,
+                annotationType: AnnotationType.highlight,
               ),
             ],
           ),

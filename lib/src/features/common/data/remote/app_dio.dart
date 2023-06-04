@@ -1,5 +1,5 @@
-import 'package:dio/adapter.dart';
 import 'package:dio/dio.dart';
+import 'package:dio/io.dart';
 import 'package:flutter_ebook_app/src/features/common/constants/api.dart';
 
 class AppDio with DioMixin implements Dio {
@@ -8,9 +8,9 @@ class AppDio with DioMixin implements Dio {
     this.options = BaseOptions(
       baseUrl: baseUrl,
       contentType: 'application/json',
-      connectTimeout: 30000,
-      sendTimeout: 30000,
-      receiveTimeout: 30000,
+      connectTimeout: const Duration(milliseconds: 30000),
+      sendTimeout: const Duration(milliseconds: 30000),
+      receiveTimeout: const Duration(milliseconds: 30000),
     );
     interceptors.add(
       InterceptorsWrapper(
@@ -26,7 +26,7 @@ class AppDio with DioMixin implements Dio {
         },
       ),
     );
-    httpClientAdapter = DefaultHttpClientAdapter();
+    httpClientAdapter = IOHttpClientAdapter();
   }
 
   static Dio getInstance() => AppDio._();

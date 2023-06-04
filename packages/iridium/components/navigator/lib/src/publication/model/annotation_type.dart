@@ -18,7 +18,7 @@ class AnnotationType {
   const AnnotationType._(this.id, this.name);
 
   static AnnotationType from(int id) =>
-      _values.firstWhere((type) => type.id == id);
+      _values.firstWhere((type) => type.id == id, orElse: () => bookmark);
 
   @override
   String toString() => 'AnnotationType.$name';

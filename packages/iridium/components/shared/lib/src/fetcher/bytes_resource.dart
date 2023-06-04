@@ -45,8 +45,7 @@ abstract class BaseBytesResource extends Resource {
 
 /// Creates a Resource serving [ByteArray].
 class BytesResource extends BaseBytesResource {
-  BytesResource(Link link, ByteDataRetriever bytesFunction)
-      : super(link, bytesFunction);
+  BytesResource(super.link, super.bytesFunction);
 
   @override
   String toString() {

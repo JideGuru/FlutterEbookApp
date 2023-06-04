@@ -3,8 +3,7 @@ import 'package:flutter/material.dart';
 class ToolbarPageNumber extends StatelessWidget {
   final int pageNumber;
 
-  const ToolbarPageNumber({Key? key, required this.pageNumber})
-      : super(key: key);
+  const ToolbarPageNumber({super.key, required this.pageNumber});
 
   @override
   Widget build(BuildContext context) => Padding(

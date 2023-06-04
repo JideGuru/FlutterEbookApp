@@ -5,7 +5,7 @@
 import 'package:mno_commons/utils/try.dart';
 import 'package:mno_shared/fetcher.dart';
 import 'package:mno_shared/publication.dart';
-import 'package:universal_io/io.dart';
+import 'package:universal_io/io.dart' hide Link;
 
 /// Bridge between a Content Protection technology and the Readium toolkit.
 ///
@@ -31,7 +31,7 @@ mixin ContentProtection {
       Fetcher fetcher,
       String? credentials,
       bool allowUserInteraction,
-      Object sender);
+      dynamic sender);
 }
 
 /// Holds the result of opening a [File] with a [ContentProtection].

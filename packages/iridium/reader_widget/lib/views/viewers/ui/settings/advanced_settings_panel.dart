@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:iridium_reader_widget/views/viewers/ui/settings/settings_row.dart';
-import 'alignment_button.dart';
+import 'package:iridium_reader_widget/views/viewers/ui/settings/alignment_button.dart';
 import 'package:mno_navigator/epub.dart';
 import 'package:mno_navigator/publication.dart';
 
@@ -10,10 +10,10 @@ class AdvancedSettingsPanel extends StatefulWidget {
   final ReaderThemeBloc readerThemeBloc;
 
   const AdvancedSettingsPanel({
-    Key? key,
+    super.key,
     required this.readerContext,
     required this.readerThemeBloc,
-  }) : super(key: key);
+  });
 
   @override
   State<AdvancedSettingsPanel> createState() => _AdvancedSettingsPanelState();

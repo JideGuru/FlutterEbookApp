@@ -4,7 +4,7 @@
 
 import 'dart:convert';
 
-import 'package:universal_io/io.dart';
+import 'package:universal_io/io.dart' hide Link;
 
 import 'package:mno_server/mno_server.dart';
 import 'package:mno_shared/mediatype.dart';
@@ -28,7 +28,7 @@ void main() {
 
 class _HelloWorldRequestHandler extends RequestHandler {
   @override
-  Future<bool> handle(int requestId, HttpRequest request, String href) async {
+  Future<bool> handle(int requestId, Request request, String href) async {
     await sendData(
       request,
       data: "Hello world".codeUnits,

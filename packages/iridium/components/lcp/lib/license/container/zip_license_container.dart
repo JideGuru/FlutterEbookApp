@@ -11,7 +11,7 @@ import 'package:mno_lcp/utils/zip_utils.dart';
 import 'package:mno_shared/container.dart';
 import 'package:mno_shared/streams.dart';
 import 'package:mno_shared/zip.dart';
-import 'package:universal_io/io.dart';
+import 'package:universal_io/io.dart' hide Link;
 
 class ZipLicenseContainer implements LicenseContainer {
   late final String zip;

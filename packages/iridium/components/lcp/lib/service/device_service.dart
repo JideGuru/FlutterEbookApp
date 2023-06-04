@@ -4,15 +4,15 @@
 
 import 'dart:typed_data';
 
-import 'package:device_info/device_info.dart';
+import 'package:device_info_plus/device_info_plus.dart';
 import 'package:mno_lcp/lcp.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:universal_io/io.dart';
+import 'package:universal_io/io.dart' hide Link;
 import 'package:uuid/uuid.dart';
 
 class DeviceService {
   static const String settingsPrefix = "org.readium.r2.settings";
-  static const String lcpDeviceIdPref = settingsPrefix + ".lcp_device_id";
+  static const String lcpDeviceIdPref = "$settingsPrefix.lcp_device_id";
   final DeviceRepository repository;
   final NetworkService network;
   final SharedPreferences preferences;
@@ -33,15 +33,16 @@ class DeviceService {
 
   Future<String> get name async {
     DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
+    String? deviceName;
     if (Platform.isAndroid) {
       AndroidDeviceInfo androidInfo = await deviceInfo.androidInfo;
-      return androidInfo.model;
+      deviceName = androidInfo.model;
     }
     if (Platform.isIOS) {
       IosDeviceInfo iosInfo = await deviceInfo.iosInfo;
-      return iosInfo.utsname.machine;
+      deviceName = iosInfo.utsname.machine;
     }
-    return Platform.operatingSystem;
+    return deviceName ?? Platform.operatingSystem;
   }
 
   Future<Map<String, String>> get asQueryParameters async => {

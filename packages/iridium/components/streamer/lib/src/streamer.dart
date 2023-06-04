@@ -16,9 +16,9 @@ import 'package:mno_streamer/src/readium/readium_web_pub_parser.dart';
 /// Subclass of [Try<SuccessT, UserException>] that is useful when parsing a
 /// [Publication].
 class PublicationTry<SuccessT> extends Try<SuccessT, UserException> {
-  PublicationTry.success(SuccessT success) : super.success(success);
+  PublicationTry.success(SuccessT super.success) : super.success();
 
-  PublicationTry.failure(UserException failure) : super.failure(failure);
+  PublicationTry.failure(UserException super.failure) : super.failure();
 }
 
 /// Definition of the [OnCreatePublication] callback.
@@ -46,6 +46,10 @@ class Streamer {
   /// a publication.
   final bool ignoreDefaultParsers;
 
+  /// This property indicate that it should use sniffers when searching
+  /// mediaTypes for links in  a publication.
+  final bool useSniffers;
+
   /// List of the [ContentProtection] implementation that are supported.
   final List<ContentProtection> contentProtections;
 
@@ -65,6 +69,7 @@ class Streamer {
   Streamer(
       {List<StreamPublicationParser> parsers = const [],
       this.ignoreDefaultParsers = false,
+      this.useSniffers = true,
       this.contentProtections = const [],
       this.archiveFactory = const DefaultArchiveFactory(),
       this.pdfFactory,
@@ -111,7 +116,8 @@ class Streamer {
     onCreatePublication ??= _emptyOnCreatePublication;
     try {
       Fetcher fetcher = (await asset.createFetcher(
-              PublicationAssetDependencies(archiveFactory), credentials))
+              PublicationAssetDependencies(archiveFactory), credentials,
+              useSniffers: useSniffers))
           .getOrThrow();
 
       Try<ProtectedAsset, UserException>? protectedAssetResult =
@@ -133,7 +139,11 @@ class Streamer {
       PublicationBuilder? builder =
           (await _getParsers().lazyMapFirstNotNullOrNull((it) {
         try {
-          return it.parseFile(asset, fetcher).catchError((e, st) => null);
+          return it.parseFile(asset, fetcher).catchError(
+              (e, st) => it.parseFile(asset, fetcher).catchError((e, st) {
+                    Fimber.d("ERROR $it", ex: e, stacktrace: st);
+                    return null;
+                  }));
         } on Exception catch (e) {
           throw OpeningException.parsingFailed(e);
         }
@@ -152,10 +162,10 @@ class Streamer {
       Publication publication = builder.also(onCreatePublication).build();
 
       publication.addLegacyProperties(await asset.mediaType);
-      Product2<int, Map<Link, LinkPagination>> infos =
+      var infos =
           await PaginationInfosService.computePaginationInfos(publication);
-      publication.nbPages = infos.item1;
-      publication.paginationInfo = infos.item2;
+      publication.nbPages = infos.$1;
+      publication.paginationInfo = infos.$2;
       // Fimber.d("publication.manifest: ${publication.manifest}");
 
       return PublicationTry.success(publication);

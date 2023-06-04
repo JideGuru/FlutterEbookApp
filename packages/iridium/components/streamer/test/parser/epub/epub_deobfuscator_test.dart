@@ -9,7 +9,7 @@ import 'package:mno_shared/fetcher.dart';
 import 'package:mno_shared/publication.dart';
 import 'package:mno_streamer/src/epub/epub_deobfuscator.dart';
 import 'package:test/test.dart';
-import 'package:universal_io/io.dart';
+import 'package:universal_io/io.dart' hide Link;
 
 Future<void> main() async {
   var identifier = "urn:uuid:36d5078e-ff7d-468e-a5f3-f47c14b91f2f";

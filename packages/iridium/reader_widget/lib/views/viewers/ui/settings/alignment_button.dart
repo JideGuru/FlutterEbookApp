@@ -7,11 +7,11 @@ class AlignmentButton extends StatelessWidget {
   final TextAlign textAlign;
 
   const AlignmentButton({
-    Key? key,
+    super.key,
     required this.readerThemeBloc,
     required this.readerTheme,
     required this.textAlign,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) => DecoratedBox(

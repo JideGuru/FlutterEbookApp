@@ -28,7 +28,7 @@ class _Person with JSONable {
   _Person(this.name, this.firstname);
 
   @override
-  Map<String, dynamic>? toJson() => <String, dynamic>{}
+  Map<String, dynamic> toJson() => <String, dynamic>{}
     ..putOpt("name", name)
     ..putOpt("firstname", firstname);
 }

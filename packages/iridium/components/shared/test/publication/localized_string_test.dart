@@ -5,7 +5,7 @@
 import 'package:mno_commons/extensions/strings.dart';
 import 'package:mno_shared/publication.dart';
 import 'package:test/test.dart';
-import 'package:universal_io/io.dart';
+import 'package:universal_io/io.dart' hide Link;
 
 void main() {
   test("parse JSON string", () {

@@ -5,7 +5,7 @@ import 'package:mno_shared/publication.dart';
 class ContentPanel extends StatefulWidget {
   final ReaderContext readerContext;
 
-  const ContentPanel({Key? key, required this.readerContext}) : super(key: key);
+  const ContentPanel({super.key, required this.readerContext});
 
   @override
   State<StatefulWidget> createState() => ContentPanelState();

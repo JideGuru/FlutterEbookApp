@@ -3,20 +3,22 @@
 // found in the LICENSE file.
 
 import 'package:mno_commons/utils/predicate.dart';
-import 'package:mno_navigator/epub.dart';
 import 'package:mno_navigator/publication.dart';
+import 'package:mno_shared/publication.dart';
 
 class AnnotationTypeAndDocumentPredicate extends Predicate<ReaderAnnotation> {
-  final String idref;
+  final String href;
   final AnnotationType annotationType;
 
-  AnnotationTypeAndDocumentPredicate(this.idref, this.annotationType);
+  AnnotationTypeAndDocumentPredicate(this.href, this.annotationType) {
+    addEqualsCondition("annotationType", annotationType.id);
+  }
 
   @override
   bool test(ReaderAnnotation element) =>
-      element.annotationType == annotationType && element.idref == idref;
+      element.annotationType == annotationType && element.href == href;
 }
 
 extension _ReaderAnnotationExt on ReaderAnnotation {
-  String get idref => ReadiumLocation.createLocation(location).idref;
+  String? get href => Locator.fromJsonString(location)?.href;
 }

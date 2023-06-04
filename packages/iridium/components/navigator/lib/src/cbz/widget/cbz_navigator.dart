@@ -3,7 +3,6 @@
 // found in the LICENSE file.
 
 import 'package:flutter/widgets.dart';
-import 'package:mno_commons/utils/functions.dart';
 import 'package:mno_navigator/cbz.dart';
 import 'package:mno_navigator/publication.dart';
 import 'package:mno_server/mno_server.dart';
@@ -15,18 +14,13 @@ class CbzNavigator extends PublicationNavigator {
   final CbzController cbzController;
 
   CbzNavigator({
-    Key? key,
-    required WidgetBuilder waitingScreenBuilder,
-    required WidgetErrorBuilder displayErrorBuilder,
-    required Consumer<ReaderContext> onReaderContextCreated,
-    required WrapperWidgetBuilder? wrapper,
+    super.key,
+    required super.waitingScreenBuilder,
+    required super.displayErrorBuilder,
+    required super.onReaderContextCreated,
+    required super.wrapper,
     required this.cbzController,
   }) : super(
-          key: key,
-          waitingScreenBuilder: waitingScreenBuilder,
-          displayErrorBuilder: displayErrorBuilder,
-          onReaderContextCreated: onReaderContextCreated,
-          wrapper: wrapper,
           publicationController: cbzController,
         );
 
@@ -39,11 +33,6 @@ class CbzNavigatorState extends PublicationNavigatorState<CbzNavigator> {
   static const double maxScaleFactor = 3.0;
 
   CbzController get cbzController => widget.cbzController;
-
-  @override
-  void initState() {
-    super.initState();
-  }
 
   @override
   Widget buildReaderView(List<Link> spine, ServerStarted serverState) =>

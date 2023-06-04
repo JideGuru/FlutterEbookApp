@@ -29,4 +29,4 @@ EpubScreen.fromPath(filePath: widget.dirPath)
 
 ## Additional information
 
-More information [here](https://gtihub.com/Mantano/Iridium) and [here](https://iridium.rocks).
+More information [here](https://github.com/Mantano/Iridium) and [here](https://iridium.rocks).

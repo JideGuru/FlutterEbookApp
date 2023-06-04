@@ -12,7 +12,7 @@ import 'package:mno_lcp/io/file_util.dart';
 import 'package:mno_lcp/lcp.dart';
 import 'package:mno_shared/mediatype.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:universal_io/io.dart';
+import 'package:universal_io/io.dart' hide Link;
 
 class LicensesService extends LcpService {
   final LicensesRepository licenses;

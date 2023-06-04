@@ -4,7 +4,7 @@
 
 import 'package:mno_commons/extensions/files.dart';
 import 'package:test/test.dart';
-import 'package:universal_io/io.dart';
+import 'package:universal_io/io.dart' hide Link;
 
 void main() {
   test("firstComponent works well when {File} is a directory", () {

@@ -2,30 +2,40 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
-import 'dart:typed_data';
-
+import 'package:dfunc/dfunc.dart';
 import 'package:fimber/fimber.dart';
+import 'package:flutter/foundation.dart';
 import 'package:mno_commons/extensions/strings.dart';
+import 'package:mno_commons/utils/injectable.dart';
+import 'package:mno_server/src/blocs/server/resources.dart';
 import 'package:mno_shared/epub.dart';
 import 'package:mno_shared/fetcher.dart';
 import 'package:mno_shared/mediatype.dart';
 import 'package:mno_shared/publication.dart';
-import 'package:path/path.dart' as p;
+import 'package:mno_streamer/parser.dart';
+import 'package:universal_io/io.dart' hide Link;
 
-/// Inject the XPUB CSS and JS links in a publication HTML resources.
+/// Inject the Readium CSS and JS links in a publication HTML resources.
 class HtmlInjector {
   /// The [publication] that is the context for the HTML injection.
   final Publication publication;
+  final ValueGetter<int> viewportWidthGetter;
+  final String? userPropertiesPath;
+  final Resources? customResources;
   final List<String> googleFonts;
 
   /// Create an instance [HtmlInjector] for a [publication].
-  HtmlInjector(this.publication, {this.googleFonts = const []});
+  HtmlInjector(this.publication, this.viewportWidthGetter,
+      {this.userPropertiesPath,
+      this.customResources,
+      this.googleFonts = const []});
 
   /// Inject CSS and JS links if the resource is HTML.
   Resource transform(Resource resource) => LazyResource(() async {
         Link link = await resource.link();
         if (link.mediaType.isHtml) {
-          return _InjectHtmlResource(publication, googleFonts, resource);
+          return _InjectHtmlResource(publication, viewportWidthGetter,
+              userPropertiesPath, customResources, googleFonts, resource);
         }
         return resource;
       });
@@ -33,109 +43,35 @@ class HtmlInjector {
 
 class _InjectHtmlResource extends TransformingResource {
   final Publication publication;
+  final ValueGetter<int> viewportWidthGetter;
+  final String? userPropertiesPath;
+  final Resources? customResources;
   final List<String> googleFonts;
 
-  _InjectHtmlResource(this.publication, this.googleFonts, Resource resource)
+  _InjectHtmlResource(
+      this.publication,
+      this.viewportWidthGetter,
+      this.userPropertiesPath,
+      this.customResources,
+      this.googleFonts,
+      Resource resource)
       : super(resource);
 
   @override
   Future<ResourceTry<ByteData>> transform(ResourceTry<ByteData> data) async {
     Link l = await link();
-    EpubLayout renditionLayout = publication.metadata.presentation.layoutOf(l);
+
     return (await resource.readAsString(
             charset: l.mediaType.charset ?? Charsets.utf8))
-        .mapCatching((html) {
-      html = _injectLinks(html, renditionLayout);
-      html = _wrapHtmlContent(html, renditionLayout);
-      return html.toByteData();
+        .mapCatching((it) {
+      String trimmedText = it.trim();
+      EpubLayout renditionLayout =
+          publication.metadata.presentation.layoutOf(l);
+      String res = (renditionLayout == EpubLayout.reflowable)
+          ? injectReflowableHtml(trimmedText)
+          : injectFixedLayoutHtml(trimmedText);
+      return res.toByteData();
     });
-  }
-
-  /// Injects the links before </head>.
-  String _injectLinks(String html, EpubLayout renditionLayout) {
-    int headIndex = html.indexOf('</head>');
-    if (headIndex == -1) {
-      Fimber.d("Can't find </head> to inject HTML links");
-      return html;
-    }
-
-    String linksHtml = _createLinksToInjectHtml(renditionLayout);
-    String googleFonts = _createGoogleFontsHtml();
-
-    return "${html.substring(0, headIndex)}\n$linksHtml\n$googleFonts\n${html.substring(headIndex)}";
-  }
-
-  /// Builds the HTML for the list of links to be injected in <head>
-  String _createLinksToInjectHtml(EpubLayout renditionLayout) =>
-      _createLinksToInject(renditionLayout)
-          .map((path) {
-            switch (p.extension(path).toLowerCase()) {
-              case '.css':
-                return '<link href="$path" rel="stylesheet" />';
-              case '.js':
-                return '<script type="text/javascript" src="$path"></script>';
-              default:
-                Fimber.d("Can't HTML inject path: $path");
-                return null;
-            }
-          })
-          .where((l) => l != null)
-          .join('\n');
-
-  /// Link's href to be injected in <head> for the given [Link] resource.
-  /// The file extension is used to know if it's a JS or CSS.
-  List<String> _createLinksToInject(EpubLayout renditionLayout) => [
-        '/xpub-js/xpub.css',
-        '/xpub-js/fonts.css',
-        '/xpub-js/ReadiumCSS-before.css',
-        '/xpub-js/ReadiumCSS-default.css',
-        '/xpub-js/ReadiumCSS-after.css',
-        '/xpub-js/pagination.css',
-        '/xpub-shared-js/polyfill.js',
-        '/xpub-shared-js/underscore-min.js',
-        '/xpub-shared-js/jquery-2.1.0.min.js',
-        '/xpub-shared-js/jquery.mobile-1.4.5.min.js',
-        '/xpub-shared-js/jquerymobile-swipeupdown.js',
-        '/xpub-shared-js/readium-cfi-js.js',
-        '/xpub-shared-js/globals.js',
-        '/xpub-shared-js/helpers.js',
-        '/xpub-js/model/bookmark_data.js',
-        '/xpub-js/model/current_pages_info.js',
-        '/xpub-js/model/spine_item.js',
-        '/xpub-js/model/location.js',
-        '/xpub-js/model/page_open_request.js',
-        '/xpub-js/model/package_data.js',
-        '/xpub-js/model/package.js',
-        '/xpub-js/utils/rangefix.js',
-        '/xpub-js/utils/cfi_navigation_logic.js',
-        '/xpub-js/utils/cfi.js',
-        '/xpub-js/utils/tools.js',
-        '/xpub-js/controllers/bookmarks.js',
-        '/xpub-js/controllers/highlight.js',
-        '/xpub-js/controllers/tts.js',
-        '/xpub-js/Main.js',
-        '/xpub-js/xpub_location.js',
-        '/xpub-js/xpub_navigation.js',
-        '/xpub-js/Gestures.js',
-        '/xpub-js/Recordings.js',
-        '/xpub-js/Theme.js',
-        if (renditionLayout == EpubLayout.fixed)
-          '/xpub-js/xpub_navigation_fixed_layout.js',
-        if (renditionLayout == EpubLayout.reflowable) ...[
-          '/xpub-js/xpub_navigation_reflow_layout.js',
-          '/xpub-js/Reflowable_Viewport.js',
-        ]
-      ];
-
-  /// Wraps the HTML for pagination.
-  String _wrapHtmlContent(String html, EpubLayout renditionLayout) {
-    if (renditionLayout == EpubLayout.reflowable) {
-      html = _insertString('(<body[^>]*>)', html,
-          '<div class="xpub_container"><div id="xpub_contenuSpineItem">', true);
-      html = _insertString('(</body>)', html,
-          '</div><div id="xpub_paginator"></div></div>', false);
-    }
-    return html;
   }
 
   String _insertString(
@@ -146,9 +82,7 @@ class _InjectHtmlResource extends TransformingResource {
       return content;
     }
     int insertionPoint = insertAfter ? match.end : match.start;
-    return content.substring(0, insertionPoint) +
-        contentToAdd +
-        content.substring(insertionPoint);
+    return content.insert(insertionPoint, contentToAdd);
   }
 
   Match? _matchRegex(String pattern, String html) {
@@ -162,6 +96,283 @@ class _InjectHtmlResource extends TransformingResource {
       return "";
     }
     String fontList = googleFonts.map((f) => f.replaceAll(" ", "+")).join("|");
-    return "<style>@import url('https://fonts.googleapis.com/css?family=$fontList');</style>";
+    return "<style>@import url('https://fonts.googleapis.com/css?family=$fontList');</style>\n";
+  }
+
+  String injectReflowableHtml(String content) {
+    String resourceHtml = content;
+    // Inject links to css and js files
+    RegExpMatch? head = regexForOpeningHTMLTag("head").firstMatch(resourceHtml);
+    if (head == null) {
+      Fimber.e("No <head> tag found in this resource");
+      return resourceHtml;
+    }
+    var beginHeadIndex = head.end + 1;
+    var endHeadIndex =
+        resourceHtml.indexOf(RegExp("</head>", caseSensitive: false));
+    if (endHeadIndex == -1) {
+      return content;
+    }
+
+    ReadiumCssLayout layout =
+        ReadiumCssLayout.findWithMetadata(publication.metadata);
+
+    List<String> endIncludes = [];
+    List<String> beginIncludes = [];
+    beginIncludes.add(getHtmlLink(
+        "/readium/readium-css/${layout.readiumCSSPath}ReadiumCSS-before.css"));
+
+    // Fix Readium CSS issue with the positioning of <audio> elements.
+    // https://github.com/readium/readium-css/issues/94
+    // https://github.com/readium/r2-navigator-kotlin/issues/193
+    beginIncludes.add("""
+            <style>
+            audio[controls] {
+                width: revert;
+                height: revert;
+            }
+            </style>
+        """
+        .trim());
+
+    endIncludes.add(getHtmlLink(
+        "/readium/readium-css/${layout.readiumCSSPath}ReadiumCSS-after.css"));
+    endIncludes.add(getHtmlLink(
+        "/readium/readium-css/${layout.readiumCSSPath}ReadiumCSS-pagination.css"));
+    endIncludes.add(getHtmlScript("/readium/scripts/readium-reflowable.js"));
+    // for (String script in defaultJsLinks) {
+    //   endIncludes.add(getHtmlScript(script));
+    // }
+    endIncludes.add(_createGoogleFontsHtml());
+
+    customResources?.let((it) {
+      // Inject all custom resourses
+      for (MapEntry<String, dynamic> entry in it.resources.entries) {
+        String key = entry.key;
+        dynamic value = entry.value;
+        if (value is (String, String)) {
+          if (Injectable(value.$2) == Injectable.script) {
+            endIncludes
+                .add(getHtmlScript("/${Injectable.script.rawValue}/$key"));
+          } else if (Injectable(value.$2) == Injectable.style) {
+            endIncludes.add(getHtmlLink("/${Injectable.style.rawValue}/$key"));
+          }
+        }
+      }
+    });
+
+    for (var element in beginIncludes) {
+      resourceHtml = resourceHtml.insert(beginHeadIndex, element);
+      beginHeadIndex += element.length;
+      endHeadIndex += element.length;
+    }
+    for (var element in endIncludes) {
+      resourceHtml = resourceHtml.insert(endHeadIndex, element);
+      endHeadIndex += element.length;
+    }
+    resourceHtml = resourceHtml.insert(
+        endHeadIndex,
+        getHtmlFont(
+            fontFamily: "OpenDyslexic",
+            href: "/readium/fonts/OpenDyslexic-Regular.otf"));
+    resourceHtml = resourceHtml.insert(endHeadIndex, _createGoogleFontsHtml());
+
+    // Disable the text selection if the publication is protected.
+    // FIXME: This is a hack until proper LCP copy is implemented, see https://github.com/readium/r2-testapp-kotlin/issues/266
+    if (publication.isProtected) {
+      resourceHtml = resourceHtml.insert(endHeadIndex, """
+                <style>
+                *:not(input):not(textarea) {
+                    user-select: none;
+                    -webkit-user-select: none;
+                }
+                </style>
+            """);
+    }
+
+    // Inject userProperties
+    getProperties(publication.userSettingsUIPreset).let((propertyPair) {
+      propertyPair["--RS__nativeViewportWidth"] =
+          viewportWidthGetter().toString();
+      Match? html =
+          regexForOpeningHTMLTag("html").matchAsPrefix(resourceHtml, 0);
+      if (html != null) {
+        Match? match =
+            RegExp("""(style=("([^"]*)"[ >]))|(style='([^']*)'[ >])""")
+                .matchAsPrefix(html.input, 0);
+        if (match != null) {
+          var beginStyle = match.start + 7;
+          var newHtml = html.input;
+          newHtml = newHtml.insert(
+              beginStyle, "${buildStringProperties(propertyPair)} ");
+          resourceHtml =
+              resourceHtml.replaceAll(regexForOpeningHTMLTag("html"), newHtml);
+        } else {
+          var beginHtmlIndex =
+              resourceHtml.indexOf(RegExp("<html", caseSensitive: false)) + 5;
+          resourceHtml = resourceHtml.insert(beginHtmlIndex,
+              " style=\"${buildStringProperties(propertyPair)}\"");
+        }
+      } else {
+        var beginHtmlIndex =
+            resourceHtml.indexOf(RegExp("<html", caseSensitive: false)) + 5;
+        resourceHtml = resourceHtml.insert(beginHtmlIndex,
+            " style=\"${buildStringProperties(propertyPair)}\"");
+      }
+    });
+    resourceHtml = applyDirectionAttribute(resourceHtml, publication);
+    resourceHtml = _insertString(
+        '(</body>)', resourceHtml, '<div id="readium_paginator"></div>', false);
+
+    return resourceHtml;
+  }
+
+  String applyDirectionAttribute(String resourceHtml, Publication publication) {
+    String resourceHtml1 = resourceHtml;
+    String addRTLDir(String tagName, String html) =>
+        regexForOpeningHTMLTag(tagName).matchAsPrefix(html, 0)?.let((result) {
+          if (RegExp("""dir=""").hasMatch(result.input)) {
+            return html;
+          }
+          var beginHtmlIndex =
+              html.indexOf(RegExp("<$tagName", caseSensitive: false)) + 5;
+          return html.insert(beginHtmlIndex, " dir=\"rtl\"");
+        }) ??
+        html;
+
+    if (publication.cssStyle == "rtl") {
+      resourceHtml1 = addRTLDir("html", resourceHtml1);
+      resourceHtml1 = addRTLDir("body", resourceHtml1);
+    }
+
+    return resourceHtml1;
+  }
+
+  RegExp regexForOpeningHTMLTag(String name) =>
+      RegExp("""<$name.*?>""", caseSensitive: false, dotAll: true);
+
+  String injectFixedLayoutHtml(String content) {
+    String resourceHtml = content;
+    int endHeadIndex =
+        resourceHtml.indexOf(RegExp("</head>", caseSensitive: false));
+    if (endHeadIndex == -1) {
+      return content;
+    }
+    List<String> includes = [];
+    includes.add(getHtmlScript("/readium/scripts/readium-fixed.js"));
+    // for (String script in defaultJsLinks) {
+    //   includes.add(getHtmlScript(script));
+    // }
+    includes.add(_createGoogleFontsHtml());
+    return resourceHtml.insert(endHeadIndex, includes.join());
+  }
+
+  String getHtmlFont({required String fontFamily, required String href}) =>
+      "<style type=\"text/css\"> @font-face{font-family: \"$fontFamily\"; src:url(\"" + href + "\") format('truetype');}</style>\n";
+
+  String getHtmlLink(String resourceName) =>
+      "<link rel=\"stylesheet\" type=\"text/css\" href=\"$resourceName\"/>\n";
+
+  String getHtmlScript(String resourceName) =>
+      "<script type=\"text/javascript\" src=\"$resourceName\"></script>\n";
+
+  Map<String, String> getProperties(Map<ReadiumCSSName, bool> preset) {
+    // userProperties is a JSON string containing the css userProperties
+    String? userPropertiesString;
+    userPropertiesPath?.let((it) async {
+      userPropertiesString = "";
+      File file = File(it);
+      if (FileSystemEntity.typeSync(it) == FileSystemEntityType.file &&
+          file.existsSync()) {
+        userPropertiesString = await file.readAsString();
+      }
+    });
+
+    return userPropertiesString?.let((it) {
+          // Parsing of the String into a JSONArray of JSONObject with each "name" and "value" of the css properties
+          // Making that JSONArray a MutableMap<String, String> to make easier the access of data
+          try {
+            List<dynamic>? propertiesArray = it.toJsonArrayOrNull();
+            Map<String, String> properties = {};
+            if (propertiesArray != null) {
+              for (var i = 0; i < propertiesArray.length; i++) {
+                Map<String, dynamic> value =
+                    propertiesArray[i].toString().toJsonOrNull()!;
+                bool isInPreset = false;
+
+                for (MapEntry<ReadiumCSSName, bool> property
+                    in preset.entries) {
+                  if (property.key.ref == value["name"]) {
+                    isInPreset = true;
+                    (ReadiumCSSName, bool?) presetPair =
+                        (property.key, preset[property.key]);
+                    Map<String, String> presetValue = applyPreset(presetPair);
+                    properties[presetValue["name"]!] = presetValue["value"]!;
+                  }
+                }
+
+                if (!isInPreset) {
+                  properties[value["name"]] = value["value"];
+                }
+              }
+            }
+
+            return properties;
+          } on Exception {
+            return null;
+          }
+        }) ??
+        {};
+  }
+
+  Map<String, String> applyPreset((ReadiumCSSName, bool?) preset) {
+    Map<String, String> readiumCSSProperty = {};
+
+    readiumCSSProperty["name"] = preset.$1.ref;
+
+    if (preset.$1 == ReadiumCSSName.hyphens) {
+      readiumCSSProperty["value"] = "";
+    } else if (preset.$1 == ReadiumCSSName.fontOverride) {
+      readiumCSSProperty["value"] = "readium-font-off";
+    } else if (preset.$1 == ReadiumCSSName.appearance) {
+      readiumCSSProperty["value"] = "readium-default-on";
+    } else if (preset.$1 == ReadiumCSSName.publisherDefault) {
+      readiumCSSProperty["value"] = "";
+    } else if (preset.$1 == ReadiumCSSName.columnCount) {
+      readiumCSSProperty["value"] = "auto";
+    } else if (preset.$1 == ReadiumCSSName.pageMargins) {
+      readiumCSSProperty["value"] = "0.5";
+    } else if (preset.$1 == ReadiumCSSName.lineHeight) {
+      readiumCSSProperty["value"] = "1.0";
+    } else if (preset.$1 == ReadiumCSSName.ligatures) {
+      readiumCSSProperty["value"] = "";
+    } else if (preset.$1 == ReadiumCSSName.fontFamily) {
+      readiumCSSProperty["value"] = "Original";
+    } else if (preset.$1 == ReadiumCSSName.fontSize) {
+      readiumCSSProperty["value"] = "100%";
+    } else if (preset.$1 == ReadiumCSSName.wordSpacing) {
+      readiumCSSProperty["value"] = "0.0rem";
+    } else if (preset.$1 == ReadiumCSSName.letterSpacing) {
+      readiumCSSProperty["value"] = "0.0em";
+    } else if (preset.$1 == ReadiumCSSName.textAlignment) {
+      readiumCSSProperty["value"] = "justify";
+    } else if (preset.$1 == ReadiumCSSName.paraIndent) {
+      readiumCSSProperty["value"] = "";
+    } else if (preset.$1 == ReadiumCSSName.scroll) {
+      if (preset.$2!) {
+        readiumCSSProperty["value"] = "readium-scroll-on";
+      } else {
+        readiumCSSProperty["value"] = "readium-scroll-off";
+      }
+    }
+    return readiumCSSProperty;
+  }
+
+  String buildStringProperties(Map<String, String> list) {
+    String string = "";
+    for (MapEntry<String, String> property in list.entries) {
+      string = "$string ${property.key}: ${property.value};";
+    }
+    return string;
   }
 }

@@ -5,3 +5,4 @@
 export 'src/pdf/pdf_document.dart';
 export 'src/pdf/pdf_document_factory.dart';
 export 'src/pdf/pdf_page.dart';
+export 'src/pdf/pdf_bookmark.dart';

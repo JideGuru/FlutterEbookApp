@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:iridium_reader_widget/views/viewers/model/fonts.dart';
-import 'color_theme.dart';
-import 'font_size_button.dart';
+import 'package:iridium_reader_widget/views/viewers/ui/settings/color_theme.dart';
+import 'package:iridium_reader_widget/views/viewers/ui/settings/font_size_button.dart';
 import 'package:mno_navigator/epub.dart';
 import 'package:mno_navigator/publication.dart';
 
@@ -12,11 +12,11 @@ class GeneralSettingsPanel extends StatefulWidget {
   final ReaderThemeBloc readerThemeBloc;
 
   const GeneralSettingsPanel({
-    Key? key,
+    super.key,
     required this.readerContext,
     required this.viewerSettingsBloc,
     required this.readerThemeBloc,
-  }) : super(key: key);
+  });
 
   @override
   State<GeneralSettingsPanel> createState() => _GeneralSettingsPanelState();
@@ -73,24 +73,23 @@ class _GeneralSettingsPanelState extends State<GeneralSettingsPanel> {
           const Spacer(),
           BlocBuilder(
               bloc: readerThemeBloc,
-              builder: (BuildContext context, ReaderThemeState state) {
-                return DropdownButton<String>(
-                    value:
-                        state.readerTheme.fontFamily ?? Fonts.googleFonts.first,
-                    items: Fonts.googleFonts
-                        .map((fontFamily) => DropdownMenuItem(
-                              value: fontFamily,
-                              child: Text(fontFamily),
-                              onTap: () {
-                                readerThemeBloc.add(ReaderThemeEvent(
-                                    readerThemeBloc.currentTheme.copy(
-                                  fontFamily: fontFamily,
-                                )));
-                              },
-                            ))
-                        .toList(),
-                    onChanged: (value) {});
-              })
+              builder: (BuildContext context, ReaderThemeState state) =>
+                  DropdownButton<String>(
+                      value: state.readerTheme.fontFamily ??
+                          Fonts.googleFonts.first,
+                      items: Fonts.googleFonts
+                          .map((fontFamily) => DropdownMenuItem(
+                                value: fontFamily,
+                                child: Text(fontFamily),
+                                onTap: () {
+                                  readerThemeBloc.add(ReaderThemeEvent(
+                                      readerThemeBloc.currentTheme.copy(
+                                    fontFamily: fontFamily,
+                                  )));
+                                },
+                              ))
+                          .toList(),
+                      onChanged: (value) {}))
         ],
       );
 

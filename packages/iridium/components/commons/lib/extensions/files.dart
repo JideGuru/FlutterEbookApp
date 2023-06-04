@@ -5,7 +5,7 @@
 import 'package:crypto/crypto.dart' as crypto;
 import 'package:dfunc/dfunc.dart';
 import 'package:path/path.dart';
-import 'package:universal_io/io.dart';
+import 'package:universal_io/io.dart' hide Link;
 
 extension FileSystemEntityExtension on FileSystemEntity {
   String get lowercasedExtension => extension(path).toLowerCase();

@@ -8,11 +8,11 @@ import 'package:mno_shared/fetcher.dart';
 import 'package:mno_shared/publication.dart';
 import 'package:mno_streamer/parser.dart';
 import 'package:test/test.dart';
-import 'package:universal_io/io.dart';
+import 'package:universal_io/io.dart' hide Link;
 
 Future<void> main() async {
   PublicationAsset assetForResource(String resource) {
-    String path = "test_resources/image/" + resource;
+    String path = "test_resources/image/$resource";
     return FileAsset(File(path));
   }
 

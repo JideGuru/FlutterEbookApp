@@ -5,6 +5,7 @@
 import 'dart:async';
 
 import 'package:dartx/dartx.dart';
+import 'package:dfunc/dfunc.dart';
 import 'package:flutter/material.dart';
 import 'package:mno_navigator/epub.dart';
 import 'package:mno_navigator/publication.dart';
@@ -16,10 +17,10 @@ class ReaderContextWidget extends InheritedWidget {
   final ReaderContext readerContext;
 
   const ReaderContextWidget({
-    Key? key,
-    required Widget child,
+    super.key,
+    required super.child,
     required this.readerContext,
-  }) : super(key: key, child: child);
+  });
 
   @override
   bool updateShouldNotify(ReaderContextWidget oldWidget) =>
@@ -34,18 +35,22 @@ class ReaderContext {
     GoToPageCommand: GoToPageCommandProcessor(),
   };
   final UserException? userException;
-  final FileAsset asset;
+  final PublicationAsset asset;
   final MediaType mediaType;
   final Publication? publication;
   final String? location;
   final Map<int, SpineItemContext> spineItemContextMap;
   final ReaderAnnotationRepository readerAnnotationRepository;
+  final bool displayEditAnnotationIcon;
   late List<Link> _tableOfContents;
   late List<Link> _flattenedTableOfContents;
   late Map<Link, int> _tableOfContentsToSpineItemIndex;
   late Map<Type, ReaderCommandProcessor> readerCommandProcessors;
   Link? currentSpineItem;
   SpineItemContext? currentSpineItemContext;
+  SelectionListenerFactory selectionListenerFactory;
+
+  ReadingProgression? readingProgression;
 
   Fetcher get fetcher => publication!.fetcher;
 
@@ -61,6 +66,20 @@ class ReaderContext {
       StreamController.broadcast();
 
   Stream<bool> get toolbarStream => _toolbarStreamController.stream;
+
+  int _viewportWidth = 0;
+
+  int get viewportWidth => _viewportWidth;
+
+  set viewportWidth(int viewportWidth) {
+    _viewportWidth = viewportWidth;
+    _viewportWidthController.add(viewportWidth);
+  }
+
+  final StreamController<int> _viewportWidthController =
+      StreamController.broadcast();
+
+  Stream<int> get viewportWidthStream => _viewportWidthController.stream;
 
   ReaderCommand? readerCommand;
 
@@ -86,6 +105,8 @@ class ReaderContext {
     required this.publication,
     required this.location,
     required this.readerAnnotationRepository,
+    required this.selectionListenerFactory,
+    this.displayEditAnnotationIcon = true,
     Map<Type, ReaderCommandProcessor> readerCommandProcessorMap = const {},
   })  : assert(userException != null || publication != null),
         spineItemContextMap = {},
@@ -98,13 +119,14 @@ class ReaderContext {
         TocUtils.mapTableOfContentToSpineItemIndex(
             publication, _flattenedTableOfContents);
     _toolbarStreamController.add(toolbarVisibility);
-    currentSpineItem = publication?.readingOrder.first;
+    currentSpineItem = publication?.readingOrder.firstOrNull;
+    readerCommand = locator?.let((it) => GoToLocationCommand.locator(it));
+    readingProgression = publication?.metadata.effectiveReadingProgression;
   }
 
   bool get hasError => userException != null;
 
-  ReadiumLocation get readiumLocation =>
-      ReadiumLocation.createLocation(location);
+  Locator? get locator => location?.let((it) => Locator.fromJsonString(it));
 
   int get currentPageNumber =>
       publication!.paginationInfo[currentSpineItem]?.firstPageNumber ?? 1;
@@ -117,7 +139,7 @@ class ReaderContext {
 
   static ReaderContext? of(BuildContext context) {
     final ReaderContextWidget? readerContextWidget =
-        context.dependOnInheritedWidgetOfExactType();
+        context.dependOnInheritedWidgetOfExactType<ReaderContextWidget>();
     return readerContextWidget?.readerContext;
   }
 
@@ -126,7 +148,12 @@ class ReaderContext {
     _toolbarStreamController.add(toolbarVisibility);
   }
 
-  void toggleBookmark() => currentSpineItemContext?.jsApi?.toggleBookmark();
+  void toggleBookmark() {
+    PaginationInfo? paginationInfo = this.paginationInfo;
+    if (paginationInfo != null) {
+      readerAnnotationRepository.createBookmark(paginationInfo);
+    }
+  }
 
   List<String> getElementIdsFromSpineItem(int spineItemIndex) =>
       getTocItemsFromSpineItem(spineItemIndex)
@@ -135,7 +162,7 @@ class ReaderContext {
           .toList();
 
   Iterable<Link> getTocItemsFromSpineItem(int spineItemIndex) {
-    Link? spineItem = publication?.readingOrder[spineItemIndex];
+    Link? spineItem = publication?.readingOrder.elementAtOrNull(spineItemIndex);
     return (spineItem != null)
         ? _flattenedTableOfContents
             .where((tocItem) => spineItem.href == tocItem.hrefPart)
@@ -156,7 +183,7 @@ class ReaderContext {
     _createOpenPageRequestForCommand(command);
     this.readerCommand = command;
     // Fimber.d("readerCommand: $readerCommand");
-    _commandsStreamController.sink.add(command);
+    _commandsStreamController.add(command);
   }
 
   void _updateSpineItemIndexForCommand(ReaderCommand command) {

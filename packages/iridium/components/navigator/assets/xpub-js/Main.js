@@ -7,17 +7,17 @@
             nbThumbnails = (nbThumbnails) ? nbThumbnails : 1;
             const windowWidth = $(window).width();
             // See https://www.codegrepper.com/code-examples/javascript/jquery+detect+if+element+has+overflow
-            const spineItemDiv = $('#xpub_contenuSpineItem');
+            const spineItemDiv = $('#xpub_spineItemContents');
             const contentsWidth = spineItemDiv.prop('scrollWidth');
             const contentsHeight = spineItemDiv.prop('scrollHeight');
-            // flutter_log.postMessage("=============== windowWidth: " + windowWidth + ", contentsWidth: " + contentsWidth + ", contentsHeight: " + contentsHeight);
+            console.log("=============== windowWidth: " + windowWidth + ", contentsWidth: " + contentsWidth + ", contentsHeight: " + contentsHeight);
             const columnWidth = windowWidth / nbThumbnails;
             let result = Math.ceil(contentsWidth / columnWidth);
             const lastElem = $(this).find(':last')[0];
             const clientRects = lastElem.getClientRects();
             if (lastElem.tagName === 'img') {
                 const rect = clientRects[0];
-                // flutter_log.postMessage("=============== IS IMG rect.width: " + rect.width + ", rect.height: " + rect.height);
+                // console.log("=============== IS IMG rect.width: " + rect.width + ", rect.height: " + rect.height);
                 if (rect.width > contentsWidth || rect.height > contentsHeight) {
                     result--;
                 }

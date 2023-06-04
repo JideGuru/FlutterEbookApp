@@ -2,7 +2,6 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
-import 'package:dfunc/dfunc.dart';
 import 'package:fimber/fimber.dart';
 import 'package:mno_fsm/mno_fsm.dart';
 import 'package:mno_lcp/lcp.dart';
@@ -88,7 +87,7 @@ class LicenseValidationStateMachine {
                 _log(
                     "ValidState(ValidatedDocuments(s.license, Either.right(e.error), status: s.status))");
                 return b.transitionTo(ValidState(ValidatedDocuments(
-                    s.license, Either.right(e.error),
+                    s.license, LicenseStatusValue(e.error!),
                     status: s.status)));
               } else {
                 _log("RetrievePassphraseState(s.license, s.status)");
@@ -115,7 +114,7 @@ class LicenseValidationStateMachine {
           ..state<ValidateIntegrityState>((b) {
             b.on<ValidatedIntegrityEvent>((s, e) {
               ValidatedDocuments documents = ValidatedDocuments(
-                  s.license, Either.left(e.context),
+                  s.license, DrmContextValue(e.context),
                   status: s.status);
               Link? link = s.status?.link(StatusRel.register);
               if (link != null) {
@@ -162,14 +161,13 @@ class LicenseValidationStateMachine {
           })
           ..state<CancelledState>((b) {})
           ..onTransition((t) {
-            t.match((validTransition) {
-              _log("validTransition: $validTransition");
-              validTransition.let((it) {
-                licenseValidation.state = it.toState;
-              });
-            }, (invalidTransition) {
-              _log("invalidTransition: $invalidTransition");
-            });
+            switch(t.value) {
+              case Valid:
+                _log("validTransition: ${t.value}");
+                licenseValidation.state = t.value.toState;
+              case Invalid:
+                _log("invalidTransition: ${t.value}");
+            }
           });
       });
 }

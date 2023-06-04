@@ -1,5 +1,11 @@
 :root {
     --RS__viewportHeight: 99.9vh;
+    --RS__scroll-snap-stop: always;
+}
+
+html {
+    overflow-x: scroll;
+    scroll-snap-type: x mandatory;
 }
 
 .xpub_container {
@@ -7,10 +13,9 @@
     min-height: var(--RS__viewportHeight);
     overflow-x: scroll;
     scroll-snap-type: x mandatory;
-
 }
 
-#xpub_contenuSpineItem {
+#xpub_spineItemContents {
     /* We fix the position to be able to add positioned pages at the end*/
     position: relative;
 
@@ -31,9 +36,11 @@
 }
 
 #xpub_paginator {
-    margin-top: calc(-1 * var(--RS__viewportHeight));
-    width: calc(var(--RS__colCount) * 100vw);
+    width: calc(var(--RS__colCount) * var(--RS__viewportWidth));
     display: flex;
+    position: absolute;
+    top: 0px;
+    left: 0px;
 }
 
 /* coloration */
@@ -49,10 +56,11 @@
 */
 .xpub_page_overlay {
     scroll-snap-align: center;
+    scroll-snap-stop: var(--RS__scroll-snap-stop);
     height: var(--RS__viewportHeight);
     min-height: var(--RS__viewportHeight);
-    width: 100vw;
-    min-width: 100vw;
+    width: var(--RS__viewportWidth);
+    min-width: var(--RS__viewportWidth);
 }
 .xpub_page_bookmark {
     float: right;

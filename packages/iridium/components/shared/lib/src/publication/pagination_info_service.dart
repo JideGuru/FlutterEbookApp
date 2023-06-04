@@ -5,7 +5,6 @@
 import 'dart:math';
 
 import 'package:dartx/dartx.dart';
-import 'package:dfunc/dfunc.dart';
 import 'package:mno_shared/publication.dart';
 import 'package:mno_shared/src/mediatype/mediatype.dart';
 import 'package:mno_shared/src/publication/epub/publication.dart';
@@ -14,7 +13,7 @@ class PaginationInfosService {
   // we consider that a page is usually made of 3500 bytes
   static const int _pageSize = 3500;
 
-  static Future<Product2<int, Map<Link, LinkPagination>>>
+  static Future<(int, Map<Link, LinkPagination>)>
       computePaginationInfos(Publication publication) async {
     Map<Link, LinkPagination> paginationInfos = {};
     int currentPage = 1;
@@ -24,7 +23,7 @@ class PaginationInfosService {
       currentPage += nbPages;
     }
     int nbPages = max(1, currentPage - 1);
-    return Product2(nbPages, paginationInfos);
+    return (nbPages, paginationInfos);
   }
 
   static Future<int> computeResourcePages(
