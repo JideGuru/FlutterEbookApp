@@ -3,9 +3,9 @@ import 'package:dio/io.dart';
 import 'package:flutter_ebook_app/src/features/common/constants/api.dart';
 
 class AppDio with DioMixin implements Dio {
-  AppDio._([BaseOptions? options]) {
+  AppDio._() {
     String baseUrl = ApiEndpoints.baseURL;
-    this.options = BaseOptions(
+    options = BaseOptions(
       baseUrl: baseUrl,
       contentType: 'application/json',
       connectTimeout: const Duration(milliseconds: 30000),

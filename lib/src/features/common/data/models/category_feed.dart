@@ -12,11 +12,11 @@ class CategoryFeed {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
-    data['version'] = this.version;
-    data['encoding'] = this.encoding;
-    if (this.feed != null) {
-      data['feed'] = this.feed!.toJson();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['version'] = version;
+    data['encoding'] = encoding;
+    if (feed != null) {
+      data['feed'] = feed!.toJson();
     }
     return data;
   }
@@ -44,27 +44,28 @@ class Feed {
   Id? opensearchStartIndex;
   List<Entry>? entry;
 
-  Feed(
-      {this.xmlLang,
-      this.xmlns,
-      this.xmlnsDcterms,
-      this.xmlnsThr,
-      this.xmlnsApp,
-      this.xmlnsOpensearch,
-      this.xmlnsOpds,
-      this.xmlnsXsi,
-      this.xmlnsOdl,
-      this.xmlnsSchema,
-      this.id,
-      this.title,
-      this.updated,
-      this.icon,
-      this.author,
-      this.link,
-      this.opensearchTotalResults,
-      this.opensearchItemsPerPage,
-      this.opensearchStartIndex,
-      this.entry});
+  Feed({
+    this.xmlLang,
+    this.xmlns,
+    this.xmlnsDcterms,
+    this.xmlnsThr,
+    this.xmlnsApp,
+    this.xmlnsOpensearch,
+    this.xmlnsOpds,
+    this.xmlnsXsi,
+    this.xmlnsOdl,
+    this.xmlnsSchema,
+    this.id,
+    this.title,
+    this.updated,
+    this.icon,
+    this.author,
+    this.link,
+    this.opensearchTotalResults,
+    this.opensearchItemsPerPage,
+    this.opensearchStartIndex,
+    this.entry,
+  });
 
   Feed.fromJson(Map<String, dynamic> json) {
     xmlLang = json['xml:lang'];
@@ -112,46 +113,46 @@ class Feed {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
-    data['xml:lang'] = this.xmlLang;
-    data[r'xmlns'] = this.xmlns;
-    data[r'xmlns$dcterms'] = this.xmlnsDcterms;
-    data[r'xmlns$thr'] = this.xmlnsThr;
-    data[r'xmlns$app'] = this.xmlnsApp;
-    data[r'xmlns$opensearch'] = this.xmlnsOpensearch;
-    data[r'xmlns$opds'] = this.xmlnsOpds;
-    data[r'xmlns$xsi'] = this.xmlnsXsi;
-    data[r'xmlns$odl'] = this.xmlnsOdl;
-    data[r'xmlns$schema'] = this.xmlnsSchema;
-    if (this.id != null) {
-      data['id'] = this.id!.toJson();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['xml:lang'] = xmlLang;
+    data[r'xmlns'] = xmlns;
+    data[r'xmlns$dcterms'] = xmlnsDcterms;
+    data[r'xmlns$thr'] = xmlnsThr;
+    data[r'xmlns$app'] = xmlnsApp;
+    data[r'xmlns$opensearch'] = xmlnsOpensearch;
+    data[r'xmlns$opds'] = xmlnsOpds;
+    data[r'xmlns$xsi'] = xmlnsXsi;
+    data[r'xmlns$odl'] = xmlnsOdl;
+    data[r'xmlns$schema'] = xmlnsSchema;
+    if (id != null) {
+      data['id'] = id!.toJson();
     }
-    if (this.title != null) {
-      data['title'] = this.title!.toJson();
+    if (title != null) {
+      data['title'] = title!.toJson();
     }
-    if (this.updated != null) {
-      data['updated'] = this.updated!.toJson();
+    if (updated != null) {
+      data['updated'] = updated!.toJson();
     }
-    if (this.icon != null) {
-      data['icon'] = this.icon!.toJson();
+    if (icon != null) {
+      data['icon'] = icon!.toJson();
     }
-    if (this.author != null) {
-      data['author'] = this.author!.toJson();
+    if (author != null) {
+      data['author'] = author!.toJson();
     }
-    if (this.link != null) {
-      data['link'] = this.link!.map((v) => v.toJson()).toList();
+    if (link != null) {
+      data['link'] = link!.map((v) => v.toJson()).toList();
     }
-    if (this.opensearchTotalResults != null) {
-      data[r'opensearch$totalResults'] = this.opensearchTotalResults!.toJson();
+    if (opensearchTotalResults != null) {
+      data[r'opensearch$totalResults'] = opensearchTotalResults!.toJson();
     }
-    if (this.opensearchItemsPerPage != null) {
-      data[r'opensearch$itemsPerPage'] = this.opensearchItemsPerPage!.toJson();
+    if (opensearchItemsPerPage != null) {
+      data[r'opensearch$itemsPerPage'] = opensearchItemsPerPage!.toJson();
     }
-    if (this.opensearchStartIndex != null) {
-      data[r'opensearch$startIndex'] = this.opensearchStartIndex!.toJson();
+    if (opensearchStartIndex != null) {
+      data[r'opensearch$startIndex'] = opensearchStartIndex!.toJson();
     }
-    if (this.entry != null) {
-      data['entry'] = this.entry!.map((v) => v.toJson()).toList();
+    if (entry != null) {
+      data['entry'] = entry!.map((v) => v.toJson()).toList();
     }
     return data;
   }
@@ -167,8 +168,8 @@ class Id {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
-    data[r'$t'] = this.t;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data[r'$t'] = t;
     return data;
   }
 }
@@ -187,15 +188,15 @@ class Author {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
-    if (this.name != null) {
-      data['name'] = this.name!.toJson();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    if (name != null) {
+      data['name'] = name!.toJson();
     }
-    if (this.uri != null) {
-      data['uri'] = this.uri!.toJson();
+    if (uri != null) {
+      data['uri'] = uri!.toJson();
     }
-    if (this.email != null) {
-      data['email'] = this.email!.toJson();
+    if (email != null) {
+      data['email'] = email!.toJson();
     }
     return data;
   }
@@ -210,14 +211,15 @@ class Link {
   String? opdsFacetGroup;
   String? thrCount;
 
-  Link(
-      {this.rel,
-      this.type,
-      this.href,
-      this.title,
-      this.opdsActiveFacet,
-      this.opdsFacetGroup,
-      this.thrCount});
+  Link({
+    this.rel,
+    this.type,
+    this.href,
+    this.title,
+    this.opdsActiveFacet,
+    this.opdsFacetGroup,
+    this.thrCount,
+  });
 
   Link.fromJson(Map<String, dynamic> json) {
     rel = json['rel'];
@@ -230,14 +232,14 @@ class Link {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
-    data['rel'] = this.rel;
-    data['type'] = this.type;
-    data['href'] = this.href;
-    data['title'] = this.title;
-    data['opds:activeFacet'] = this.opdsActiveFacet;
-    data['opds:facetGroup'] = this.opdsFacetGroup;
-    data['thr:count'] = this.thrCount;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['rel'] = rel;
+    data['type'] = type;
+    data['href'] = href;
+    data['title'] = title;
+    data['opds:activeFacet'] = opdsActiveFacet;
+    data['opds:facetGroup'] = opdsFacetGroup;
+    data['thr:count'] = thrCount;
     return data;
   }
 }
@@ -256,19 +258,20 @@ class Entry {
   List<Link1>? link;
   SchemaSeries? schemaSeries;
 
-  Entry(
-      {this.title,
-      this.id,
-      this.author,
-      this.published,
-      this.updated,
-      this.dctermsLanguage,
-      this.dctermsPublisher,
-      this.dctermsIssued,
-      this.summary,
-      this.category,
-      this.link,
-      this.schemaSeries});
+  Entry({
+    this.title,
+    this.id,
+    this.author,
+    this.published,
+    this.updated,
+    this.dctermsLanguage,
+    this.dctermsPublisher,
+    this.dctermsIssued,
+    this.summary,
+    this.category,
+    this.link,
+    this.schemaSeries,
+  });
 
   Entry.fromJson(Map<String, dynamic> json) {
     title = json['title'] != null ? Id.fromJson(json['title']) : null;
@@ -318,42 +321,42 @@ class Entry {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
-    if (this.title != null) {
-      data['title'] = this.title!.toJson();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    if (title != null) {
+      data['title'] = title!.toJson();
     }
-    if (this.id != null) {
-      data['id'] = this.id!.toJson();
+    if (id != null) {
+      data['id'] = id!.toJson();
     }
-    if (this.author != null) {
-      data['author'] = this.author!.toJson();
+    if (author != null) {
+      data['author'] = author!.toJson();
     }
-    if (this.published != null) {
-      data['published'] = this.published!.toJson();
+    if (published != null) {
+      data['published'] = published!.toJson();
     }
-    if (this.updated != null) {
-      data['updated'] = this.updated!.toJson();
+    if (updated != null) {
+      data['updated'] = updated!.toJson();
     }
-    if (this.dctermsLanguage != null) {
-      data[r'dcterms$language'] = this.dctermsLanguage!.toJson();
+    if (dctermsLanguage != null) {
+      data[r'dcterms$language'] = dctermsLanguage!.toJson();
     }
-    if (this.dctermsPublisher != null) {
-      data[r'dcterms$publisher'] = this.dctermsPublisher!.toJson();
+    if (dctermsPublisher != null) {
+      data[r'dcterms$publisher'] = dctermsPublisher!.toJson();
     }
-    if (this.dctermsIssued != null) {
-      data[r'dcterms$issued'] = this.dctermsIssued!.toJson();
+    if (dctermsIssued != null) {
+      data[r'dcterms$issued'] = dctermsIssued!.toJson();
     }
-    if (this.summary != null) {
-      data['summary'] = this.summary!.toJson();
+    if (summary != null) {
+      data['summary'] = summary!.toJson();
     }
-    if (this.category != null) {
-      data['category'] = this.category!.map((v) => v.toJson()).toList();
+    if (category != null) {
+      data['category'] = category!.map((v) => v.toJson()).toList();
     }
-    if (this.link != null) {
-      data['link'] = this.link!.map((v) => v.toJson()).toList();
+    if (link != null) {
+      data['link'] = link!.map((v) => v.toJson()).toList();
     }
-    if (this.schemaSeries != null) {
-      data[r'schema$Series'] = this.schemaSeries!.toJson();
+    if (schemaSeries != null) {
+      data[r'schema$Series'] = schemaSeries!.toJson();
     }
     return data;
   }
@@ -371,12 +374,12 @@ class Author1 {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
-    if (this.name != null) {
-      data['name'] = this.name!.toJson();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    if (name != null) {
+      data['name'] = name!.toJson();
     }
-    if (this.uri != null) {
-      data['uri'] = this.uri!.toJson();
+    if (uri != null) {
+      data['uri'] = uri!.toJson();
     }
     return data;
   }
@@ -396,10 +399,10 @@ class Category {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
-    data['label'] = this.label;
-    data['term'] = this.term;
-    data['scheme'] = this.scheme;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['label'] = label;
+    data['term'] = term;
+    data['scheme'] = scheme;
     return data;
   }
 }
@@ -420,11 +423,11 @@ class Link1 {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
-    data['type'] = this.type;
-    data['rel'] = this.rel;
-    data['title'] = this.title;
-    data['href'] = this.href;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['type'] = type;
+    data['rel'] = rel;
+    data['title'] = title;
+    data['href'] = href;
     return data;
   }
 }
@@ -443,10 +446,10 @@ class SchemaSeries {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
-    data[r'schema:position'] = this.schemaPosition;
-    data[r'schema:name'] = this.schemaName;
-    data[r'schema:url'] = this.schemaUrl;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data[r'schema:position'] = schemaPosition;
+    data[r'schema:name'] = schemaName;
+    data[r'schema:url'] = schemaUrl;
     return data;
   }
 }
