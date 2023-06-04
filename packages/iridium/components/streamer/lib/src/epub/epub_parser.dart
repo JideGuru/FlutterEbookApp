@@ -17,8 +17,7 @@ import 'package:mno_streamer/src/epub/epub_deobfuscator.dart';
 import 'package:mno_streamer/src/epub/epub_positions_service.dart';
 import 'package:mno_streamer/src/epub/navigation_document_parser.dart';
 import 'package:mno_streamer/src/epub/ncx_parser.dart';
-import 'package:mno_streamer/src/epub/readium_css_layout.dart';
-import 'package:universal_io/io.dart';
+import 'package:universal_io/io.dart' hide Link;
 import 'package:xml/xml.dart';
 
 /// Constants settings for EPUB publication.
@@ -101,15 +100,15 @@ class EpubParser extends PublicationParser implements StreamPublicationParser {
             displayOptions: await _parseDisplayOptions(fetcher))
         .create();
 
-    Fetcher _fetcher = fetcher;
+    Fetcher finalFetcher = fetcher;
     manifest.metadata.identifier?.let((it) {
-      _fetcher =
+      finalFetcher =
           TransformingFetcher.single(fetcher, EpubDeobfuscator(it).transform);
     });
 
     return PublicationBuilder(
         manifest: manifest,
-        fetcher: _fetcher,
+        fetcher: finalFetcher,
         servicesBuilder:
             ServicesBuilder.create(positions: EpubPositionsService.create));
   }
@@ -181,7 +180,7 @@ class EpubParser extends PublicationParser implements StreamPublicationParser {
           {};
     } else {
       Item? navItem = packageDocument.manifest.firstOrNullWhere(
-          (it) => it.properties.contains(Vocabularies.item + "nav"));
+          (it) => it.properties.contains("${Vocabularies.item}nav"));
       return await navItem?.let((it) async {
             String navPath =
                 Href(navItem.href, baseHref: packageDocument.path).string;

@@ -6,19 +6,19 @@ import 'package:equatable/equatable.dart';
 import 'package:mno_navigator/src/epub/settings/value_settings.dart';
 
 class TextMargin with EquatableMixin implements ValueSettings {
-  static const TextMargin margin_0 = TextMargin._(0, 0.0);
-  static const TextMargin margin_10 = TextMargin._(1, 10.0);
-  static const TextMargin margin_20 = TextMargin._(2, 20.0);
-  static const TextMargin margin_30 = TextMargin._(3, 30.0);
-  static const TextMargin margin_40 = TextMargin._(4, 40.0);
-  static const TextMargin margin_50 = TextMargin._(5, 50.0);
+  static const TextMargin margin_0_5 = TextMargin._(0, 0.5);
+  static const TextMargin margin_1_0 = TextMargin._(1, 1.0);
+  static const TextMargin margin_1_5 = TextMargin._(2, 1.5);
+  static const TextMargin margin_2_0 = TextMargin._(3, 2.0);
+  static const TextMargin margin_2_5 = TextMargin._(4, 2.5);
+  static const TextMargin margin_3_0 = TextMargin._(5, 3.0);
   static const List<TextMargin> values = [
-    margin_0,
-    margin_10,
-    margin_20,
-    margin_30,
-    margin_40,
-    margin_50,
+    margin_0_5,
+    margin_1_0,
+    margin_1_5,
+    margin_2_0,
+    margin_2_5,
+    margin_3_0,
   ];
 
   @override
@@ -32,7 +32,7 @@ class TextMargin with EquatableMixin implements ValueSettings {
   List<Object> get props => [value];
 
   static TextMargin from(int id) =>
-      values.firstWhere((type) => type.id == id, orElse: () => margin_20);
+      values.firstWhere((type) => type.id == id, orElse: () => margin_1_0);
 
   @override
   String toString() => 'TextMargin{id: $id, value: $value}';

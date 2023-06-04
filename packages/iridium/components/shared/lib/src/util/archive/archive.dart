@@ -9,7 +9,7 @@ import 'package:fimber/fimber.dart';
 import 'package:mno_commons/utils/exceptions.dart';
 import 'package:mno_shared/src/util/archive/exploded_archive.dart';
 import 'package:mno_shared/src/util/archive/zip_archive.dart';
-import 'package:universal_io/io.dart';
+import 'package:universal_io/io.dart' hide Link;
 
 mixin ArchiveFactory {
   /// Opens an archive from a local [file].

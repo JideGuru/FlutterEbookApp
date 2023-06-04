@@ -12,13 +12,13 @@ import 'package:mno_commons/utils/try.dart';
 import 'package:mno_shared/mediatype.dart';
 import 'package:mno_shared/publication.dart';
 import 'package:mno_shared/src/fetcher/resource_exception.dart';
-import 'package:universal_io/io.dart';
+import 'package:universal_io/io.dart' hide Link;
 import 'package:xml/xml.dart';
 
 class ResourceTry<SuccessT> extends Try<SuccessT, ResourceException> {
-  ResourceTry.success(SuccessT success) : super.success(success);
+  ResourceTry.success(SuccessT super.success) : super.success();
 
-  ResourceTry.failure(ResourceException failure) : super.failure(failure);
+  ResourceTry.failure(ResourceException super.failure) : super.failure();
 
   @override
   ResourceTry<R> map<R>(R Function(SuccessT value) transform) {
@@ -265,7 +265,7 @@ class CachingResource extends Resource {
 /// [CachingResource] can be a good idea to cache the result of the transformation in case multiple
 /// ranges will be read.
 abstract class TransformingResource extends ProxyResource {
-  TransformingResource(Resource resource) : super(resource);
+  TransformingResource(super.resource);
 
   Future<ResourceTry<ByteData>> transform(ResourceTry<ByteData> data);
 

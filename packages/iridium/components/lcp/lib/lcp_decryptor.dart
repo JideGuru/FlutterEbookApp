@@ -44,7 +44,7 @@ class LcpDecryptor {
 class FullLcpResource extends TransformingResource {
   final LcpLicense license;
 
-  FullLcpResource(Resource resource, this.license) : super(resource);
+  FullLcpResource(super.resource, this.license);
 
   @override
   Future<ResourceTry<ByteData>> transform(ResourceTry<ByteData> data) async =>

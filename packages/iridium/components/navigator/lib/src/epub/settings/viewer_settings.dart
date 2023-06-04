@@ -11,28 +11,38 @@ class ViewerSettings implements JSONable {
   final ScrollMode scrollMode;
   int fontSize;
   final int columnGap;
+  bool scrollSnapShouldStop = true;
 
   // If true, column gap will not be part of JSON conversion
   bool hasNoStyle = false;
 
-  ViewerSettings(
-      this.syntheticSpreadMode, this.scrollMode, this.fontSize, this.columnGap);
+  ViewerSettings(this.syntheticSpreadMode, this.scrollMode, this.fontSize,
+      this.columnGap, this.scrollSnapShouldStop);
 
-  factory ViewerSettings.defaultSettings({int fontSize = 100}) =>
-      ViewerSettings(SyntheticSpreadMode.single, ScrollMode.auto, fontSize, 0);
+  factory ViewerSettings.defaultSettings(
+          {int fontSize = 100, bool scrollSnapShouldStop = true}) =>
+      ViewerSettings(SyntheticSpreadMode.single, ScrollMode.auto, fontSize, 0,
+          scrollSnapShouldStop);
+
+  ViewerSettings setScrollSnapShouldStop(bool shouldStop) => ViewerSettings(
+      this.syntheticSpreadMode,
+      this.scrollMode,
+      this.fontSize,
+      this.columnGap,
+      shouldStop);
 
   ViewerSettings incrFontSize({int delta = 10}) {
     int newFontSize = fontSize + delta;
     newFontSize = newFontSize.clamp(minFontSize, maxFontSize);
-    return ViewerSettings(
-        this.syntheticSpreadMode, this.scrollMode, newFontSize, this.columnGap);
+    return ViewerSettings(this.syntheticSpreadMode, this.scrollMode,
+        newFontSize, this.columnGap, this.scrollSnapShouldStop);
   }
 
   ViewerSettings decrFontSize({int delta = 10}) {
     int newFontSize = fontSize - delta;
     newFontSize = newFontSize.clamp(minFontSize, maxFontSize);
-    return ViewerSettings(
-        this.syntheticSpreadMode, this.scrollMode, newFontSize, this.columnGap);
+    return ViewerSettings(this.syntheticSpreadMode, this.scrollMode,
+        newFontSize, this.columnGap, this.scrollSnapShouldStop);
   }
 
   bool get scrollViewDoc => scrollMode == ScrollMode.document;
@@ -43,6 +53,7 @@ class ViewerSettings implements JSONable {
         "scroll": _scroll,
         "enableGPUHardwareAccelerationCSS3D": false,
         "columnGap": columnGap,
+        "--RS__scroll-snap-stop": scrollSnapShouldStop,
       };
 
   String get _syntheticSpread {
@@ -83,7 +94,7 @@ class ViewerSettings implements JSONable {
   @override
   String toString() =>
       'ViewerSettings{syntheticSpreadMode: $syntheticSpreadMode, scrollMode: $scrollMode, '
-      'fontSize: $fontSize, columnGap: $columnGap, hasNoStyle: $hasNoStyle}';
+      'fontSize: $fontSize, columnGap: $columnGap, hasNoStyle: $hasNoStyle, --RS__scroll-snap-stop: $scrollSnapShouldStop}';
 }
 
 enum SyntheticSpreadMode { auto, double, single }

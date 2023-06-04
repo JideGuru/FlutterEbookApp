@@ -6,7 +6,7 @@ import 'package:mno_shared/src/container/container.dart';
 import 'package:mno_shared/src/streams/stream.dart';
 import 'package:mno_shared/src/streams/zip_stream.dart';
 import 'package:mno_shared/zip.dart';
-import 'package:universal_io/io.dart';
+import 'package:universal_io/io.dart' hide Link;
 
 /// [Container] providing access to ZIP archives.
 class ZipContainer extends Container {

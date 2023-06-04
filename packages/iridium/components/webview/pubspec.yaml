@@ -1,0 +1,25 @@
+name: mno_webview
+description: Package for webview compatibility with Web platform (not implemented on for Web)
+version: 0.0.1
+homepage: https://github.com/Mantano/iridium
+publish_to: none
+
+environment:
+  sdk: '>=2.18.0 <3.0.0'
+  flutter: '>=3.3.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_inappwebview: ^5.7.2+3
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^2.0.1
+
+# For information on the generic Dart part of this file, see the
+# following page: https://dart.dev/tools/pub/pubspec
+
+# The following section is specific to Flutter packages.
+flutter:

@@ -6,7 +6,7 @@ import 'dart:typed_data';
 
 import 'package:mno_lcp/lcp.dart';
 import 'package:mno_shared/mediatype.dart';
-import 'package:universal_io/io.dart';
+import 'package:universal_io/io.dart' hide Link;
 
 /// Encapsulates the read/write access to the packaged License Document (eg. in an EPUB container,
 /// or a standalone LCPL file).

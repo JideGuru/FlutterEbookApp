@@ -7,25 +7,27 @@ import 'dart:typed_data';
 
 import 'package:dartx/dartx.dart';
 import 'package:dfunc/dfunc.dart';
+import 'package:fimber/fimber.dart';
 import 'package:mno_commons/extensions/strings.dart';
 import 'package:mno_commons/utils/exceptions.dart';
 import 'package:mno_shared/fetcher.dart';
 import 'package:mno_shared/publication.dart';
 import 'package:mno_shared/src/mediatype/mediatype.dart';
 import 'package:mno_shared/src/util/archive/archive.dart';
-import 'package:universal_io/io.dart';
+import 'package:universal_io/io.dart' hide Link;
 
 /// Provides access to entries of an archive.
 class ArchiveFetcher extends Fetcher {
   final Archive archive;
+  final bool useSniffers;
 
-  ArchiveFetcher(this.archive);
+  ArchiveFetcher(this.archive, this.useSniffers);
 
   @override
   Future<List<Link>> links() async =>
       waitTryOr(<ArchiveEntry>[], () => archive.entries()).then((entries) =>
           entries
-              ?.map((value) => value.toLink())
+              ?.map((value) => value.toLink(useSniffers))
               .let((links) => Future.wait(links)) ??
           []);
 
@@ -36,10 +38,12 @@ class ArchiveFetcher extends Fetcher {
   Future<void> close() => archive.close();
 
   static Future<ArchiveFetcher?> fromPath(String path,
-          {ArchiveFactory archiveFactory = const DefaultArchiveFactory()}) =>
+          {ArchiveFactory archiveFactory = const DefaultArchiveFactory(),
+          bool useSniffers = true}) =>
       waitTryOrNull(() async => await archiveFactory
           .open(File(path), null)
-          .then((archive) => archive?.let((it) => ArchiveFetcher(it))));
+          .then((archive) =>
+              archive?.let((it) => ArchiveFetcher(it, useSniffers))));
 }
 
 class EntryResource extends Resource {
@@ -55,7 +59,9 @@ class EntryResource extends Resource {
         ArchiveEntry entry =
             await _archive.entry(_originalLink.href.removePrefix("/"));
         _entry = ResourceTry.success(entry);
+        // Fimber.d("========= fetcher HREF: ${_originalLink.href}");
       } on Exception {
+        Fimber.d("========= resource not found: ${_originalLink.href}");
         _entry = ResourceTry.failure(ResourceException.notFound);
       }
     }
@@ -99,11 +105,13 @@ class EntryResource extends Resource {
 }
 
 extension ArchiveFileExtension on ArchiveEntry {
-  Future<Link> toLink() async {
+  Future<Link> toLink(bool useSniffers) async {
     Link link = Link(
         id: path.addPrefix("/"),
         href: path.addPrefix("/"),
-        type: (await MediaType.ofSingleHint(fileExtension: path.extension()))
+        type: (await MediaType.ofSingleHint(
+                fileExtension: path.extension(),
+                sniffers: (useSniffers) ? MediaType.sniffers : []))
             ?.toString());
 
     if (compressedLength != null) {

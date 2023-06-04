@@ -51,8 +51,8 @@ class Link {
     return Link._(
         href,
         relations,
-        json["title"] as String,
-        json["type"] as String,
+        json["title"] as String?,
+        json["type"] as String?,
         json["templated"] as bool? ?? false,
         (json["profile"] != null) ? Uri.parse(json["profile"]) : null,
         json["length"] as int? ?? 0,

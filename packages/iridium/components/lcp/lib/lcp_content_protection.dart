@@ -20,7 +20,7 @@ class LcpContentProtection implements ContentProtection {
       Fetcher fetcher,
       String? credentials,
       bool allowUserInteraction,
-      Object sender) async {
+      dynamic sender) async {
     if (asset is! FileAsset) {
       Fimber.e(
           "Only `FileAsset` is supported with the `LcpContentProtection`. Make sure you are trying to open a package from the file system.");

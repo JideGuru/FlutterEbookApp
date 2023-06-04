@@ -9,9 +9,8 @@ environment:
 dependencies:
   cached_network_image: ^3.2.3
   cupertino_icons: ^1.0.3
-  dart_code_metrics: ^5.7.4
   dartz: ^0.10.1
-  dio: ^4.0.4
+  dio: ^5.1.2
   flutter:
     sdk: flutter
   flutter_icons:
@@ -19,17 +18,19 @@ dependencies:
   flutter_riverpod: ^2.3.6
   flutter_spinkit: ^5.2.0
   freezed_annotation: ^2.2.0
-  google_fonts: ^2.1.0
+  google_fonts: ^4.0.4
   path: ^1.8.2
   path_provider: ^2.0.3
   permission_handler: ^10.2.0
   sembast: ^3.4.5
-  share: 2.0.4
+  share_plus: ^4.0.4
   shared_preferences: ^2.1.1
-  uuid: ^3.0.7
   xml2json: ^5.3.1
   iridium_reader_widget:
     path: ./packages/iridium/reader_widget
+
+dependency_overrides:
+  collection: ^1.17.2
 
 dev_dependencies:
   flutter_test:
@@ -37,6 +38,7 @@ dev_dependencies:
   flutter_lints: ^1.0.4
   freezed: ^2.3.4
   build_runner: ^2.0.3
+  dart_code_metrics: ^5.7.4
 
 flutter:
   uses-material-design: true

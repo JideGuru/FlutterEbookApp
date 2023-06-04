@@ -32,30 +32,30 @@ class ContainerError implements Exception {
   ContainerError.fileError();
 
   /// Missing file.
-  static _MissingFile missingFile(String path) => _MissingFile(path);
+  static MissingFile missingFile(String path) => MissingFile._(path);
 
   /// Error parsing XML.
-  static _XmlParse xmlParse(Error underlyingError) =>
-      _XmlParse(underlyingError);
+  static XmlParse xmlParse(Error underlyingError) =>
+      XmlParse._(underlyingError);
 
   /// Missing link.
-  static _MissingLink missingLink(String title) => _MissingLink(title);
+  static MissingLink missingLink(String title) => MissingLink._(title);
 }
 
-class _MissingFile extends ContainerError {
+class MissingFile extends ContainerError {
   final String path;
 
-  _MissingFile(this.path) : super._();
+  MissingFile._(this.path) : super._();
 }
 
-class _XmlParse extends ContainerError {
+class XmlParse extends ContainerError {
   final Error underlyingError;
 
-  _XmlParse(this.underlyingError) : super._();
+  XmlParse._(this.underlyingError) : super._();
 }
 
-class _MissingLink extends ContainerError {
+class MissingLink extends ContainerError {
   final String title;
 
-  _MissingLink(this.title) : super._();
+  MissingLink._(this.title) : super._();
 }

@@ -6,7 +6,7 @@ import 'dart:typed_data';
 
 import 'package:fimber/fimber.dart';
 import 'package:mno_lcp/lcp.dart';
-import 'package:universal_io/io.dart';
+import 'package:universal_io/io.dart' hide Link;
 
 class LcplLicenseContainer implements LicenseContainer {
   final String lcpl;

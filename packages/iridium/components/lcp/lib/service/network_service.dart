@@ -10,7 +10,7 @@ import 'package:mno_commons/utils/try.dart';
 import 'package:mno_lcp/lcp.dart';
 import 'package:mno_shared/mediatype.dart';
 import 'package:path/path.dart' as p;
-import 'package:universal_io/io.dart';
+import 'package:universal_io/io.dart' hide Link;
 
 class NetworkException implements Exception {
   final int? status;

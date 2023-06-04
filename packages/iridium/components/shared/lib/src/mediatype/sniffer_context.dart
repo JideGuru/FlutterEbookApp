@@ -77,9 +77,9 @@ class SnifferContext {
     if (!_loadedContentAsString) {
       _loadedContentAsString = true;
       Encoding encoding = Encoding.getByName(charset ?? Charsets.utf8) ?? utf8;
-      Stream<List<int>>? _stream = await stream();
+      Stream<List<int>>? dataStream = await stream();
       _contentAsString =
-          await _stream?.let((it) async => await encoding.decodeStream(it));
+          await dataStream?.let((it) async => await encoding.decodeStream(it));
     }
     return _contentAsString;
   }

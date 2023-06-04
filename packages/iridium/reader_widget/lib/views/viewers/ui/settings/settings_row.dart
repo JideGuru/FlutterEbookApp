@@ -18,13 +18,13 @@ class SettingsRow<T extends ValueSettings> extends StatefulWidget {
   final List<T> values;
 
   const SettingsRow({
-    Key? key,
+    super.key,
     required this.readerThemeBloc,
     required this.readerTheme,
     required this.label,
     required this.value,
     required this.values,
-  }) : super(key: key);
+  });
 
   @override
   State<SettingsRow> createState() => _SettingsRowState();

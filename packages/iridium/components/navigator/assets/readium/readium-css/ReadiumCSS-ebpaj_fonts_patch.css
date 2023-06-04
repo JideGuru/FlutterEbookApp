@@ -1,0 +1,80 @@
+/* Readium CSS 
+   EBPAJ Fonts Patch module
+
+   A stylesheet improving EBPAJ @font-face declarations to cover all platforms
+
+   Repo: https://github.com/readium/readium-css */
+
+/* EBPAJ template only references fonts from MS Windows…
+   so we must reference fonts from other platforms 
+   and override authors’ stylesheets.
+   What we do there is keeping their default value and providing fallbacks.
+   
+   /!\ /!\ /!\ /!\ /!\
+   FYI, you might want to load this polyfill only if you find
+   one of the following metadata items in the OPF package:
+   - version 1: 
+     <dc:description id="ebpaj-guide">ebpaj-guide-1.0</dc:description>
+   - version 1.1: 
+     <meta property="ebpaj:guide-version">1.1</meta> 
+ */
+
+/* 横組み用 (horizontal writing) */
+
+@font-face {
+  font-family: "serif-ja";
+  src: local("ＭＳ Ｐ明朝"),
+       local("MS PMincho"),
+       local("Hiragino Mincho Pro"),
+       local("ヒラギノ明朝 Pro W3"),
+       local("游明朝"),
+       local("YuMincho"),
+       local("ＭＳ 明朝"),
+       local("MS Mincho"),
+       local("Hiragino Mincho ProN");
+}
+
+@font-face {
+  font-family: "sans-serif-ja";
+  src: local("ＭＳ Ｐゴシック"),
+       local("MS PGothic"),
+       local("Hiragino Kaku Gothic Pro W3"),
+       local("ヒラギノ角ゴ Pro W3"),
+       local("Hiragino Sans GB"),
+       local("ヒラギノ角ゴシック W3"),
+       local("游ゴシック"),
+       local("YuGothic"),
+       local("ＭＳ ゴシック"),
+       local("MS Gothic"),
+       local("Hiragino Sans");
+}
+
+/* 縦組み用 (vertical writing) */
+
+@font-face {
+  font-family: "serif-ja-v";
+  src: local("ＭＳ 明朝"),
+       local("MS Mincho"),
+       local("Hiragino Mincho Pro"),
+       local("ヒラギノ明朝 Pro W3"),
+       local("游明朝"),
+       local("YuMincho"),
+       local("ＭＳ Ｐ明朝"),
+       local("MS PMincho"),
+       local("Hiragino Mincho ProN");
+}
+
+@font-face {
+  font-family: "sans-serif-ja-v";
+  src: local("ＭＳ ゴシック"),
+       local("MS Gothic"),
+       local("Hiragino Kaku Gothic Pro W3"),
+       local("ヒラギノ角ゴ Pro W3"),
+       local("Hiragino Sans GB"),
+       local("ヒラギノ角ゴシック W3"),
+       local("游ゴシック"),
+       local("YuGothic"),
+       local("ＭＳ Ｐゴシック"),
+       local("MS PGothic"),
+       local("Hiragino Sans");
+}

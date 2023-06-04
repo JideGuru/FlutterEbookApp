@@ -13,7 +13,7 @@ import 'package:mno_shared/src/zip/lazy_archive.dart';
 import 'package:mno_shared/src/zip/lazy_archive_file.dart';
 import 'package:mno_shared/src/zip/lazy_zip_decoder.dart';
 import 'package:mno_shared/src/zip/zip_header.dart';
-import 'package:universal_io/io.dart';
+import 'package:universal_io/io.dart' hide Link;
 
 class ZipPackage implements JSONable {
   ZipPackage(this.file);
@@ -121,8 +121,8 @@ class ZipPackage implements JSONable {
     final cds = <ZipCentralDirectory>[];
 
     try {
-      LazyArchive _archive = await LazyZipDecoder().decodeBuffer(file);
-      for (LazyArchiveFile archiveFile in _archive) {
+      LazyArchive archive = await LazyZipDecoder().decodeBuffer(file);
+      for (LazyArchiveFile archiveFile in archive) {
         if (archiveFile.isFile) {
           final ZipLocalFile f = ZipLocalFile(0x0403);
           f.offsetStart = archiveFile.header.file.offsetStart;

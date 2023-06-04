@@ -3,7 +3,7 @@
 // found in the LICENSE file.
 
 import 'package:mno_shared/publication.dart';
-import 'package:universal_io/io.dart';
+import 'package:universal_io/io.dart' hide Link;
 
 class LcpException extends UserException {
   final String? message;
@@ -16,9 +16,11 @@ class LcpException extends UserException {
   static final LicenseIntegrity licenseIntegrity = LicenseIntegrity._("");
   static final Decryption decryption = Decryption._("");
 
-  const LcpException(String userMessageId,
-      {args = const [], int? quantity, this.message, Exception? cause})
-      : super(userMessageId, args: args, quantity: quantity, cause: cause);
+  const LcpException(super.userMessageId,
+      {super.args = const [],
+      super.quantity,
+      this.message,
+      Exception? super.cause});
 
   static LcpException wrap(dynamic e) {
     if (e is LcpException) {
@@ -62,9 +64,7 @@ class LcpException extends UserException {
 /// time corresponding to the new status should be displayed (e.g. "The license expired on 01
 /// January 2018").
 class LicenseStatus extends LcpException {
-  LicenseStatus._(String userMessageId,
-      {List<dynamic> args = const [], int quantity = 0, String? message})
-      : super(userMessageId, args: args, quantity: quantity, message: message);
+  LicenseStatus._(super.userMessageId, {super.args, super.quantity = 0});
 
   LicenseStatus cancelled(DateTime date) =>
       LicenseStatus._("r2_lcp_exception_license_status_cancelled",
@@ -91,7 +91,7 @@ class LicenseStatus extends LcpException {
 
 /// Errors while renewing a loan.
 class Renew extends LcpException {
-  const Renew._(String userMessageId) : super(userMessageId);
+  const Renew._(super.userMessageId);
 
   /// Your publication could not be renewed properly.
   Renew get renewFailed => Renew._("r2_lcp_exception_renew_renew_failed");
@@ -114,7 +114,7 @@ class InvalidRenewalPeriod extends Renew {
 
 /// Errors while returning a loan.
 class Return extends LcpException {
-  Return._(String userMessageId) : super(userMessageId);
+  Return._(super.userMessageId);
 
   /// Your publication could not be returned properly.
   Return get returnFailed => Return._("r2_lcp_exception_return_return_failed");
@@ -167,8 +167,7 @@ class Url extends Parsing {
 /// Errors while reading or writing a LCP container (LCPL, EPUB, LCPDF, etc.)
 class ContainerException extends LcpException {
   final String? path;
-  const ContainerException._(String userMessageId, {this.path})
-      : super(userMessageId);
+  const ContainerException._(super.userMessageId, {this.path});
 
   /// Can't access the container, it's format is wrong.
   ContainerException get openFailed =>
@@ -192,7 +191,7 @@ class ContainerException extends LcpException {
 
 /// An error occurred while checking the integrity of the License, it can't be retrieved.
 class LicenseIntegrity extends LcpException {
-  LicenseIntegrity._(String userMessageId) : super(userMessageId);
+  LicenseIntegrity._(super.userMessageId);
 
   LicenseIntegrity get certificateRevoked => LicenseIntegrity._(
       "r2_lcp_exception_license_integrity_certificate_revoked");
@@ -211,7 +210,7 @@ class LicenseIntegrity extends LcpException {
 }
 
 class Decryption extends LcpException {
-  Decryption._(String userMessageId) : super(userMessageId);
+  Decryption._(super.userMessageId);
 
   Decryption get contentKeyDecryptError =>
       Decryption._("r2_lcp_exception_decryption_content_key_decrypt_error");

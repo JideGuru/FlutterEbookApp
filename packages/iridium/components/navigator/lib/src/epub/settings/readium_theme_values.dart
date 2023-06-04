@@ -14,29 +14,13 @@ class ReadiumThemeValues {
 
   ReadiumThemeValues(this.readerTheme, this.viewerSettings);
 
-  String replaceValues(String css) => css
-      .replaceFirst("{{pageGutter}}", textMargin)
-      .replaceFirst("{{verticalMargin}}", verticalMargin)
-      .replaceFirst("{{backgroundColor}}", backgroundColor)
-      .replaceFirst("{{textColor}}", textColor)
-      .replaceFirst("{{textAlign}}", textAlign)
-      .replaceFirst("{{lineHeight}}", lineHeight)
-      .replaceFirst("{{wordSpacing}}", wordSpacing)
-      .replaceFirst("{{letterSpacing}}", letterSpacing)
-      .replaceFirst("{{scroll}}",
-          readerTheme.scroll ? "readium-scroll-on" : "readium-scroll-off")
-      .replaceFirst("{{advancedSettings}}",
-          readerTheme.advanced ? "readium-advanced-on" : "readium-advanced-off")
-      .replaceFirst("{{fontOverride}}",
-          (fontFamily != "inherit") ? "readium-font-on" : "readium-font-off")
-      .replaceFirst("{{fontFamily}}", fontFamily);
-
   // c.f. ReadiumCSS-after.css
   Map<String, String> get cssVarsAndValues => {
-        "--RS__pageGutter": textMargin,
-        "--RS__verticalMargin": verticalMargin,
+        ReadiumCSSName.pageMargins.name: textMargin,
+        // "--RS__verticalMargin": verticalMargin,
         "--RS__backgroundColor": backgroundColor,
         "--RS__textColor": textColor,
+        "--RS__scroll-snap-stop": scrollSnapShouldStop,
         ReadiumCSSName.textAlignment.name: textAlign,
         ReadiumCSSName.lineHeight.name: lineHeight,
         ReadiumCSSName.wordSpacing.name: wordSpacing,
@@ -55,11 +39,11 @@ class ReadiumThemeValues {
   String get verticalMargin => "${verticalMarginInt}px";
 
   int get verticalMarginInt =>
-      (!viewerSettings.scrollViewDoc) ? TextMargin.margin_20.value.toInt() : 0;
+      (!viewerSettings.scrollViewDoc) ? TextMargin.margin_1_0.value.toInt() : 0;
 
   String get textMargin =>
-      readerTheme.textMargin?.let((it) => "${it.value}px") ??
-      "${TextMargin.margin_20.value}px";
+      readerTheme.textMargin?.let((it) => "${it.value}") ??
+      "${TextMargin.margin_1_0.value}";
 
   String get backgroundColor => _colorAsString(readerTheme.backgroundColor);
 
@@ -82,6 +66,9 @@ class ReadiumThemeValues {
 
   String get letterSpacing =>
       readerTheme.letterSpacing?.let((it) => "${it.value}em") ?? "";
+
+  String get scrollSnapShouldStop =>
+      viewerSettings.scrollSnapShouldStop ? "always" : "normal";
 
   String get fontSize => '${viewerSettings.fontSize}%';
 

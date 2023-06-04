@@ -2,8 +2,8 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
-import 'package:webview_flutter/webview_flutter.dart';
+typedef HandlerCallback = dynamic Function(List<dynamic> arguments);
 
 abstract class JavascriptChannels {
-  List<JavascriptChannel> get channels;
+  Map<String, HandlerCallback> get channels;
 }

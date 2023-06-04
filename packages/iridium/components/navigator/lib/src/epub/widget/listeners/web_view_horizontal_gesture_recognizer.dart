@@ -3,38 +3,44 @@
 // found in the LICENSE file.
 
 import 'package:flutter/gestures.dart';
-import 'package:mno_navigator/epub.dart';
+import 'package:mno_navigator/src/publication/reader_context.dart';
+import 'package:mno_shared/publication.dart';
 
 /// Inspired by https://stackoverflow.com/questions/57069716/scrolling-priority-when-combining-pageview-with-webview-in-flutter-1-7-8/57150906#57150906
 ///
 class WebViewHorizontalGestureRecognizer
     extends HorizontalDragGestureRecognizer {
   final int chapNumber;
-  final WebViewScreen webView;
+  final Link link;
+  ReaderContext readerContext;
 
-  bool isBeginningVisible = true;
-  bool isEndVisible = false;
+  bool _leftOverlayVisible = false;
+  bool _rightOverlayVisible = false;
 
-  void setBeginningVisible(bool visibility) {
-//    Fimber.d(">>> setBeginningVisible[$chapNumber], visibility: $visibility");
-    isBeginningVisible = visibility;
+  void setLeftOverlayVisible(bool visibility) {
+    // Fimber.d(
+    //     ">>> setLeftOverlayVisible[$chapNumber][${getSpineItemHref()}][${webView.address}][${webView.position}], visibility: $visibility");
+    _leftOverlayVisible = visibility;
   }
 
-  void setEndVisible(bool visibility) {
-//    Fimber.d(">>> setEndVisible[$chapNumber], visibility: $visibility");
-    isEndVisible = visibility;
+  void setRightOverlayVisible(bool visibility) {
+    // Fimber.d(
+    //     ">>> setRightOverlayVisible[$chapNumber][${getSpineItemHref()}][${webView.position}], visibility: $visibility");
+    _rightOverlayVisible = visibility;
   }
 
   WebViewHorizontalGestureRecognizer({
     required this.chapNumber,
-    required this.webView,
+    required this.link,
     PointerDeviceKind? kind,
+    required this.readerContext,
   }) : super(supportedDevices: (kind != null) ? {kind} : const {}) {
     onUpdate = _onUpdate;
   }
 
   void _onUpdate(DragUpdateDetails details) {
-//    Fimber.d(">>> onUpdate[$chapNumber]: ${details.delta.direction}");
+    // Fimber.d(
+    //     ">>> onUpdate[$chapNumber][${getSpineItemHref()}]: ${details.delta.direction}");
   }
 
   Offset _dragDistance = Offset.zero;
@@ -42,8 +48,8 @@ class WebViewHorizontalGestureRecognizer
   @override
   void addPointer(PointerEvent event) {
     startTrackingPointer(event.pointer);
-//    Fimber.d(
-//        ">>> Pointer tracking STARTED, pointer[$chapNumber]: ${event.pointer}");
+    // Fimber.d(
+    //     ">>> Pointer tracking STARTED, pointer[$chapNumber][${getSpineItemHref()}]: ${event.pointer}");
   }
 
   @override
@@ -51,13 +57,15 @@ class WebViewHorizontalGestureRecognizer
 
   @override
   void didStopTrackingLastPointer(int pointer) {
-//    Fimber.d(">>> didStopTrackingLastPointer");
+    // Fimber.d(
+    //     ">>> didStopTrackingLastPointer [$chapNumber][${getSpineItemHref()}]");
   }
 
   @override
   void handleEvent(PointerEvent event) {
-//     Fimber.d(">>> handleEvent[$chapNumber] =============== $event");
-//     Fimber.d(">>> handleEvent[$chapNumber] =============== isBeginningVisible: $isBeginningVisible, isEndVisible: $isEndVisible");
+    // TODO Fix this: readerContext.currentSpineItem?.title is null, so we are using this path to access the title of the current spine item
+    // Fimber.d(
+    //     ">>> handleEvent[$chapNumber][${link.href}] =============== i_leftOverlayVisible: $_leftOverlayVisible, _rightOverlayVisible: $_rightOverlayVisible");
     _dragDistance = _dragDistance + event.delta;
     if (event is PointerMoveEvent) {
       final double dy = _dragDistance.dy.abs();
@@ -70,18 +78,26 @@ class WebViewHorizontalGestureRecognizer
         //} else if (dx > kTouchSlop && dx > dy) {
       } else if (dx > dy) {
         // horizontal drag
-        if ((isEndVisible && isDraggingTowardsLeft(event)) ||
-            (isBeginningVisible && isDraggingTowardsRight(event))) {
+        if ((_rightOverlayVisible && isDraggingTowardsLeft(event)) ||
+            (_leftOverlayVisible && isDraggingTowardsRight(event))) {
           // The enclosing PageView must handle the drag since the webview cannot scroll anymore
+          // Fimber.d(
+          //     ">>> handleEvent[$chapNumber][$curHRef] =============== REJECT, _leftOverlayVisible: $_leftOverlayVisible, _rightOverlayVisible: $_rightOverlayVisible");
           stopTrackingPointer(event.pointer);
         } else {
           // horizontal drag - accept
+          // Fimber.d(
+          //     ">>> handleEvent[$chapNumber][$curHRef] =============== ACCEPT, _leftOverlayVisible: $_leftOverlayVisible, _rightOverlayVisible: $_rightOverlayVisible");
           resolve(GestureDisposition.accepted);
           _dragDistance = Offset.zero;
         }
       }
     }
   }
+
+  String? getSpineItemHref() => readerContext.publication?.manifest.readingOrder
+      .elementAt(chapNumber)
+      .href;
 
   bool isVerticalDrag(double dy, double dx) => dy > dx && dy > kTouchSlop;
 

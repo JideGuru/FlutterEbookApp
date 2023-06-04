@@ -5,12 +5,12 @@
 import 'package:mno_shared/publication.dart';
 import 'package:mno_streamer/src/epub/encryption_parser.dart';
 import 'package:test/test.dart';
-import 'package:universal_io/io.dart';
+import 'package:universal_io/io.dart' hide Link;
 import 'package:xml/xml.dart';
 
 void main() {
   Future<Map<String, Encryption>> parseEncryption(String resource) async {
-    String path = "test_resources/epub/" + resource;
+    String path = "test_resources/epub/$resource";
     var document = XmlDocument.parse(await File(path).readAsString());
     return EncryptionParser.parse(document);
   }

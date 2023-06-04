@@ -7,7 +7,7 @@ import 'package:mno_shared/fetcher.dart';
 import 'package:mno_shared/mediatype.dart';
 import 'package:mno_shared/publication.dart';
 import 'package:mno_streamer/publication_parser.dart';
-import 'package:universal_io/io.dart';
+import 'package:universal_io/io.dart' hide Link;
 
 /// Parser that supports a collection of images.
 class ImageParser implements StreamPublicationParser {

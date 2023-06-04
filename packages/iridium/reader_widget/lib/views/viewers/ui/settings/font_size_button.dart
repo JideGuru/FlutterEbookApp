@@ -6,10 +6,10 @@ class FontSizeButton extends StatelessWidget {
   final bool increase;
 
   const FontSizeButton({
-    Key? key,
+    super.key,
     required this.viewerSettingsBloc,
     required this.increase,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) => Material(

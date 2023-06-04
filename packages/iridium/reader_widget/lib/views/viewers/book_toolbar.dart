@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class BookToolbar extends StatefulWidget {
-  const BookToolbar({Key? key}) : super(key: key);
+  const BookToolbar({super.key});
 
   @override
   State<StatefulWidget> createState() => BookToolbarState();

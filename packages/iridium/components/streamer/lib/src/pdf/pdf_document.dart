@@ -2,8 +2,8 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
-import 'package:dfunc/dfunc.dart';
 import 'package:image/image.dart';
+import 'package:mno_shared/publication.dart';
 import 'package:mno_streamer/pdf.dart';
 
 abstract class PdfDocument {
@@ -27,7 +27,7 @@ abstract class PdfDocument {
 
   int get pageCount;
 
-  Product2<double, double> getPageSizeByIndex(int pageIndex);
+  (double, double) getPageSizeByIndex(int pageIndex);
 
   Image? get cover;
 
@@ -36,4 +36,6 @@ abstract class PdfDocument {
   void close();
 
   List<String> get keywordList;
+
+  List<Link> outline(String fileHref);
 }

@@ -3,7 +3,7 @@
 // found in the LICENSE file.
 
 import 'package:dfunc/dfunc.dart';
-import 'package:universal_io/io.dart';
+import 'package:universal_io/io.dart' hide Link;
 
 class Fixtures {
   final String? path;

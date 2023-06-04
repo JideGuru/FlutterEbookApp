@@ -12,13 +12,13 @@ class ToolbarButton extends StatelessWidget {
   final double iconSize;
 
   const ToolbarButton({
-    Key? key,
+    super.key,
     required this.asset,
     required this.onPressed,
     this.background = Colors.transparent,
     this.padding = 12.0,
     this.iconSize = 24.0,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) => Material(

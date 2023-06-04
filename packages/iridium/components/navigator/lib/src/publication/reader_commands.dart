@@ -3,6 +3,7 @@
 // found in the LICENSE file.
 
 import 'package:mno_navigator/epub.dart';
+import 'package:mno_shared/publication.dart';
 
 abstract class ReaderCommand {
   int? spineItemIndex;
@@ -21,14 +22,13 @@ class GoToHrefCommand extends ReaderCommand {
 }
 
 class GoToLocationCommand extends ReaderCommand {
-  final String? location;
-  final ReadiumLocation readiumLocation;
+  final String location;
+  final Locator locator;
 
   GoToLocationCommand(this.location)
-      : readiumLocation = ReadiumLocation.createLocation(location);
+      : locator = Locator.fromJsonString(location)!;
 
-  GoToLocationCommand.readiumLocation(this.readiumLocation)
-      : location = readiumLocation.toString();
+  GoToLocationCommand.locator(this.locator) : location = locator.toString();
 
   @override
   String toString() => '$runtimeType{location: $location, '

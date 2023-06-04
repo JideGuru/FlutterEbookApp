@@ -7,7 +7,7 @@ import 'dart:typed_data';
 import 'package:fimber/fimber.dart';
 import 'package:http/http.dart';
 import 'package:mno_commons/extensions/data.dart';
-import 'package:universal_io/io.dart';
+import 'package:universal_io/io.dart' hide Link;
 
 /// Provides an access to a file's content to sniff its format.
 abstract class SnifferContent {

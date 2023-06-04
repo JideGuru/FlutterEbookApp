@@ -3,8 +3,8 @@
 // found in the LICENSE file.
 
 import 'package:fimber/fimber.dart';
-import 'package:mno_server/src/blocs/server/request_handler.dart';
-import 'package:universal_io/io.dart';
+import 'package:mno_server/mno_server.dart';
+import 'package:universal_io/io.dart' as io;
 
 /// A [RequestController] is used to process each request received by the
 /// server.
@@ -20,8 +20,11 @@ class RequestController {
   /// It will try each [RequestHandler] from [handlers] to provide a response.
   /// If the [request] is not handled by any [handlers], it will send back a
   /// [HttpStatus.notFound] error.
-  void onRequest(int requestId, HttpRequest request) async {
-    HttpResponse response = request.response;
+  Future<T> onRequest<T extends Response>(
+      int requestId, Request<T> request) async {
+    Stopwatch stopwatch = Stopwatch();
+    stopwatch.start();
+    T response = request.response;
     String href = Uri.decodeFull(request.uri.toString());
     if (href.startsWith("/")) {
       href = href.substring(1);
@@ -30,19 +33,25 @@ class RequestController {
     try {
       for (RequestHandler handler in handlers) {
         if (await handler.handle(requestId, request, href)) {
-          return;
+          stopwatch.stop();
+          // Fimber.d(
+          //     "========= REQUEST HREF: $href, time: ${stopwatch.elapsedMilliseconds}ms");
+          return response;
         }
       }
 
       response
-        ..statusCode = HttpStatus.notFound
+        ..statusCode = io.HttpStatus.notFound
         ..write("NOT FOUND");
     } on Exception catch (e, stacktrace) {
-      response.statusCode = HttpStatus.internalServerError;
+      response.statusCode = io.HttpStatus.internalServerError;
       Fimber.d("Request error", ex: e, stacktrace: stacktrace);
     } finally {
       await response.flush();
       await response.close();
+      // Fimber.d(
+      //     "========= onRequest, HREF: $href, TOTAL TIME AFTER RESPONSE FLUSH: ${stopwatch.elapsedMilliseconds}ms");
     }
+    return response;
   }
 }

@@ -4,7 +4,6 @@
 
 import 'dart:typed_data';
 
-import 'package:dfunc/dfunc.dart';
 import 'package:image/image.dart';
 
 abstract class PdfPage {
@@ -23,9 +22,9 @@ abstract class PdfPage {
   Uint8List renderPageBitmap(int imageWidth, int imageHeight, int startX,
       int startY, int sizeX, int sizeY);
 
-  Product2<double, double> deviceToPage(int startX, int startY, int sizeX,
+  (double, double) deviceToPage(int startX, int startY, int sizeX,
       int sizeY, int rotate, int deviceX, int deviceY);
 
-  Product2<double, double> pageToDevice(int startX, int startY, int sizeX,
+  (double, double) pageToDevice(int startX, int startY, int sizeX,
       int sizeY, int rotate, double pageX, double pageY);
 }

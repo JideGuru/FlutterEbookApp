@@ -3,6 +3,25 @@
 A Flutter "publication navigator" freely inspired by
 the [Readium 2 Navigator](https://readium.org/technical/r2-navigator-architecture/).
 
+## Features
+
+- [x] EPUB 2.x and 3.x support
+- [ ] Audiobook support
+- [ ] PDF support
+- [x] CBZ support
+- [x] Custom styles
+- [x] Night & sepia modes
+- [x] Pagination
+- [ ] Scrolling
+- [x] Table of contents
+- [ ] FXL support
+- [x] RTL support
+- [ ] Search in EPUB
+- [ ] Highlights/annotations
+- [ ] TTS
+- [ ] EPUB 3 Media Overlays
+- [ ] Divina support
+
 ## Current technical choices
 
 ### Epub reflow pagination strategy

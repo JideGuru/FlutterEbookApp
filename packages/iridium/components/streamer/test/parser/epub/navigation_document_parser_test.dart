@@ -5,13 +5,13 @@
 import 'package:mno_shared/publication.dart';
 import 'package:mno_streamer/src/epub/navigation_document_parser.dart';
 import 'package:test/test.dart';
-import 'package:universal_io/io.dart';
+import 'package:universal_io/io.dart' hide Link;
 import 'package:xml/xml.dart';
 
 Future<void> main() async {
   Future<Map<String, List<Link>>> parseNavigationDocument(
       String resource) async {
-    String path = "test_resources/epub/" + resource;
+    String path = "test_resources/epub/$resource";
     var document = XmlDocument.parse(await File(path).readAsString());
     var navigationDocument =
         NavigationDocumentParser.parse(document, "OEBPS/xhtml/nav.xhtml");

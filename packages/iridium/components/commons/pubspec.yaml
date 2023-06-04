@@ -5,22 +5,19 @@ homepage: https://github.com/Mantano/mno_commons_dart
 publish_to: none
 
 environment:
-  sdk: ">=2.12.0 <3.0.0"
+  sdk: '>=3.0.0 <4.0.0'
 
 dependencies:
-  archive: ^3.1.8
-  crypto: ^3.0.1
-  dartx: ^1.0.0
-  dfunc: ^0.7.2
-  equatable: ^2.0.3
-  fimber: ^0.6.4
-  meta: ^1.7.0
-  path: ^1.8.0
-  universal_io: ^2.0.4
+  archive: ^3.3.7
+  crypto: ^3.0.3
+  dartx: ^1.1.0
+  dfunc: ^0.9.0
+  fimber: ^0.6.6
+  path: ^1.8.3
+  universal_io: ^2.2.1
 
 dev_dependencies:
-  lints: ^1.0.1
-  test: ^1.20.1
-
+  lints: ^2.1.0
+  test: ^1.24.3
 # For information on the generic Dart part of this file, see the
 # following page: https://www.dartlang.org/tools/pub/pubspec

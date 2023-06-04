@@ -4,7 +4,7 @@
 
 import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
-import 'package:mno_server/src/blocs/server/request_handler.dart';
+import 'package:mno_server/src/blocs/server/handlers/request_handler.dart';
 import 'package:mno_server/src/blocs/server/server_bloc.dart';
 
 /// Root class for [ServerBloc] events.

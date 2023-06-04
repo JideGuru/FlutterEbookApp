@@ -6,8 +6,7 @@ import 'package:mno_shared/src/publication/user_exception.dart';
 
 /// Errors occurring while accessing a resource.
 class ResourceException extends UserException {
-  ResourceException._(String userMessageId, {dynamic cause})
-      : super(userMessageId, cause: cause);
+  ResourceException._(super.userMessageId, {dynamic super.cause});
 
   static BadRequest badRequest(Map<String, String> parameters,
           {Exception? cause}) =>

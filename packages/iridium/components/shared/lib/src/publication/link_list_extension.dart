@@ -8,7 +8,7 @@ import 'package:mno_commons/extensions/strings.dart';
 import 'package:mno_commons/utils/take.dart';
 import 'package:mno_shared/publication.dart';
 import 'package:mno_shared/src/mediatype/mediatype.dart';
-import 'package:universal_io/io.dart';
+import 'package:universal_io/io.dart' hide Link;
 
 extension LinkListExtension on List<Link> {
   /// Returns the first [Link] with the given [href], or null if not found.
@@ -64,7 +64,7 @@ extension LinkListExtension on List<Link> {
   Link? deepLinkWithHref(String href) {
     for (Link l in this) {
       if (l.href.toLowerCase() == href.toLowerCase() ||
-          l.href.toLowerCase() == '/' + href.toLowerCase()) {
+          l.href.toLowerCase() == '/${href.toLowerCase()}') {
         return l;
       } else {
         Link? alternate = l.alternates.deepLinkWithHref(href);

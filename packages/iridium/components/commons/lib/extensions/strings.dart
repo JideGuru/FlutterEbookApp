@@ -17,6 +17,9 @@ extension StringExtension on String {
   String? ifBlank(String? Function() defaultValue) =>
       isBlank ? defaultValue() : this;
 
+  String insert(int index, String value) =>
+      substring(0, index) + value + substring(index);
+
   String substringBefore(String? separator) {
     if (isEmpty) {
       return this;
@@ -117,10 +120,3 @@ extension StringHashExtension on String {
   /// hexadecimal digits.
   String get sha1 => crypto.sha1.convert(toUtf8()).toString();
 }
-
-// dartx has implemented the following extensions in
-// https://github.com/leisim/dartx/commit/430cb04d27bd857a2cd7d3a3191ffa5d33200dd9
-// extension NullableStringIsNullOrBlankExtension on String? {
-//   /// Returns `true` if the String is either null or empty.
-//   bool get isNullOrBlank => this?.isBlank ?? true;
-// }

@@ -2,7 +2,7 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
-import 'package:universal_io/io.dart';
+import 'package:universal_io/io.dart' hide Link;
 
 class FileUtils {
   static Future<Directory> ensureFolderExists(String directory) {

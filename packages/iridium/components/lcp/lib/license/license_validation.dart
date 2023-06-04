@@ -2,7 +2,6 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
-import 'package:dfunc/dfunc.dart';
 import 'package:fimber/fimber.dart';
 import 'package:flutter/services.dart';
 import 'package:mno_commons/utils/try.dart';
@@ -17,28 +16,35 @@ typedef Observer = void Function(ValidatedDocuments?, Exception?);
 
 enum ObserverPolicy { once, always }
 
+sealed class DrmContextOrLicenseStatus {
+}
+
+class DrmContextValue extends DrmContextOrLicenseStatus {
+  final DrmContext drmContext;
+
+  DrmContextValue(this.drmContext);
+}
+
+class LicenseStatusValue extends DrmContextOrLicenseStatus {
+  final LicenseStatus licenseStatus;
+
+  LicenseStatusValue(this.licenseStatus);
+}
+
 class ValidatedDocuments {
   final LicenseDocument license;
-  final Either<DrmContext?, LicenseStatus?> context;
+  final DrmContextOrLicenseStatus contextOrLicenseStatus;
   final StatusDocument? status;
 
-  ValidatedDocuments(this.license, this.context, {this.status});
-
-  // DrmContext getContext() {
-  //   if (context.isLeft()) {
-  //     return context.fold((left) => left, (_) => null)!;
-  //   }
-  //   throw context.fold(always, (right) => right!);
-  // }
+  ValidatedDocuments(this.license, this.contextOrLicenseStatus, {this.status});
 
   DrmContext getContext() {
-    DrmContext? drmContext;
-    LicenseStatus? licenseStatus;
-    context.fold((dc) => drmContext = dc, (ls) => licenseStatus = ls);
-    if (drmContext != null) {
-      return drmContext!;
+    switch (contextOrLicenseStatus) {
+      case DrmContextValue v:
+        return v.drmContext;
+      case LicenseStatusValue v:
+        throw v.licenseStatus;
     }
-    throw licenseStatus!;
   }
 }
 
@@ -55,16 +61,16 @@ abstract class LicenseValidationDocument {
 }
 
 class LicenseValidationLicenseDocument extends LicenseValidationDocument {
-  LicenseValidationLicenseDocument._(ByteData data) : super._(data);
+  LicenseValidationLicenseDocument._(super.data) : super._();
 }
 
 class LicenseValidationStatusDocument extends LicenseValidationDocument {
-  LicenseValidationStatusDocument._(ByteData data) : super._(data);
+  LicenseValidationStatusDocument._(super.data) : super._();
 }
 
 class LicenseValidation {
   static const bool _debug = false;
-  List<Product2<Observer, ObserverPolicy>> observers = [];
+  List<(Observer, ObserverPolicy)> observers = [];
   static const List<String> supportedProfiles = [
     "http://readium.org/lcp/basic-profile",
     "http://readium.org/lcp/profile-1.0"
@@ -134,8 +140,8 @@ class LicenseValidation {
   }
 
   Future<bool> _computeIsProduction() async {
-    ByteData prodLicenseInput = await rootBundle
-        .load("packages/mno_lcp_native/assets/prod-license.lcpl");
+    ByteData prodLicenseInput =
+        await rootBundle.load("assets/prod-license.lcpl");
     LicenseDocument prodLicense = LicenseDocument.parse(prodLicenseInput);
     String passphrase =
         "7B7602FEF5DEDA10F768818FFACBC60B173DB223B7E66D8B2221EBE2C635EFAD";
@@ -213,10 +219,10 @@ class LicenseValidation {
 
   void _notifyObservers(ValidatedDocuments? documents, Exception? error) {
     for (int i = 0; i < observers.length; i++) {
-      observers[i].item1(documents, error);
+      observers[i].$1(documents, error);
     }
     observers =
-        observers.where((it) => it.item2 != ObserverPolicy.once).toList();
+        observers.where((it) => it.$2 != ObserverPolicy.once).toList();
   }
 
   void _validateLicense(ByteData data) {
@@ -358,6 +364,6 @@ class LicenseValidation {
     if (notified && policy != ObserverPolicy.always) {
       return;
     }
-    observers.add(Product2(observer, policy));
+    observers.add((observer, policy));
   }
 }

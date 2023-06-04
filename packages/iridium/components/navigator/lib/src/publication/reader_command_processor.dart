@@ -12,7 +12,7 @@ abstract class ReaderCommandProcessor<T extends ReaderCommand> {
 
   int findSpineItemIndex(T command, Publication publication);
 
-  OpenPageRequest createOpenPageRequestForCommand(T command);
+  OpenPageRequest? createOpenPageRequestForCommand(T command);
 }
 
 class GoToHrefCommandProcessor extends ReaderCommandProcessor<GoToHrefCommand> {
@@ -22,8 +22,9 @@ class GoToHrefCommandProcessor extends ReaderCommandProcessor<GoToHrefCommand> {
   int findSpineItemIndex(GoToHrefCommand command, Publication publication) =>
       publication.pageLinks.indexWhere((spineItem) =>
           spineItem.href.removePrefix("/") == command.href.removePrefix("/"));
+
   @override
-  OpenPageRequest createOpenPageRequestForCommand(GoToHrefCommand command) =>
+  OpenPageRequest? createOpenPageRequestForCommand(GoToHrefCommand command) =>
       OpenPageRequest.fromElementId(command.href, command.fragment);
 }
 
@@ -33,16 +34,22 @@ class GoToLocationCommandProcessor
 
   @override
   int findSpineItemIndex(GoToLocationCommand command, Publication publication) {
-    ReadiumLocation readiumLocation = command.readiumLocation;
+    Locator locator = command.locator;
     return publication.pageLinks
-        .indexWhere((spineItem) => spineItem.id == readiumLocation.idref);
+        .indexWhere((spineItem) => spineItem.href == locator.href);
   }
 
   @override
   OpenPageRequest createOpenPageRequestForCommand(GoToLocationCommand command) {
-    ReadiumLocation readiumLocation = command.readiumLocation;
-    return OpenPageRequest.fromIdrefAndCfi(
-        readiumLocation.idref, readiumLocation.contentCFI);
+    Locator locator = command.locator;
+    double? progression = locator.locations.progression;
+    if (progression != null) {
+      return OpenPageRequest.fromIdrefAndPercentage(locator.href, progression);
+    }
+    if (locator.text.highlight != null) {
+      return OpenPageRequest.fromText(locator.href, locator.text);
+    }
+    return OpenPageRequest.fromIdref(locator.href);
   }
 }
 

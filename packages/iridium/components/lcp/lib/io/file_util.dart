@@ -3,7 +3,7 @@
 // found in the LICENSE file.
 
 import 'package:path_provider/path_provider.dart';
-import 'package:universal_io/io.dart';
+import 'package:universal_io/io.dart' hide Link;
 
 class FileUtil {
   static Future<File> getTempFile(String filename) => _cachePath.then(

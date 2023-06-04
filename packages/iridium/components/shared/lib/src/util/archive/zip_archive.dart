@@ -12,7 +12,7 @@ import 'package:mno_shared/container.dart';
 import 'package:mno_shared/src/util/archive/archive.dart';
 import 'package:mno_shared/streams.dart';
 import 'package:mno_shared/zip.dart';
-import 'package:universal_io/io.dart';
+import 'package:universal_io/io.dart' hide Link;
 
 class ZipArchiveFactory implements ArchiveFactory {
   const ZipArchiveFactory();

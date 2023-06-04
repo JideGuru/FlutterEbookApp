@@ -13,7 +13,7 @@ import 'package:mno_shared/publication.dart';
 import 'package:mno_shared/src/mediatype/mediatype.dart';
 import 'package:mno_shared/src/mediatype/sniffer_context.dart';
 import 'package:path/path.dart';
-import 'package:universal_io/io.dart';
+import 'package:universal_io/io.dart' hide Link;
 
 /// Determines if the provided content matches a known MediaType.
 ///

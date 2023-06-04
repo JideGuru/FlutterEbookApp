@@ -9,7 +9,7 @@ import 'package:mno_commons/extensions/data.dart';
 import 'package:mno_shared/src/util/archive/archive.dart';
 import 'package:mno_shared/streams.dart';
 import 'package:path/path.dart';
-import 'package:universal_io/io.dart';
+import 'package:universal_io/io.dart' hide Link;
 
 class ExplodedArchiveFactory implements ArchiveFactory {
   const ExplodedArchiveFactory();

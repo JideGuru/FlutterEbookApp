@@ -4,35 +4,24 @@
 
 import 'dart:convert';
 
-import 'package:dartx/dartx.dart';
 import 'package:fimber/fimber.dart';
 import 'package:flutter/widgets.dart';
 import 'package:mno_navigator/epub.dart';
 import 'package:mno_navigator/publication.dart';
-import 'package:mno_server/mno_server.dart';
 import 'package:mno_shared/publication.dart';
-import 'package:mno_streamer/parser.dart';
 
 class CbzController extends PublicationController {
   PageController? _pageController;
 
   CbzController(
-    Function onServerClosed,
-    Function? onPageJump,
-    Future<String?> locationFuture,
-    FileAsset fileAsset,
-    Future<Streamer> streamerFuture,
-    ReaderAnnotationRepository readerAnnotationRepository,
-    Function0<List<RequestHandler>> handlersProvider,
-  ) : super(
-          onServerClosed,
-          onPageJump,
-          locationFuture,
-          fileAsset,
-          streamerFuture,
-          readerAnnotationRepository,
-          handlersProvider,
-        );
+      super.onServerClosed,
+      super.onPageJump,
+      super.locationFuture,
+      super.fileAsset,
+      super.streamerFuture,
+      super.readerAnnotationRepository,
+      super.handlersProvider,
+      super.selectionListenerFactory);
 
   PageController get pageController => _pageController!;
 
@@ -47,12 +36,24 @@ class CbzController extends PublicationController {
       PageController(keepPage: true, initialPage: initialPage);
 
   @override
-  void onPrevious() => _pageController?.previousPage(
-      duration: const Duration(milliseconds: 300), curve: Curves.easeIn);
+  void onSkipLeft({bool animated = true}) {
+    if (animated) {
+      _pageController?.previousPage(
+          duration: const Duration(milliseconds: 300), curve: Curves.easeIn);
+    } else {
+      _pageController?.jumpToPage((_pageController!.page ?? 0).round() - 1);
+    }
+  }
 
   @override
-  void onNext() => _pageController?.nextPage(
-      duration: const Duration(milliseconds: 300), curve: Curves.easeIn);
+  void onSkipRight({bool animated = true}) {
+    if (animated) {
+      _pageController?.nextPage(
+          duration: const Duration(milliseconds: 300), curve: Curves.easeIn);
+    } else {
+      _pageController?.jumpToPage((_pageController!.page ?? 0).round() + 1);
+    }
+  }
 
   @override
   void onPageChanged(int position) {
@@ -61,27 +62,20 @@ class CbzController extends PublicationController {
     Link spineItem = spine[position];
     LinkPagination linkPagination = publication.paginationInfo[spineItem]!;
     Map data = {
-      "spineItem": {
-        "idref": spineItem.href,
-        "href": spineItem.href,
-      },
       "location": {
-        "version": ReadiumLocation.currentVersion,
         "idref": spineItem.href,
+        "progression": 0.0,
       },
-      "openPages": [
-        {
-          "spineItemPageIndex": 0,
-          "spineItemPageCount": 1,
-          "idref": spineItem.href,
-          "spineItemIndex": position,
-        },
-      ],
+      "openPage": {
+        "spineItemPageIndex": 0,
+        "spineItemPageCount": 1,
+      },
     };
     String json = const JsonCodec().encode(data);
+    Locator locator = spineItem.toLocator();
     try {
       PaginationInfo paginationInfo =
-          PaginationInfo.fromJson(json, linkPagination);
+          PaginationInfo.fromJson(json, position, locator, linkPagination);
       readerContext!.notifyCurrentLocation(paginationInfo, spineItem);
     } catch (e, stacktrace) {
       Fimber.d("error: $e", ex: e, stacktrace: stacktrace);

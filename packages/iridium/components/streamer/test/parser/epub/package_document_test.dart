@@ -5,12 +5,12 @@ import 'package:dfunc/dfunc.dart';
 import 'package:mno_shared/publication.dart';
 import 'package:mno_streamer/parser.dart';
 import 'package:test/test.dart';
-import 'package:universal_io/io.dart';
+import 'package:universal_io/io.dart' hide Link;
 import 'package:xml/xml.dart';
 
 Future<Manifest> parsePackageDocument(String resource,
     {String? displayOptions}) async {
-  String path = "test_resources/epub/" + resource;
+  String path = "test_resources/epub/$resource";
   var document = XmlDocument.parse(await File(path).readAsString());
   var pub = document
       .let((it) => PackageDocument.parse(it.rootElement, "OEBPS/content.opf"))

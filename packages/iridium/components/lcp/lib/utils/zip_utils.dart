@@ -5,7 +5,7 @@
 import 'dart:typed_data';
 
 import 'package:flutter_archive/flutter_archive.dart';
-import 'package:universal_io/io.dart';
+import 'package:universal_io/io.dart' hide Link;
 
 class ZipUtils {
   static Future<void> injectEntry(File zipFile, ByteEntry entry) {

@@ -10,10 +10,10 @@ class TapGesture extends StatefulWidget {
   final GestureTapCallback onTap;
 
   const TapGesture({
-    Key? key,
+    super.key,
     required this.onTap,
     required this.child,
-  }) : super(key: key);
+  });
 
   @override
   State<StatefulWidget> createState() => TapGestureState();

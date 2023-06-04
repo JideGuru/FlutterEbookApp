@@ -9,8 +9,7 @@ class OpeningException extends UserException {
   //(@StringRes userMessageId: Int, cause: Throwable? = null)
 
   //(userMessageId, cause = cause)
-  OpeningException._(String userMessageId, {Exception? cause})
-      : super(userMessageId, cause: cause);
+  OpeningException._(super.userMessageId, {Exception? super.cause});
 
   /// The file format could not be recognized by any parser.
   static OpeningException get unsupportedFormat => OpeningException._(

@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_xlider/flutter_xlider.dart';
 import 'package:iridium_reader_widget/views/viewers/ui/toolbar_button.dart';
 import 'package:iridium_reader_widget/views/viewers/ui/toolbar_page_number.dart';
 import 'package:mno_navigator/epub.dart';
@@ -8,15 +9,14 @@ import 'package:mno_navigator/publication.dart';
 
 class ReaderToolbar extends StatefulWidget {
   final ReaderContext readerContext;
-  final VoidCallback onPrevious;
-  final VoidCallback onNext;
+  final VoidCallback onSkipLeft;
+  final VoidCallback onSkipRight;
 
   const ReaderToolbar(
-      {Key? key,
+      {super.key,
       required this.readerContext,
-      required this.onPrevious,
-      required this.onNext})
-      : super(key: key);
+      required this.onSkipLeft,
+      required this.onSkipRight});
 
   @override
   State<StatefulWidget> createState() => ReaderToolbarState();
@@ -31,9 +31,9 @@ class ReaderToolbarState extends State<ReaderToolbar> {
 
   ReaderContext get readerContext => widget.readerContext;
 
-  Function() get onPrevious => widget.onPrevious;
+  Function() get onSkipLeft => widget.onSkipLeft;
 
-  Function() get onNext => widget.onNext;
+  Function() get onSkipRight => widget.onSkipRight;
 
   @override
   void initState() {
@@ -74,25 +74,29 @@ class ReaderToolbarState extends State<ReaderToolbar> {
         ),
       );
 
-  Widget _firstRow(BuildContext context) => Row(
-        children: <Widget>[
-          ToolbarButton(
-            asset:
-                'packages/iridium_reader_widget/assets/images/ic_skip_previous_white_24dp.png',
-            onPressed: onPrevious,
-          ),
-          const SizedBox(width: 8.0),
-          _builderCurrentPage(),
-          _buildSlider(context),
-          _buildNbPages(context),
-          const SizedBox(width: 8.0),
-          ToolbarButton(
-            asset:
-                'packages/iridium_reader_widget/assets/images/ic_skip_next_white_24dp.png',
-            onPressed: onNext,
-          ),
-        ],
-      );
+  Widget _firstRow(BuildContext context) {
+    var isReversed =
+        readerContext.readingProgression?.isReverseOrder() ?? false;
+    return Row(
+      children: <Widget>[
+        ToolbarButton(
+          asset:
+              'packages/iridium_reader_widget/assets/images/ic_skip_left_white_24dp.png',
+          onPressed: onSkipLeft,
+        ),
+        const SizedBox(width: 8.0),
+        (isReversed ? _buildNbPages(context) : _builderCurrentPage()),
+        _buildSlider(context),
+        (isReversed ? _builderCurrentPage() : _buildNbPages(context)),
+        const SizedBox(width: 8.0),
+        ToolbarButton(
+          asset:
+              'packages/iridium_reader_widget/assets/images/ic_skip_right_white_24dp.png',
+          onPressed: onSkipRight,
+        ),
+      ],
+    );
+  }
 
   Widget _builderCurrentPage() => StreamBuilder<int>(
         initialData: 1,
@@ -101,6 +105,20 @@ class ReaderToolbarState extends State<ReaderToolbar> {
           pageNumber: snapshot.data ?? 1,
         ),
       );
+  // Widget _builderCurrentPage() => StreamBuilder<int>(
+  //       initialData: 1,
+  //       stream: pageNumberController.stream,
+  //       builder: (context, snapshot) {
+  //         var isReversed =
+  //             readerContext.readingProgression?.isReverseOrder() ?? false;
+  //         var nbPages = readerContext.publication?.nbPages ?? 1;
+  //         var curPageNumber = snapshot.data ?? 1;
+  //         return ToolbarPageNumber(
+  //           pageNumber:
+  //               (isReversed ? nbPages - curPageNumber + 1 : curPageNumber),
+  //         );
+  //       },
+  //     );
 
   Widget _buildNbPages(BuildContext context) => ToolbarPageNumber(
         pageNumber: readerContext.publication?.nbPages ?? 1,
@@ -110,17 +128,53 @@ class ReaderToolbarState extends State<ReaderToolbar> {
         child: StreamBuilder<int>(
             initialData: 1,
             stream: pageNumberController.stream,
-            builder: (context, snapshot) => Slider(
-                  onChanged: (value) => pageNumberController.add(value.toInt()),
-                  onChangeEnd: (value) {
-                    readerContext.execute(GoToPageCommand(value.toInt()));
+            builder: (context, snapshot) {
+              var isReversed =
+                  readerContext.readingProgression?.isReverseOrder() ?? false;
+              var maxPageNumber =
+                  readerContext.publication?.nbPages.toDouble() ?? 1;
+              var curPageNum = snapshot.data?.toDouble() ?? 1;
+              return FlutterSlider(
+                  rtl: isReversed,
+                  onDragging: (handlerIndex, lowerValue, upperValue) =>
+                      pageNumberController.add(lowerValue.toInt()),
+                  onDragCompleted: (handlerIndex, lowerValue, upperValue) {
+                    readerContext.execute(GoToPageCommand(lowerValue.toInt()));
                   },
                   min: 1.0,
-                  max: readerContext.publication?.nbPages.toDouble() ?? 1,
-                  value: snapshot.data?.toDouble() ?? 1,
-                  activeColor: Theme.of(context).colorScheme.onPrimaryContainer,
-                  inactiveColor:
-                      Theme.of(context).colorScheme.onPrimaryContainer,
-                )),
+                  max: maxPageNumber,
+                  values: [curPageNum],
+                  trackBar: FlutterSliderTrackBar(
+                    inactiveTrackBarHeight: 4,
+                    activeTrackBarHeight: 6,
+                    inactiveTrackBar: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20),
+                      color: Theme.of(context).colorScheme.onPrimaryContainer,
+                      //border: Border.all(width: 3, color: Colors.blue),
+                    ),
+                    activeTrackBar: BoxDecoration(
+                        borderRadius: BorderRadius.circular(4),
+                        color:
+                            Theme.of(context).colorScheme.onPrimaryContainer),
+                  ),
+                  handler: FlutterSliderHandler(
+                    child: Icon(
+                      Icons.adjust,
+                      color: Theme.of(context).colorScheme.onPrimaryContainer,
+                      size: 24,
+                    ),
+                  ));
+              // return Slider(
+              //   onChanged: (value) => pageNumberController.add(value.toInt()),
+              //   onChangeEnd: (value) {
+              //     readerContext.execute(GoToPageCommand(value.toInt()));
+              //   },
+              //   min: 1.0,
+              //   max: readerContext.publication?.nbPages.toDouble() ?? 1,
+              //   value: snapshot.data?.toDouble() ?? 1,
+              //   activeColor: Theme.of(context).colorScheme.onPrimaryContainer,
+              //   inactiveColor: Theme.of(context).colorScheme.onPrimaryContainer,
+              // );
+            }),
       );
 }

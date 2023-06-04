@@ -57,7 +57,7 @@ abstract class ZipHeader {
 }
 
 class ZipLocalFile extends ZipHeader implements JSONable {
-  ZipLocalFile(int signature) : super(signature);
+  ZipLocalFile(super.signature);
 
   late int versionToExtract; // 2 bytes
   late int generalFlag; // 2 bytes
@@ -118,7 +118,7 @@ class ZipLocalFile extends ZipHeader implements JSONable {
 }
 
 class ZipCentralDirectory extends ZipLocalFile {
-  ZipCentralDirectory(int signature) : super(signature);
+  ZipCentralDirectory(super.signature);
   late int versionMade; // 2 bytes
 
   late int commentLength; // 2 bytes
@@ -173,7 +173,7 @@ class ZipCentralDirectory extends ZipLocalFile {
 }
 
 class ZipEndCentralDirectory extends ZipHeader implements JSONable {
-  ZipEndCentralDirectory(int signature) : super(signature);
+  ZipEndCentralDirectory(super.signature);
 
   late int numberOfDisk; // 2 bytes
   late int numberOfDiskWithCentralDirectory; // 2 bytes

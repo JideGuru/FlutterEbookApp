@@ -13,7 +13,7 @@ import 'package:flutter_ebook_app/router.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:iridium_reader_widget/views/viewers/epub_screen.dart';
-import 'package:share/share.dart';
+import 'package:share_plus/share_plus.dart';
 
 class BookDetailsScreen extends ConsumerStatefulWidget {
   final Entry entry;

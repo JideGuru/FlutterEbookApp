@@ -1,0 +1,53 @@
+:root {
+    --RS__viewportHeight: 99.9vh;
+    --RS__scroll-snap-stop: always;
+}
+
+html {
+    overflow-x: scroll;
+    scroll-snap-type: x mandatory;
+}
+
+#readium_paginator {
+    width: calc(var(--RS__colCount) * var(--RS__viewportWidth));
+    pointer-events: none;
+    display: flex;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+}
+
+/* coloration */
+/*
+#readium_paginator > div:nth-child(even) {
+    opacity: 20%;
+    background-color: #87EA87 !important;
+}
+#readium_paginator > div:nth-child(odd) {
+    opacity: 20%;
+    background-color: #87CCEA !important;
+}
+*/
+.readium_page_overlay {
+    pointer-events: none;
+    scroll-snap-align: center;
+    scroll-snap-stop: var(--RS__scroll-snap-stop);
+    height: var(--RS__viewportHeight);
+    min-height: var(--RS__viewportHeight);
+    width: var(--RS__viewportWidth);
+    min-width: var(--RS__viewportWidth);
+}
+.readium_page_bookmark {
+    float: right;
+    right: 0;
+    top: 0;
+    height: 48px;
+    width: 48px;
+    pointer-events: auto;
+}
+.readium_page_bookmark img {
+    display: none;
+    opacity: 0.6;
+    height: 48px;
+    width: 48px;
+}
