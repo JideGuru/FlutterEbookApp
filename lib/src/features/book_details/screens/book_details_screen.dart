@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_ebook_app/src/features/common/data/notifiers/favorites/favorites_state_notifier.dart';
@@ -284,7 +286,7 @@ class _DownloadButton extends ConsumerWidget {
         }
         final book = books.firstWhere((element) => element['id'] == id);
         return TextButton(
-          onPressed: () => openBook(book['path'], context),
+          onPressed: () => openBook(book['path'], context, ref),
           child: Text(
             'Read Book'.toUpperCase(),
             style: TextStyle(
@@ -318,8 +320,23 @@ class _DownloadButton extends ConsumerWidget {
         ),
       );
 
-  Future<void> openBook(String path, BuildContext context) async {
-    MyRouter.pushPage(context, EpubScreen.fromPath(filePath: path));
+  Future<void> openBook(
+    String path,
+    BuildContext context,
+    WidgetRef ref,
+  ) async {
+    File bookFile = File(path);
+    if (bookFile.existsSync()) {
+      MyRouter.pushPage(context, EpubScreen.fromPath(filePath: path));
+    } else {
+      const snackBar = SnackBar(
+        content: Text(
+          'Could not find the book file. Please download it again.',
+        ),
+      );
+      ScaffoldMessenger.of(context).showSnackBar(snackBar);
+      ref.read(downloadsStateNotifierProvider.notifier).deleteBook(id);
+    }
   }
 }
 

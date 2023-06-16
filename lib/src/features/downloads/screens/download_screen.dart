@@ -53,7 +53,7 @@ class _DownloadsScreenState extends ConsumerState<DownloadsScreen> {
                 onDismissed: (d) {
                   ref
                       .watch(downloadsStateNotifierProvider.notifier)
-                      .deleteBook(book, book['id']);
+                      .deleteBook(book['id']);
                 },
                 child: InkWell(
                   onTap: () async {

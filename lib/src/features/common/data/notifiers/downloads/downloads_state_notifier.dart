@@ -38,7 +38,7 @@ class DownloadsStateNotifier extends StateNotifier<DownloadsState> {
     await _repository.addBook(book, id);
   }
 
-  Future<void> deleteBook(Map<String, dynamic> book, id) async {
+  Future<void> deleteBook(String id) async {
     await _repository.deleteBook(id);
   }
 }
