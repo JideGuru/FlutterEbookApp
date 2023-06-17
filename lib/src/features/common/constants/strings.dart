@@ -1,3 +1,3 @@
 class Strings {
-  static String appName = 'Flutter Ebook App';
+  static String appName = 'OpenLeaf';
 }
