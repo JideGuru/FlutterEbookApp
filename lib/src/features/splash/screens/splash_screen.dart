@@ -1,9 +1,10 @@
 import 'dart:async';
 
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_ebook_app/src/features/tabs/screens/tabs_screen.dart';
-import 'package:flutter_ebook_app/router.dart';
+import 'package:flutter_ebook_app/src/router/app_router.dart';
 
+@RoutePage()
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
 
@@ -21,7 +22,7 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   void changeScreen() async {
-    MyRouter.pushPageReplacement(context, const TabsScreen());
+    context.router.replace(const TabsRoute());
   }
 
   @override

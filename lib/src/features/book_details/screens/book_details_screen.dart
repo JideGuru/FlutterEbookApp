@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:auto_route/auto_route.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_ebook_app/src/features/common/data/notifiers/favorites/favorites_state_notifier.dart';
@@ -11,12 +12,12 @@ import 'package:flutter_ebook_app/src/features/common/data/models/category_feed.
 import 'package:flutter_ebook_app/src/features/common/data/notifiers/downloads/downloads_state_notifier.dart';
 import 'package:flutter_ebook_app/src/features/common/widgets/book_list_item.dart';
 import 'package:flutter_ebook_app/src/features/common/widgets/description_text.dart';
-import 'package:flutter_ebook_app/router.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:iridium_reader_widget/views/viewers/epub_screen.dart';
 import 'package:share_plus/share_plus.dart';
 
+@RoutePage()
 class BookDetailsScreen extends ConsumerStatefulWidget {
   final Entry entry;
   final String imgTag;
@@ -327,7 +328,9 @@ class _DownloadButton extends ConsumerWidget {
   ) async {
     File bookFile = File(path);
     if (bookFile.existsSync()) {
-      MyRouter.pushPage(context, EpubScreen.fromPath(filePath: path));
+      MaterialPageRoute(builder: (_) {
+        return EpubScreen.fromPath(filePath: path);
+      });
     } else {
       const snackBar = SnackBar(
         content: Text(

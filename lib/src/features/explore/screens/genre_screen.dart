@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_ebook_app/src/features/common/widgets/loading_widget.dart';
 import 'package:flutter_ebook_app/src/features/common/data/models/category_feed.dart';
@@ -7,6 +8,7 @@ import 'package:flutter_ebook_app/src/features/common/widgets/book_list_item.dar
 import 'package:flutter_ebook_app/src/features/explore/notifiers/genre_feed/genre_feed_state_notifier.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+@RoutePage()
 class GenreScreen extends ConsumerStatefulWidget {
   final String title;
   final String url;
