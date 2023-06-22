@@ -39,7 +39,7 @@ class AppRouter extends _$AppRouter {
       CupertinoRoute(
         page: ExploreRoute.page,
         path: '/explore-tab',
-      ), 
+      ),
       CupertinoRoute(
         page: GenreRoute.page,
         path: '/genre-tab',
