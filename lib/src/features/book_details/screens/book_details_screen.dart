@@ -3,19 +3,11 @@ import 'dart:io';
 import 'package:auto_route/auto_route.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_ebook_app/src/features/common/data/notifiers/favorites/favorites_state_notifier.dart';
-import 'package:flutter_ebook_app/src/features/common/widgets/error_widget.dart';
-import 'package:flutter_ebook_app/src/features/common/widgets/modal_dialogs/download_alert.dart';
-import 'package:flutter_ebook_app/src/features/common/widgets/loading_widget.dart';
-import 'package:flutter_ebook_app/src/features/book_details/data/notifier/book_details_state_notifier.dart';
-import 'package:flutter_ebook_app/src/features/common/data/models/category_feed.dart';
-import 'package:flutter_ebook_app/src/features/common/data/notifiers/downloads/downloads_state_notifier.dart';
-import 'package:flutter_ebook_app/src/features/common/widgets/book_list_item.dart';
-import 'package:flutter_ebook_app/src/features/common/widgets/description_text.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:iridium_reader_widget/views/viewers/epub_screen.dart';
 import 'package:share_plus/share_plus.dart';
+import 'package:flutter_ebook_app/src/features/features.dart';
 
 @RoutePage()
 class BookDetailsScreen extends ConsumerStatefulWidget {
@@ -337,7 +329,7 @@ class _DownloadButton extends ConsumerWidget {
           'Could not find the book file. Please download it again.',
         ),
       );
-      ScaffoldMessenger.of(context).showSnackBar(snackBar);
+      context.showSnackBar(snackBar);
       ref.read(downloadsStateNotifierProvider.notifier).deleteBook(id);
     }
   }

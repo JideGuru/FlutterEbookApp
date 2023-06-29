@@ -1,7 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter_ebook_app/src/features/features.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_ebook_app/src/features/common/data/models/category_feed.dart';
 
 part 'app_router.gr.dart';
 
@@ -39,7 +38,7 @@ class AppRouter extends _$AppRouter {
       CupertinoRoute(
         page: ExploreRoute.page,
         path: '/explore-tab',
-      ), 
+      ),
       CupertinoRoute(
         page: GenreRoute.page,
         path: '/genre-tab',

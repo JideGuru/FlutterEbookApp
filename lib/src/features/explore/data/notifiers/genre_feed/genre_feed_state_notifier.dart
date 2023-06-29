@@ -1,7 +1,7 @@
-import 'package:flutter_ebook_app/src/features/common/data/models/category_feed.dart';
-import 'package:flutter_ebook_app/src/features/explore/repositories/explore_repository.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+
+import 'package:flutter_ebook_app/src/features/features.dart';
 
 part 'genre_feed_state.dart';
 

@@ -6,7 +6,6 @@ import 'package:flutter_ebook_app/src/features/common/widgets/loading_widget.dar
 import 'package:iridium_reader_widget/util/router.dart';
 import 'package:uuid/uuid.dart';
 
-
 class BookItem extends StatelessWidget {
   final String img;
   final String title;

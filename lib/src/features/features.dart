@@ -6,3 +6,4 @@ export 'home/home.dart';
 export 'favorites/favourites.dart';
 export 'downloads/downloads.dart';
 export 'book_details/book_details.dart';
+export 'common/common.dart';

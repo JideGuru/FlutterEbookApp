@@ -2,7 +2,6 @@ import 'package:auto_route/auto_route.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_ebook_app/src/features/common/widgets/loading_widget.dart';
-import 'package:flutter_ebook_app/src/features/book_details/screens/book_details_screen.dart';
 import 'package:flutter_ebook_app/src/features/common/data/models/category_feed.dart';
 import 'package:flutter_ebook_app/src/router/app_router.dart';
 import 'package:uuid/uuid.dart';

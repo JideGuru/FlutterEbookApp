@@ -18,6 +18,7 @@ class FavoritesLocalDataSourceImpl implements FavoritesLocalDataSource {
   Future<void> addBook(Entry book, String id) async {
     await _store.record(id).put(_database, book.toJson());
   }
+
   @override
   Future<void> deleteBook(String id) async {
     await _store.record(id).delete(_database);
@@ -25,10 +26,7 @@ class FavoritesLocalDataSourceImpl implements FavoritesLocalDataSource {
 
   @override
   Stream<List<Entry>> favoritesListStream() {
-    return _store
-        .query()
-        .onSnapshots(_database)
-        .map<List<Entry>>(
+    return _store.query().onSnapshots(_database).map<List<Entry>>(
           (records) => records
               .map<Entry>((record) => Entry.fromJson(record.value))
               .toList(),
