@@ -1,14 +1,13 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_ebook_app/src/features/common/widgets/loading_widget.dart';
-import 'package:flutter_ebook_app/src/features/common/data/notifiers/downloads/downloads_state_notifier.dart';
-import 'package:flutter_ebook_app/src/features/common/widgets/empty_view.dart';
-import 'package:flutter_ebook_app/router.dart';
+import 'package:flutter_ebook_app/src/features/features.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:iridium_reader_widget/views/viewers/epub_screen.dart';
 import 'package:uuid/uuid.dart';
 
+@RoutePage()
 class DownloadsScreen extends ConsumerStatefulWidget {
   const DownloadsScreen({Key? key}) : super(key: key);
 
@@ -59,9 +58,11 @@ class _DownloadsScreenState extends ConsumerState<DownloadsScreen> {
                   onTap: () async {
                     String path = book['path'];
 
-                    MyRouter.pushPage(
+                    Navigator.push(
                       context,
-                      EpubScreen.fromPath(filePath: path),
+                      MaterialPageRoute(builder: (_) {
+                        return EpubScreen.fromPath(filePath: path);
+                      }),
                     );
                   },
                   child: Padding(
@@ -110,7 +111,7 @@ class _DownloadsScreenState extends ConsumerState<DownloadsScreen> {
                                     style: TextStyle(
                                       fontSize: 13.0,
                                       fontWeight: FontWeight.bold,
-                                      color: Theme.of(context)
+                                      color: context.theme
                                           .colorScheme
                                           .secondary,
                                     ),

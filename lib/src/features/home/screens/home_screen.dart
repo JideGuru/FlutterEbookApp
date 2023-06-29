@@ -1,15 +1,10 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_ebook_app/src/features/common/constants/strings.dart';
-import 'package:flutter_ebook_app/src/features/common/widgets/error_widget.dart';
-import 'package:flutter_ebook_app/src/features/common/widgets/loading_widget.dart';
-import 'package:flutter_ebook_app/src/features/common/data/models/category_feed.dart';
-import 'package:flutter_ebook_app/src/features/common/widgets/book_card.dart';
-import 'package:flutter_ebook_app/src/features/common/widgets/book_list_item.dart';
-import 'package:flutter_ebook_app/src/features/explore/screens/genre_screen.dart';
-import 'package:flutter_ebook_app/src/features/home/data/notifiers/home_feed_state_notifier.dart';
-import 'package:flutter_ebook_app/router.dart';
+import 'package:flutter_ebook_app/src/features/features.dart';
+import 'package:flutter_ebook_app/src/router/app_router.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+@RoutePage()
 class HomeScreen extends ConsumerStatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
 
@@ -169,7 +164,7 @@ class _GenreSection extends StatelessWidget {
               ),
               child: Container(
                 decoration: BoxDecoration(
-                  color: Theme.of(context).colorScheme.secondary,
+                  color: context.theme.colorScheme.secondary,
                   borderRadius: const BorderRadius.all(
                     Radius.circular(20.0),
                   ),
@@ -179,13 +174,10 @@ class _GenreSection extends StatelessWidget {
                     Radius.circular(20.0),
                   ),
                   onTap: () {
-                    MyRouter.pushPage(
-                      context,
-                      GenreScreen(
-                        title: '${link.title}',
-                        url: link.href!,
-                      ),
-                    );
+                    context.router.push(GenreRoute(
+                      title: '${link.title}',
+                      url: link.href!,
+                    ));
                   },
                   child: Center(
                     child: Padding(

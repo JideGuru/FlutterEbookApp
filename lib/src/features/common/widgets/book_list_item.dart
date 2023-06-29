@@ -1,9 +1,8 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_ebook_app/src/features/common/widgets/loading_widget.dart';
-import 'package:flutter_ebook_app/src/features/book_details/screens/book_details_screen.dart';
-import 'package:flutter_ebook_app/src/features/common/data/models/category_feed.dart';
-import 'package:flutter_ebook_app/router.dart';
+import 'package:flutter_ebook_app/src/features/features.dart';
+import 'package:flutter_ebook_app/src/router/app_router.dart';
 import 'package:uuid/uuid.dart';
 
 class BookListItem extends StatelessWidget {
@@ -23,9 +22,8 @@ class BookListItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        MyRouter.pushPage(
-          context,
-          BookDetailsScreen(
+        context.router.push(
+          BookDetailsRoute(
             entry: entry,
             imgTag: imgTag,
             titleTag: titleTag,
@@ -86,7 +84,7 @@ class BookListItem extends StatelessWidget {
                         style: TextStyle(
                           fontSize: 17.0,
                           fontWeight: FontWeight.bold,
-                          color: Theme.of(context).textTheme.titleLarge!.color,
+                          color: context.theme.textTheme.titleLarge!.color,
                         ),
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis,
@@ -103,7 +101,7 @@ class BookListItem extends StatelessWidget {
                         style: TextStyle(
                           fontSize: 14.0,
                           fontWeight: FontWeight.w800,
-                          color: Theme.of(context).colorScheme.secondary,
+                          color: context.theme.colorScheme.secondary,
                         ),
                       ),
                     ),
@@ -116,7 +114,7 @@ class BookListItem extends StatelessWidget {
                         .replaceAll(r'\"', '"'),
                     style: TextStyle(
                       fontSize: 13.0,
-                      color: Theme.of(context).textTheme.bodySmall!.color,
+                      color: context.theme.textTheme.bodySmall!.color,
                     ),
                   ),
                 ],

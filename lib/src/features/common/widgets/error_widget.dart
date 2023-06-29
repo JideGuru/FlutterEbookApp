@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_ebook_app/src/features/features.dart';
 
 class MyErrorWidget extends StatelessWidget {
   final Function refreshCallBack;
@@ -30,7 +31,7 @@ class MyErrorWidget extends StatelessWidget {
               getErrorText(),
               textAlign: TextAlign.center,
               style: TextStyle(
-                color: Theme.of(context).textTheme.titleLarge!.color,
+                color: context.theme.textTheme.titleLarge!.color,
                 fontSize: 17.0,
                 fontWeight: FontWeight.w700,
               ),
@@ -42,7 +43,7 @@ class MyErrorWidget extends StatelessWidget {
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(5.0),
               ),
-              backgroundColor: Theme.of(context).colorScheme.secondary,
+              backgroundColor: context.theme.colorScheme.secondary,
             ),
             child: const Text(
               'TRY AGAIN',

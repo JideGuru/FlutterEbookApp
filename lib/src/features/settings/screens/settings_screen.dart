@@ -1,11 +1,11 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_ebook_app/src/features/common/data/notifiers/current_app_theme/current_app_theme_state_notifier.dart';
-import 'package:flutter_ebook_app/src/features/downloads/screens/download_screen.dart';
-import 'package:flutter_ebook_app/router.dart';
-import 'package:flutter_ebook_app/src/features/favorites/screens/favorites_screen.dart';
+import 'package:flutter_ebook_app/src/features/features.dart';
+import 'package:flutter_ebook_app/src/router/app_router.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+@RoutePage()
 class SettingsScreen extends StatefulWidget {
   const SettingsScreen({Key? key}) : super(key: key);
 
@@ -23,12 +23,12 @@ class _SettingsScreenState extends State<SettingsScreen> {
       {
         'icon': Feather.heart,
         'title': 'Favorites',
-        'function': () => _pushPage(const FavoritesScreen()),
+        'function': () => _pushPage(const FavoritesRoute()),
       },
       {
         'icon': Feather.download,
         'title': 'Downloads',
-        'function': () => _pushPage(const DownloadsScreen()),
+        'function': () => _pushPage(const DownloadsRoute()),
       },
       {
         'icon': Feather.moon,
@@ -40,11 +40,11 @@ class _SettingsScreenState extends State<SettingsScreen> {
         'title': 'About',
         'function': () => showAbout(),
       },
-      {
-        'icon': Feather.file_text,
-        'title': 'Licenses',
-        'function': () => _pushPageDialog(const LicensePage()),
-      },
+      // {
+      //   'icon': Feather.file_text,
+      //   'title': 'Licenses',
+      //   'function': () => _pushPage(const LicensePage()),
+      // },
     ];
   }
 
@@ -88,12 +88,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
     );
   }
 
-  void _pushPage(Widget page) {
-    MyRouter.pushPage(context, page);
-  }
-
-  void _pushPageDialog(Widget page) {
-    MyRouter.pushPageDialog(context, page);
+  void _pushPage(PageRouteInfo route) {
+    context.router.push(route);
   }
 
   Future<void> showAbout() async {
@@ -111,7 +107,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
             TextButton(
               style: TextButton.styleFrom(
                 textStyle: TextStyle(
-                  color: Theme.of(context).colorScheme.secondary,
+                  color: context.theme.colorScheme.secondary,
                 ),
               ),
               onPressed: () => Navigator.pop(context),

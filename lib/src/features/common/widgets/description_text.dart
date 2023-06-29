@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_ebook_app/src/features/features.dart';
 
 class DescriptionTextWidget extends StatefulWidget {
   final String text;
@@ -39,7 +40,7 @@ class _DescriptionTextWidgetState extends State<DescriptionTextWidget> {
                   .replaceAll(r"\'", "'"),
               style: TextStyle(
                 fontSize: 16.0,
-                color: Theme.of(context).textTheme.bodySmall!.color,
+                color: context.theme.textTheme.bodySmall!.color,
               ),
             )
           : Column(
@@ -51,7 +52,7 @@ class _DescriptionTextWidgetState extends State<DescriptionTextWidget> {
                       .replaceAll(r"\'", "'"),
                   style: TextStyle(
                     fontSize: 16.0,
-                    color: Theme.of(context).textTheme.bodySmall!.color,
+                    color: context.theme.textTheme.bodySmall!.color,
                   ),
                 ),
                 InkWell(

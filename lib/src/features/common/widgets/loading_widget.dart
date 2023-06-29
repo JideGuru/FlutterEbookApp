@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_ebook_app/src/features/features.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 class LoadingWidget extends StatelessWidget {
@@ -8,7 +9,7 @@ class LoadingWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Color color = Theme.of(context).colorScheme.secondary;
+    Color color = context.theme.colorScheme.secondary;
     return Center(
       child: isImage ? SpinKitRipple(color: color) : SpinKitWave(color: color),
     );

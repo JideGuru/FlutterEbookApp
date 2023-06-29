@@ -1,22 +1,15 @@
 import 'dart:io';
 
+import 'package:auto_route/auto_route.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_ebook_app/src/features/common/data/notifiers/favorites/favorites_state_notifier.dart';
-import 'package:flutter_ebook_app/src/features/common/widgets/error_widget.dart';
-import 'package:flutter_ebook_app/src/features/common/widgets/modal_dialogs/download_alert.dart';
-import 'package:flutter_ebook_app/src/features/common/widgets/loading_widget.dart';
-import 'package:flutter_ebook_app/src/features/book_details/data/notifier/book_details_state_notifier.dart';
-import 'package:flutter_ebook_app/src/features/common/data/models/category_feed.dart';
-import 'package:flutter_ebook_app/src/features/common/data/notifiers/downloads/downloads_state_notifier.dart';
-import 'package:flutter_ebook_app/src/features/common/widgets/book_list_item.dart';
-import 'package:flutter_ebook_app/src/features/common/widgets/description_text.dart';
-import 'package:flutter_ebook_app/router.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:iridium_reader_widget/views/viewers/epub_screen.dart';
 import 'package:share_plus/share_plus.dart';
+import 'package:flutter_ebook_app/src/features/features.dart';
 
+@RoutePage()
 class BookDetailsScreen extends ConsumerStatefulWidget {
   final Entry entry;
   final String imgTag;
@@ -73,7 +66,7 @@ class _BookDetailsScreenState extends ConsumerState<BookDetailsScreen> {
                       favorited ? Icons.favorite : Feather.heart,
                       color: favorited
                           ? Colors.red
-                          : Theme.of(context).iconTheme.color,
+                          : context.theme.iconTheme.color,
                     ),
                   );
                 },
@@ -126,7 +119,7 @@ class _Divider extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Divider(color: Theme.of(context).textTheme.bodySmall!.color);
+    return Divider(color: context.theme.textTheme.bodySmall!.color);
   }
 }
 
@@ -238,7 +231,7 @@ class _CategoryChips extends StatelessWidget {
                   color: Colors.transparent,
                   borderRadius: const BorderRadius.all(Radius.circular(20)),
                   border: Border.all(
-                    color: Theme.of(context).colorScheme.secondary,
+                    color: context.theme.colorScheme.secondary,
                   ),
                 ),
                 child: Padding(
@@ -249,7 +242,7 @@ class _CategoryChips extends StatelessWidget {
                   child: Text(
                     '${category.label}',
                     style: TextStyle(
-                      color: Theme.of(context).colorScheme.secondary,
+                      color: context.theme.colorScheme.secondary,
                       fontSize: 12.0,
                       fontWeight: FontWeight.bold,
                     ),
@@ -292,7 +285,7 @@ class _DownloadButton extends ConsumerWidget {
             style: TextStyle(
               fontSize: 15,
               color:
-                  Theme.of(context).textTheme.titleLarge?.color ?? Colors.black,
+                  context.theme.textTheme.titleLarge?.color ?? Colors.black,
             ),
           ),
         );
@@ -315,7 +308,7 @@ class _DownloadButton extends ConsumerWidget {
           style: TextStyle(
             fontSize: 15,
             color:
-                Theme.of(context).textTheme.titleLarge?.color ?? Colors.black,
+                context.theme.textTheme.titleLarge?.color ?? Colors.black,
           ),
         ),
       );
@@ -327,14 +320,16 @@ class _DownloadButton extends ConsumerWidget {
   ) async {
     File bookFile = File(path);
     if (bookFile.existsSync()) {
-      MyRouter.pushPage(context, EpubScreen.fromPath(filePath: path));
+      MaterialPageRoute(builder: (_) {
+        return EpubScreen.fromPath(filePath: path);
+      });
     } else {
       const snackBar = SnackBar(
         content: Text(
           'Could not find the book file. Please download it again.',
         ),
       );
-      ScaffoldMessenger.of(context).showSnackBar(snackBar);
+      context.showSnackBar(snackBar);
       ref.read(downloadsStateNotifierProvider.notifier).deleteBook(id);
     }
   }
@@ -350,7 +345,7 @@ class _SectionTitle extends StatelessWidget {
     return Text(
       title,
       style: TextStyle(
-        color: Theme.of(context).colorScheme.secondary,
+        color: context.theme.colorScheme.secondary,
         fontSize: 20.0,
         fontWeight: FontWeight.bold,
       ),

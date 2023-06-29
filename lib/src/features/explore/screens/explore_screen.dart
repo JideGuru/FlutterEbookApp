@@ -1,15 +1,10 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_ebook_app/src/features/common/widgets/error_widget.dart';
-import 'package:flutter_ebook_app/src/features/common/widgets/loading_widget.dart';
-import 'package:flutter_ebook_app/src/features/common/widgets/book_card.dart';
-import 'package:flutter_ebook_app/src/features/explore/notifiers/genre_feed/genre_feed_state_notifier.dart';
-import 'package:flutter_ebook_app/src/features/explore/screens/genre_screen.dart';
-import 'package:flutter_ebook_app/src/features/home/data/notifiers/home_feed_state_notifier.dart';
-import 'package:flutter_ebook_app/router.dart';
+import 'package:flutter_ebook_app/src/features/features.dart';
+import 'package:flutter_ebook_app/src/router/app_router.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import 'package:flutter_ebook_app/src/features/common/data/models/category_feed.dart';
-
+@RoutePage()
 class ExploreScreen extends ConsumerStatefulWidget {
   const ExploreScreen({super.key});
 
@@ -91,9 +86,8 @@ class _SectionHeader extends StatelessWidget {
           ),
           GestureDetector(
             onTap: () {
-              MyRouter.pushPage(
-                context,
-                GenreScreen(
+              context.router.push(
+                GenreRoute(
                   title: '${link.title}',
                   url: link.href!,
                 ),
@@ -102,7 +96,7 @@ class _SectionHeader extends StatelessWidget {
             child: Text(
               'See All',
               style: TextStyle(
-                color: Theme.of(context).colorScheme.secondary,
+                color: context.theme.colorScheme.secondary,
                 fontWeight: FontWeight.w400,
               ),
             ),
