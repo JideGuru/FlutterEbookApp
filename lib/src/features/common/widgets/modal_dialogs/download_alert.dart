@@ -2,10 +2,7 @@ import 'dart:io';
 
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_ebook_app/src/features/common/constants/strings.dart';
-import 'package:flutter_ebook_app/src/features/common/constants/utils.dart';
-import 'package:flutter_ebook_app/src/features/common/widgets/modal_dialogs/custom_alert.dart';
-import 'package:flutter_ebook_app/src/features/common/data/notifiers/downloads/downloads_state_notifier.dart';
+import 'package:flutter_ebook_app/src/features/features.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
@@ -169,10 +166,10 @@ class _DownloadAlertState extends ConsumerState<DownloadAlert> {
                 child: LinearProgressIndicator(
                   value: double.parse(progress) / 100.0,
                   valueColor: AlwaysStoppedAnimation(
-                    Theme.of(context).colorScheme.secondary,
+                    context.theme.colorScheme.secondary,
                   ),
                   backgroundColor:
-                      Theme.of(context).colorScheme.secondary.withOpacity(0.3),
+                      context.theme.colorScheme.secondary.withOpacity(0.3),
                 ),
               ),
               const SizedBox(height: 5.0),

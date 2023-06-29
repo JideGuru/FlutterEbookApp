@@ -107,7 +107,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
             TextButton(
               style: TextButton.styleFrom(
                 textStyle: TextStyle(
-                  color: Theme.of(context).colorScheme.secondary,
+                  color: context.theme.colorScheme.secondary,
                 ),
               ),
               onPressed: () => Navigator.pop(context),

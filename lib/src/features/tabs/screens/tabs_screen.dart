@@ -33,8 +33,8 @@ class TabsScreen extends ConsumerWidget {
           return Scaffold(
             body: child,
             bottomNavigationBar: BottomNavigationBar(
-              backgroundColor: Theme.of(context).primaryColor,
-              selectedItemColor: Theme.of(context).colorScheme.secondary,
+              backgroundColor: context.theme.primaryColor,
+              selectedItemColor: context.theme.colorScheme.secondary,
               unselectedItemColor: Colors.grey[500],
               elevation: 20,
               type: BottomNavigationBarType.fixed,

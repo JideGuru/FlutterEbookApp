@@ -1,8 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_ebook_app/src/features/common/constants/strings.dart';
-import 'package:flutter_ebook_app/src/features/common/widgets/modal_dialogs/custom_alert.dart';
+import 'package:flutter_ebook_app/src/features/features.dart';
 
 class ExitModalDialog extends StatelessWidget {
   const ExitModalDialog({Key? key}) : super(key: key);
@@ -51,7 +50,7 @@ class ExitModalDialog extends StatelessWidget {
                     child: Text(
                       'No',
                       style: TextStyle(
-                        color: Theme.of(context).colorScheme.secondary,
+                        color: context.theme.colorScheme.secondary,
                       ),
                     ),
                     onPressed: () => Navigator.pop(context),
@@ -65,7 +64,7 @@ class ExitModalDialog extends StatelessWidget {
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(5.0),
                       ),
-                      backgroundColor: Theme.of(context).colorScheme.secondary,
+                      backgroundColor: context.theme.colorScheme.secondary,
                     ),
                     child: const Text(
                       'Yes',

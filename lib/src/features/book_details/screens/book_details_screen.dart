@@ -66,7 +66,7 @@ class _BookDetailsScreenState extends ConsumerState<BookDetailsScreen> {
                       favorited ? Icons.favorite : Feather.heart,
                       color: favorited
                           ? Colors.red
-                          : Theme.of(context).iconTheme.color,
+                          : context.theme.iconTheme.color,
                     ),
                   );
                 },
@@ -119,7 +119,7 @@ class _Divider extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Divider(color: Theme.of(context).textTheme.bodySmall!.color);
+    return Divider(color: context.theme.textTheme.bodySmall!.color);
   }
 }
 
@@ -231,7 +231,7 @@ class _CategoryChips extends StatelessWidget {
                   color: Colors.transparent,
                   borderRadius: const BorderRadius.all(Radius.circular(20)),
                   border: Border.all(
-                    color: Theme.of(context).colorScheme.secondary,
+                    color: context.theme.colorScheme.secondary,
                   ),
                 ),
                 child: Padding(
@@ -242,7 +242,7 @@ class _CategoryChips extends StatelessWidget {
                   child: Text(
                     '${category.label}',
                     style: TextStyle(
-                      color: Theme.of(context).colorScheme.secondary,
+                      color: context.theme.colorScheme.secondary,
                       fontSize: 12.0,
                       fontWeight: FontWeight.bold,
                     ),
@@ -285,7 +285,7 @@ class _DownloadButton extends ConsumerWidget {
             style: TextStyle(
               fontSize: 15,
               color:
-                  Theme.of(context).textTheme.titleLarge?.color ?? Colors.black,
+                  context.theme.textTheme.titleLarge?.color ?? Colors.black,
             ),
           ),
         );
@@ -308,7 +308,7 @@ class _DownloadButton extends ConsumerWidget {
           style: TextStyle(
             fontSize: 15,
             color:
-                Theme.of(context).textTheme.titleLarge?.color ?? Colors.black,
+                context.theme.textTheme.titleLarge?.color ?? Colors.black,
           ),
         ),
       );
@@ -345,7 +345,7 @@ class _SectionTitle extends StatelessWidget {
     return Text(
       title,
       style: TextStyle(
-        color: Theme.of(context).colorScheme.secondary,
+        color: context.theme.colorScheme.secondary,
         fontSize: 20.0,
         fontWeight: FontWeight.bold,
       ),

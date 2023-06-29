@@ -164,7 +164,7 @@ class _GenreSection extends StatelessWidget {
               ),
               child: Container(
                 decoration: BoxDecoration(
-                  color: Theme.of(context).colorScheme.secondary,
+                  color: context.theme.colorScheme.secondary,
                   borderRadius: const BorderRadius.all(
                     Radius.circular(20.0),
                   ),

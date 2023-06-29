@@ -111,7 +111,7 @@ class _DownloadsScreenState extends ConsumerState<DownloadsScreen> {
                                     style: TextStyle(
                                       fontSize: 13.0,
                                       fontWeight: FontWeight.bold,
-                                      color: Theme.of(context)
+                                      color: context.theme
                                           .colorScheme
                                           .secondary,
                                     ),

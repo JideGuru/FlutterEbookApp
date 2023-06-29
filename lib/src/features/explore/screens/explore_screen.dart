@@ -96,7 +96,7 @@ class _SectionHeader extends StatelessWidget {
             child: Text(
               'See All',
               style: TextStyle(
-                color: Theme.of(context).colorScheme.secondary,
+                color: context.theme.colorScheme.secondary,
                 fontWeight: FontWeight.w400,
               ),
             ),
