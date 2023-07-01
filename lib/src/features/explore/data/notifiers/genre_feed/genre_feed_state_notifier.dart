@@ -47,7 +47,6 @@ class GenreFeedStateNotifier extends StateNotifier<GenreFeedState> {
             loadingMore: true,
           );
 
-
           final successOrFailure =
               await _exploreRepository.getGenreFeed(url + '&page=$page');
           final success = successOrFailure.$1;
