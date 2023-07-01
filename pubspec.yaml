@@ -10,7 +10,7 @@ dependencies:
   auto_route: ^7.4.0
   cached_network_image: ^3.2.3
   cupertino_icons: ^1.0.3
-#  dartz: ^0.10.1
+  #  dartz: ^0.10.1
   dio: ^5.1.2
   flutter:
     sdk: flutter
