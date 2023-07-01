@@ -111,9 +111,8 @@ class _DownloadsScreenState extends ConsumerState<DownloadsScreen> {
                                     style: TextStyle(
                                       fontSize: 13.0,
                                       fontWeight: FontWeight.bold,
-                                      color: context.theme
-                                          .colorScheme
-                                          .secondary,
+                                      color:
+                                          context.theme.colorScheme.secondary,
                                     ),
                                     maxLines: 2,
                                     overflow: TextOverflow.ellipsis,

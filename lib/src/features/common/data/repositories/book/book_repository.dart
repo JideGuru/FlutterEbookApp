@@ -1,6 +1,5 @@
 import 'dart:convert';
 
-import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_ebook_app/src/features/common/data/failures/http_failure.dart';
 import 'package:flutter_ebook_app/src/features/common/data/models/category_feed.dart';
@@ -11,7 +10,7 @@ abstract class BookRepository {
 
   const BookRepository(this.httpClient);
 
-  Future<Either<HttpFailure, CategoryFeed>> getCategory(String url) async {
+  Future<(CategoryFeed?, HttpFailure?)> getCategory(String url) async {
     try {
       final res = await httpClient.get(url);
       CategoryFeed category;
@@ -19,13 +18,13 @@ abstract class BookRepository {
       xml2json.parse(res.data.toString());
       var json = jsonDecode(xml2json.toGData());
       category = CategoryFeed.fromJson(json as Map<String, dynamic>);
-      return right(category);
+      return (category, null);
     } on DioError catch (error) {
       final statusCode = error.response?.statusCode ?? 500;
       if (statusCode == 404) {
-        return left(HttpFailure.notFound);
+        return (null, HttpFailure.notFound);
       }
-      return left(HttpFailure.unknown);
+      return (null, HttpFailure.unknown);
     }
   }
 }

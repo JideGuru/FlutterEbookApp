@@ -22,20 +22,20 @@ class GenreFeedStateNotifier extends StateNotifier<GenreFeedState> {
       state = const GenreFeedState.loadInProgress();
     }
 
-    final failureOrSuccess = await _exploreRepository.getGenreFeed(url);
-    failureOrSuccess.fold(
-      (failure) {
-        if (mounted) state = const GenreFeedState.loadFailure();
-      },
-      (success) {
-        if (mounted) {
-          state = GenreFeedState.loadSuccess(
-            loadingMore: false,
-            books: success.feed?.entry ?? [],
-          );
-        }
-      },
-    );
+    final successOrFailure = await _exploreRepository.getGenreFeed(url);
+    final success = successOrFailure.$1;
+    final failure = successOrFailure.$2;
+    if (mounted) {
+      if (failure is HttpFailure) {
+        state = const GenreFeedState.loadFailure();
+      }
+      if (success is CategoryFeed) {
+        state = GenreFeedState.loadSuccess(
+          loadingMore: false,
+          books: success.feed?.entry ?? [],
+        );
+      }
+    }
   }
 
   Future<void> paginate(int page) async {
@@ -47,23 +47,23 @@ class GenreFeedStateNotifier extends StateNotifier<GenreFeedState> {
             loadingMore: true,
           );
 
-          final failureOrSuccess =
+          final successOrFailure =
               await _exploreRepository.getGenreFeed(url + '&page=$page');
-          failureOrSuccess.fold(
-            (failure) {
-              if (mounted) state = const GenreFeedState.loadFailure();
-            },
-            (success) {
-              if (mounted) {
-                List<Entry> newItems = List.from(books)
-                  ..addAll(success.feed?.entry ?? []);
-                state = GenreFeedState.loadSuccess(
-                  loadingMore: false,
-                  books: newItems,
-                );
-              }
-            },
-          );
+          final success = successOrFailure.$1;
+          final failure = successOrFailure.$2;
+          if (mounted) {
+            if (failure is HttpFailure) {
+              state = const GenreFeedState.loadFailure();
+            }
+            if (success is CategoryFeed) {
+              List<Entry> newItems = List.from(books)
+                ..addAll(success.feed?.entry ?? []);
+              state = GenreFeedState.loadSuccess(
+                loadingMore: false,
+                books: newItems,
+              );
+            }
+          }
         }
       },
       orElse: () {
