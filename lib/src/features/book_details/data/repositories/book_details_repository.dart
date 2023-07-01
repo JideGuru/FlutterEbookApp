@@ -1,4 +1,3 @@
-import 'package:dartz/dartz.dart';
 import 'package:flutter_ebook_app/src/features/common/constants/api.dart';
 import 'package:flutter_ebook_app/src/features/common/data/failures/http_failure.dart';
 import 'package:flutter_ebook_app/src/features/common/data/models/category_feed.dart';
@@ -9,10 +8,10 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 class BookDetailsRepository extends BookRepository {
   BookDetailsRepository(super.httpClient);
 
-  Future<Either<HttpFailure, CategoryFeed>> getRelatedFeed(String url) {
+  Future<(CategoryFeed?, HttpFailure?)> getRelatedFeed(String url) {
     String stripedUrl = url.replaceAll(ApiEndpoints.baseURL, '');
-    final failureOrSuccess = getCategory(stripedUrl);
-    return failureOrSuccess;
+    final successOrFailure = getCategory(stripedUrl);
+    return successOrFailure;
   }
 }
 

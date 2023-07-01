@@ -284,8 +284,7 @@ class _DownloadButton extends ConsumerWidget {
             'Read Book'.toUpperCase(),
             style: TextStyle(
               fontSize: 15,
-              color:
-                  context.theme.textTheme.titleLarge?.color ?? Colors.black,
+              color: context.theme.textTheme.titleLarge?.color ?? Colors.black,
             ),
           ),
         );
@@ -307,8 +306,7 @@ class _DownloadButton extends ConsumerWidget {
           'Download'.toUpperCase(),
           style: TextStyle(
             fontSize: 15,
-            color:
-                context.theme.textTheme.titleLarge?.color ?? Colors.black,
+            color: context.theme.textTheme.titleLarge?.color ?? Colors.black,
           ),
         ),
       );
@@ -320,9 +318,9 @@ class _DownloadButton extends ConsumerWidget {
   ) async {
     File bookFile = File(path);
     if (bookFile.existsSync()) {
-      MaterialPageRoute(builder: (_) {
+      Navigator.push(context, MaterialPageRoute(builder: (_) {
         return EpubScreen.fromPath(filePath: path);
-      });
+      }));
     } else {
       const snackBar = SnackBar(
         content: Text(

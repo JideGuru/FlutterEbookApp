@@ -24,14 +24,8 @@ class HomeFeedStateNotifier extends StateNotifier<HomeFeedState> {
         await _homeRepository.getPopularHomeFeed();
     final recentFeedSuccessOrFailure =
         await _homeRepository.getRecentHomeFeed();
-    CategoryFeed? popularFeed = popularFeedSuccessOrFailure.fold(
-      (failure) => null,
-      (feed) => feed,
-    );
-    CategoryFeed? recentFeed = recentFeedSuccessOrFailure.fold(
-      (failure) => null,
-      (feed) => feed,
-    );
+    CategoryFeed? popularFeed = popularFeedSuccessOrFailure.$1;
+    CategoryFeed? recentFeed = recentFeedSuccessOrFailure.$1;
 
     if (mounted) {
       if (popularFeed != null && recentFeed != null) {

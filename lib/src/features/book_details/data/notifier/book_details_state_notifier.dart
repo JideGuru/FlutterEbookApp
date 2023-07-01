@@ -1,5 +1,5 @@
 import 'package:flutter_ebook_app/src/features/book_details/data/repositories/book_details_repository.dart';
-import 'package:flutter_ebook_app/src/features/common/data/models/category_feed.dart';
+import 'package:flutter_ebook_app/src/features/common/common.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -20,15 +20,18 @@ class BookDetailsStateNotifier extends StateNotifier<BookDetailsState> {
       state = const BookDetailsState.loadInProgress();
     }
 
-    final failureOrSuccess = await _bookDetailsRepository.getRelatedFeed(url);
-    failureOrSuccess.fold(
-      (failure) {
-        if (mounted) state = const BookDetailsState.loadFailure();
-      },
-      (success) {
-        if (mounted) state = BookDetailsState.loadSuccess(related: success);
-      },
-    );
+    final successOrFailure = await _bookDetailsRepository.getRelatedFeed(url);
+
+    final success = successOrFailure.$1;
+    final failure = successOrFailure.$2;
+    if (mounted) {
+      if (failure is HttpFailure) {
+        state = const BookDetailsState.loadFailure();
+      }
+      if (success is CategoryFeed) {
+        state = BookDetailsState.loadSuccess(related: success);
+      }
+    }
   }
 }
 
