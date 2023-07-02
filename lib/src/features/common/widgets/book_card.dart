@@ -1,12 +1,12 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_ebook_app/src/features/common/widgets/loading_widget.dart';
-import 'package:flutter_ebook_app/src/features/common/data/models/category_feed.dart';
+import 'package:flutter_ebook_app/src/features/features.dart';
 import 'package:flutter_ebook_app/src/router/app_router.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:uuid/uuid.dart';
 
-class BookCard extends StatelessWidget {
+class BookCard extends ConsumerWidget {
   final String img;
   final Entry entry;
 
@@ -22,7 +22,7 @@ class BookCard extends StatelessWidget {
   final String authorTag = uuid.v4();
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return SizedBox(
       width: 120.0,
       child: Card(
@@ -33,14 +33,18 @@ class BookCard extends StatelessWidget {
         child: InkWell(
           borderRadius: const BorderRadius.all(Radius.circular(10.0)),
           onTap: () {
-            context.router.push(
-              BookDetailsRoute(
-                entry: entry,
-                imgTag: imgTag,
-                titleTag: titleTag,
-                authorTag: authorTag,
-              ),
+            bool isHomeTab = ref.read(currentTabNotifierProvider).isHomeTab;
+            final route = BookDetailsRoute(
+              entry: entry,
+              imgTag: imgTag,
+              titleTag: titleTag,
+              authorTag: authorTag,
             );
+            if (context.isSmallScreen || !isHomeTab) {
+              context.router.push(route);
+            } else {
+              context.router.replace(route);
+            }
           },
           child: ClipRRect(
             borderRadius: const BorderRadius.all(

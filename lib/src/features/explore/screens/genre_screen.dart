@@ -28,10 +28,22 @@ class _GenreScreenState extends ConsumerState<GenreScreen> {
   @override
   void initState() {
     super.initState();
+    _fetch();
+    _scrollController.addListener(paginationListener);
+  }
+
+  void _fetch() {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       ref.read(genreFeedStateNotifierProvider(widget.url).notifier).fetch();
     });
-    _scrollController.addListener(paginationListener);
+  }
+
+  @override
+  void didUpdateWidget(covariant oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.url != widget.url) {
+      _fetch();
+    }
   }
 
   void paginationListener() {
@@ -71,6 +83,7 @@ class _GenreScreenState extends ConsumerState<GenreScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: context.isSmallScreen ? null : Colors.transparent,
         centerTitle: true,
         title: Text(widget.title),
       ),

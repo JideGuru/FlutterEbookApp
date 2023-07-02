@@ -42,6 +42,7 @@ class _BookDetailsScreenState extends ConsumerState<BookDetailsScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: context.isSmallScreen ? null : Colors.transparent,
         actions: <Widget>[
           ref.watch(favoritesStateNotifierProvider).maybeWhen(
                 orElse: () => const SizedBox.shrink(),
@@ -368,11 +369,23 @@ class _MoreBooksFromAuthorState extends ConsumerState<_MoreBooksFromAuthor> {
   @override
   void initState() {
     super.initState();
+    _fetch();
+  }
+
+  void _fetch() {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       ref
           .read(bookDetailsStateNotifierProvider.notifier)
           .fetch(widget.authorUrl);
     });
+  }
+
+  @override
+  void didUpdateWidget(covariant oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.authorUrl != widget.authorUrl) {
+      _fetch();
+    }
   }
 
   @override

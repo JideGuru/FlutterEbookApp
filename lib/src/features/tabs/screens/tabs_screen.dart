@@ -1,8 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_ebook_app/src/features/features.dart';
-import 'package:flutter_ebook_app/src/router/app_router.dart';
-import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 @RoutePage()
@@ -11,52 +9,16 @@ class TabsScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    // watch providers so they dnt get disposed
+    // watch providers so they don't get disposed
     ref.watch(homeDataStateNotifierProvider);
 
     return WillPopScope(
       onWillPop: () async {
         return await ExitModalDialog.show(context: context) ?? false;
       },
-      child: AutoTabsRouter(
-        routes: const [
-          HomeRoute(),
-          ExploreRoute(),
-          SettingsRoute(),
-        ],
-        transitionBuilder: (context, child, animation) => FadeTransition(
-          opacity: animation,
-          child: child,
-        ),
-        builder: (context, child) {
-          final tabsRouter = AutoTabsRouter.of(context);
-          return Scaffold(
-            body: child,
-            bottomNavigationBar: BottomNavigationBar(
-              backgroundColor: context.theme.primaryColor,
-              selectedItemColor: context.theme.colorScheme.secondary,
-              unselectedItemColor: Colors.grey[500],
-              elevation: 20,
-              type: BottomNavigationBarType.fixed,
-              items: const <BottomNavigationBarItem>[
-                BottomNavigationBarItem(
-                  icon: Icon(Feather.home),
-                  label: 'Home',
-                ),
-                BottomNavigationBarItem(
-                  icon: Icon(Feather.compass),
-                  label: 'Explore',
-                ),
-                BottomNavigationBarItem(
-                  icon: Icon(Feather.settings),
-                  label: 'Settings',
-                ),
-              ],
-              onTap: tabsRouter.setActiveIndex,
-              currentIndex: tabsRouter.activeIndex,
-            ),
-          );
-        },
+      child: const ResponsiveWidget(
+        smallScreen: TabsScreenSmall(),
+        largeScreen: TabsScreenLarge(),
       ),
     );
   }
