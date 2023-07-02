@@ -48,7 +48,7 @@ You can download from the appstore if you use an iPhone, iPad or a Mac with Sili
 | <img src="ss/13.png" width="300"> | <img src="ss/14.png" width="300"> |
 
 ##### Desktop
-<img src="ss/desktop_1.png" width="600">
+<img src="ss/desktop_1.png" width="800">
 
 
 ## 🔌 Plugins
