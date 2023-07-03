@@ -66,13 +66,9 @@ class _DownloadsScreenState extends ConsumerState<DownloadsScreen> {
                         return EpubScreen.fromPath(filePath: path);
                       }));
                     } else {
-                      const snackBar = SnackBar(
-                        content: Text(
-                          'Could not find the book file. Please download it again.',
-                        ),
-                        backgroundColor: Colors.grey,
+                      context.showSnackBarUsingText(
+                        'Could not find the book file. Please download it again.',
                       );
-                      context.showSnackBar(snackBar);
                       ref
                           .read(downloadsStateNotifierProvider.notifier)
                           .deleteBook(book['id']);

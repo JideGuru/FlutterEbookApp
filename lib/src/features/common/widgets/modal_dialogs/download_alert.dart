@@ -79,18 +79,21 @@ class _DownloadAlertState extends ConsumerState<DownloadAlert> {
     Directory? appDocDir = Platform.isAndroid
         ? await getExternalStorageDirectory()
         : await getApplicationDocumentsDirectory();
-    if (Platform.isAndroid) {
-      Directory(appDocDir!.path.split('Android')[0] + Strings.appName)
-          .createSync();
-    }
 
+    String dirPath = path.join(appDocDir!.path, Strings.appName);
+    if (Platform.isAndroid) {
+      Directory(appDocDir.path.split('Android')[0] + Strings.appName)
+          .createSync();
+    } else {
+      Directory(dirPath).createSync();
+    }
     String filePath = Platform.isAndroid
         ? path.join(
-            appDocDir!.path.split('Android')[0],
+            appDocDir.path.split('Android')[0],
             Strings.appName,
             '$fileName.epub',
           )
-        : path.join(appDocDir!.path, '$fileName.epub');
+        : path.join(dirPath, '$fileName.epub');
     File file = File(filePath);
     if (!await file.exists()) {
       await file.create();
