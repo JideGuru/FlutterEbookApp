@@ -19,13 +19,24 @@ class _DescriptionTextWidgetState extends State<DescriptionTextWidget> {
   @override
   void initState() {
     super.initState();
+    _splitText();
+  }
 
+  void _splitText() {
     if (widget.text.length > 300) {
       firstHalf = widget.text.substring(0, 300);
       secondHalf = widget.text.substring(300, widget.text.length);
     } else {
       firstHalf = widget.text;
       secondHalf = '';
+    }
+  }
+
+  @override
+  void didUpdateWidget(covariant oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.text != widget.text) {
+      _splitText();
     }
   }
 
@@ -55,7 +66,7 @@ class _DescriptionTextWidgetState extends State<DescriptionTextWidget> {
                     color: context.theme.textTheme.bodySmall!.color,
                   ),
                 ),
-                InkWell(
+                GestureDetector(
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: <Widget>[

@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:auto_route/auto_route.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
@@ -30,6 +32,7 @@ class _DownloadsScreenState extends ConsumerState<DownloadsScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: context.isSmallScreen ? null : Colors.transparent,
         centerTitle: true,
         title: const Text('Downloads'),
       ),
@@ -57,13 +60,19 @@ class _DownloadsScreenState extends ConsumerState<DownloadsScreen> {
                 child: InkWell(
                   onTap: () async {
                     String path = book['path'];
-
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (_) {
+                    File bookFile = File(path);
+                    if (bookFile.existsSync()) {
+                      Navigator.push(context, MaterialPageRoute(builder: (_) {
                         return EpubScreen.fromPath(filePath: path);
-                      }),
-                    );
+                      }));
+                    } else {
+                      context.showSnackBarUsingText(
+                        'Could not find the book file. Please download it again.',
+                      );
+                      ref
+                          .read(downloadsStateNotifierProvider.notifier)
+                          .deleteBook(book['id']);
+                    }
                   },
                   child: Padding(
                     padding:

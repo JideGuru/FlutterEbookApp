@@ -24,6 +24,7 @@ class _FavoritesScreenState extends ConsumerState<FavoritesScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: context.isSmallScreen ? null : Colors.transparent,
         centerTitle: true,
         title: const Text('Favorites'),
       ),
@@ -31,25 +32,22 @@ class _FavoritesScreenState extends ConsumerState<FavoritesScreen> {
             orElse: () => const SizedBox.shrink(),
             listening: (favorites) {
               if (favorites.isEmpty) const EmptyView();
-              return GridView.builder(
-                padding: const EdgeInsets.fromLTRB(10.0, 20.0, 10.0, 0.0),
-                shrinkWrap: true,
-                itemCount: favorites.length,
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 3,
-                  childAspectRatio: 200 / 340,
-                ),
-                itemBuilder: (BuildContext context, int index) {
-                  Entry entry = favorites[index];
-                  return Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 5.0),
-                    child: BookItem(
-                      img: entry.link![1].href!,
-                      title: entry.title!.t!,
-                      entry: entry,
-                    ),
-                  );
-                },
+              return Wrap(
+                children: [
+                  ...favorites.map((entry) {
+                    return Padding(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 5.0,
+                        vertical: 5.0,
+                      ),
+                      child: BookItem(
+                        img: entry.link![1].href!,
+                        title: entry.title!.t!,
+                        entry: entry,
+                      ),
+                    );
+                  }),
+                ],
               );
             },
           ),

@@ -56,6 +56,12 @@ abstract class _$AppRouter extends RootStackRouter {
         ),
       );
     },
+    ExploreRouteSmall.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const ExploreScreenSmall(),
+      );
+    },
     ExploreRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
@@ -79,6 +85,12 @@ abstract class _$AppRouter extends RootStackRouter {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const DownloadsScreen(),
+      );
+    },
+    LicensesRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const LicensesScreen(),
       );
     },
   };
@@ -197,6 +209,20 @@ class GenreRouteArgs {
 }
 
 /// generated route for
+/// [ExploreScreenSmall]
+class ExploreRouteSmall extends PageRouteInfo<void> {
+  const ExploreRouteSmall({List<PageRouteInfo>? children})
+      : super(
+          ExploreRouteSmall.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'ExploreRouteSmall';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
 /// [ExploreScreen]
 class ExploreRoute extends PageRouteInfo<void> {
   const ExploreRoute({List<PageRouteInfo>? children})
@@ -273,6 +299,20 @@ class DownloadsRoute extends PageRouteInfo<void> {
         );
 
   static const String name = 'DownloadsRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [LicensesScreen]
+class LicensesRoute extends PageRouteInfo<void> {
+  const LicensesRoute({List<PageRouteInfo>? children})
+      : super(
+          LicensesRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'LicensesRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }

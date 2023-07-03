@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:dio/dio.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_ebook_app/src/features/features.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -55,6 +56,11 @@ class _DownloadAlertState extends ConsumerState<DownloadAlert> {
       widget.name.replaceAll(' ', '_').replaceAll(r"\'", "'");
 
   Future<void> checkPermissionAndDownload() async {
+    if (kIsWeb || Platform.isMacOS) {
+      createFile();
+      return;
+    }
+
     PermissionStatus permission = await Permission.storage.status;
 
     if (permission != PermissionStatus.granted) {
@@ -73,18 +79,21 @@ class _DownloadAlertState extends ConsumerState<DownloadAlert> {
     Directory? appDocDir = Platform.isAndroid
         ? await getExternalStorageDirectory()
         : await getApplicationDocumentsDirectory();
-    if (Platform.isAndroid) {
-      Directory(appDocDir!.path.split('Android')[0] + Strings.appName)
-          .createSync();
-    }
 
-    String filePath = Platform.isIOS
-        ? path.join(appDocDir!.path, '$fileName.epub')
-        : path.join(
-            appDocDir!.path.split('Android')[0],
+    String dirPath = path.join(appDocDir!.path, Strings.appName);
+    if (Platform.isAndroid) {
+      Directory(appDocDir.path.split('Android')[0] + Strings.appName)
+          .createSync();
+    } else {
+      Directory(dirPath).createSync();
+    }
+    String filePath = Platform.isAndroid
+        ? path.join(
+            appDocDir.path.split('Android')[0],
             Strings.appName,
             '$fileName.epub',
-          );
+          )
+        : path.join(dirPath, '$fileName.epub');
     File file = File(filePath);
     if (!await file.exists()) {
       await file.create();

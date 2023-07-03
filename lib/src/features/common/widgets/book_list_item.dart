@@ -3,9 +3,10 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_ebook_app/src/features/features.dart';
 import 'package:flutter_ebook_app/src/router/app_router.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:uuid/uuid.dart';
 
-class BookListItem extends StatelessWidget {
+class BookListItem extends ConsumerWidget {
   final Entry entry;
 
   BookListItem({
@@ -19,17 +20,21 @@ class BookListItem extends StatelessWidget {
   final String authorTag = uuid.v4();
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return InkWell(
       onTap: () {
-        context.router.push(
-          BookDetailsRoute(
-            entry: entry,
-            imgTag: imgTag,
-            titleTag: titleTag,
-            authorTag: authorTag,
-          ),
+        bool isHomeTab = ref.read(currentTabNotifierProvider).isHomeTab;
+        final route = BookDetailsRoute(
+          entry: entry,
+          imgTag: imgTag,
+          titleTag: titleTag,
+          authorTag: authorTag,
         );
+        if (context.isSmallScreen || !isHomeTab) {
+          context.router.push(route);
+        } else {
+          context.router.replace(route);
+        }
       },
       child: SizedBox(
         height: 150.0,
