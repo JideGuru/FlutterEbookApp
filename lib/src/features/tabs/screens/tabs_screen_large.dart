@@ -36,7 +36,6 @@ class TabsScreenLarge extends ConsumerWidget {
                   tabsRouter.setActiveIndex(index);
                 },
                 labelType: NavigationRailLabelType.all,
-                backgroundColor: context.theme.primaryColor,
                 useIndicator: true,
                 indicatorColor:
                     context.theme.colorScheme.secondary.withOpacity(0.5),

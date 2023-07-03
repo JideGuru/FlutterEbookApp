@@ -32,7 +32,7 @@ class MyApp extends ConsumerWidget {
             ? ThemeConfig.darkTheme
             : ThemeConfig.lightTheme,
       ),
-      darkTheme: themeData(ThemeConfig.darkTheme),
+      // darkTheme: themeData(ThemeConfig.darkTheme),
       routerConfig: _appRouter.config(),
     );
   }

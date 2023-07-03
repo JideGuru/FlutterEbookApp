@@ -7,11 +7,14 @@ class HomeScreenLarge extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Row(
+    return Row(
       children: [
-        SizedBox(width: 400, child: HomeScreenSmall()),
-        VerticalDivider(thickness: 1, width: 2),
-        Expanded(child: AutoRouter()),
+        SizedBox(
+          width: context.screenSize.width / 2.7,
+          child: const HomeScreenSmall(),
+        ),
+        const VerticalDivider(thickness: 1, width: 2),
+        const Expanded(child: AutoRouter()),
       ],
     );
   }
