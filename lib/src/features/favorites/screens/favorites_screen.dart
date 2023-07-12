@@ -4,33 +4,20 @@ import 'package:flutter_ebook_app/src/features/features.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 @RoutePage()
-class FavoritesScreen extends ConsumerStatefulWidget {
+class FavoritesScreen extends ConsumerWidget {
   const FavoritesScreen({super.key});
 
   @override
-  ConsumerState<FavoritesScreen> createState() => _FavoritesScreenState();
-}
-
-class _FavoritesScreenState extends ConsumerState<FavoritesScreen> {
-  @override
-  void initState() {
-    super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      ref.read(favoritesStateNotifierProvider.notifier).listen();
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: context.isSmallScreen ? null : Colors.transparent,
         centerTitle: true,
         title: const Text('Favorites'),
       ),
-      body: ref.watch(favoritesStateNotifierProvider).maybeWhen(
+      body: ref.watch(favoritesNotifierProvider).maybeWhen(
             orElse: () => const SizedBox.shrink(),
-            listening: (favorites) {
+            data: (favorites) {
               if (favorites.isEmpty) const EmptyView();
               return Wrap(
                 children: [

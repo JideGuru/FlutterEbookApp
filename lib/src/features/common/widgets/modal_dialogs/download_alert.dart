@@ -128,9 +128,7 @@ class _DownloadAlertState extends ConsumerState<DownloadAlert> {
             'name': widget.name,
           };
 
-          ref
-              .read(downloadsStateNotifierProvider.notifier)
-              .addBook(book, widget.id);
+          ref.read(downloadsNotifierProvider.notifier).addBook(book, widget.id);
           Navigator.pop(context, size);
         }
       },

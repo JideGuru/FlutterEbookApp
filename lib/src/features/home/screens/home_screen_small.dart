@@ -13,23 +13,23 @@ class HomeScreenSmall extends ConsumerStatefulWidget {
 
 class _HomeScreenSmallState extends ConsumerState<HomeScreenSmall> {
   void loadData() {
-    ref.read(homeDataStateNotifierProvider.notifier).fetch();
+    ref.read(homeFeedNotifierProvider.notifier).fetch();
   }
 
   @override
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      ref.read(homeDataStateNotifierProvider).maybeWhen(
+      ref.read(homeFeedNotifierProvider).maybeWhen(
             orElse: () => loadData(),
-            loadSuccess: (_, __) => null,
+            data: (_) => null,
           );
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    final homeDataState = ref.watch(homeDataStateNotifierProvider);
+    final homeDataState = ref.watch(homeFeedNotifierProvider);
     return Scaffold(
       appBar: context.isSmallScreen
           ? AppBar(
@@ -44,8 +44,10 @@ class _HomeScreenSmallState extends ConsumerState<HomeScreenSmall> {
         duration: const Duration(milliseconds: 500),
         child: homeDataState.maybeWhen(
           orElse: () => const SizedBox.shrink(),
-          loadInProgress: () => const LoadingWidget(),
-          loadSuccess: (popular, recent) {
+          loading: () => const LoadingWidget(),
+          data: (feeds) {
+            final popular = feeds.$1;
+            final recent = feeds.$2;
             return RefreshIndicator(
               onRefresh: () async => loadData(),
               child: ListView(
@@ -64,7 +66,7 @@ class _HomeScreenSmallState extends ConsumerState<HomeScreenSmall> {
               ),
             );
           },
-          loadFailure: () {
+          error: (_, __) {
             return MyErrorWidget(
               refreshCallBack: () => loadData(),
               isConnection: false,

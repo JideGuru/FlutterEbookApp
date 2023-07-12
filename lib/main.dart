@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_ebook_app/src/features/common/constants/strings.dart';
 import 'package:flutter_ebook_app/src/features/common/data/local/local_storage.dart';
-import 'package:flutter_ebook_app/src/features/common/data/notifiers/current_app_theme/current_app_theme_state_notifier.dart';
+import 'package:flutter_ebook_app/src/features/common/data/notifiers/current_app_theme/current_app_theme_notifier.dart';
 import 'package:flutter_ebook_app/src/features/common/database/database_config.dart';
 import 'package:flutter_ebook_app/src/router/app_router.dart';
 import 'package:flutter_ebook_app/src/theme/theme_config.dart';
@@ -23,12 +23,12 @@ class MyApp extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final currentAppTheme = ref.watch(currentAppThemeStateNotifierProvider);
+    final currentAppTheme = ref.watch(currentAppThemeNotifierProvider);
     return MaterialApp.router(
       debugShowCheckedModeBanner: false,
       title: Strings.appName,
       theme: themeData(
-        currentAppTheme == CurrentAppTheme.dark
+        currentAppTheme.value == CurrentAppTheme.dark
             ? ThemeConfig.darkTheme
             : ThemeConfig.lightTheme,
       ),

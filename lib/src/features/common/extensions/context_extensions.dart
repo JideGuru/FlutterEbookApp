@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_ebook_app/src/features/common/extensions/extensions.dart';
 
 extension BuildContextExtensions on BuildContext {
   ThemeData get theme => Theme.of(this);

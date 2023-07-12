@@ -4,6 +4,7 @@ import 'package:flutter_ebook_app/src/features/common/data/models/category_feed.
 import 'package:flutter_ebook_app/src/features/common/data/providers/dio_provider.dart';
 import 'package:flutter_ebook_app/src/features/common/data/repositories/book/book_repository.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 class HomeRepository extends BookRepository {
   HomeRepository(super.httpClient);

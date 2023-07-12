@@ -10,7 +10,7 @@ class TabsScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     // watch providers so they don't get disposed
-    ref.watch(homeDataStateNotifierProvider);
+    ref.watch(homeFeedNotifierProvider);
 
     return WillPopScope(
       onWillPop: () async {

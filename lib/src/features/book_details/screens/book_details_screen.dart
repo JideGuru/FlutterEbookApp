@@ -30,23 +30,14 @@ class BookDetailsScreen extends ConsumerStatefulWidget {
 
 class _BookDetailsScreenState extends ConsumerState<BookDetailsScreen> {
   @override
-  void initState() {
-    super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      ref.read(favoritesStateNotifierProvider.notifier).listen();
-      ref.read(downloadsStateNotifierProvider.notifier).listen();
-    });
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: context.isSmallScreen ? null : Colors.transparent,
         actions: <Widget>[
-          ref.watch(favoritesStateNotifierProvider).maybeWhen(
+          ref.watch(favoritesNotifierProvider).maybeWhen(
                 orElse: () => const SizedBox.shrink(),
-                listening: (favorites) {
+                data: (favorites) {
                   final favorited = favorites.indexWhere(
                         (element) => element.id!.t == widget.entry.id!.t,
                       ) !=
@@ -55,11 +46,11 @@ class _BookDetailsScreenState extends ConsumerState<BookDetailsScreen> {
                     onPressed: () async {
                       if (favorited) {
                         ref
-                            .watch(favoritesStateNotifierProvider.notifier)
+                            .watch(favoritesNotifierProvider.notifier)
                             .deleteBook(widget.entry.id!.t);
                       } else {
                         ref
-                            .watch(favoritesStateNotifierProvider.notifier)
+                            .watch(favoritesNotifierProvider.notifier)
                             .addBook(widget.entry, widget.entry.id!.t);
                       }
                     },
@@ -268,11 +259,11 @@ class _DownloadButton extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     String id = entry.id!.t.toString();
-    return ref.watch(downloadsStateNotifierProvider).maybeWhen(
+    return ref.watch(downloadsNotifierProvider).maybeWhen(
       orElse: () {
         return _downloadButton(context);
       },
-      listening: (books) {
+      data: (books) {
         final bookIsDownloaded =
             books.indexWhere((element) => element['id'] == id) != -1;
         if (!bookIsDownloaded) {
@@ -326,7 +317,7 @@ class _DownloadButton extends ConsumerWidget {
       context.showSnackBarUsingText(
         'Could not find the book file. Please download it again.',
       );
-      ref.read(downloadsStateNotifierProvider.notifier).deleteBook(id);
+      ref.read(downloadsNotifierProvider.notifier).deleteBook(id);
     }
   }
 }
@@ -371,9 +362,7 @@ class _MoreBooksFromAuthorState extends ConsumerState<_MoreBooksFromAuthor> {
 
   void _fetch() {
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      ref
-          .read(bookDetailsStateNotifierProvider.notifier)
-          .fetch(widget.authorUrl);
+      ref.read(bookDetailsNotifierProvider(widget.authorUrl).notifier).fetch();
     });
   }
 
@@ -387,10 +376,10 @@ class _MoreBooksFromAuthorState extends ConsumerState<_MoreBooksFromAuthor> {
 
   @override
   Widget build(BuildContext context) {
-    return ref.watch(bookDetailsStateNotifierProvider).maybeWhen(
+    return ref.watch(bookDetailsNotifierProvider(widget.authorUrl)).maybeWhen(
           orElse: () => const SizedBox.shrink(),
-          loadInProgress: () => const LoadingWidget(),
-          loadSuccess: (related) {
+          loading: () => const LoadingWidget(),
+          data: (related) {
             if (related.feed!.entry == null || related.feed!.entry!.isEmpty) {
               return const Text('Empty');
             }
@@ -407,13 +396,9 @@ class _MoreBooksFromAuthorState extends ConsumerState<_MoreBooksFromAuthor> {
               },
             );
           },
-          loadFailure: () {
+          error: (_, __) {
             return MyErrorWidget(
-              refreshCallBack: () {
-                ref
-                    .read(bookDetailsStateNotifierProvider.notifier)
-                    .fetch(widget.authorUrl);
-              },
+              refreshCallBack: () => _fetch(),
               isConnection: false,
             );
           },
