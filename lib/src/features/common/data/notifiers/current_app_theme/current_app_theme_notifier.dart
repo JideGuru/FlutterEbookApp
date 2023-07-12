@@ -6,8 +6,7 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 part 'current_app_theme_notifier.g.dart';
 
 @riverpod
-class CurrentAppThemeNotifier
-    extends _$CurrentAppThemeNotifier {
+class CurrentAppThemeNotifier extends _$CurrentAppThemeNotifier {
   late CurrentAppThemeService _currentAppThemeService;
 
   CurrentAppThemeNotifier() : super();

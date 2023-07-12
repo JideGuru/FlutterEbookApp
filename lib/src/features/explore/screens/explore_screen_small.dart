@@ -124,9 +124,7 @@ class _SectionBookListState extends ConsumerState<_SectionBookList>
   final ValueNotifier<int> _bookCount = ValueNotifier<int>(0);
 
   void _fetch() {
-    ref
-        .read(genreFeedNotifierProvider(widget.link.href!).notifier)
-        .fetch();
+    ref.read(genreFeedNotifierProvider(widget.link.href!).notifier).fetch();
   }
 
   @override

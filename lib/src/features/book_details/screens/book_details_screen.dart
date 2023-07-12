@@ -362,9 +362,7 @@ class _MoreBooksFromAuthorState extends ConsumerState<_MoreBooksFromAuthor> {
 
   void _fetch() {
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      ref
-          .read(bookDetailsNotifierProvider(widget.authorUrl).notifier)
-          .fetch();
+      ref.read(bookDetailsNotifierProvider(widget.authorUrl).notifier).fetch();
     });
   }
 
@@ -378,9 +376,7 @@ class _MoreBooksFromAuthorState extends ConsumerState<_MoreBooksFromAuthor> {
 
   @override
   Widget build(BuildContext context) {
-    return ref
-        .watch(bookDetailsNotifierProvider(widget.authorUrl))
-        .maybeWhen(
+    return ref.watch(bookDetailsNotifierProvider(widget.authorUrl)).maybeWhen(
           orElse: () => const SizedBox.shrink(),
           loading: () => const LoadingWidget(),
           data: (related) {

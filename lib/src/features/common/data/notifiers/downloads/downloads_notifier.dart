@@ -6,8 +6,7 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 part 'downloads_notifier.g.dart';
 
 @riverpod
-class DownloadsNotifier
-    extends _$DownloadsNotifier {
+class DownloadsNotifier extends _$DownloadsNotifier {
   late DownloadsRepository _repository;
 
   DownloadsNotifier() : super();
