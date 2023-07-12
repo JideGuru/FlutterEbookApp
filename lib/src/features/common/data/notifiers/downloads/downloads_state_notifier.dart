@@ -1,32 +1,33 @@
 import 'dart:async';
 
-import 'package:flutter_ebook_app/src/features/common/data/repositories/downloads/downloads_repository.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:flutter_ebook_app/src/features/features.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-part 'downloads_state.dart';
+part 'downloads_state_notifier.g.dart';
 
-part 'downloads_state_notifier.freezed.dart';
+@riverpod
+class DownloadsStateNotifier
+    extends _$DownloadsStateNotifier {
+  late DownloadsRepository _repository;
 
-class DownloadsStateNotifier extends StateNotifier<DownloadsState> {
-  final DownloadsRepository _repository;
-
-  DownloadsStateNotifier({
-    required DownloadsRepository repository,
-  })  : _repository = repository,
-        super(const DownloadsState.started());
+  DownloadsStateNotifier() : super();
 
   StreamSubscription<List<Map<String, dynamic>>>? _streamSubscription;
 
-  Future<void> listen() async {
+  @override
+  Future<List<Map<String, dynamic>>> build() async {
+    _repository = ref.watch(downloadsRepositoryProvider);
+    _listen();
+    return await _repository.downloadList();
+  }
+
+  Future<void> _listen() async {
     if (_streamSubscription != null) {
       _streamSubscription!.cancel();
       _streamSubscription = null;
     }
     _streamSubscription = (await _repository.downloadListStream()).listen(
-      (downloads) {
-        if (mounted) state = DownloadsState.listening(downloads: downloads);
-      },
+      (downloads) => state = AsyncValue.data(downloads),
     );
   }
 
@@ -42,12 +43,3 @@ class DownloadsStateNotifier extends StateNotifier<DownloadsState> {
     await _repository.deleteBook(id);
   }
 }
-
-final downloadsStateNotifierProvider =
-    StateNotifierProvider.autoDispose<DownloadsStateNotifier, DownloadsState>(
-  (ref) {
-    return DownloadsStateNotifier(
-      repository: ref.watch(downloadsRepositoryProvider),
-    );
-  },
-);

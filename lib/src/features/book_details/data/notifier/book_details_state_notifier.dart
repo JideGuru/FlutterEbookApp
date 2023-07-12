@@ -1,45 +1,39 @@
 import 'package:flutter_ebook_app/src/features/book_details/data/repositories/book_details_repository.dart';
 import 'package:flutter_ebook_app/src/features/common/common.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-part 'book_details_state.dart';
+part 'book_details_state_notifier.g.dart';
 
-part 'book_details_state_notifier.freezed.dart';
+@riverpod
+class BookDetailsStateNotifier extends _$BookDetailsStateNotifier {
+  late BookDetailsRepository _bookDetailsRepository;
 
-class BookDetailsStateNotifier extends StateNotifier<BookDetailsState> {
-  final BookDetailsRepository _bookDetailsRepository;
+  late String _url;
 
-  BookDetailsStateNotifier({
-    required BookDetailsRepository bookDetailsRepository,
-  })  : _bookDetailsRepository = bookDetailsRepository,
-        super(const BookDetailsState.started());
+  BookDetailsStateNotifier();
 
-  Future<void> fetch(String url) async {
-    if (mounted) {
-      state = const BookDetailsState.loadInProgress();
-    }
+  @override
+  Future<CategoryFeed> build(String url) async {
+    _bookDetailsRepository = ref.watch(bookDetailsRepositoryProvider);
+    _url = url;
+    return await _fetch();
+  }
 
-    final successOrFailure = await _bookDetailsRepository.getRelatedFeed(url);
+  Future<void> fetch() async {
+    state = const AsyncValue.loading();
+    state = AsyncValue.data(await _fetch());
+  }
+
+  Future<CategoryFeed> _fetch() async {
+    state = const AsyncValue.loading();
+    final successOrFailure = await _bookDetailsRepository.getRelatedFeed(_url);
 
     final success = successOrFailure.$1;
     final failure = successOrFailure.$2;
-    if (mounted) {
-      if (failure is HttpFailure) {
-        state = const BookDetailsState.loadFailure();
-      }
-      if (success is CategoryFeed) {
-        state = BookDetailsState.loadSuccess(related: success);
-      }
+
+    if (failure is HttpFailure) {
+      throw (failure.description);
     }
+    return success!;
   }
 }
-
-final bookDetailsStateNotifierProvider = StateNotifierProvider.autoDispose<
-    BookDetailsStateNotifier, BookDetailsState>(
-  (ref) {
-    return BookDetailsStateNotifier(
-      bookDetailsRepository: ref.watch(bookDetailsRepositoryProvider),
-    );
-  },
-);

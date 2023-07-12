@@ -1,70 +1,54 @@
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
+import 'dart:async';
 
 import 'package:flutter_ebook_app/src/features/features.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-part 'genre_feed_state.dart';
+part 'genre_feed_state_notifier.g.dart';
 
-part 'genre_feed_state_notifier.freezed.dart';
+@riverpod
+class GenreFeedStateNotifier extends _$GenreFeedStateNotifier {
+  GenreFeedStateNotifier() : super();
 
-class GenreFeedStateNotifier extends StateNotifier<GenreFeedState> {
-  final ExploreRepository _exploreRepository;
-  final String url;
+  late ExploreRepository _exploreRepository;
+  late String _url;
 
-  GenreFeedStateNotifier({
-    required ExploreRepository exploreRepository,
-    required this.url,
-  })  : _exploreRepository = exploreRepository,
-        super(const GenreFeedState.started());
+  @override
+  Future<(List<Entry>, bool)> build(String url) async {
+    _exploreRepository = ref.read(exploreRepositoryProvider);
+    _url = url;
+    return (await _fetch(), false);
+  }
 
   Future<void> fetch() async {
-    if (mounted) {
-      state = const GenreFeedState.loadInProgress();
-    }
+    state = AsyncValue.data((await _fetch(), false));
+  }
 
-    final successOrFailure = await _exploreRepository.getGenreFeed(url);
+  Future<List<Entry>> _fetch() async {
+    state = const AsyncValue.loading();
+    final successOrFailure = await _exploreRepository.getGenreFeed(_url);
     final success = successOrFailure.$1;
     final failure = successOrFailure.$2;
-    if (mounted) {
-      if (failure is HttpFailure) {
-        state = const GenreFeedState.loadFailure();
-      }
-      if (success is CategoryFeed) {
-        state = GenreFeedState.loadSuccess(
-          loadingMore: false,
-          books: success.feed?.entry ?? [],
-        );
-      }
+    if (success == null) {
+      throw (failure?.description ?? '');
     }
+    return success.feed?.entry ?? [];
   }
 
   Future<void> paginate(int page) async {
     state.maybeWhen(
-      loadSuccess: (books, loadingMore) async {
-        if (mounted) {
-          state = GenreFeedState.loadSuccess(
-            books: books,
-            loadingMore: true,
-          );
-
-          final successOrFailure =
-              await _exploreRepository.getGenreFeed(url + '&page=$page');
-          final success = successOrFailure.$1;
-          final failure = successOrFailure.$2;
-          if (mounted) {
-            if (failure is HttpFailure) {
-              state = const GenreFeedState.loadFailure();
-            }
-            if (success is CategoryFeed) {
-              List<Entry> newItems = List.from(books)
-                ..addAll(success.feed?.entry ?? []);
-              state = GenreFeedState.loadSuccess(
-                loadingMore: false,
-                books: newItems,
-              );
-            }
-          }
+      data: (data) async {
+        List<Entry> books = data.$1;
+        state = AsyncValue.data((books, true));
+        final successOrFailure =
+            await _exploreRepository.getGenreFeed(_url + '&page=$page');
+        final success = successOrFailure.$1;
+        final failure = successOrFailure.$2;
+        if (success == null) {
+          throw (failure?.description ?? '');
         }
+        List<Entry> newItems = List.from(books)
+          ..addAll(success.feed?.entry ?? []);
+        state = AsyncValue.data((newItems, false));
       },
       orElse: () {
         return;
@@ -72,13 +56,3 @@ class GenreFeedStateNotifier extends StateNotifier<GenreFeedState> {
     );
   }
 }
-
-final genreFeedStateNotifierProvider = StateNotifierProvider.family
-    .autoDispose<GenreFeedStateNotifier, GenreFeedState, String>(
-  (ref, link) {
-    return GenreFeedStateNotifier(
-      exploreRepository: ref.watch(exploreRepositoryProvider),
-      url: link,
-    );
-  },
-);

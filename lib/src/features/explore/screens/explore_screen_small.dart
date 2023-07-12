@@ -15,21 +15,22 @@ class ExploreScreenSmall extends ConsumerStatefulWidget {
 class _ExploreScreenSmallState extends ConsumerState<ExploreScreenSmall>
     with AutomaticKeepAliveClientMixin {
   void loadData() {
-    ref.read(homeDataStateNotifierProvider.notifier).fetch();
+    ref.read(homeFeedStateNotifierProvider.notifier).fetch();
   }
 
   @override
   Widget build(BuildContext context) {
     super.build(context);
-    final homeDataState = ref.watch(homeDataStateNotifierProvider);
+    final homeDataState = ref.watch(homeFeedStateNotifierProvider);
     return Scaffold(
       appBar: context.isSmallScreen
           ? AppBar(centerTitle: true, title: const Text('Explore'))
           : null,
       body: homeDataState.maybeWhen(
         orElse: () => const SizedBox.shrink(),
-        loadInProgress: () => const LoadingWidget(),
-        loadSuccess: (popular, recent) {
+        loading: () => const LoadingWidget(),
+        data: (feeds) {
+          final popular = feeds.$1;
           return ListView.builder(
             itemCount: popular.feed?.link?.length ?? 0,
             itemBuilder: (BuildContext context, int index) {
@@ -50,7 +51,7 @@ class _ExploreScreenSmallState extends ConsumerState<ExploreScreenSmall>
             },
           );
         },
-        loadFailure: () {
+        error: (_, __) {
           return MyErrorWidget(
             refreshCallBack: () => loadData(),
             isConnection: false,
@@ -120,17 +121,13 @@ class _SectionBookList extends ConsumerStatefulWidget {
 
 class _SectionBookListState extends ConsumerState<_SectionBookList>
     with AutomaticKeepAliveClientMixin {
-  @override
-  void initState() {
-    super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      ref
-          .read(genreFeedStateNotifierProvider(widget.link.href!).notifier)
-          .fetch();
-    });
-  }
-
   final ValueNotifier<int> _bookCount = ValueNotifier<int>(0);
+
+  void _fetch() {
+    ref
+        .read(genreFeedStateNotifierProvider(widget.link.href!).notifier)
+        .fetch();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -156,8 +153,9 @@ class _SectionBookListState extends ConsumerState<_SectionBookList>
                 .watch(genreFeedStateNotifierProvider(widget.link.href!))
                 .maybeWhen(
                   orElse: () => const SizedBox.shrink(),
-                  loadInProgress: () => const LoadingWidget(),
-                  loadSuccess: (books, __) {
+                  loading: () => const LoadingWidget(),
+                  data: (data) {
+                    final books = data.$1;
                     if (_bookCount.value == 0) {
                       _bookCount.value = books.length;
                     }
@@ -180,14 +178,10 @@ class _SectionBookListState extends ConsumerState<_SectionBookList>
                       },
                     );
                   },
-                  loadFailure: () {
+                  error: (_, __) {
                     return MyErrorWidget(
                       refreshCallBack: () {
-                        ref
-                            .read(genreFeedStateNotifierProvider(
-                              widget.link.href!,
-                            ).notifier)
-                            .fetch();
+                        _fetch();
                       },
                       isConnection: false,
                     );

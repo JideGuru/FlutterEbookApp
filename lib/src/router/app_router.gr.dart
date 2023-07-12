@@ -27,6 +27,12 @@ abstract class _$AppRouter extends RootStackRouter {
         child: const SettingsScreen(),
       );
     },
+    LicensesRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const LicensesScreen(),
+      );
+    },
     HomeRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
@@ -87,12 +93,6 @@ abstract class _$AppRouter extends RootStackRouter {
         child: const DownloadsScreen(),
       );
     },
-    LicensesRoute.name: (routeData) {
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const LicensesScreen(),
-      );
-    },
   };
 }
 
@@ -120,6 +120,20 @@ class SettingsRoute extends PageRouteInfo<void> {
         );
 
   static const String name = 'SettingsRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [LicensesScreen]
+class LicensesRoute extends PageRouteInfo<void> {
+  const LicensesRoute({List<PageRouteInfo>? children})
+      : super(
+          LicensesRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'LicensesRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }
@@ -299,20 +313,6 @@ class DownloadsRoute extends PageRouteInfo<void> {
         );
 
   static const String name = 'DownloadsRoute';
-
-  static const PageInfo<void> page = PageInfo<void>(name);
-}
-
-/// generated route for
-/// [LicensesScreen]
-class LicensesRoute extends PageRouteInfo<void> {
-  const LicensesRoute({List<PageRouteInfo>? children})
-      : super(
-          LicensesRoute.name,
-          initialChildren: children,
-        );
-
-  static const String name = 'LicensesRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }

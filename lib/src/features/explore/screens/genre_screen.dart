@@ -50,7 +50,8 @@ class _GenreScreenState extends ConsumerState<GenreScreen> {
     if (_scrollController.position.pixels ==
         _scrollController.position.maxScrollExtent) {
       ref.watch(genreFeedStateNotifierProvider(widget.url)).maybeWhen(
-        loadSuccess: (_, loadingMore) {
+        data: (data) {
+          final loadingMore = data.$2;
           if (!loadingMore) {
             page += 1;
             ref
@@ -91,8 +92,10 @@ class _GenreScreenState extends ConsumerState<GenreScreen> {
         duration: const Duration(milliseconds: 500),
         child: ref.watch(genreFeedStateNotifierProvider(widget.url)).maybeWhen(
               orElse: () => const SizedBox.shrink(),
-              loadInProgress: () => const LoadingWidget(),
-              loadSuccess: (books, loadingMore) {
+              loading: () => const LoadingWidget(),
+              data: (data) {
+                final books = data.$1;
+                final loadingMore = data.$2;
                 return ListView(
                   controller: _scrollController,
                   children: <Widget>[

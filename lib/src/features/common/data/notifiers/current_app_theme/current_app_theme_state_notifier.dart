@@ -1,29 +1,33 @@
+import 'dart:async';
+
 import 'package:flutter_ebook_app/src/features/common/data/services/current_app_theme_service.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-class CurrentAppThemeStateNotifier extends StateNotifier<CurrentAppTheme> {
-  final CurrentAppThemeService _currentAppThemeService;
+part 'current_app_theme_state_notifier.g.dart';
 
-  CurrentAppThemeStateNotifier({
-    required CurrentAppThemeService currentAppThemeService,
-  })  : _currentAppThemeService = currentAppThemeService,
-        super(currentAppThemeService.getCurrentAppTheme());
+@riverpod
+class CurrentAppThemeStateNotifier
+    extends _$CurrentAppThemeStateNotifier {
+  late CurrentAppThemeService _currentAppThemeService;
+
+  CurrentAppThemeStateNotifier() : super();
 
   Future<void> updateCurrentAppTheme(bool isDarkMode) async {
     final success =
         await _currentAppThemeService.setCurrentAppTheme(isDarkMode);
 
-    if (success && mounted) {
-      state = isDarkMode ? CurrentAppTheme.dark : CurrentAppTheme.light;
+    if (success) {
+      state = AsyncValue.data(
+        isDarkMode ? CurrentAppTheme.dark : CurrentAppTheme.light,
+      );
     }
+  }
+
+  @override
+  FutureOr<CurrentAppTheme> build() {
+    _currentAppThemeService = ref.read(currentAppThemeServiceProvider);
+    return _currentAppThemeService.getCurrentAppTheme();
   }
 }
 
 enum CurrentAppTheme { light, dark }
-
-final currentAppThemeStateNotifierProvider = StateNotifierProvider.autoDispose<
-    CurrentAppThemeStateNotifier, CurrentAppTheme>(
-  (ref) => CurrentAppThemeStateNotifier(
-    currentAppThemeService: ref.read(currentAppThemeServiceProvider),
-  ),
-);

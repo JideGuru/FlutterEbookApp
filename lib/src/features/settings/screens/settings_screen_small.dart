@@ -142,7 +142,7 @@ class _ThemeSwitch extends ConsumerWidget {
     return SwitchListTile(
       secondary: Icon(icon),
       title: Text(title),
-      value: currentAppTheme == CurrentAppTheme.dark,
+      value: currentAppTheme.value == CurrentAppTheme.dark,
       onChanged: (isDarkMode) {
         ref
             .read(currentAppThemeStateNotifierProvider.notifier)
