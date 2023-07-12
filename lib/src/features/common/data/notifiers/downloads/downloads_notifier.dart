@@ -3,14 +3,14 @@ import 'dart:async';
 import 'package:flutter_ebook_app/src/features/features.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-part 'downloads_state_notifier.g.dart';
+part 'downloads_notifier.g.dart';
 
 @riverpod
-class DownloadsStateNotifier
-    extends _$DownloadsStateNotifier {
+class DownloadsNotifier
+    extends _$DownloadsNotifier {
   late DownloadsRepository _repository;
 
-  DownloadsStateNotifier() : super();
+  DownloadsNotifier() : super();
 
   StreamSubscription<List<Map<String, dynamic>>>? _streamSubscription;
 

@@ -15,13 +15,13 @@ class ExploreScreenSmall extends ConsumerStatefulWidget {
 class _ExploreScreenSmallState extends ConsumerState<ExploreScreenSmall>
     with AutomaticKeepAliveClientMixin {
   void loadData() {
-    ref.read(homeFeedStateNotifierProvider.notifier).fetch();
+    ref.read(homeFeedNotifierProvider.notifier).fetch();
   }
 
   @override
   Widget build(BuildContext context) {
     super.build(context);
-    final homeDataState = ref.watch(homeFeedStateNotifierProvider);
+    final homeDataState = ref.watch(homeFeedNotifierProvider);
     return Scaffold(
       appBar: context.isSmallScreen
           ? AppBar(centerTitle: true, title: const Text('Explore'))
@@ -125,7 +125,7 @@ class _SectionBookListState extends ConsumerState<_SectionBookList>
 
   void _fetch() {
     ref
-        .read(genreFeedStateNotifierProvider(widget.link.href!).notifier)
+        .read(genreFeedNotifierProvider(widget.link.href!).notifier)
         .fetch();
   }
 
@@ -150,7 +150,7 @@ class _SectionBookListState extends ConsumerState<_SectionBookList>
           child: AnimatedSwitcher(
             duration: const Duration(milliseconds: 500),
             child: ref
-                .watch(genreFeedStateNotifierProvider(widget.link.href!))
+                .watch(genreFeedNotifierProvider(widget.link.href!))
                 .maybeWhen(
                   orElse: () => const SizedBox.shrink(),
                   loading: () => const LoadingWidget(),

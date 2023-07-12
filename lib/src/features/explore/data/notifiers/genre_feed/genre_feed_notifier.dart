@@ -3,11 +3,11 @@ import 'dart:async';
 import 'package:flutter_ebook_app/src/features/features.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-part 'genre_feed_state_notifier.g.dart';
+part 'genre_feed_notifier.g.dart';
 
 @riverpod
-class GenreFeedStateNotifier extends _$GenreFeedStateNotifier {
-  GenreFeedStateNotifier() : super();
+class GenreFeedNotifier extends _$GenreFeedNotifier {
+  GenreFeedNotifier() : super();
 
   late ExploreRepository _exploreRepository;
   late String _url;

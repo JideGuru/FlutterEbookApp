@@ -3,14 +3,14 @@ import 'dart:async';
 import 'package:flutter_ebook_app/src/features/common/data/services/current_app_theme_service.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-part 'current_app_theme_state_notifier.g.dart';
+part 'current_app_theme_notifier.g.dart';
 
 @riverpod
-class CurrentAppThemeStateNotifier
-    extends _$CurrentAppThemeStateNotifier {
+class CurrentAppThemeNotifier
+    extends _$CurrentAppThemeNotifier {
   late CurrentAppThemeService _currentAppThemeService;
 
-  CurrentAppThemeStateNotifier() : super();
+  CurrentAppThemeNotifier() : super();
 
   Future<void> updateCurrentAppTheme(bool isDarkMode) async {
     final success =

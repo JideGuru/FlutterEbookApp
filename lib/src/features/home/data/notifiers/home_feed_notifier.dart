@@ -2,11 +2,11 @@ import 'package:flutter_ebook_app/src/features/common/data/models/category_feed.
 import 'package:flutter_ebook_app/src/features/home/data/repositories/home_repository.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-part 'home_feed_state_notifier.g.dart';
+part 'home_feed_notifier.g.dart';
 
 @riverpod
-class HomeFeedStateNotifier extends _$HomeFeedStateNotifier {
-  HomeFeedStateNotifier() : super();
+class HomeFeedNotifier extends _$HomeFeedNotifier {
+  HomeFeedNotifier() : super();
 
   @override
   Future<(CategoryFeed, CategoryFeed)> build() async {

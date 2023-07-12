@@ -34,7 +34,7 @@ class _GenreScreenState extends ConsumerState<GenreScreen> {
 
   void _fetch() {
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      ref.read(genreFeedStateNotifierProvider(widget.url).notifier).fetch();
+      ref.read(genreFeedNotifierProvider(widget.url).notifier).fetch();
     });
   }
 
@@ -49,13 +49,13 @@ class _GenreScreenState extends ConsumerState<GenreScreen> {
   void paginationListener() {
     if (_scrollController.position.pixels ==
         _scrollController.position.maxScrollExtent) {
-      ref.watch(genreFeedStateNotifierProvider(widget.url)).maybeWhen(
+      ref.watch(genreFeedNotifierProvider(widget.url)).maybeWhen(
         data: (data) {
           final loadingMore = data.$2;
           if (!loadingMore) {
             page += 1;
             ref
-                .read(genreFeedStateNotifierProvider(widget.url).notifier)
+                .read(genreFeedNotifierProvider(widget.url).notifier)
                 .paginate(page);
             // Animate to bottom of list
             Timer(const Duration(milliseconds: 100), () {
@@ -90,7 +90,7 @@ class _GenreScreenState extends ConsumerState<GenreScreen> {
       ),
       body: AnimatedSwitcher(
         duration: const Duration(milliseconds: 500),
-        child: ref.watch(genreFeedStateNotifierProvider(widget.url)).maybeWhen(
+        child: ref.watch(genreFeedNotifierProvider(widget.url)).maybeWhen(
               orElse: () => const SizedBox.shrink(),
               loading: () => const LoadingWidget(),
               data: (data) {

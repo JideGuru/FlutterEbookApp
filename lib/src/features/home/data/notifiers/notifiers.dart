@@ -1,1 +1,1 @@
-export 'home_feed_state_notifier.dart';
+export 'home_feed_notifier.dart';

@@ -1,1 +1,1 @@
-export 'book_details_state_notifier.dart';
+export 'book_details_notifier.dart';

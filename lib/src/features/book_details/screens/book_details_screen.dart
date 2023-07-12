@@ -35,7 +35,7 @@ class _BookDetailsScreenState extends ConsumerState<BookDetailsScreen> {
       appBar: AppBar(
         backgroundColor: context.isSmallScreen ? null : Colors.transparent,
         actions: <Widget>[
-          ref.watch(favoritesStateNotifierProvider).maybeWhen(
+          ref.watch(favoritesNotifierProvider).maybeWhen(
                 orElse: () => const SizedBox.shrink(),
                 data: (favorites) {
                   final favorited = favorites.indexWhere(
@@ -46,11 +46,11 @@ class _BookDetailsScreenState extends ConsumerState<BookDetailsScreen> {
                     onPressed: () async {
                       if (favorited) {
                         ref
-                            .watch(favoritesStateNotifierProvider.notifier)
+                            .watch(favoritesNotifierProvider.notifier)
                             .deleteBook(widget.entry.id!.t);
                       } else {
                         ref
-                            .watch(favoritesStateNotifierProvider.notifier)
+                            .watch(favoritesNotifierProvider.notifier)
                             .addBook(widget.entry, widget.entry.id!.t);
                       }
                     },
@@ -259,7 +259,7 @@ class _DownloadButton extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     String id = entry.id!.t.toString();
-    return ref.watch(downloadsStateNotifierProvider).maybeWhen(
+    return ref.watch(downloadsNotifierProvider).maybeWhen(
       orElse: () {
         return _downloadButton(context);
       },
@@ -317,7 +317,7 @@ class _DownloadButton extends ConsumerWidget {
       context.showSnackBarUsingText(
         'Could not find the book file. Please download it again.',
       );
-      ref.read(downloadsStateNotifierProvider.notifier).deleteBook(id);
+      ref.read(downloadsNotifierProvider.notifier).deleteBook(id);
     }
   }
 }
@@ -363,7 +363,7 @@ class _MoreBooksFromAuthorState extends ConsumerState<_MoreBooksFromAuthor> {
   void _fetch() {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       ref
-          .read(bookDetailsStateNotifierProvider(widget.authorUrl).notifier)
+          .read(bookDetailsNotifierProvider(widget.authorUrl).notifier)
           .fetch();
     });
   }
@@ -379,7 +379,7 @@ class _MoreBooksFromAuthorState extends ConsumerState<_MoreBooksFromAuthor> {
   @override
   Widget build(BuildContext context) {
     return ref
-        .watch(bookDetailsStateNotifierProvider(widget.authorUrl))
+        .watch(bookDetailsNotifierProvider(widget.authorUrl))
         .maybeWhen(
           orElse: () => const SizedBox.shrink(),
           loading: () => const LoadingWidget(),

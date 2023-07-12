@@ -13,14 +13,14 @@ class HomeScreenSmall extends ConsumerStatefulWidget {
 
 class _HomeScreenSmallState extends ConsumerState<HomeScreenSmall> {
   void loadData() {
-    ref.read(homeFeedStateNotifierProvider.notifier).fetch();
+    ref.read(homeFeedNotifierProvider.notifier).fetch();
   }
 
   @override
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      ref.read(homeFeedStateNotifierProvider).maybeWhen(
+      ref.read(homeFeedNotifierProvider).maybeWhen(
             orElse: () => loadData(),
             data: (_) => null,
           );
@@ -29,7 +29,7 @@ class _HomeScreenSmallState extends ConsumerState<HomeScreenSmall> {
 
   @override
   Widget build(BuildContext context) {
-    final homeDataState = ref.watch(homeFeedStateNotifierProvider);
+    final homeDataState = ref.watch(homeFeedNotifierProvider);
     return Scaffold(
       appBar: context.isSmallScreen
           ? AppBar(

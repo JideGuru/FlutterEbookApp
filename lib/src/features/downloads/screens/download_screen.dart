@@ -23,7 +23,7 @@ class DownloadsScreen extends ConsumerWidget {
         centerTitle: true,
         title: const Text('Downloads'),
       ),
-      body: ref.watch(downloadsStateNotifierProvider).maybeWhen(
+      body: ref.watch(downloadsNotifierProvider).maybeWhen(
             orElse: () => const EmptyView(),
             data: (books) {
               if (books.isEmpty) return const EmptyView();
@@ -39,7 +39,7 @@ class DownloadsScreen extends ConsumerWidget {
                     background: const _DismissibleBackground(),
                     onDismissed: (d) {
                       ref
-                          .watch(downloadsStateNotifierProvider.notifier)
+                          .watch(downloadsNotifierProvider.notifier)
                           .deleteBook(book['id']);
                     },
                     child: InkWell(
@@ -56,7 +56,7 @@ class DownloadsScreen extends ConsumerWidget {
                             'Could not find the book file. Please download it again.',
                           );
                           ref
-                              .read(downloadsStateNotifierProvider.notifier)
+                              .read(downloadsNotifierProvider.notifier)
                               .deleteBook(book['id']);
                         }
                       },

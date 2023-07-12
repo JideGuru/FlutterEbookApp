@@ -3,13 +3,13 @@ import 'dart:async';
 import 'package:flutter_ebook_app/src/features/features.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-part 'favorites_state_notifier.g.dart';
+part 'favorites_notifier.g.dart';
 
 @riverpod
-class FavoritesStateNotifier extends _$FavoritesStateNotifier {
+class FavoritesNotifier extends _$FavoritesNotifier {
   late FavoritesRepository _repository;
 
-  FavoritesStateNotifier() : super();
+  FavoritesNotifier() : super();
 
   StreamSubscription<List<Entry>>? _streamSubscription;
 

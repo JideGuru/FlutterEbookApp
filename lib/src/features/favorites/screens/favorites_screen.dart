@@ -15,7 +15,7 @@ class FavoritesScreen extends ConsumerWidget {
         centerTitle: true,
         title: const Text('Favorites'),
       ),
-      body: ref.watch(favoritesStateNotifierProvider).maybeWhen(
+      body: ref.watch(favoritesNotifierProvider).maybeWhen(
             orElse: () => const SizedBox.shrink(),
             data: (favorites) {
               if (favorites.isEmpty) const EmptyView();
