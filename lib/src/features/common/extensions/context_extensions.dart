@@ -16,6 +16,9 @@ extension BuildContextExtensions on BuildContext {
 
   bool get isLargeScreen => screenSize.width > 800;
 
+  bool get isPlatformDarkThemed =>
+      MediaQuery.platformBrightnessOf(this) == Brightness.dark;
+
   void showSnackBar(SnackBar snackBar) {
     ScaffoldMessenger.of(this).showSnackBar(snackBar);
   }

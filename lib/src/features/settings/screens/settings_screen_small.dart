@@ -49,11 +49,6 @@ class _SettingsScreenSmallState extends State<SettingsScreenSmall> {
 
   @override
   Widget build(BuildContext context) {
-    // Remove Dark Switch if Device has Dark mode enabled
-    if (MediaQuery.of(context).platformBrightness == Brightness.dark) {
-      items.removeWhere((item) => item['title'] == 'Dark Mode');
-    }
-
     return Scaffold(
       appBar: context.isSmallScreen
           ? AppBar(
@@ -71,6 +66,9 @@ class _SettingsScreenSmallState extends State<SettingsScreenSmall> {
             itemCount: items.length,
             itemBuilder: (BuildContext context, int index) {
               if (items[index]['title'] == 'Dark Mode') {
+                if (context.isPlatformDarkThemed) {
+                  return const SizedBox.shrink();
+                }
                 return _ThemeSwitch(
                   icon: items[index]['icon'],
                   title: items[index]['title'],
