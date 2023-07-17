@@ -6,7 +6,7 @@ part of 'genre_feed_notifier.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$genreFeedNotifierHash() => r'7a69bc3de097b979c3a8d3f2cd5fe066e031f9ec';
+String _$genreFeedNotifierHash() => r'ab4dee78a16239b019fb1481f4eb07f5e3687dfe';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -29,11 +29,11 @@ class _SystemHash {
   }
 }
 
-abstract class _$GenreFeedNotifier
-    extends BuildlessAutoDisposeAsyncNotifier<(List<Entry>, bool)> {
+abstract class _$GenreFeedNotifier extends BuildlessAutoDisposeAsyncNotifier<
+    ({List<Entry> books, bool loadingMore})> {
   late final String url;
 
-  Future<(List<Entry>, bool)> build(
+  Future<({List<Entry> books, bool loadingMore})> build(
     String url,
   );
 }
@@ -43,7 +43,8 @@ abstract class _$GenreFeedNotifier
 const genreFeedNotifierProvider = GenreFeedNotifierFamily();
 
 /// See also [GenreFeedNotifier].
-class GenreFeedNotifierFamily extends Family<AsyncValue<(List<Entry>, bool)>> {
+class GenreFeedNotifierFamily
+    extends Family<AsyncValue<({List<Entry> books, bool loadingMore})>> {
   /// See also [GenreFeedNotifier].
   const GenreFeedNotifierFamily();
 
@@ -82,7 +83,7 @@ class GenreFeedNotifierFamily extends Family<AsyncValue<(List<Entry>, bool)>> {
 
 /// See also [GenreFeedNotifier].
 class GenreFeedNotifierProvider extends AutoDisposeAsyncNotifierProviderImpl<
-    GenreFeedNotifier, (List<Entry>, bool)> {
+    GenreFeedNotifier, ({List<Entry> books, bool loadingMore})> {
   /// See also [GenreFeedNotifier].
   GenreFeedNotifierProvider(
     this.url,
@@ -115,7 +116,7 @@ class GenreFeedNotifierProvider extends AutoDisposeAsyncNotifierProviderImpl<
   }
 
   @override
-  Future<(List<Entry>, bool)> runNotifierBuild(
+  Future<({List<Entry> books, bool loadingMore})> runNotifierBuild(
     covariant GenreFeedNotifier notifier,
   ) {
     return notifier.build(

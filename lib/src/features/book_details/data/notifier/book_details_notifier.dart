@@ -28,8 +28,8 @@ class BookDetailsNotifier extends _$BookDetailsNotifier {
     state = const AsyncValue.loading();
     final successOrFailure = await _bookDetailsRepository.getRelatedFeed(_url);
 
-    final success = successOrFailure.$1;
-    final failure = successOrFailure.$2;
+    final success = successOrFailure.feed;
+    final failure = successOrFailure.failure;
 
     if (failure is HttpFailure) {
       throw (failure.description);

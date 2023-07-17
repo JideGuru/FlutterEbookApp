@@ -30,7 +30,7 @@ class _ExploreScreenSmallState extends ConsumerState<ExploreScreenSmall>
         orElse: () => const SizedBox.shrink(),
         loading: () => const LoadingWidget(),
         data: (feeds) {
-          final popular = feeds.$1;
+          final popular = feeds.popularFeed;
           return ListView.builder(
             itemCount: popular.feed?.link?.length ?? 0,
             itemBuilder: (BuildContext context, int index) {
@@ -153,7 +153,7 @@ class _SectionBookListState extends ConsumerState<_SectionBookList>
                   orElse: () => const SizedBox.shrink(),
                   loading: () => const LoadingWidget(),
                   data: (data) {
-                    final books = data.$1;
+                    final books = data.books;
                     if (_bookCount.value == 0) {
                       _bookCount.value = books.length;
                     }

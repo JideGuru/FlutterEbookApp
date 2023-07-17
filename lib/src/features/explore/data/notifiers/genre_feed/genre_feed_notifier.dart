@@ -5,6 +5,8 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'genre_feed_notifier.g.dart';
 
+typedef GenreFeedData = ({List<Entry> books, bool loadingMore});
+
 @riverpod
 class GenreFeedNotifier extends _$GenreFeedNotifier {
   GenreFeedNotifier() : super();
@@ -13,21 +15,21 @@ class GenreFeedNotifier extends _$GenreFeedNotifier {
   late String _url;
 
   @override
-  Future<(List<Entry>, bool)> build(String url) async {
+  Future<GenreFeedData> build(String url) async {
     _exploreRepository = ref.read(exploreRepositoryProvider);
     _url = url;
-    return (await _fetch(), false);
+    return (books: await _fetch(), loadingMore: false);
   }
 
   Future<void> fetch() async {
-    state = AsyncValue.data((await _fetch(), false));
+    state = AsyncValue.data((books: await _fetch(), loadingMore: false));
   }
 
   Future<List<Entry>> _fetch() async {
     state = const AsyncValue.loading();
     final successOrFailure = await _exploreRepository.getGenreFeed(_url);
-    final success = successOrFailure.$1;
-    final failure = successOrFailure.$2;
+    final success = successOrFailure.feed;
+    final failure = successOrFailure.failure;
     if (success == null) {
       throw (failure?.description ?? '');
     }
@@ -37,18 +39,18 @@ class GenreFeedNotifier extends _$GenreFeedNotifier {
   Future<void> paginate(int page) async {
     state.maybeWhen(
       data: (data) async {
-        List<Entry> books = data.$1;
-        state = AsyncValue.data((books, true));
+        List<Entry> books = data.books;
+        state = AsyncValue.data((books: books, loadingMore: true));
         final successOrFailure =
             await _exploreRepository.getGenreFeed(_url + '&page=$page');
-        final success = successOrFailure.$1;
-        final failure = successOrFailure.$2;
+        final success = successOrFailure.feed;
+        final failure = successOrFailure.failure;
         if (success == null) {
           throw (failure?.description ?? '');
         }
         List<Entry> newItems = List.from(books)
           ..addAll(success.feed?.entry ?? []);
-        state = AsyncValue.data((newItems, false));
+        state = AsyncValue.data((books: newItems, loadingMore: false));
       },
       orElse: () {
         return;

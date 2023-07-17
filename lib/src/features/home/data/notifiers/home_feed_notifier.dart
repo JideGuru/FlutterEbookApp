@@ -4,12 +4,14 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'home_feed_notifier.g.dart';
 
+typedef HomeFeedData = ({CategoryFeed popularFeed, CategoryFeed recentFeed});
+
 @riverpod
 class HomeFeedNotifier extends _$HomeFeedNotifier {
   HomeFeedNotifier() : super();
 
   @override
-  Future<(CategoryFeed, CategoryFeed)> build() async {
+  Future<HomeFeedData> build() async {
     state = const AsyncValue.loading();
     return await _fetch();
   }
@@ -19,19 +21,21 @@ class HomeFeedNotifier extends _$HomeFeedNotifier {
     state = await AsyncValue.guard(() async => await _fetch());
   }
 
-  Future<(CategoryFeed, CategoryFeed)> _fetch() async {
+  Future<HomeFeedData> _fetch() async {
     HomeRepository _homeRepository = ref.read(homeRepositoryProvider);
     final popularFeedSuccessOrFailure =
         await _homeRepository.getPopularHomeFeed();
     final recentFeedSuccessOrFailure =
         await _homeRepository.getRecentHomeFeed();
-    CategoryFeed? popularFeed = popularFeedSuccessOrFailure.$1;
-    CategoryFeed? recentFeed = recentFeedSuccessOrFailure.$1;
+    CategoryFeed? popularFeed = popularFeedSuccessOrFailure.feed;
+    CategoryFeed? recentFeed = recentFeedSuccessOrFailure.feed;
     if (popularFeed == null) {
-      throw (popularFeedSuccessOrFailure.$2!.description);
+      throw (popularFeedSuccessOrFailure.failure!.description);
     }
 
-    if (recentFeed == null) throw (recentFeedSuccessOrFailure.$2!.description);
-    return (popularFeed, recentFeed);
+    if (recentFeed == null) {
+      throw (recentFeedSuccessOrFailure.failure!.description);
+    }
+    return (popularFeed: popularFeed, recentFeed: recentFeed);
   }
 }

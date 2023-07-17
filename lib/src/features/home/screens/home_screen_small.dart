@@ -46,8 +46,8 @@ class _HomeScreenSmallState extends ConsumerState<HomeScreenSmall> {
           orElse: () => const SizedBox.shrink(),
           loading: () => const LoadingWidget(),
           data: (feeds) {
-            final popular = feeds.$1;
-            final recent = feeds.$2;
+            final popular = feeds.popularFeed;
+            final recent = feeds.recentFeed;
             return RefreshIndicator(
               onRefresh: () async => loadData(),
               child: ListView(
