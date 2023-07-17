@@ -40,10 +40,11 @@ class BookCard extends ConsumerWidget {
               titleTag: titleTag,
               authorTag: authorTag,
             );
-            if (context.isSmallScreen || !isHomeTab) {
-              context.router.push(route);
-            } else {
+
+            if (context.isLargeScreen && isHomeTab) {
               context.router.replace(route);
+            } else {
+              context.router.push(route);
             }
           },
           child: ClipRRect(

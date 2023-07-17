@@ -182,10 +182,10 @@ class _GenreSection extends StatelessWidget {
                       title: '${link.title}',
                       url: link.href!,
                     );
-                    if (context.isSmallScreen) {
-                      context.router.push(route);
-                    } else {
+                    if (context.isLargeScreen) {
                       context.router.replace(route);
+                    } else {
+                      context.router.push(route);
                     }
                   },
                   child: Center(

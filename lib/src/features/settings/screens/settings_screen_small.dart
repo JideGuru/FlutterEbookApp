@@ -82,6 +82,10 @@ class _SettingsScreenSmallState extends State<SettingsScreenSmall> {
               );
             },
             separatorBuilder: (BuildContext context, int index) {
+              if (items[index]['title'] == 'Dark Mode' &&
+                  context.isPlatformDarkThemed) {
+                return const SizedBox.shrink();
+              }
               return const Divider();
             },
           ),
@@ -91,10 +95,10 @@ class _SettingsScreenSmallState extends State<SettingsScreenSmall> {
   }
 
   void _pushPage(PageRouteInfo route) {
-    if (context.isSmallScreen) {
-      context.router.push(route);
-    } else {
+    if (context.isLargeScreen) {
       context.router.replace(route);
+    } else {
+      context.router.push(route);
     }
   }
 
