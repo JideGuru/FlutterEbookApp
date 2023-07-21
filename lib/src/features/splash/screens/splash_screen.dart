@@ -21,7 +21,7 @@ class _SplashScreenState extends State<SplashScreen> {
     changeScreen();
   }
 
-  void changeScreen() async {
+  Future<void> changeScreen() async {
     context.router.replace(const TabsRoute());
   }
 
@@ -36,7 +36,6 @@ class _SplashScreenState extends State<SplashScreen> {
     return Scaffold(
       body: Center(
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Image.asset(

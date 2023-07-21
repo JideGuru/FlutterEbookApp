@@ -69,7 +69,7 @@ class Feed {
 
   Feed.fromJson(Map<String, dynamic> json) {
     xmlLang = json['xml:lang'];
-    xmlns = json[r'xmlns'];
+    xmlns = json['xmlns'];
     xmlnsDcterms = json[r'xmlns$dcterms'];
     xmlnsThr = json[r'xmlns$thr'];
     xmlnsApp = json[r'xmlns$app'];
@@ -115,7 +115,7 @@ class Feed {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
     data['xml:lang'] = xmlLang;
-    data[r'xmlns'] = xmlns;
+    data['xmlns'] = xmlns;
     data[r'xmlns$dcterms'] = xmlnsDcterms;
     data[r'xmlns$thr'] = xmlnsThr;
     data[r'xmlns$app'] = xmlnsApp;
@@ -440,16 +440,16 @@ class SchemaSeries {
   SchemaSeries({this.schemaPosition, this.schemaName, this.schemaUrl});
 
   SchemaSeries.fromJson(Map<String, dynamic> json) {
-    schemaPosition = json[r'schema:position'];
-    schemaName = json[r'schema:name'];
-    schemaUrl = json[r'schema:url'];
+    schemaPosition = json['schema:position'];
+    schemaName = json['schema:name'];
+    schemaUrl = json['schema:url'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
-    data[r'schema:position'] = schemaPosition;
-    data[r'schema:name'] = schemaName;
-    data[r'schema:url'] = schemaUrl;
+    data['schema:position'] = schemaPosition;
+    data['schema:name'] = schemaName;
+    data['schema:url'] = schemaUrl;
     return data;
   }
 }

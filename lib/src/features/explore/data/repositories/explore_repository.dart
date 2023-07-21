@@ -9,7 +9,7 @@ class ExploreRepository extends BookRepository {
   Future<BookRepositoryData> getGenreFeed(
     String url,
   ) {
-    String stripedUrl = url.replaceAll(ApiEndpoints.baseURL, '');
+    final String stripedUrl = url.replaceAll(ApiEndpoints.baseURL, '');
     final successOrFailure = getCategory(stripedUrl);
     return successOrFailure;
   }

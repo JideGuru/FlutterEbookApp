@@ -22,19 +22,19 @@ class HomeFeedNotifier extends _$HomeFeedNotifier {
   }
 
   Future<HomeFeedData> _fetch() async {
-    HomeRepository _homeRepository = ref.read(homeRepositoryProvider);
+    final HomeRepository homeRepository = ref.read(homeRepositoryProvider);
     final popularFeedSuccessOrFailure =
-        await _homeRepository.getPopularHomeFeed();
+        await homeRepository.getPopularHomeFeed();
     final recentFeedSuccessOrFailure =
-        await _homeRepository.getRecentHomeFeed();
+        await homeRepository.getRecentHomeFeed();
     CategoryFeed? popularFeed = popularFeedSuccessOrFailure.feed;
     CategoryFeed? recentFeed = recentFeedSuccessOrFailure.feed;
     if (popularFeed == null) {
-      throw (popularFeedSuccessOrFailure.failure!.description);
+      throw popularFeedSuccessOrFailure.failure!.description;
     }
 
     if (recentFeed == null) {
-      throw (recentFeedSuccessOrFailure.failure!.description);
+      throw recentFeedSuccessOrFailure.failure!.description;
     }
     return (popularFeed: popularFeed, recentFeed: recentFeed);
   }

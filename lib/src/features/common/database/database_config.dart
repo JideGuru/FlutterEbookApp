@@ -26,7 +26,7 @@ abstract class DatabaseConfig {
     List<String> dbNames,
     StoreRef<dynamic, dynamic> store,
   ) async {
-    for (var name in dbNames) {
+    for (final name in dbNames) {
       final dbPath = await _generateDbPath(name);
       final dbFactory = kIsWeb ? databaseFactoryWeb : databaseFactoryIo;
       final db = await dbFactory.openDatabase(dbPath);

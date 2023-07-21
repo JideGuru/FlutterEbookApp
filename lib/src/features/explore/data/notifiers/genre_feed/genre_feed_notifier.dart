@@ -31,7 +31,7 @@ class GenreFeedNotifier extends _$GenreFeedNotifier {
     final success = successOrFailure.feed;
     final failure = successOrFailure.failure;
     if (success == null) {
-      throw (failure?.description ?? '');
+      throw failure?.description ?? '';
     }
     return success.feed?.entry ?? [];
   }
@@ -42,11 +42,11 @@ class GenreFeedNotifier extends _$GenreFeedNotifier {
         List<Entry> books = data.books;
         state = AsyncValue.data((books: books, loadingMore: true));
         final successOrFailure =
-            await _exploreRepository.getGenreFeed(_url + '&page=$page');
+            await _exploreRepository.getGenreFeed('$_url&page=$page');
         final success = successOrFailure.feed;
         final failure = successOrFailure.failure;
         if (success == null) {
-          throw (failure?.description ?? '');
+          throw failure?.description ?? '';
         }
         List<Entry> newItems = List.from(books)
           ..addAll(success.feed?.entry ?? []);

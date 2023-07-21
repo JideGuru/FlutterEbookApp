@@ -32,7 +32,7 @@ class BookDetailsNotifier extends _$BookDetailsNotifier {
     final failure = successOrFailure.failure;
 
     if (failure is HttpFailure) {
-      throw (failure.description);
+      throw failure.description;
     }
     return success!;
   }

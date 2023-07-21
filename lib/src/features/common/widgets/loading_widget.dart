@@ -9,7 +9,7 @@ class LoadingWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Color color = context.theme.colorScheme.secondary;
+    final Color color = context.theme.colorScheme.secondary;
     return Center(
       child: isImage ? SpinKitRipple(color: color) : SpinKitWave(color: color),
     );

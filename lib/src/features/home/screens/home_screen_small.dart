@@ -5,7 +5,7 @@ import 'package:flutter_ebook_app/src/router/app_router.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class HomeScreenSmall extends ConsumerStatefulWidget {
-  const HomeScreenSmall({Key? key}) : super(key: key);
+  const HomeScreenSmall({super.key});
 
   @override
   ConsumerState<HomeScreenSmall> createState() => _HomeScreenSmallState();
@@ -69,7 +69,6 @@ class _HomeScreenSmallState extends ConsumerState<HomeScreenSmall> {
           error: (_, __) {
             return MyErrorWidget(
               refreshCallBack: () => loadData(),
-              isConnection: false,
             );
           },
         ),
@@ -81,7 +80,7 @@ class _HomeScreenSmallState extends ConsumerState<HomeScreenSmall> {
 class _SectionTitle extends StatelessWidget {
   final String title;
 
-  const _SectionTitle({Key? key, required this.title}) : super(key: key);
+  const _SectionTitle({required this.title});
 
   @override
   Widget build(BuildContext context) {
@@ -106,7 +105,7 @@ class _SectionTitle extends StatelessWidget {
 class FeaturedSection extends StatelessWidget {
   final CategoryFeed popular;
 
-  const FeaturedSection({Key? key, required this.popular}) : super(key: key);
+  const FeaturedSection({super.key, required this.popular});
 
   @override
   Widget build(BuildContext context) {
@@ -120,7 +119,7 @@ class FeaturedSection extends StatelessWidget {
           itemCount: popular.feed?.entry?.length ?? 0,
           shrinkWrap: true,
           itemBuilder: (BuildContext context, int index) {
-            Entry entry = popular.feed!.entry![index];
+            final Entry entry = popular.feed!.entry![index];
             return Padding(
               padding:
                   const EdgeInsets.symmetric(horizontal: 5.0, vertical: 10.0),
@@ -139,7 +138,7 @@ class FeaturedSection extends StatelessWidget {
 class _GenreSection extends StatelessWidget {
   final CategoryFeed popular;
 
-  const _GenreSection({Key? key, required this.popular}) : super(key: key);
+  const _GenreSection({required this.popular});
 
   @override
   Widget build(BuildContext context) {
@@ -153,7 +152,7 @@ class _GenreSection extends StatelessWidget {
           itemCount: popular.feed?.link?.length ?? 0,
           shrinkWrap: true,
           itemBuilder: (BuildContext context, int index) {
-            Link link = popular.feed!.link![index];
+            final Link link = popular.feed!.link![index];
 
             // We don't need the tags from 0-9 because
             // they are not categories
@@ -212,7 +211,7 @@ class _GenreSection extends StatelessWidget {
 class _NewSection extends StatelessWidget {
   final CategoryFeed recent;
 
-  const _NewSection({Key? key, required this.recent}) : super(key: key);
+  const _NewSection({required this.recent});
 
   @override
   Widget build(BuildContext context) {
@@ -223,7 +222,7 @@ class _NewSection extends StatelessWidget {
       physics: const NeverScrollableScrollPhysics(),
       itemCount: recent.feed?.entry?.length ?? 0,
       itemBuilder: (BuildContext context, int index) {
-        Entry entry = recent.feed!.entry![index];
+        final Entry entry = recent.feed!.entry![index];
 
         return Padding(
           padding: const EdgeInsets.symmetric(horizontal: 5.0, vertical: 5.0),

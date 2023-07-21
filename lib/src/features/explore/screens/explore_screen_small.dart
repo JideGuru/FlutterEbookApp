@@ -34,7 +34,7 @@ class _ExploreScreenSmallState extends ConsumerState<ExploreScreenSmall>
           return ListView.builder(
             itemCount: popular.feed?.link?.length ?? 0,
             itemBuilder: (BuildContext context, int index) {
-              Link link = popular.feed!.link![index];
+              final Link link = popular.feed!.link![index];
               if (!context.isSmallScreen && index == 0) {
                 return const SizedBox(height: 30.0);
               }
@@ -54,7 +54,6 @@ class _ExploreScreenSmallState extends ConsumerState<ExploreScreenSmall>
         error: (_, __) {
           return MyErrorWidget(
             refreshCallBack: () => loadData(),
-            isConnection: false,
           );
         },
       ),
@@ -163,7 +162,7 @@ class _SectionBookListState extends ConsumerState<_SectionBookList>
                       itemCount: books.length,
                       shrinkWrap: true,
                       itemBuilder: (BuildContext context, int index) {
-                        Entry entry = books[index];
+                        final Entry entry = books[index];
 
                         return Padding(
                           padding: const EdgeInsets.symmetric(
@@ -181,7 +180,6 @@ class _SectionBookListState extends ConsumerState<_SectionBookList>
                       refreshCallBack: () {
                         _fetch();
                       },
-                      isConnection: false,
                     );
                   },
                 ),

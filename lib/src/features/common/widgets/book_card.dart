@@ -11,10 +11,10 @@ class BookCard extends ConsumerWidget {
   final Entry entry;
 
   BookCard({
-    Key? key,
+    super.key,
     required this.img,
     required this.entry,
-  }) : super(key: key);
+  });
 
   static const uuid = Uuid();
   final String imgTag = uuid.v4();
@@ -33,7 +33,7 @@ class BookCard extends ConsumerWidget {
         child: InkWell(
           borderRadius: const BorderRadius.all(Radius.circular(10.0)),
           onTap: () {
-            bool isHomeTab = ref.read(currentTabNotifierProvider).isHomeTab;
+            final bool isHomeTab = ref.read(currentTabNotifierProvider).isHomeTab;
             final route = BookDetailsRoute(
               entry: entry,
               imgTag: imgTag,

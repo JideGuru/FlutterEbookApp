@@ -2,9 +2,8 @@ import 'dart:async';
 
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-
 import 'package:flutter_ebook_app/src/features/features.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 @RoutePage()
 class GenreScreen extends ConsumerStatefulWidget {
@@ -12,10 +11,10 @@ class GenreScreen extends ConsumerStatefulWidget {
   final String url;
 
   const GenreScreen({
-    Key? key,
+    super.key,
     required this.title,
     required this.url,
-  }) : super(key: key);
+  });
 
   @override
   ConsumerState<GenreScreen> createState() => _GenreScreenState();
@@ -39,7 +38,7 @@ class _GenreScreenState extends ConsumerState<GenreScreen> {
   }
 
   @override
-  void didUpdateWidget(covariant oldWidget) {
+  void didUpdateWidget(covariant GenreScreen oldWidget) {
     super.didUpdateWidget(oldWidget);
     if (oldWidget.url != widget.url) {
       _fetch();
@@ -105,7 +104,7 @@ class _GenreScreenState extends ConsumerState<GenreScreen> {
                       shrinkWrap: true,
                       itemCount: books.length,
                       itemBuilder: (BuildContext context, int index) {
-                        Entry entry = books[index];
+                        final Entry entry = books[index];
                         return Padding(
                           padding: const EdgeInsets.all(5.0),
                           child: BookListItem(entry: entry),

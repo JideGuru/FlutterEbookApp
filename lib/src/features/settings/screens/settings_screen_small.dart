@@ -6,7 +6,7 @@ import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class SettingsScreenSmall extends StatefulWidget {
-  const SettingsScreenSmall({Key? key}) : super(key: key);
+  const SettingsScreenSmall({super.key});
 
   @override
   State<SettingsScreenSmall> createState() => _SettingsScreenSmallState();
@@ -70,15 +70,15 @@ class _SettingsScreenSmallState extends State<SettingsScreenSmall> {
                   return const SizedBox.shrink();
                 }
                 return _ThemeSwitch(
-                  icon: items[index]['icon'],
-                  title: items[index]['title'],
+                  icon: items[index]['icon'] as IconData,
+                  title: items[index]['title'] as String,
                 );
               }
 
               return ListTile(
-                onTap: items[index]['function'],
-                leading: Icon(items[index]['icon']),
-                title: Text(items[index]['title']),
+                onTap: items[index]['function'] as Function(),
+                leading: Icon(items[index]['icon'] as IconData),
+                title: Text(items[index]['title'] as String),
               );
             },
             separatorBuilder: (BuildContext context, int index) {
@@ -133,10 +133,9 @@ class _ThemeSwitch extends ConsumerWidget {
   final String title;
 
   const _ThemeSwitch({
-    Key? key,
     required this.icon,
     required this.title,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

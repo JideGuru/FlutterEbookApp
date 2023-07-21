@@ -10,9 +10,9 @@ class BookListItem extends ConsumerWidget {
   final Entry entry;
 
   BookListItem({
-    Key? key,
+    super.key,
     required this.entry,
-  }) : super(key: key);
+  });
 
   static const uuid = Uuid();
   final String imgTag = uuid.v4();
@@ -23,7 +23,7 @@ class BookListItem extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return InkWell(
       onTap: () {
-        bool isHomeTab = ref.read(currentTabNotifierProvider).isHomeTab;
+        final bool isHomeTab = ref.read(currentTabNotifierProvider).isHomeTab;
         final route = BookDetailsRoute(
           entry: entry,
           imgTag: imgTag,
@@ -40,7 +40,6 @@ class BookListItem extends ConsumerWidget {
       child: SizedBox(
         height: 150.0,
         child: Row(
-          mainAxisSize: MainAxisSize.max,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             Card(
@@ -77,7 +76,6 @@ class BookListItem extends ConsumerWidget {
             const SizedBox(width: 10.0),
             Flexible(
               child: Column(
-                mainAxisSize: MainAxisSize.max,
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[

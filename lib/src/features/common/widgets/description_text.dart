@@ -33,7 +33,7 @@ class _DescriptionTextWidgetState extends State<DescriptionTextWidget> {
   }
 
   @override
-  void didUpdateWidget(covariant oldWidget) {
+  void didUpdateWidget(covariant DescriptionTextWidget oldWidget) {
     super.didUpdateWidget(oldWidget);
     if (oldWidget.text != widget.text) {
       _splitText();
@@ -45,7 +45,7 @@ class _DescriptionTextWidgetState extends State<DescriptionTextWidget> {
     return Container(
       child: secondHalf.isEmpty
           ? Text(
-              (flag ? (firstHalf) : (firstHalf + secondHalf))
+              (flag ? firstHalf : (firstHalf + secondHalf))
                   .replaceAll(r'\n', '\n')
                   .replaceAll(r'\r', '')
                   .replaceAll(r"\'", "'"),
@@ -57,7 +57,7 @@ class _DescriptionTextWidgetState extends State<DescriptionTextWidget> {
           : Column(
               children: <Widget>[
                 Text(
-                  (flag ? (firstHalf + '...') : (firstHalf + secondHalf))
+                  (flag ? ('$firstHalf...') : (firstHalf + secondHalf))
                       .replaceAll(r'\n', '\n\n')
                       .replaceAll(r'\r', '')
                       .replaceAll(r"\'", "'"),

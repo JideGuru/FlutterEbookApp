@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 class CustomAlert extends StatefulWidget {
   final Widget child;
 
-  const CustomAlert({Key? key, required this.child}) : super(key: key);
+  const CustomAlert({super.key, required this.child});
 
   @override
   State<CustomAlert> createState() => _CustomAlertState();
@@ -20,8 +20,8 @@ class _CustomAlertState extends State<CustomAlert> {
 
   @override
   Widget build(BuildContext context) {
-    Orientation orientation = MediaQuery.of(context).orientation;
-    Size viewsSize = MediaQuery.of(context).size;
+    final Orientation orientation = MediaQuery.of(context).orientation;
+    final Size viewsSize = MediaQuery.of(context).size;
 
     deviceWidth = orientation == Orientation.portrait
         ? viewsSize.width
@@ -40,8 +40,6 @@ class _CustomAlertState extends State<CustomAlert> {
             sigmaY: 0.5,
           ),
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               Expanded(

@@ -5,9 +5,9 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_ebook_app/src/features/features.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:path/path.dart' as path;
 import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
-import 'package:path/path.dart' as path;
 
 class DownloadAlert extends ConsumerStatefulWidget {
   final String url;
@@ -30,7 +30,7 @@ class DownloadAlert extends ConsumerStatefulWidget {
     required String image,
     required String id,
   }) async {
-    return await showDialog(
+    return showDialog(
       barrierDismissible: false,
       context: context,
       builder: (context) => DownloadAlert(
@@ -61,7 +61,7 @@ class _DownloadAlertState extends ConsumerState<DownloadAlert> {
       return;
     }
 
-    PermissionStatus permission = await Permission.storage.status;
+    final PermissionStatus permission = await Permission.storage.status;
 
     if (permission != PermissionStatus.granted) {
       await Permission.storage.request();
@@ -76,25 +76,25 @@ class _DownloadAlertState extends ConsumerState<DownloadAlert> {
   }
 
   Future<void> createFile() async {
-    Directory? appDocDir = Platform.isAndroid
+    final appDocDir = Platform.isAndroid
         ? await getExternalStorageDirectory()
         : await getApplicationDocumentsDirectory();
 
-    String dirPath = path.join(appDocDir!.path, Strings.appName);
+    final String dirPath = path.join(appDocDir!.path, Strings.appName);
     if (Platform.isAndroid) {
       Directory(appDocDir.path.split('Android')[0] + Strings.appName)
           .createSync();
     } else {
       Directory(dirPath).createSync();
     }
-    String filePath = Platform.isAndroid
+    final String filePath = Platform.isAndroid
         ? path.join(
             appDocDir.path.split('Android')[0],
             Strings.appName,
             '$fileName.epub',
           )
         : path.join(dirPath, '$fileName.epub');
-    File file = File(filePath);
+    final File file = File(filePath);
     if (!await file.exists()) {
       await file.create();
     } else {
@@ -109,7 +109,6 @@ class _DownloadAlertState extends ConsumerState<DownloadAlert> {
     await dio.download(
       widget.url,
       filePath,
-      deleteOnError: true,
       onReceiveProgress: (receivedBytes, totalBytes) {
         setState(() {
           received = receivedBytes;
@@ -119,8 +118,8 @@ class _DownloadAlertState extends ConsumerState<DownloadAlert> {
 
         //Check if download is complete and close the alert dialog
         if (receivedBytes == totalBytes) {
-          String size = '${Utils.formatBytes(total, 1)}';
-          Map<String, dynamic> book = {
+          final size = formatBytes(total, 1);
+          final book = {
             'id': widget.id,
             'path': filePath,
             'image': widget.image,
@@ -150,7 +149,6 @@ class _DownloadAlertState extends ConsumerState<DownloadAlert> {
           padding: const EdgeInsets.all(20.0),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
               const Text(
@@ -192,8 +190,8 @@ class _DownloadAlertState extends ConsumerState<DownloadAlert> {
                     overflow: TextOverflow.ellipsis,
                   ),
                   Text(
-                    '${Utils.formatBytes(received, 1)} '
-                    'of ${Utils.formatBytes(total, 1)}',
+                    '${formatBytes(received, 1)} '
+                    'of ${formatBytes(total, 1)}',
                     style: const TextStyle(
                       fontSize: 13.0,
                     ),

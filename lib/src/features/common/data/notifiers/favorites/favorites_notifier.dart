@@ -30,11 +30,11 @@ class FavoritesNotifier extends _$FavoritesNotifier {
     );
   }
 
-  Future<void> addBook(Entry book, id) async {
+  Future<void> addBook(Entry book, String id) async {
     await _repository.addBook(book, id);
   }
 
-  Future<void> deleteBook(id) async {
+  Future<void> deleteBook(String id) async {
     await _repository.deleteBook(id);
   }
 }

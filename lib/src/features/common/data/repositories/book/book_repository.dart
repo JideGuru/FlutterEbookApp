@@ -16,9 +16,9 @@ abstract class BookRepository {
     try {
       final res = await httpClient.get(url);
       CategoryFeed category;
-      Xml2Json xml2json = Xml2Json();
+      final Xml2Json xml2json = Xml2Json();
       xml2json.parse(res.data.toString());
-      var json = jsonDecode(xml2json.toGData());
+      final json = jsonDecode(xml2json.toGData());
       category = CategoryFeed.fromJson(json as Map<String, dynamic>);
       return (feed: category, failure: null);
     } on DioError catch (error) {

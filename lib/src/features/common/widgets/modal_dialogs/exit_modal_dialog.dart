@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_ebook_app/src/features/features.dart';
 
 class ExitModalDialog extends StatelessWidget {
-  const ExitModalDialog({Key? key}) : super(key: key);
+  const ExitModalDialog({super.key});
 
   static Future<bool?> show({required BuildContext context}) {
     return showDialog<bool>(
@@ -20,7 +20,6 @@ class ExitModalDialog extends StatelessWidget {
         padding: const EdgeInsets.all(20.0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
             const SizedBox(height: 15.0),

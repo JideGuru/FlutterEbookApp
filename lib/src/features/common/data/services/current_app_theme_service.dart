@@ -24,7 +24,7 @@ class CurrentAppThemeService {
   bool getIsDarkMode() {
     final isDarkMode =
         _sharedPreferences!.getBool(SharedPreferencesKeys.isDarkMode);
-    return (isDarkMode ?? false);
+    return isDarkMode ?? false;
   }
 }
 

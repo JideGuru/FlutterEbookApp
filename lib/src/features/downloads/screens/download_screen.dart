@@ -31,7 +31,7 @@ class DownloadsScreen extends ConsumerWidget {
                 shrinkWrap: true,
                 itemCount: books.length,
                 itemBuilder: (BuildContext context, int index) {
-                  Map<String, dynamic> book = books[index];
+                  final book = books[index];
 
                   return Dismissible(
                     key: ObjectKey(uuid.v4()),
@@ -40,24 +40,28 @@ class DownloadsScreen extends ConsumerWidget {
                     onDismissed: (d) {
                       ref
                           .watch(downloadsNotifierProvider.notifier)
-                          .deleteBook(book['id']);
+                          .deleteBook(book['id'] as String);
                     },
                     child: InkWell(
                       onTap: () async {
-                        String path = book['path'];
-                        File bookFile = File(path);
+                        final path = book['path'] as String;
+                        final bookFile = File(path);
                         if (bookFile.existsSync()) {
-                          Navigator.push(context,
-                              MaterialPageRoute(builder: (_) {
-                            return EpubScreen.fromPath(filePath: path);
-                          }));
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (_) {
+                                return EpubScreen.fromPath(filePath: path);
+                              },
+                            ),
+                          );
                         } else {
                           context.showSnackBarUsingText(
                             'Could not find the book file. Please download it again.',
                           );
                           ref
                               .read(downloadsNotifierProvider.notifier)
-                              .deleteBook(book['id']);
+                              .deleteBook(book['id'] as String);
                         }
                       },
                       child: Padding(
@@ -68,7 +72,7 @@ class DownloadsScreen extends ConsumerWidget {
                         child: Row(
                           children: <Widget>[
                             CachedNetworkImage(
-                              imageUrl: book['image'],
+                              imageUrl: book['image'] as String,
                               placeholder: (context, url) => const SizedBox(
                                 height: 70.0,
                                 width: 70.0,
@@ -90,7 +94,7 @@ class DownloadsScreen extends ConsumerWidget {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: <Widget>[
                                   Text(
-                                    book['name'],
+                                    book['name'] as String,
                                     style: const TextStyle(
                                       fontSize: 15.0,
                                       fontWeight: FontWeight.bold,
@@ -115,7 +119,7 @@ class DownloadsScreen extends ConsumerWidget {
                                         overflow: TextOverflow.ellipsis,
                                       ),
                                       Text(
-                                        book['size'],
+                                        book['size'] as String,
                                         style: const TextStyle(
                                           fontSize: 13.0,
                                         ),
@@ -144,7 +148,7 @@ class DownloadsScreen extends ConsumerWidget {
 }
 
 class _DismissibleBackground extends StatelessWidget {
-  const _DismissibleBackground({Key? key}) : super(key: key);
+  const _DismissibleBackground();
 
   @override
   Widget build(BuildContext context) {

@@ -17,7 +17,7 @@ class DownloadsNotifier extends _$DownloadsNotifier {
   Future<List<Map<String, dynamic>>> build() async {
     _repository = ref.watch(downloadsRepositoryProvider);
     _listen();
-    return await _repository.downloadList();
+    return _repository.downloadList();
   }
 
   Future<void> _listen() async {
@@ -30,11 +30,11 @@ class DownloadsNotifier extends _$DownloadsNotifier {
     );
   }
 
-  Future<void> fetchBook(id) async {
+  Future<void> fetchBook(String id) async {
     await _repository.fetchBook(id);
   }
 
-  Future<void> addBook(Map<String, dynamic> book, id) async {
+  Future<void> addBook(Map<String, dynamic> book, String id) async {
     await _repository.addBook(book, id);
   }
 

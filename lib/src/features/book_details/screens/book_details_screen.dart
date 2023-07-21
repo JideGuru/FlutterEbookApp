@@ -3,11 +3,11 @@ import 'dart:io';
 import 'package:auto_route/auto_route.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_ebook_app/src/features/features.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:iridium_reader_widget/views/viewers/epub_screen.dart';
 import 'package:share_plus/share_plus.dart';
-import 'package:flutter_ebook_app/src/features/features.dart';
 
 @RoutePage()
 class BookDetailsScreen extends ConsumerStatefulWidget {
@@ -47,11 +47,11 @@ class _BookDetailsScreenState extends ConsumerState<BookDetailsScreen> {
                       if (favorited) {
                         ref
                             .watch(favoritesNotifierProvider.notifier)
-                            .deleteBook(widget.entry.id!.t);
+                            .deleteBook(widget.entry.id!.t ?? '');
                       } else {
                         ref
                             .watch(favoritesNotifierProvider.notifier)
-                            .addBook(widget.entry, widget.entry.id!.t);
+                            .addBook(widget.entry, widget.entry.id!.t ?? '');
                       }
                     },
                     icon: Icon(
@@ -107,7 +107,7 @@ class _BookDetailsScreenState extends ConsumerState<BookDetailsScreen> {
 }
 
 class _Divider extends StatelessWidget {
-  const _Divider({Key? key}) : super(key: key);
+  const _Divider();
 
   @override
   Widget build(BuildContext context) {
@@ -131,7 +131,6 @@ class _BookDescriptionSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
-      mainAxisSize: MainAxisSize.max,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         Hero(
@@ -152,7 +151,6 @@ class _BookDescriptionSection extends StatelessWidget {
         const SizedBox(width: 20.0),
         Flexible(
           child: Column(
-            mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
@@ -258,7 +256,7 @@ class _DownloadButton extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    String id = entry.id!.t.toString();
+    final id = entry.id!.t.toString();
     return ref.watch(downloadsNotifierProvider).maybeWhen(
       orElse: () {
         return _downloadButton(context);
@@ -271,7 +269,7 @@ class _DownloadButton extends ConsumerWidget {
         }
         final book = books.firstWhere((element) => element['id'] == id);
         return TextButton(
-          onPressed: () => openBook(book['path'], context, ref),
+          onPressed: () => openBook(book['path'] as String, context, ref),
           child: Text(
             'Read Book'.toUpperCase(),
             style: TextStyle(
@@ -308,11 +306,16 @@ class _DownloadButton extends ConsumerWidget {
     BuildContext context,
     WidgetRef ref,
   ) async {
-    File bookFile = File(path);
+    final bookFile = File(path);
     if (bookFile.existsSync()) {
-      Navigator.push(context, MaterialPageRoute(builder: (_) {
-        return EpubScreen.fromPath(filePath: path);
-      }));
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (_) {
+            return EpubScreen.fromPath(filePath: path);
+          },
+        ),
+      );
     } else {
       context.showSnackBarUsingText(
         'Could not find the book file. Please download it again.',
@@ -325,7 +328,7 @@ class _DownloadButton extends ConsumerWidget {
 class _SectionTitle extends StatelessWidget {
   final String title;
 
-  const _SectionTitle({Key? key, required this.title}) : super(key: key);
+  const _SectionTitle({required this.title});
 
   @override
   Widget build(BuildContext context) {
@@ -344,9 +347,8 @@ class _MoreBooksFromAuthor extends ConsumerStatefulWidget {
   final String authorUrl;
 
   const _MoreBooksFromAuthor({
-    Key? key,
     required this.authorUrl,
-  }) : super(key: key);
+  });
 
   @override
   ConsumerState<_MoreBooksFromAuthor> createState() =>
@@ -367,7 +369,7 @@ class _MoreBooksFromAuthorState extends ConsumerState<_MoreBooksFromAuthor> {
   }
 
   @override
-  void didUpdateWidget(covariant oldWidget) {
+  void didUpdateWidget(covariant _MoreBooksFromAuthor oldWidget) {
     super.didUpdateWidget(oldWidget);
     if (oldWidget.authorUrl != widget.authorUrl) {
       _fetch();
@@ -388,7 +390,7 @@ class _MoreBooksFromAuthorState extends ConsumerState<_MoreBooksFromAuthor> {
               physics: const NeverScrollableScrollPhysics(),
               itemCount: related.feed!.entry!.length,
               itemBuilder: (BuildContext context, int index) {
-                Entry entry = related.feed!.entry![index];
+                final entry = related.feed!.entry![index];
                 return Padding(
                   padding: const EdgeInsets.symmetric(vertical: 5.0),
                   child: BookListItem(entry: entry),
@@ -399,7 +401,6 @@ class _MoreBooksFromAuthorState extends ConsumerState<_MoreBooksFromAuthor> {
           error: (_, __) {
             return MyErrorWidget(
               refreshCallBack: () => _fetch(),
-              isConnection: false,
             );
           },
         );

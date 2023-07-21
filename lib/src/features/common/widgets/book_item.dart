@@ -12,11 +12,11 @@ class BookItem extends ConsumerWidget {
   final Entry entry;
 
   BookItem({
-    Key? key,
+    super.key,
     required this.img,
     required this.title,
     required this.entry,
-  }) : super(key: key);
+  });
 
   static const uuid = Uuid();
   final String imgTag = uuid.v4();
@@ -29,7 +29,7 @@ class BookItem extends ConsumerWidget {
       width: 150,
       child: InkWell(
         onTap: () {
-          bool isHomeTab = ref.read(currentTabNotifierProvider).isHomeTab;
+          final bool isHomeTab = ref.read(currentTabNotifierProvider).isHomeTab;
           final route = BookDetailsRoute(
             entry: entry,
             imgTag: imgTag,

@@ -4,7 +4,7 @@ import 'package:flutter_ebook_app/src/features/common/constants/api.dart';
 
 class AppDio with DioMixin implements Dio {
   AppDio._() {
-    String baseUrl = ApiEndpoints.baseURL;
+    final String baseUrl = ApiEndpoints.baseURL;
     options = BaseOptions(
       baseUrl: baseUrl,
       contentType: 'application/json',

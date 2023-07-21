@@ -1,8 +1,6 @@
-include: package:flutter_lints/flutter.yaml
+include: package:lint/strict.yaml
 
 analyzer:
-  plugins:
-    - dart_code_metrics
   exclude:
     - build/**
     - "**/*.g.dart"
@@ -15,15 +13,10 @@ analyzer:
 
 linter:
   rules:
-     avoid_print: true
-     prefer_single_quotes: true
-     always_use_package_imports: true
-     empty_statements: true
-     always_declare_return_types: true
-     camel_case_extensions: true
-
-dart_code_metrics:
-  rules:
-#    - avoid-dynamic
-    - prefer-trailing-comma
-    - no-empty-block
+    avoid_print: true
+    prefer_single_quotes: true
+    always_use_package_imports: true
+    empty_statements: true
+    always_declare_return_types: true
+    camel_case_extensions: true
+    require_trailing_commas: true
