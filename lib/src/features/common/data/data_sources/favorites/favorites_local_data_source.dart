@@ -1,4 +1,4 @@
-import 'package:flutter_ebook_app/src/features/common/data/models/category_feed.dart';
+import 'package:flutter_ebook_app/src/features/features.dart';
 
 abstract class FavoritesLocalDataSource {
   const FavoritesLocalDataSource();

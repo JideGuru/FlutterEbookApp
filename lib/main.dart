@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_ebook_app/src/features/common/constants/strings.dart';
-import 'package:flutter_ebook_app/src/features/common/data/local/local_storage.dart';
-import 'package:flutter_ebook_app/src/features/common/data/notifiers/current_app_theme/current_app_theme_notifier.dart';
-import 'package:flutter_ebook_app/src/features/common/database/database_config.dart';
+import 'package:flutter_ebook_app/src/features/features.dart';
 import 'package:flutter_ebook_app/src/router/app_router.dart';
 import 'package:flutter_ebook_app/src/theme/theme_config.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -33,6 +30,7 @@ class MyApp extends ConsumerWidget {
             : ThemeConfig.lightTheme,
       ),
       darkTheme: themeData(ThemeConfig.darkTheme),
+      themeMode: currentAppTheme.value?.themeMode,
       routerConfig: _appRouter.config(),
     );
   }

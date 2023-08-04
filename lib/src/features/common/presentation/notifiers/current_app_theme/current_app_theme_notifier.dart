@@ -1,6 +1,7 @@
 import 'dart:async';
 
-import 'package:flutter_ebook_app/src/features/common/data/services/current_app_theme_service.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_ebook_app/src/features/features.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'current_app_theme_notifier.g.dart';
@@ -23,10 +24,16 @@ class CurrentAppThemeNotifier extends _$CurrentAppThemeNotifier {
   }
 
   @override
-  FutureOr<CurrentAppTheme> build() {
+  Future<CurrentAppTheme> build() async {
     _currentAppThemeService = ref.read(currentAppThemeServiceProvider);
     return _currentAppThemeService.getCurrentAppTheme();
   }
 }
 
-enum CurrentAppTheme { light, dark }
+enum CurrentAppTheme {
+  light(ThemeMode.light),
+  dark(ThemeMode.dark);
+
+  final ThemeMode themeMode;
+  const CurrentAppTheme(this.themeMode);
+}

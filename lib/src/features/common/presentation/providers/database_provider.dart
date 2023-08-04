@@ -1,4 +1,4 @@
-import 'package:flutter_ebook_app/src/features/common/database/database_config.dart';
+import 'package:flutter_ebook_app/src/features/features.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:sembast/sembast.dart';
 

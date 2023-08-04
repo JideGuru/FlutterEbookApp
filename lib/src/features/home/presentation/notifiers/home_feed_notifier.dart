@@ -1,5 +1,4 @@
-import 'package:flutter_ebook_app/src/features/common/data/models/category_feed.dart';
-import 'package:flutter_ebook_app/src/features/home/data/repositories/home_repository.dart';
+import 'package:flutter_ebook_app/src/features/features.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'home_feed_notifier.g.dart';
@@ -13,7 +12,7 @@ class HomeFeedNotifier extends _$HomeFeedNotifier {
   @override
   Future<HomeFeedData> build() async {
     state = const AsyncValue.loading();
-    return await _fetch();
+    return _fetch();
   }
 
   Future<void> fetch() async {
@@ -25,8 +24,7 @@ class HomeFeedNotifier extends _$HomeFeedNotifier {
     final HomeRepository homeRepository = ref.read(homeRepositoryProvider);
     final popularFeedSuccessOrFailure =
         await homeRepository.getPopularHomeFeed();
-    final recentFeedSuccessOrFailure =
-        await homeRepository.getRecentHomeFeed();
+    final recentFeedSuccessOrFailure = await homeRepository.getRecentHomeFeed();
     CategoryFeed? popularFeed = popularFeedSuccessOrFailure.feed;
     CategoryFeed? recentFeed = recentFeedSuccessOrFailure.feed;
     if (popularFeed == null) {

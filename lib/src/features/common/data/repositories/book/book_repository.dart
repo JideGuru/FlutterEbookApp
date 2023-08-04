@@ -1,8 +1,7 @@
 import 'dart:convert';
 
 import 'package:dio/dio.dart';
-import 'package:flutter_ebook_app/src/features/common/data/failures/http_failure.dart';
-import 'package:flutter_ebook_app/src/features/common/data/models/category_feed.dart';
+import 'package:flutter_ebook_app/src/features/features.dart';
 import 'package:xml2json/xml2json.dart';
 
 typedef BookRepositoryData = ({CategoryFeed? feed, HttpFailure? failure});
