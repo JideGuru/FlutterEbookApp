@@ -1,4 +1,4 @@
-import 'package:flutter_ebook_app/src/features/features.dart';
+import 'package:flutter_ebook_app/src/common/common.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class BookDetailsRepository extends BookRepository {

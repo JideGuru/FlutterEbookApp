@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_ebook_app/src/router/app_router.dart';
+import 'package:flutter_ebook_app/src/common/common.dart';
 
 @RoutePage()
 class SplashScreen extends StatefulWidget {

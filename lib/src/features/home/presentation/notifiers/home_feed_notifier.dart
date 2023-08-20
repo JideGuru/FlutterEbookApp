@@ -1,3 +1,4 @@
+import 'package:flutter_ebook_app/src/common/common.dart';
 import 'package:flutter_ebook_app/src/features/features.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -25,8 +26,8 @@ class HomeFeedNotifier extends _$HomeFeedNotifier {
     final popularFeedSuccessOrFailure =
         await homeRepository.getPopularHomeFeed();
     final recentFeedSuccessOrFailure = await homeRepository.getRecentHomeFeed();
-    CategoryFeed? popularFeed = popularFeedSuccessOrFailure.feed;
-    CategoryFeed? recentFeed = recentFeedSuccessOrFailure.feed;
+    final popularFeed = popularFeedSuccessOrFailure.feed;
+    final recentFeed = recentFeedSuccessOrFailure.feed;
     if (popularFeed == null) {
       throw popularFeedSuccessOrFailure.failure!.description;
     }

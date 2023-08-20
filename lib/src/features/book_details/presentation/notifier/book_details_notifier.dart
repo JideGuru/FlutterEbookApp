@@ -1,5 +1,5 @@
+import 'package:flutter_ebook_app/src/common/common.dart';
 import 'package:flutter_ebook_app/src/features/book_details/data/repositories/book_details_repository.dart';
-import 'package:flutter_ebook_app/src/features/common/common.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'book_details_notifier.g.dart';
