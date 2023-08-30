@@ -11,7 +11,6 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart' hide Decoration;
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:mno_webview/webview.dart';
 import 'package:mno_navigator/epub.dart';
 import 'package:mno_navigator/publication.dart';
 import 'package:mno_navigator/src/epub/decoration.dart';
@@ -21,6 +20,7 @@ import 'package:mno_navigator/src/epub/model/decoration_style_annotation_mark.da
 import 'package:mno_navigator/src/publication/model/annotation_type_and_idref_predicate.dart';
 import 'package:mno_server/mno_server.dart';
 import 'package:mno_shared/publication.dart';
+import 'package:mno_webview/webview.dart';
 
 @protected
 class WebViewScreenState extends State<WebViewScreen> {
