@@ -12,6 +12,7 @@ import 'package:mno_commons/utils/functions.dart';
 import 'package:mno_navigator/epub.dart';
 import 'package:mno_navigator/publication.dart';
 import 'package:mno_server/mno_server.dart';
+import 'package:mno_shared/mediatype.dart';
 import 'package:mno_shared/publication.dart';
 import 'package:mno_streamer/parser.dart';
 
@@ -79,6 +80,32 @@ class EpubScreen extends BookScreen {
     );
   }
 
+  factory EpubScreen.fromUri(
+      {Key? key,
+      required String rootHref,
+      ReaderAnnotationRepository? readerAnnotationRepository,
+      PaginationCallback? paginationCallback,
+      MediaType? mimeType,
+      String? location,
+      String? settings,
+      String? theme}) {
+    Map<String, dynamic>? decodedTheme;
+    try {
+      decodedTheme = json.decode(theme!);
+    } catch (e) {
+      debugPrint('failure to decode theme: $e');
+    }
+    return EpubScreen(
+      key: key,
+      asset: HttpAsset(rootHref, knownMediaType: mimeType),
+      readerAnnotationRepository: readerAnnotationRepository,
+      paginationCallback: paginationCallback,
+      location: location,
+      settings: int.tryParse(settings ?? '100'),
+      theme: decodedTheme,
+    );
+  }
+
   @override
   State<StatefulWidget> createState() => EpubScreenState();
 }
@@ -133,7 +160,7 @@ class EpubScreenState extends BookScreenState<EpubScreen, EpubController> {
           Function onServerClosed,
           Function? onPageJump,
           Future<String?> locationFuture,
-          FileAsset fileAsset,
+          PublicationAsset fileAsset,
           Future<Streamer> streamerFuture,
           ReaderAnnotationRepository readerAnnotationRepository,
           Function0<List<RequestHandler>> handlersProvider) =>

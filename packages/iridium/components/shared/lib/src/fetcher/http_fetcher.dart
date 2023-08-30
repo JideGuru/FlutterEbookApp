@@ -2,10 +2,12 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
+import 'dart:collection';
 import 'dart:math';
 import 'dart:typed_data';
 
 import 'package:dartx/dartx.dart';
+import 'package:fimber/fimber.dart';
 import 'package:http/http.dart' as http;
 import 'package:mno_commons/extensions/strings.dart';
 import 'package:mno_commons/io.dart';
@@ -20,12 +22,12 @@ class HttpFetcher extends Fetcher {
   HttpFetcher(this.rootHref);
 
   @override
-  Future<List<Link>> links() async => [];
+  Future<List<Link>> links() async => [Link(href: Uri.parse(rootHref).path)];
 
   @override
   Resource get(Link link) {
-    String linkHref = link.href.addPrefix("/");
-    Uri url = Uri.parse("$rootHref$linkHref");
+    String linkHref = link.href.addPrefix("./");
+    Uri url = Uri.parse(rootHref).resolve(linkHref);
     return HttpResource(url, link);
   }
 
@@ -39,7 +41,9 @@ class HttpFetcher extends Fetcher {
 class HttpResource extends Resource {
   final Uri url;
   final Link _link;
-  ResourceTry<http.Response>? _response;
+
+  static HashMap<Uri, ResourceTry<http.Response>> caching =
+      HashMap<Uri, ResourceTry<http.Response>>();
 
   HttpResource(this.url, this._link);
 
@@ -47,12 +51,12 @@ class HttpResource extends Resource {
   Future<Link> link() async => _link;
 
   Future<ResourceTry<http.Response>> get response async =>
-      _response ??= await catching(() async {
-        Uri uri = Uri.parse("https://cros-anywhere.herokuapp.com/$url");
+      caching[url] ??= await catching(() async {
+        Uri uri = Uri.parse("$url");
         return http.get(uri, headers: {
           'Access-Control-Allow-Origin': 'http://localhost:49430',
           'Access-Control-Allow-Methods':
-          'GET, POST, PATCH, PUT, DELETE, OPTIONS',
+              'GET, POST, PATCH, PUT, DELETE, OPTIONS',
           'Access-Control-Allow-Headers': 'Origin, Content-Type, X-Auth-Token',
         });
       });
@@ -102,20 +106,21 @@ class HttpResource extends Resource {
   @override
   String toString() => "HttpResource($url)";
 
-  static Future<ResourceTry<T>> catching<T>(Future<T> Function() closure) =>
-      closure().then((value) => ResourceTry.success(value)).catchError((e, st) {
-        if (e is http.ClientException) {
-          return ResourceTry<T>.failure(ResourceException.notFound);
-        }
-        if (e is FileNotFoundException) {
-          return ResourceTry<T>.failure(ResourceException.notFound);
-        }
-        if (e is Exception) {
-          return ResourceTry<T>.failure(ResourceException.wrap(e));
-        }
-        if (e is OutOfMemoryError) {
-          // We don't want to catch any Error, only OOM.
-          return ResourceTry<T>.failure(ResourceException.wrap(e));
-        }
-      });
+  static Future<ResourceTry<T>> catching<T>(
+      Future<T> Function() closure) async {
+    try {
+      T value = await closure();
+      return ResourceTry.success(value);
+    } on http.ClientException catch (_) {
+      return ResourceTry<T>.failure(ResourceException.notFound);
+    } on FileNotFoundException catch (_) {
+      return ResourceTry<T>.failure(ResourceException.notFound);
+    } on Exception catch (e) {
+      return ResourceTry<T>.failure(ResourceException.wrap(e));
+    } on OutOfMemoryError catch (e) {
+      return ResourceTry<T>.failure(ResourceException.wrap(e));
+    } catch (e) {
+      return ResourceTry<T>.failure(ResourceException.wrap(e));
+    }
+  }
 }

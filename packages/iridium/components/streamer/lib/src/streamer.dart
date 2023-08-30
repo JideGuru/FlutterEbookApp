@@ -179,7 +179,7 @@ class Streamer {
         EpubParser(),
         if (pdfFactory != null) PdfParser(pdfFactory!),
         ImageParser(),
-        if (pdfFactory != null) ReadiumWebPubParser(pdfFactory),
+        ReadiumWebPubParser(pdfFactory),
       ];
 
   List<StreamPublicationParser> _getParsers() => List.of(_parsers)

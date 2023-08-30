@@ -186,5 +186,7 @@ class FileResource extends Resource {
           // We don't want to catch any Error, only OOM.
           return ResourceTry<T>.failure(ResourceException.wrap(e));
         }
+
+        return ResourceTry<T>.failure(ResourceException.wrap(e));
       });
 }

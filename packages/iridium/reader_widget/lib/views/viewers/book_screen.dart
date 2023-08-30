@@ -18,7 +18,7 @@ import 'package:mno_webview/webview.dart';
 typedef PaginationCallback = Function(PaginationInfo paginationInfo);
 
 abstract class BookScreen extends StatefulWidget {
-  final FileAsset asset;
+  final PublicationAsset asset;
   final ReaderAnnotationRepository? readerAnnotationRepository;
   final PaginationCallback? paginationCallback;
 
@@ -68,7 +68,7 @@ abstract class BookScreenState<T extends BookScreen,
       Function onServerClosed,
       Function? onPageJump,
       Future<String?> locationFuture,
-      FileAsset fileAsset,
+      PublicationAsset fileAsset,
       Future<Streamer> streamerFuture,
       ReaderAnnotationRepository readerAnnotationRepository,
       Function0<List<RequestHandler>> handlersProvider);

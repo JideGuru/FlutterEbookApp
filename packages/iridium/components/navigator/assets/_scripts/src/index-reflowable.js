@@ -11,16 +11,6 @@ import flutter from "./flutter";
 import "tocca";
 import { isScrollModeEnabled } from "./utils";
 
-document.scrollingElement.addEventListener("swipeup", function (event) {
-  event.stopPropagation();
-  flutter.onSwipeUp();
-});
-
-document.scrollingElement.addEventListener("swipedown", function (event) {
-  event.stopPropagation();
-  flutter.onSwipeDown();
-});
-
 /**
  * Remove all child nodes from an element
  * @param {Object} element The element to empty
@@ -285,4 +275,14 @@ document.addEventListener("DOMContentLoaded", function () {
     "width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no"
   );
   document.head.appendChild(meta);
+
+  document.scrollingElement.addEventListener("swipeup", function (event) {
+    event.stopPropagation();
+    flutter.onSwipeUp();
+  });
+  
+  document.scrollingElement.addEventListener("swipedown", function (event) {
+    event.stopPropagation();
+    flutter.onSwipeDown();
+  });
 });

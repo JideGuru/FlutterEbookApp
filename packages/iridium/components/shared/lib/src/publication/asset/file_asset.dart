@@ -27,9 +27,27 @@ class FileAsset extends PublicationAsset {
   String get name => basename(file.path);
 
   @override
-  Future<MediaType> get mediaType async => _mediaType ??= (knownMediaType ??
-      (await MediaType.ofFileWithSingleHint(file, mediaType: mediaTypeHint)) ??
-      MediaType.binary);
+  Future<MediaType> get mediaType async => await getMediaType();
+
+  Future<MediaType> getMediaType() async {
+    if (_mediaType != null) {
+      return Future.value(_mediaType);
+    }
+
+    if (knownMediaType != null) {
+      _mediaType = knownMediaType;
+      return Future.value(_mediaType ??= knownMediaType);
+    }
+
+    MediaType? ofFile =
+        await MediaType.ofFileWithSingleHint(file, mediaType: mediaTypeHint);
+
+    if (ofFile != null) {
+      return _mediaType ??= ofFile;
+    }
+
+    return _mediaType ??= MediaType.binary;
+  }
 
   @override
   Future<Try<Fetcher, OpeningException>> createFetcher(
