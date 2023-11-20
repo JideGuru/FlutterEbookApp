@@ -40,7 +40,7 @@ class GenreFeedNotifier extends _$GenreFeedNotifier {
   Future<void> paginate(int page) async {
     state.maybeWhen(
       data: (data) async {
-        List<Entry> books = data.books;
+        final List<Entry> books = data.books;
         state = AsyncValue.data((books: books, loadingMore: true));
         final successOrFailure =
             await _exploreRepository.getGenreFeed('$_url&page=$page');
@@ -49,7 +49,7 @@ class GenreFeedNotifier extends _$GenreFeedNotifier {
         if (success == null) {
           throw failure?.description ?? '';
         }
-        List<Entry> newItems = List.from(books)
+        final List<Entry> newItems = List.from(books)
           ..addAll(success.feed?.entry ?? []);
         state = AsyncValue.data((books: newItems, loadingMore: false));
       },

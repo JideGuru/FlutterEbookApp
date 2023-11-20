@@ -6,10 +6,7 @@ analyzer:
     - "**/*.g.dart"
     - "**/*.freezed.dart"
     - "**/*.gr.dart"
-#  language:
-#    strict-casts: true
-#    strict-raw-types: true
-#    strict-inference: true
+    - packages/**
 
 linter:
   rules:
