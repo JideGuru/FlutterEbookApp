@@ -1,6 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:dio/io.dart';
-import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter_ebook_app/src/common/common.dart';
 import 'package:logman/logman.dart';
 
@@ -18,7 +17,6 @@ class AppDio with DioMixin implements Dio {
       ..add(
         InterceptorsWrapper(
           onRequest: (options, handler) async {
-            options.headers['Content-Type'] = 'application/json';
             return handler.next(options);
           },
           onResponse: (response, handler) {
@@ -30,7 +28,7 @@ class AppDio with DioMixin implements Dio {
         ),
       )
       ..add(LogmanDioInterceptor());
-    httpClientAdapter = IOHttpClientAdapter();
+    httpClientAdapter = getAdapter();
   }
 
   static Dio getInstance() => AppDio._();

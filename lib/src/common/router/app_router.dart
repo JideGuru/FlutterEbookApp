@@ -14,10 +14,15 @@ class AppRouter extends _$AppRouter {
         page: SplashRoute.page,
         path: '/',
       ),
-      CupertinoRoute(
+      CustomRoute(
         page: TabsRoute.page,
         path: '/tabs-screen',
+        transitionsBuilder: (_, animation, ___, child) => FadeTransition(
+          opacity: animation,
+          child: child,
+        ),
         children: <AutoRoute>[
+          RedirectRoute(path: '', redirectTo: 'home-tab'),
           CupertinoRoute(
             page: HomeRoute.page,
             path: 'home-tab',
@@ -38,11 +43,6 @@ class AppRouter extends _$AppRouter {
             page: ExploreRoute.page,
             path: 'explore-tab',
             children: [
-              CustomRoute(
-                transitionsBuilder: (_, __, ___, child) => child,
-                page: ExploreRouteSmall.page,
-                path: 'explore-small-tab',
-              ),
               CustomRoute(
                 transitionsBuilder: (_, __, ___, child) => child,
                 page: BookDetailsRoute.page,

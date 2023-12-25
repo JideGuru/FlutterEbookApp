@@ -8,15 +8,12 @@ class HomeScreenLarge extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        SizedBox(
-          width: context.screenSize.width / 2.7,
-          child: const HomeScreenSmall(),
-        ),
-        const VerticalDivider(thickness: 1, width: 2),
-        const Expanded(child: AutoRouter()),
-      ],
+    final isNestedEmpty = context.watchRouter.topRoute.name == 'HomeRoute';
+
+    return AnimatedPageSplitter(
+      isExpanded: !isNestedEmpty,
+      leftChild: const HomeScreenSmall(),
+      rightChild: const AutoRouter(),
     );
   }
 }

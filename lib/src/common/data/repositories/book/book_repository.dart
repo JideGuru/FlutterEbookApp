@@ -20,7 +20,7 @@ abstract class BookRepository {
       final json = jsonDecode(xml2json.toGData());
       category = CategoryFeed.fromJson(json as Map<String, dynamic>);
       return (feed: category, failure: null);
-    } on DioError catch (error) {
+    } on DioException catch (error) {
       final statusCode = error.response?.statusCode ?? 500;
       if (statusCode == 404) {
         return (feed: null, failure: HttpFailure.notFound);

@@ -82,8 +82,18 @@ class _GenreScreenState extends ConsumerState<GenreScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final autoRouteTopRoute = context.watchRouter.currentChild;
+    final canPop = context.router.canPop();
+
     return Scaffold(
       appBar: AppBar(
+        leading: !canPop && autoRouteTopRoute?.name == 'GenreRoute'
+            ? CloseButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+              )
+            : null,
         backgroundColor: context.isSmallScreen ? null : Colors.transparent,
         centerTitle: true,
         title: Text(widget.title),

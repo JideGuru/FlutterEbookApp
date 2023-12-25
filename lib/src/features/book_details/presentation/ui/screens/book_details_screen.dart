@@ -32,8 +32,18 @@ class BookDetailsScreen extends ConsumerStatefulWidget {
 class _BookDetailsScreenState extends ConsumerState<BookDetailsScreen> {
   @override
   Widget build(BuildContext context) {
+    final autoRouteTopRoute = context.watchRouter.currentChild;
+    final canPop = context.router.canPop();
+
     return Scaffold(
       appBar: AppBar(
+        leading: !canPop && autoRouteTopRoute?.name == 'BookDetailsRoute'
+            ? CloseButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+              )
+            : null,
         backgroundColor: context.isSmallScreen ? null : Colors.transparent,
         actions: <Widget>[
           ref.watch(favoritesNotifierProvider).maybeWhen(

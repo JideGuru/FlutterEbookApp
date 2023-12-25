@@ -1,3 +1,4 @@
+export 'animated_page_splitter.dart';
 export 'book_card.dart';
 export 'book_item.dart';
 export 'book_list_item.dart';
