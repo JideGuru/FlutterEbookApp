@@ -8,5 +8,10 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   LocalStorage();
   await DatabaseConfig.init(StoreRef<dynamic, dynamic>.main());
-  runApp(ProviderScope(child: MyApp()));
+  runApp(
+    ProviderScope(
+      observers: [RiverpodObserver()],
+      child: MyApp(),
+    ),
+  );
 }

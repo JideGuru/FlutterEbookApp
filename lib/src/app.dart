@@ -16,11 +16,9 @@ class MyApp extends ConsumerWidget {
       debugShowCheckedModeBanner: false,
       title: Strings.appName,
       theme: themeData(
-        currentAppTheme.value == CurrentAppTheme.dark
-            ? ThemeConfig.darkTheme
-            : ThemeConfig.lightTheme,
+        currentAppTheme.value == CurrentAppTheme.dark ? darkTheme : lightTheme,
       ),
-      darkTheme: themeData(ThemeConfig.darkTheme),
+      darkTheme: themeData(darkTheme),
       themeMode: currentAppTheme.value?.themeMode,
       routerConfig: _appRouter.config(
         navigatorObservers: () => [
@@ -37,7 +35,7 @@ class MyApp extends ConsumerWidget {
         theme.textTheme,
       ),
       colorScheme: theme.colorScheme.copyWith(
-        secondary: ThemeConfig.lightAccent,
+        secondary: lightAccent,
       ),
     );
   }

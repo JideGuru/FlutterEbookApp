@@ -5,3 +5,4 @@ export 'domain/domain.dart';
 export 'extensions/extensions.dart';
 export 'presentation/presentation.dart';
 export 'router/app_router.dart';
+export 'utils/utils.dart';
