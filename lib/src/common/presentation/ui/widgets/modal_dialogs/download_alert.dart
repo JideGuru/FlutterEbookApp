@@ -47,7 +47,7 @@ class DownloadAlert extends ConsumerStatefulWidget {
 }
 
 class _DownloadAlertState extends ConsumerState<DownloadAlert> {
-  Dio dio = Dio();
+  Dio dio = Dio()..interceptors.add(LogmanDioInterceptor());
   int received = 0;
   String progress = '0';
   int total = 0;

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_ebook_app/src/common/common.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:logman/logman.dart';
 
 class MyApp extends ConsumerWidget {
   MyApp({super.key});
@@ -21,7 +22,11 @@ class MyApp extends ConsumerWidget {
       ),
       darkTheme: themeData(ThemeConfig.darkTheme),
       themeMode: currentAppTheme.value?.themeMode,
-      routerConfig: _appRouter.config(),
+      routerConfig: _appRouter.config(
+        navigatorObservers: () => [
+          LogmanNavigatorObserver(),
+        ],
+      ),
     );
   }
 

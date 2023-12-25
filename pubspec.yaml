@@ -10,7 +10,7 @@ dependencies:
   auto_route: ^7.4.0
   cached_network_image: ^3.2.3
   cupertino_icons: ^1.0.3
-  dio: ^5.1.2
+  dio: ^5.4.0
   flutter:
     sdk: flutter
   flutter_icons:
@@ -19,6 +19,9 @@ dependencies:
   flutter_spinkit: ^5.2.0
   freezed_annotation: ^2.2.0
   google_fonts: ^4.0.4
+  iridium_reader_widget:
+    path: ./packages/iridium/reader_widget
+  logman: ^0.0.5
   path: ^1.8.2
   path_provider: ^2.0.3
   permission_handler: ^10.2.0
@@ -28,11 +31,10 @@ dependencies:
   share_plus: ^4.0.4
   shared_preferences: ^2.1.1
   xml2json: ^5.3.1
-  iridium_reader_widget:
-    path: ./packages/iridium/reader_widget
 
 dependency_overrides:
   collection: ^1.17.2
+  flutter_inappwebview: ^5.8.0
 
 dev_dependencies:
   auto_route_generator: ^7.1.1

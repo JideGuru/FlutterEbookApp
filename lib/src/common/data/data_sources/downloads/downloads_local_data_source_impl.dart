@@ -1,5 +1,6 @@
 import 'package:flutter_ebook_app/src/common/common.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:logman/logman.dart';
 import 'package:sembast/sembast.dart';
 
 class DownloadsLocalDataSourceImpl implements DownloadsLocalDataSource {
@@ -15,21 +16,33 @@ class DownloadsLocalDataSourceImpl implements DownloadsLocalDataSource {
   @override
   Future<void> addBook(Map<String, dynamic> book, String id) async {
     await _store.record(id).put(_database, book, merge: true);
+    Logman.instance.recordSimpleLog(
+      'Added book to downloads: ${book['title']}',
+    );
   }
 
   @override
   Future<void> clearBooks() async {
     await _store.delete(_database);
+    Logman.instance.recordSimpleLog(
+      'Cleared all books from downloads',
+    );
   }
 
   @override
   Future<void> deleteAllBooksWithId(String id) async {
     await _store.record(id).delete(_database);
+    Logman.instance.recordSimpleLog(
+      'Deleted all books with id: $id',
+    );
   }
 
   @override
   Future<void> deleteBook(String id) async {
     await _store.record(id).delete(_database);
+    Logman.instance.recordSimpleLog(
+      'Deleted book from downloads: $id',
+    );
   }
 
   @override
@@ -41,6 +54,9 @@ class DownloadsLocalDataSourceImpl implements DownloadsLocalDataSource {
 
   @override
   Future<Map<String, dynamic>?> fetchBook(String id) async {
+    Logman.instance.recordSimpleLog(
+      'Fetched book from downloads: $id',
+    );
     return _store.record(id).get(_database);
   }
 

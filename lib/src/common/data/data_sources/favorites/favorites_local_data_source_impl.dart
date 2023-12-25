@@ -1,5 +1,6 @@
 import 'package:flutter_ebook_app/src/common/common.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:logman/logman.dart';
 import 'package:sembast/sembast.dart';
 
 class FavoritesLocalDataSourceImpl implements FavoritesLocalDataSource {
@@ -15,11 +16,17 @@ class FavoritesLocalDataSourceImpl implements FavoritesLocalDataSource {
   @override
   Future<void> addBook(Entry book, String id) async {
     await _store.record(id).put(_database, book.toJson());
+    Logman.instance.recordSimpleLog(
+      'Added book to favorites: ${book.title}',
+    );
   }
 
   @override
   Future<void> deleteBook(String id) async {
     await _store.record(id).delete(_database);
+    Logman.instance.recordSimpleLog(
+      'Deleted book from favorites: $id',
+    );
   }
 
   @override
