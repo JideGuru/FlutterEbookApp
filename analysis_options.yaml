@@ -7,6 +7,7 @@ analyzer:
     - "**/*.freezed.dart"
     - "**/*.gr.dart"
     - packages/**
+    - "**/category_feed.dart"
 
 linter:
   rules:

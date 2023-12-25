@@ -34,9 +34,9 @@ class _HomeScreenSmallState extends ConsumerState<HomeScreenSmall> {
       appBar: context.isSmallScreen
           ? AppBar(
               centerTitle: true,
-              title: Text(
-                Strings.appName,
-                style: const TextStyle(fontSize: 20.0),
+              title: const Text(
+                appName,
+                style: TextStyle(fontSize: 20.0),
               ),
             )
           : null,

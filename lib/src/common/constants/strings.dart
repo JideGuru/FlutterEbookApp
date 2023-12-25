@@ -1,3 +1,1 @@
-class Strings {
-  static String appName = 'OpenLeaf';
-}
+const String appName = 'OpenLeaf';

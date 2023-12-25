@@ -13,6 +13,7 @@ final ThemeData lightTheme = ThemeData(
     secondary: lightBG,
     brightness: Brightness.light,
   ),
+  useMaterial3: false,
   primaryColor: lightPrimary,
   scaffoldBackgroundColor: lightBG,
   navigationRailTheme: const NavigationRailThemeData(
@@ -46,6 +47,7 @@ final ThemeData darkTheme = ThemeData(
     secondary: darkBG,
     brightness: Brightness.dark,
   ),
+  useMaterial3: false,
   primaryColor: darkPrimary,
   scaffoldBackgroundColor: darkBG,
   navigationRailTheme: const NavigationRailThemeData(

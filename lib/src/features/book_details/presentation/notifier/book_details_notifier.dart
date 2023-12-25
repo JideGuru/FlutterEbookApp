@@ -16,7 +16,7 @@ class BookDetailsNotifier extends _$BookDetailsNotifier {
   Future<CategoryFeed> build(String url) async {
     _bookDetailsRepository = ref.watch(bookDetailsRepositoryProvider);
     _url = url;
-    return await _fetch();
+    return _fetch();
   }
 
   Future<void> fetch() async {

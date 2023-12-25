@@ -23,9 +23,9 @@ class ExitModalDialog extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
             const SizedBox(height: 15.0),
-            Text(
-              Strings.appName,
-              style: const TextStyle(
+            const Text(
+              appName,
+              style: TextStyle(
                 fontWeight: FontWeight.bold,
                 fontSize: 16.0,
               ),

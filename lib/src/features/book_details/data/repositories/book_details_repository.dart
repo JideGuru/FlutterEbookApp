@@ -5,7 +5,7 @@ class BookDetailsRepository extends BookRepository {
   BookDetailsRepository(super.httpClient);
 
   Future<BookRepositoryData> getRelatedFeed(String url) {
-    final String stripedUrl = url.replaceAll(ApiEndpoints.baseURL, '');
+    final String stripedUrl = url.replaceAll(baseURL, '');
     final successOrFailure = getCategory(stripedUrl);
     return successOrFailure;
   }

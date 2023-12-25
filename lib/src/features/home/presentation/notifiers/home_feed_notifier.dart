@@ -18,7 +18,7 @@ class HomeFeedNotifier extends _$HomeFeedNotifier {
 
   Future<void> fetch() async {
     state = const AsyncValue.loading();
-    state = await AsyncValue.guard(() async => await _fetch());
+    state = await AsyncValue.guard(() async => _fetch());
   }
 
   Future<HomeFeedData> _fetch() async {

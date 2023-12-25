@@ -1,3 +1,1 @@
-class SharedPreferencesKeys {
-  static String get isDarkMode => 'isDarkMode';
-}
+String get isDarkModeKey => 'isDarkMode';

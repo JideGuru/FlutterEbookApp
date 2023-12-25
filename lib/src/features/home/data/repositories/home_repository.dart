@@ -6,12 +6,12 @@ class HomeRepository extends BookRepository {
   HomeRepository(super.httpClient);
 
   Future<BookRepositoryData> getPopularHomeFeed() {
-    final successOrFailure = getCategory(ApiEndpoints.popular);
+    final successOrFailure = getCategory(popular);
     return successOrFailure;
   }
 
   Future<BookRepositoryData> getRecentHomeFeed() {
-    final successOrFailure = getCategory(ApiEndpoints.recent);
+    final successOrFailure = getCategory(recent);
     return successOrFailure;
   }
 }

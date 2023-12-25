@@ -9,19 +9,17 @@ class CurrentAppThemeService {
 
   Future<bool> setCurrentAppTheme(bool isDarkMode) =>
       _sharedPreferences!.setBool(
-        SharedPreferencesKeys.isDarkMode,
+        isDarkModeKey,
         isDarkMode,
       );
 
   CurrentAppTheme getCurrentAppTheme() {
-    final isDarkMode =
-        _sharedPreferences!.getBool(SharedPreferencesKeys.isDarkMode);
+    final isDarkMode = _sharedPreferences!.getBool(isDarkModeKey);
     return (isDarkMode ?? false) ? CurrentAppTheme.dark : CurrentAppTheme.light;
   }
 
   bool getIsDarkMode() {
-    final isDarkMode =
-        _sharedPreferences!.getBool(SharedPreferencesKeys.isDarkMode);
+    final isDarkMode = _sharedPreferences!.getBool(isDarkModeKey);
     return isDarkMode ?? false;
   }
 }

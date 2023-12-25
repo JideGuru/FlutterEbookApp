@@ -5,7 +5,7 @@ import 'package:logman/logman.dart';
 
 class AppDio with DioMixin implements Dio {
   AppDio._() {
-    final String baseUrl = ApiEndpoints.baseURL;
+    const String baseUrl = baseURL;
     options = BaseOptions(
       baseUrl: baseUrl,
       contentType: 'application/json',

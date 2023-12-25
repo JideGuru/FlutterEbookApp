@@ -14,7 +14,7 @@ class MyApp extends ConsumerWidget {
     final currentAppTheme = ref.watch(currentAppThemeNotifierProvider);
     return MaterialApp.router(
       debugShowCheckedModeBanner: false,
-      title: Strings.appName,
+      title: appName,
       theme: themeData(
         currentAppTheme.value == CurrentAppTheme.dark ? darkTheme : lightTheme,
       ),

@@ -5,7 +5,7 @@ import 'package:sembast/sembast.dart';
 import 'package:sembast/sembast_io.dart';
 import 'package:sembast_web/sembast_web.dart';
 
-abstract class DatabaseConfig {
+mixin DatabaseConfig {
   static Database getDatabaseInstance(String dbName) {
     final database = _instances[dbName];
     if (database == null) {

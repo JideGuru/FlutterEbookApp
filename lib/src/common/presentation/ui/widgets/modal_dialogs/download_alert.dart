@@ -80,17 +80,16 @@ class _DownloadAlertState extends ConsumerState<DownloadAlert> {
         ? await getExternalStorageDirectory()
         : await getApplicationDocumentsDirectory();
 
-    final String dirPath = path.join(appDocDir!.path, Strings.appName);
+    final String dirPath = path.join(appDocDir!.path, appName);
     if (Platform.isAndroid) {
-      Directory(appDocDir.path.split('Android')[0] + Strings.appName)
-          .createSync();
+      Directory(appDocDir.path.split('Android')[0] + appName).createSync();
     } else {
       Directory(dirPath).createSync();
     }
     final String filePath = Platform.isAndroid
         ? path.join(
             appDocDir.path.split('Android')[0],
-            Strings.appName,
+            appName,
             '$fileName.epub',
           )
         : path.join(dirPath, '$fileName.epub');
@@ -142,8 +141,8 @@ class _DownloadAlertState extends ConsumerState<DownloadAlert> {
 
   @override
   Widget build(BuildContext context) {
-    return WillPopScope(
-      onWillPop: () => Future.value(false),
+    return PopScope(
+      onPopInvoked: (_) => Future.value(false),
       child: CustomAlert(
         child: Padding(
           padding: const EdgeInsets.all(20.0),

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_ebook_app/src/common/common.dart';
 
 class MyErrorWidget extends StatelessWidget {
-  final Function refreshCallBack;
+  final VoidCallback refreshCallBack;
   final bool isConnection;
 
   const MyErrorWidget({
