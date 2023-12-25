@@ -34,8 +34,8 @@ class LazyZipDecoder {
         // UNIX systems has a creator version of 3 decimal at 1 byte offset
         if (zfh.versionMadeBy >> 8 == 3) {
           //final bool isDirectory = file.mode & 0x7000 == 0x4000;
-          final bool isFile = file.mode & 0x3F000 == 0x8000;
-          file.isFile = isFile;
+          final fileType = file.mode & 0xF000;
+          file.isFile = fileType == 0x8000 || fileType == 0x0000;
         } else {
           file.isFile = !file.name.endsWith('/');
         }
