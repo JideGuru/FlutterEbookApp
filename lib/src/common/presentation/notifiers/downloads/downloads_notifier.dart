@@ -41,4 +41,8 @@ class DownloadsNotifier extends _$DownloadsNotifier {
   Future<void> deleteBook(String id) async {
     await _repository.deleteBook(id);
   }
+
+  Future<void> clearBooks() async {
+    await _repository.clearBooks();
+  }
 }

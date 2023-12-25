@@ -9,6 +9,8 @@ abstract class FavoritesRepository {
   Future<void> deleteBook(String id);
 
   Future<Stream<List<Entry>>> favoritesListStream();
+
+  Future<void> clearBooks();
 }
 
 class FavoritesRepositoryImpl extends FavoritesRepository {
@@ -31,6 +33,11 @@ class FavoritesRepositoryImpl extends FavoritesRepository {
   @override
   Future<Stream<List<Entry>>> favoritesListStream() async {
     return localDataSource.favoritesListStream();
+  }
+
+  @override
+  Future<void> clearBooks() async {
+    await localDataSource.clearBooks();
   }
 }
 

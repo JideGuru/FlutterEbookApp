@@ -8,4 +8,6 @@ abstract class FavoritesLocalDataSource {
   Future<void> deleteBook(String id);
 
   Stream<List<Entry>> favoritesListStream();
+
+  Future<void> clearBooks();
 }

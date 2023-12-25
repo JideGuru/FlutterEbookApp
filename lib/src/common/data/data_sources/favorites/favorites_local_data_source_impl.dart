@@ -37,6 +37,14 @@ class FavoritesLocalDataSourceImpl implements FavoritesLocalDataSource {
               .toList(),
         );
   }
+
+  @override
+  Future<void> clearBooks() async {
+    await _store.delete(_database);
+    Logman.instance.recordSimpleLog(
+      'Cleared all books from favorites',
+    );
+  }
 }
 
 final favoritesLocalDataSourceProvider =
