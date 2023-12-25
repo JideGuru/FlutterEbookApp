@@ -8,7 +8,7 @@ environment:
 
 dependencies:
   auto_route: ^7.4.0
-  cached_network_image: ^3.2.3
+  cached_network_image: ^3.3.0
   cupertino_icons: ^1.0.3
   dio: ^5.4.0
   flutter:

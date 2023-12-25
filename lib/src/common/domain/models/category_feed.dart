@@ -22,6 +22,11 @@ class CategoryFeed {
     }
     return data;
   }
+
+  @override
+  String toString() {
+    return 'CategoryFeed(version: $version, encoding: $encoding, feed: $feed)';
+  }
 }
 
 class Feed {
@@ -168,6 +173,11 @@ class Feed {
     }
     return data;
   }
+
+  @override
+  String toString() {
+    return 'Feed(xmlLang: $xmlLang, xmlns: $xmlns, xmlnsDcterms: $xmlnsDcterms, xmlnsThr: $xmlnsThr, xmlnsApp: $xmlnsApp, xmlnsOpensearch: $xmlnsOpensearch, xmlnsOpds: $xmlnsOpds, xmlnsXsi: $xmlnsXsi, xmlnsOdl: $xmlnsOdl, xmlnsSchema: $xmlnsSchema, id: $id, title: $title, updated: $updated, icon: $icon, author: $author, link: $link, opensearchTotalResults: $opensearchTotalResults, opensearchItemsPerPage: $opensearchItemsPerPage, opensearchStartIndex: $opensearchStartIndex, entry: $entry)';
+  }
 }
 
 class Id {
@@ -183,6 +193,11 @@ class Id {
     final Map<String, dynamic> data = <String, dynamic>{};
     data[r'$t'] = t;
     return data;
+  }
+
+  @override
+  String toString() {
+    return 'Id(t: $t)';
   }
 }
 
@@ -217,6 +232,11 @@ class Author {
       data['email'] = email!.toJson();
     }
     return data;
+  }
+
+  @override
+  String toString() {
+    return 'Author(name: $name, uri: $uri, email: $email)';
   }
 }
 
@@ -259,6 +279,11 @@ class Link {
     data['opds:facetGroup'] = opdsFacetGroup;
     data['thr:count'] = thrCount;
     return data;
+  }
+
+  @override
+  String toString() {
+    return 'Link(rel: $rel, type: $type, href: $href, title: $title, opdsActiveFacet: $opdsActiveFacet, opdsFacetGroup: $opdsFacetGroup, thrCount: $thrCount)';
   }
 }
 
@@ -389,6 +414,11 @@ class Entry {
     }
     return data;
   }
+
+  @override
+  String toString() {
+    return 'Entry(title: $title, id: $id, author: $author, published: $published, updated: $updated, dctermsLanguage: $dctermsLanguage, dctermsPublisher: $dctermsPublisher, dctermsIssued: $dctermsIssued, summary: $summary, category: $category, link: $link, schemaSeries: $schemaSeries)';
+  }
 }
 
 class Author1 {
@@ -416,6 +446,11 @@ class Author1 {
     }
     return data;
   }
+
+  @override
+  String toString() {
+    return 'Author1(name: $name, uri: $uri)';
+  }
 }
 
 class Category {
@@ -437,6 +472,11 @@ class Category {
     data['term'] = term;
     data['scheme'] = scheme;
     return data;
+  }
+
+  @override
+  String toString() {
+    return 'Category(label: $label, term: $term, scheme: $scheme)';
   }
 }
 
@@ -463,6 +503,11 @@ class Link1 {
     data['href'] = href;
     return data;
   }
+
+  @override
+  String toString() {
+    return 'Link1(type: $type, rel: $rel, title: $title, href: $href)';
+  }
 }
 
 class SchemaSeries {
@@ -484,5 +529,10 @@ class SchemaSeries {
     data['schema:name'] = schemaName;
     data['schema:url'] = schemaUrl;
     return data;
+  }
+
+  @override
+  String toString() {
+    return 'SchemaSeries(schemaPosition: $schemaPosition, schemaName: $schemaName, schemaUrl: $schemaUrl)';
   }
 }
