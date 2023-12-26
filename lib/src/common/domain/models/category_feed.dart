@@ -117,12 +117,12 @@ class Feed {
         : null;
     if (json['entry'] != null) {
       final String t = json['entry'].runtimeType.toString();
-      if (t == 'List<dynamic>' || t == '_GrowableList<dynamic>') {
+      try {
         entry = <Entry>[];
         json['entry'].forEach((v) {
           entry!.add(Entry.fromJson(v as Map<String, dynamic>));
         });
-      } else {
+      } catch (_) {
         entry = <Entry>[];
         entry!.add(Entry.fromJson(json['entry'] as Map<String, dynamic>));
       }
@@ -324,9 +324,9 @@ class Entry {
         ? Id.fromJson(json['id'] as Map<String, dynamic>)
         : null;
     if (json['author'] != null) {
-      if (json['author'].runtimeType.toString() == 'List<dynamic>') {
+      try {
         author = Author1.fromJson(json['author'][0] as Map<String, dynamic>);
-      } else {
+      } catch (_) {
         author = Author1.fromJson(json['author'] as Map<String, dynamic>);
       }
     }
@@ -350,14 +350,12 @@ class Entry {
         ? Id.fromJson(json['summary'] as Map<String, dynamic>)
         : null;
     if (json['category'] != null) {
-      final String t = json['category'].runtimeType.toString();
-      if (t.toLowerCase().contains('list')) {
-        category = <Category>[];
+      category = <Category>[];
+      try {
         json['category'].forEach((v) {
           category!.add(Category.fromJson(v as Map<String, dynamic>));
         });
-      } else {
-        category = <Category>[];
+      } catch (_) {
         category!.add(
           Category.fromJson(json['category'] as Map<String, dynamic>),
         );
@@ -365,9 +363,11 @@ class Entry {
     }
     if (json['link'] != null) {
       link = <Link1>[];
-      json['link'].forEach((v) {
-        link!.add(Link1.fromJson(v as Map<String, dynamic>));
-      });
+      try {
+        json['link'].forEach((v) {
+          link!.add(Link1.fromJson(v as Map<String, dynamic>));
+        });
+      } catch (_) {}
     }
     schemaSeries = json[r'schema$Series'] != null
         ? SchemaSeries.fromJson(json[r'schema$Series'] as Map<String, dynamic>)
