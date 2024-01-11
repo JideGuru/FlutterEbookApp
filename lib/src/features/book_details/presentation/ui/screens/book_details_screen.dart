@@ -104,6 +104,7 @@ class _BookDetailsScreenState extends ConsumerState<BookDetailsScreen> {
           _MoreBooksFromAuthor(
             authorUrl:
                 widget.entry.author!.uri!.t!.replaceAll(r'\&lang=en', ''),
+            entry: widget.entry,
           ),
           const SizedBox(height: 30.0),
         ],
@@ -197,13 +198,7 @@ class _BookDescriptionSection extends StatelessWidget {
               ),
               const SizedBox(height: 5.0),
               _CategoryChips(entry: entry),
-              Center(
-                child: SizedBox(
-                  height: 50.0,
-                  width: MediaQuery.of(context).size.width,
-                  child: _DownloadButton(entry: entry),
-                ),
-              ),
+              _DownloadButton(entry: entry),
             ],
           ),
         ),
@@ -285,7 +280,9 @@ class _DownloadButton extends ConsumerWidget {
             'Read Book'.toUpperCase(),
             style: TextStyle(
               fontSize: 15,
+              fontWeight: FontWeight.bold,
               color: context.theme.textTheme.titleLarge?.color ?? Colors.black,
+              decoration: TextDecoration.underline,
             ),
           ),
         );
@@ -307,7 +304,9 @@ class _DownloadButton extends ConsumerWidget {
           'Download'.toUpperCase(),
           style: TextStyle(
             fontSize: 15,
+            fontWeight: FontWeight.bold,
             color: context.theme.textTheme.titleLarge?.color ?? Colors.black,
+            decoration: TextDecoration.underline,
           ),
         ),
       );
@@ -356,9 +355,11 @@ class _SectionTitle extends StatelessWidget {
 
 class _MoreBooksFromAuthor extends ConsumerStatefulWidget {
   final String authorUrl;
+  final Entry entry;
 
   const _MoreBooksFromAuthor({
     required this.authorUrl,
+    required this.entry,
   });
 
   @override
@@ -394,18 +395,45 @@ class _MoreBooksFromAuthorState extends ConsumerState<_MoreBooksFromAuthor> {
           loading: () => const LoadingWidget(),
           data: (related) {
             if (related.feed!.entry == null || related.feed!.entry!.isEmpty) {
-              return const Text('Empty');
+              return const Center(
+                child: Padding(
+                  padding: EdgeInsets.only(top: 50.0),
+                  child: Text(
+                    'Empty',
+                  ),
+                ),
+              );
             }
+            final entries = related.feed!.entry!;
             return ListView.builder(
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
               itemCount: related.feed!.entry!.length,
               itemBuilder: (BuildContext context, int index) {
-                final entry = related.feed!.entry![index];
-                return Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 5.0),
-                  child: BookListItem(entry: entry),
-                );
+                final entry = entries[index];
+                final isSingleEntry = entries.length == 1;
+                if (entry.id!.t == widget.entry.id!.t && isSingleEntry) {
+                  return const Center(
+                    child: Padding(
+                      padding: EdgeInsets.only(top: 40.0),
+                      child: Text(
+                        "oops, there's no other book from this author available",
+                        style: TextStyle(
+                          fontSize: 16,
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+                  );
+                } else if (entry.id!.t == widget.entry.id!.t) {
+                  return const SizedBox
+                      .shrink(); // Skip rendering the current entry
+                } else {
+                  return Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 5.0),
+                    child: BookListItem(entry: entry),
+                  );
+                }
               },
             );
           },
