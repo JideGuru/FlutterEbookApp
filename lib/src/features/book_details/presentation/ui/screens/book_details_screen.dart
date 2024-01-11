@@ -276,6 +276,9 @@ class _DownloadButton extends ConsumerWidget {
         final book = books.firstWhere((element) => element['id'] == id);
         return TextButton(
           onPressed: () => openBook(book['path'] as String, context, ref),
+          style: TextButton.styleFrom(
+            padding: EdgeInsets.zero,
+          ),
           child: Text(
             'Read Book'.toUpperCase(),
             style: TextStyle(
@@ -291,6 +294,9 @@ class _DownloadButton extends ConsumerWidget {
   }
 
   Widget _downloadButton(BuildContext context) => TextButton(
+        style: TextButton.styleFrom(
+          padding: EdgeInsets.zero,
+        ),
         onPressed: () {
           DownloadAlert.show(
             context: context,
