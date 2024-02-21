@@ -8,7 +8,10 @@ class MyApp extends ConsumerWidget {
   MyApp({super.key});
 
   final _appRouter = AppRouter();
-
+  
+  void sayHello(){
+  print('Hello World');
+  }
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final currentAppTheme = ref.watch(currentAppThemeNotifierProvider);
