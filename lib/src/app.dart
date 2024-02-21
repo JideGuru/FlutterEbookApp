@@ -18,8 +18,12 @@ class MyApp extends ConsumerWidget {
     return MaterialApp.router(
       debugShowCheckedModeBanner: false,
       title: appName,
-      theme: themeData(
-        currentAppTheme.value == CurrentAppTheme.dark ? darkTheme : lightTheme,
+      theme: ThemeData.dark().copyWith(
+        primaryColor: Color(0xFF0A0E21),
+        appBarTheme: AppBarTheme(
+          backgroundColor: Color(0xFF0A0E21),
+        ),
+        scaffoldBackgroundColor: Color(0xFF0A0E28),
       ),
       darkTheme: themeData(darkTheme),
       themeMode: currentAppTheme.value?.themeMode,
