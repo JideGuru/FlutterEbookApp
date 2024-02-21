@@ -8,15 +8,26 @@ class MyApp extends ConsumerWidget {
   MyApp({super.key});
 
   final _appRouter = AppRouter();
+  
+  void sayHello(){
+  print('Hello World');
+  }
 
+  void sayAnotherHello(){
+    print('Hello Country');
+  }
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final currentAppTheme = ref.watch(currentAppThemeNotifierProvider);
     return MaterialApp.router(
       debugShowCheckedModeBanner: false,
       title: appName,
-      theme: themeData(
-        currentAppTheme.value == CurrentAppTheme.dark ? darkTheme : lightTheme,
+      theme: ThemeData.dark().copyWith(
+        primaryColor: Color(0xFF0A0E21),
+        appBarTheme: AppBarTheme(
+          backgroundColor: Color(0xFF0A0E21),
+        ),
+        scaffoldBackgroundColor: Color(0xFF0A0E28),
       ),
       darkTheme: themeData(darkTheme),
       themeMode: currentAppTheme.value?.themeMode,
