@@ -12,6 +12,10 @@ class MyApp extends ConsumerWidget {
   void sayHello(){
   print('Hello World');
   }
+
+  void sayAnotherHello(){
+    print('Hello Country');
+  }
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final currentAppTheme = ref.watch(currentAppThemeNotifierProvider);
