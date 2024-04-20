@@ -21,7 +21,7 @@ dependencies:
   google_fonts: ^4.0.4
   iridium_reader_widget:
     path: ./packages/iridium/reader_widget
-  logman: ^0.0.5
+  logman: ^0.0.14
   path: ^1.8.2
   path_provider: ^2.0.3
   permission_handler: ^10.2.0

@@ -10,7 +10,7 @@ class RiverpodObserver extends ProviderObserver {
     Object? value,
     ProviderContainer container,
   ) {
-    logman.recordSimpleLog('Provider $provider was initialized with $value');
+    logman.info('Provider $provider was initialized with $value');
   }
 
   @override
@@ -18,7 +18,7 @@ class RiverpodObserver extends ProviderObserver {
     ProviderBase<Object?> provider,
     ProviderContainer container,
   ) {
-    logman.recordSimpleLog('Provider $provider was disposed');
+    logman.info('Provider $provider was disposed');
   }
 
   @override
@@ -28,7 +28,7 @@ class RiverpodObserver extends ProviderObserver {
     Object? newValue,
     ProviderContainer container,
   ) {
-    logman.recordSimpleLog(
+    logman.info(
       'Provider $provider updated from $previousValue to $newValue',
     );
   }
@@ -40,6 +40,6 @@ class RiverpodObserver extends ProviderObserver {
     StackTrace stackTrace,
     ProviderContainer container,
   ) {
-    logman.recordSimpleLog('Provider $provider threw $error at $stackTrace');
+    logman.info('Provider $provider threw $error at $stackTrace');
   }
 }
