@@ -15,6 +15,8 @@ dependencies:
     sdk: flutter
   flutter_icons:
     git: https://github.com/jibiel/flutter-icons
+  flutter_web_plugins:
+    sdk: flutter
   flutter_riverpod: ^2.3.6
   flutter_spinkit: ^5.2.0
   freezed_annotation: ^2.2.0
