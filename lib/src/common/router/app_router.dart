@@ -6,7 +6,7 @@ import 'package:flutter_ebook_app/src/features/features.dart';
 part 'app_router.gr.dart';
 
 @AutoRouterConfig(replaceInRouteName: 'Screen,Route')
-class AppRouter extends _$AppRouter {
+class AppRouter extends RootStackRouter {
   @override
   List<AutoRoute> get routes {
     return <AutoRoute>[

@@ -41,7 +41,7 @@ class _TabsScreenState extends ConsumerState<TabsScreen> {
     ref.watch(homeFeedNotifierProvider);
 
     return PopScope(
-      onPopInvoked: (_) async {
+      onPopInvokedWithResult: (_,__) async {
         ExitModalDialog.show(context: context);
       },
       child: const ResponsiveWidget(

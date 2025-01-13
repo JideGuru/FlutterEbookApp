@@ -52,8 +52,7 @@ class _DownloadAlertState extends ConsumerState<DownloadAlert> {
   String progress = '0';
   int total = 0;
 
-  String get fileName =>
-      widget.name.replaceAll(' ', '_').replaceAll(r"\'", "'");
+  String get fileName => widget.name.replaceAll(' ', '_').replaceAll(r"\'", "'");
 
   Future<void> checkPermissionAndDownload() async {
     if (kIsWeb || Platform.isMacOS) {
@@ -76,9 +75,8 @@ class _DownloadAlertState extends ConsumerState<DownloadAlert> {
   }
 
   Future<void> createFile() async {
-    final appDocDir = Platform.isAndroid
-        ? await getExternalStorageDirectory()
-        : await getApplicationDocumentsDirectory();
+    final appDocDir =
+        Platform.isAndroid ? await getExternalStorageDirectory() : await getApplicationDocumentsDirectory();
 
     final String dirPath = path.join(appDocDir!.path, appName);
     if (Platform.isAndroid) {
@@ -142,7 +140,7 @@ class _DownloadAlertState extends ConsumerState<DownloadAlert> {
   @override
   Widget build(BuildContext context) {
     return PopScope(
-      onPopInvoked: (_) => Future.value(false),
+      onPopInvokedWithResult: (_,__) => Future.value(false),
       child: CustomAlert(
         child: Padding(
           padding: const EdgeInsets.all(20.0),
@@ -172,8 +170,7 @@ class _DownloadAlertState extends ConsumerState<DownloadAlert> {
                   valueColor: AlwaysStoppedAnimation(
                     context.theme.colorScheme.secondary,
                   ),
-                  backgroundColor:
-                      context.theme.colorScheme.secondary.withOpacity(0.3),
+                  backgroundColor: context.theme.colorScheme.secondary.withValues(alpha: 0.3),
                 ),
               ),
               const SizedBox(height: 5.0),

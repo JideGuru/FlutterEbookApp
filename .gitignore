@@ -16,6 +16,14 @@
 *.iws
 .idea/
 
+*.g.dart
+*.freezed.dart
+*.gr.dart
+**/*.gr.dart
+*.gen.dart
+pubspec.lock
+/lib/gen/ 
+
 # The .vscode folder contains launch configuration and tasks you configure in
 # VS Code which you may wish to be included in version control, so this line
 # is commented out by default.
