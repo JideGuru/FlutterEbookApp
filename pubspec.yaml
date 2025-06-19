@@ -37,7 +37,7 @@ dependencies:
 
 dependency_overrides:
   collection: ^1.17.2
-  flutter_inappwebview: ^5.8.0
+  flutter_inappwebview: ^6.0.0
 
 dev_dependencies:
   auto_route_generator: ^7.1.1
