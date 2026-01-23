@@ -1,7 +1,5 @@
 # 📖📖 OpenLeaf (Flutter eBook App) [![Codemagic build status](https://api.codemagic.io/apps/5e230defc5faa60315b1df62/5e230defc5faa60315b1df61/status_badge.svg)](https://codemagic.io/apps/5e230defc5faa60315b1df62/5e230defc5faa60315b1df61/latest_build)
 
-[![Twitter Follow](https://img.shields.io/twitter/follow/iamjideguru.svg?style=social)](https://twitter.com/iamjideguru)
-
 A simple Flutter app to Read and Download books. The Books included in the app
 are from the [Public Domain](https://en.wikipedia.org/wiki/Public_domain)
 (Expired Copyright and completely free).
@@ -60,11 +58,6 @@ You can download from the appstore if you use an iPhone, iPad or a Mac with Sili
 | [**XML2JSON**](https://pub.dev/packages/xml2json)                      | Convert XML to JSON                           |
 | [**DIO**](https://pub.dev/packages/dio)                                | Network calls and File Download               |
 | [**Iridium Reader**](https://github.com/Mantano/iridium_reader_widget) | Plug and play reader widget for epubs         |
-
-## 🤓 Author(s)
-
-**Festus Babajide Olusegun**
-[![Twitter Follow](https://img.shields.io/twitter/follow/iamjideguru.svg?style=social)](https://twitter.com/iamjideguru)
 
 ## 🔖 LICENCE
 
